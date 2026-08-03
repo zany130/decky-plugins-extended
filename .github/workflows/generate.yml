@@ -73,6 +73,7 @@ jobs:
         id: check
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LIVE_CATALOG_URL: https://zany130-decky-plugins-extended.pages.dev/plugins.json
         run: uv run check_for_updates.py
 
       - name: Trigger a Cloudflare rebuild
