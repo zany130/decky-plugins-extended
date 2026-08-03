@@ -19,6 +19,12 @@ on:
     # Every 6 hours — matches the existing catalog-refresh schedule.
     - cron: "0 */6 * * *"
   workflow_dispatch:
+    inputs:
+      skip_cache:
+        description: "Ignore cached reports and rescan every plugin"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -53,15 +59,24 @@ jobs:
       - name: Compute audit cache key
         id: cache-key
         run: |
-          # Incorporate policy version, implementation, and allowlist into the
-          # cache key so the cache is invalidated when any of them change.
-          POLICY_HASH=$(sha256sum security-policy.yml audit_plugins.py plugin_release_utils.py pyproject.toml | sha256sum | cut -c1-16)
+          # Incorporate policy version and every audit implementation module
+          # into the key so filter changes cannot reuse stale audit reports.
+          POLICY_HASH=$(sha256sum \
+            security-policy.yml \
+            audit_plugins.py \
+            audit_plugins_core.py \
+            audit_noise_filters.py \
+            plugin_release_utils.py \
+            pyproject.toml \
+            | sha256sum | cut -c1-16)
           echo "restore_key=audit-cache-v1-${POLICY_HASH}" >> "$GITHUB_OUTPUT"
           echo "save_key=audit-cache-v1-${POLICY_HASH}-${{ github.run_id }}" >> "$GITHUB_OUTPUT"
 
       - name: Restore audit cache
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.skip_cache == false }}
+        # Restore-only action avoids a second automatic save during post-job cleanup.
         # actions/cache v4.2.3
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        uses: actions/cache/restore@5a3ec84eff668545956fd18022155c47e93e2684
         with:
           path: .audit-cache
           key: ${{ steps.cache-key.outputs.save_key }}
@@ -99,16 +114,27 @@ jobs:
       - name: Run audit on all configured repositories
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SKIP_AUDIT_CACHE: ${{ github.event_name == 'workflow_dispatch' && inputs.skip_cache || false }}
         run: |
           mkdir -p security-reports
+          EXTRA_ARGS=()
+
+          if [[ "$SKIP_AUDIT_CACHE" == "true" ]]; then
+            echo "Running a complete audit without cached reports."
+            rm -rf .audit-cache
+            EXTRA_ARGS+=(--skip-cache)
+          fi
+
           uv run python audit_plugins.py \
             --all \
             --output-dir security-reports \
-            --cache-dir .audit-cache
+            --cache-dir .audit-cache \
+            "${EXTRA_ARGS[@]}"
         timeout-minutes: 45
 
       - name: Save audit cache
-        # Save cache after scanning so updated entries persist on the next run.
+        # Save cache after scanning so newly generated reports persist for the
+        # next normal run, including after an intentionally cacheless run.
         # A cache-save failure must not be interpreted as a passing audit.
         if: always()
         # actions/cache v4.2.3
