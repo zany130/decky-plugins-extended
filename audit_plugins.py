@@ -2,7 +2,8 @@
 """Compatibility entry point for the Decky plugin security audit.
 
 The implementation remains in :mod:`audit_plugins_core`; context-aware noise
-filters are installed before the module is exposed to callers or the CLI runs.
+filters and credential-exposure policy are installed before the module is
+exposed to callers or the CLI runs.
 """
 
 from __future__ import annotations
@@ -10,9 +11,11 @@ from __future__ import annotations
 import sys
 
 import audit_plugins_core as _core
-from audit_noise_filters import install
+from audit_noise_filters import install as install_noise_filters
+from credential_exposure_filters import install as install_credential_policy
 
-install(_core)
+install_noise_filters(_core)
+install_credential_policy(_core)
 
 if __name__ == "__main__":
     raise SystemExit(_core.main())
