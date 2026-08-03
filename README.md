@@ -181,3 +181,149 @@ To enable it, create a deploy hook under Pages -> Settings -> Builds &
 deployments -> Deploy hooks, and store the URL as the repository secret
 `CLOUDFLARE_DEPLOY_HOOK`. Without the secret the job fails loudly rather than silently
 skipping the rebuild.
+
+## Security auditing
+
+Every plugin repository and release ZIP is statically inspected before it is
+accepted or updated in this store.  The audit never imports, executes, installs,
+or sources any plugin code.
+
+### What is scanned
+
+- **Archive safety**: path traversal, zip bombs, setuid files, device files,
+  symlink escapes, duplicate paths, and oversized members.
+- **Source vs artifact comparison**: executables or scripts present in the
+  release ZIP but absent from the tagged repository source.
+- **Plugin metadata**: `plugin.json` and `package.json` validity, declared
+  permissions and flags, and version consistency.
+- **Privilege and system access**: `sudo`, `pkexec`, kernel-module loading,
+  `systemctl`, `iptables`, filesystem mounting, and other privileged operations.
+- **Dangerous patterns**: `os.system`, `subprocess` with `shell=True`,
+  `eval`/`exec`, `curl | sh`, and similar execution primitives.
+- **Persistence**: systemd services, cron jobs, `LD_PRELOAD`, shell-profile
+  modification, and udev rule installation.
+- **Sensitive data access**: SSH private keys, Steam authentication files,
+  `/etc/shadow`, and credential-file paths.
+- **Network behaviour**: extracted URLs, domains, telemetry endpoints, disabled
+  TLS verification, and hard-coded authorization headers.
+- **Obfuscation**: large base64 payloads, `marshal.loads`, `pickle.loads`,
+  packed scripts, and dynamic remote code loading.
+- **Native binaries**: ELF, PE, AppImage, and shared-library detection by magic
+  bytes.
+- **Secrets**: private keys, GitHub tokens, cloud-provider credentials, and
+  high-entropy strings (redacted in all reports).
+- **Malware**: ClamAV signature scanning of safely extracted contents.
+- **Dependency vulnerabilities**: Trivy filesystem scan and Semgrep static
+  analysis where available.
+
+### What is not guaranteed
+
+A passing audit does **not** prove a plugin is safe.  Static analysis cannot
+detect all threats, cannot evaluate runtime behaviour, and cannot inspect
+obfuscation that perfectly mimics benign code.  The purpose of the audit is to
+identify *suspicious* behaviour before a plugin reaches users, not to certify it.
+
+### Classifications
+
+| Classification | Meaning |
+|---|---|
+| `PASS` | No blocking or review-required findings. Archive safe. No unexplained binaries. |
+| `PASS_WITH_WARNINGS` | Minor issues (low/medium vulnerabilities, ordinary network usage, unavailable optional scanner). |
+| `MANUAL_REVIEW` | Root flag, sudo, native binaries, systemd changes, obfuscated code, or high-severity dependency vulnerability. |
+| `BLOCK` | Malware signature, archive traversal, zip bomb, credential in release, undisclosed executable download, or explicitly destructive command. |
+| `AUDIT_ERROR` | Audit could not reach a conclusion due to download failure, corrupt ZIP, or internal error. |
+
+### Report-only and enforcement modes
+
+The default mode is **report-only**: `BLOCK` and `MANUAL_REVIEW` findings are
+surfaced prominently in the job summary but do not prevent merging.  Internal
+audit failures (broken infrastructure, download errors) always fail CI.
+
+To enable blocking enforcement after evaluating false-positive rates, change
+`security-policy.yml`:
+
+```yaml
+enforcement:
+  mode: enforce   # was: report-only
+```
+
+In enforcement mode the workflow exits 2 for `BLOCK` and 3 for `MANUAL_REVIEW`.
+
+### Running an audit locally
+
+```sh
+export GITHUB_TOKEN="your_personal_access_token"
+
+# Audit all configured plugins:
+uv run python audit_plugins.py --all --output-dir security-reports
+
+# Audit plugins changed in the current branch relative to main:
+uv run python audit_plugins.py --changed --base-ref origin/main
+
+# Audit a single repository:
+uv run python audit_plugins.py --repository https://github.com/owner/repo
+```
+
+Reports are written to `security-reports/security-report.json` and
+`security-reports/security-report.md`.  Generated reports are gitignored.
+
+### Reviewing reports
+
+Open `security-reports/security-report.md` for the human-readable summary.
+Each finding includes a `rule_id`, `severity`, `classification`, file path, line
+number, and redacted evidence.  Start with `BLOCK` findings, then
+`MANUAL_REVIEW`, and follow the recommended-actions section.
+
+### Adding a narrow allowlist exception
+
+Exceptions must be scoped to a specific artifact by its exact SHA-256 hash.
+Add an entry to `security-allowlist.yml` and open a PR for review:
+
+```yaml
+exceptions:
+  - repository: owner/plugin-name
+    release: "1.2.3"
+    artifact_sha256: "exact-64-character-hex-sha256-of-the-release-zip"
+    rule: ROOT_ACCESS
+    reason: >
+      Hardware-control plugin requires a documented privileged helper to
+      access GPU registers.  Binary audited separately.
+    approved_by: zany130
+    expires: "2027-01-01"
+```
+
+- `MALWARE`, `ARCHIVE_TRAVERSAL`, and `CREDENTIAL_THEFT` rules require an exact
+  `artifact_sha256`; they cannot be excepted with `"any"`.
+- Entries expire automatically; expired entries produce a warning but do not
+  silently apply.
+- There is no global "ignore all findings" switch.
+
+### Why artifact SHA-256 is used
+
+Mutable release tags can be force-pushed to point at a different commit, and
+GitHub asset URLs can be replaced without changing the tag name.  Keying
+allowlist entries and the audit cache on the SHA-256 of the downloaded ZIP
+ensures that a new or modified artifact always triggers a fresh audit, even
+when the tag name is unchanged.
+
+This is also the integration point for future catalog-generation enforcement:
+a `MANUAL_REVIEW` result should only be approved by linking an allowlist entry
+to the exact artifact hash, not to a repository name or mutable tag.
+
+### Why untrusted plugin code is never executed
+
+Every external plugin repository is treated as hostile input.  The audit
+performs static inspection only: it reads file bytes, parses JSON and
+lock-files, and runs pattern-matching.  It never imports Python modules from
+the plugin, runs shell scripts, executes installers, or runs `npm install` or
+`pip install` inside plugin source trees.  This eliminates an entire class of
+supply-chain attacks where a plugin's build or install step would compromise
+the CI runner.
+
+### How scheduled release audits work
+
+A separate workflow (`scheduled-security-audit.yml`) runs every six hours and
+audits the newest eligible release of every configured repository.  Results are
+cached by artifact SHA-256 plus policy version, so unchanged artifacts are not
+re-downloaded.  A new ZIP hash always triggers a fresh audit.  The scheduled
+workflow never modifies the allowlist or auto-approves any finding.
