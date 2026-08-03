@@ -29,5 +29,4 @@ https://github.com/parvagans/achievement-companion
 https://github.com/cwtechshiz/nordvpn-decky
 https://github.com/Wurielle/decky-launch-options
 https://github.com/andriuspetravicius/Deckcord
-https://github.com/marios8543/Deckcord
 https://github.com/xXJSONDeruloXx/cec-mote
