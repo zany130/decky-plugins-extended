@@ -50,6 +50,20 @@ def _write_zip(path: str, members: list[tuple[str, bytes | str, int]]) -> None:
     Path(path).write_bytes(_make_zip(members))
 
 
+def _make_temp_zip(data: bytes) -> str:
+    """Write bytes to a secure temporary ZIP file and return its path.
+
+    Uses mkstemp to avoid TOCTOU races (unlike the deprecated mktemp).
+    Caller is responsible for deleting the file.
+    """
+    fd, path = tempfile.mkstemp(suffix=".zip")
+    try:
+        os.write(fd, data)
+    finally:
+        os.close(fd)
+    return path
+
+
 def _regular(name: str, content: str | bytes = "") -> tuple[str, bytes | str, int]:
     """Helper: regular file member with no special attributes."""
     return (name, content, 0)
@@ -130,9 +144,7 @@ class TestNormaliseRepoKey(unittest.TestCase):
 
 class TestZipInspection(unittest.TestCase):
     def _write(self, members):
-        tmp = tempfile.mktemp(suffix=".zip")
-        _write_zip(tmp, members)
-        return tmp
+        return _make_temp_zip(_make_zip(members))
 
     def test_valid_zip_passes(self):
         path = self._write([_regular("plugin/main.py", "print('hello')")])
@@ -187,8 +199,7 @@ class TestZipInspection(unittest.TestCase):
         with zipfile.ZipFile(buf, "w") as zf:
             zf.writestr("plugin/Main.py", "a")
             zf.writestr("plugin/main.py", "b")
-        path = tempfile.mktemp(suffix=".zip")
-        Path(path).write_bytes(buf.getvalue())
+        path = _make_temp_zip(buf.getvalue())
         try:
             stats, findings = ap.inspect_zip(path)
             rule_ids = [f.rule_id for f in findings]
@@ -241,8 +252,7 @@ class TestZipInspection(unittest.TestCase):
             # Set setuid bit in Unix mode
             info.external_attr = (0o4755 | stat.S_IFREG) << 16
             zf.writestr(info, b"#!/bin/sh\nid\n")
-        path = tempfile.mktemp(suffix=".zip")
-        Path(path).write_bytes(buf.getvalue())
+        path = _make_temp_zip(buf.getvalue())
         try:
             stats, findings = ap.inspect_zip(path)
             rule_ids = {f.rule_id for f in findings}
@@ -257,8 +267,7 @@ class TestZipInspection(unittest.TestCase):
             # Character device type (0x2000)
             info.external_attr = (0x2000 | 0o666) << 16
             zf.writestr(info, b"")
-        path = tempfile.mktemp(suffix=".zip")
-        Path(path).write_bytes(buf.getvalue())
+        path = _make_temp_zip(buf.getvalue())
         try:
             _, findings = ap.inspect_zip(path)
             rule_ids = {f.rule_id for f in findings}
@@ -267,8 +276,7 @@ class TestZipInspection(unittest.TestCase):
             os.unlink(path)
 
     def test_corrupt_zip_blocked(self):
-        path = tempfile.mktemp(suffix=".zip")
-        Path(path).write_bytes(b"not a zip file at all!!!")
+        path = _make_temp_zip(b"not a zip file at all!!!")
         try:
             stats, findings = ap.inspect_zip(path)
             self.assertFalse(stats.safe)
@@ -840,8 +848,7 @@ class TestSafeExtraction(unittest.TestCase):
         buf = io.BytesIO()
         with zipfile.ZipFile(buf, "w") as zf:
             zf.writestr("plugin/main.py", "print('hello')")
-        zip_path = tempfile.mktemp(suffix=".zip")
-        Path(zip_path).write_bytes(buf.getvalue())
+        zip_path = _make_temp_zip(buf.getvalue())
         try:
             with tempfile.TemporaryDirectory() as dest:
                 extracted = ap.safe_extract_zip(zip_path, dest)
@@ -853,8 +860,7 @@ class TestSafeExtraction(unittest.TestCase):
         buf = io.BytesIO()
         with zipfile.ZipFile(buf, "w") as zf:
             zf.writestr("../evil.py", "bad")
-        zip_path = tempfile.mktemp(suffix=".zip")
-        Path(zip_path).write_bytes(buf.getvalue())
+        zip_path = _make_temp_zip(buf.getvalue())
         try:
             with tempfile.TemporaryDirectory() as dest:
                 with self.assertRaises(ValueError):
