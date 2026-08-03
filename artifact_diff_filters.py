@@ -74,8 +74,11 @@ def _classify_packaged_output(path: str) -> tuple[str, str] | None:
 
     name = parts[-1].lower()
     if _GENERATED_SCRIPT_NAME.search(name) or _HASHED_SCRIPT_NAME.search(name):
+        # Avoid collapsing top-level plugin/archive files solely based on hash-like names.
+        if len(parts) < 3:
+            return None
         parent = "/".join(parts[:-1]).rstrip("/")
-        return "generated_build_output", (parent + "/") if parent else "<archive-root>/"
+        return "generated_build_output", parent + "/"
 
     return None
 
