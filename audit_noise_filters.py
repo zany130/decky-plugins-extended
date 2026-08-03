@@ -67,8 +67,11 @@ def is_documentation_path(path: str) -> bool:
         return True
     if any(part in {"docs", "doc", "documentation"} for part in parts[:-1]):
         return True
-    return any(
-        name.startswith(prefix) or stem.startswith(prefix)
+    # Only treat extension-less files (e.g. README, LICENSE, SECURITY) as
+    # documentation based on their name; files with a code extension such as
+    # security.py must not be skipped by the behavioral scanner.
+    return ext == "" and any(
+        name.startswith(prefix)
         for prefix in _DOC_NAME_PREFIXES
     )
 
@@ -216,7 +219,11 @@ def _strip_hash_comments(content: str) -> str:
             if char in {"'", '"'}:
                 quote = char
                 continue
-            if char == "#" and (index == 0 or line[index - 1].isspace()):
+            if char == "#" and (
+                index == 0
+                or line[index - 1].isspace()
+                or line[index - 1] in {";", "|", "&", "(", ")"}
+            ):
                 comment_at = index
                 break
         if comment_at is None:

@@ -35,6 +35,15 @@ class DocumentationFilteringTests(unittest.TestCase):
         )
         self.assertEqual(findings, [])
 
+    def test_security_py_is_not_documentation(self):
+        """A file named security.py must not be skipped by behavioral scanning."""
+        findings = audit_plugins.scan_text_content(
+            "import subprocess\nsubprocess.run(['mount', '/dev/sda1', '/mnt'])\n",
+            "security.py",
+            ".py",
+        )
+        self.assertIn("PRIVILEGE_MOUNT", {f.rule_id for f in findings})
+
 
 class CommentFilteringTests(unittest.TestCase):
     def test_python_comment_does_not_flag_mount(self):
@@ -67,6 +76,15 @@ class CommentFilteringTests(unittest.TestCase):
             ".sh",
         )
         self.assertNotIn("PRIVILEGE_MOUNT", {f.rule_id for f in findings})
+
+    def test_shell_comment_after_semicolon_does_not_trigger_curl_pipe(self):
+        """# after ';' is a shell comment and must not fire SHELL_CURL_PIPE."""
+        findings = audit_plugins.scan_text_content(
+            "echo ok;# curl https://example.com/install.sh | sh\n",
+            "setup.sh",
+            ".sh",
+        )
+        self.assertNotIn("SHELL_CURL_PIPE", {f.rule_id for f in findings})
 
 
 class ExecutionContextTests(unittest.TestCase):
