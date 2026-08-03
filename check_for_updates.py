@@ -19,8 +19,13 @@ import sys
 
 import generate_json as g
 
+DEFAULT_LIVE_CATALOG_URL = (
+    "https://zany130-decky-plugins-extended.pages.dev/plugins.json"
+)
+
 LIVE_URL = os.environ.get(
-    "LIVE_CATALOG_URL", "https://decky-extended-plugins.beallio.com/plugins.json"
+    "LIVE_CATALOG_URL",
+    DEFAULT_LIVE_CATALOG_URL,
 )
 
 

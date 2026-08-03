@@ -1,7 +1,10 @@
-# Decky Plugins Extended
+# Decky Plugins Extended (zany130 fork)
 
 A custom Decky Loader plugin repository that merges community and custom
-plugins into a single compatible store.
+plugins into a single compatible store.  This is a fork maintained by
+[zany130](https://github.com/zany130) and is deployed to Cloudflare Pages at:
+
+**<https://zany130-decky-plugins-extended.pages.dev>**
 
 ## How to use on your Steam Deck
 
@@ -16,7 +19,7 @@ custom store URL.
    - Set **Custom Store** to:
 
   ```text
-  https://decky-extended-plugins.beallio.com/plugins.json
+  https://zany130-decky-plugins-extended.pages.dev/plugins.json
   ```
 
 2. **Browse plugins.**
@@ -25,13 +28,10 @@ custom store URL.
 
 ## View the catalogs
 
-The generated JSON files are hosted directly on Cloudflare Pages and can be viewed in your browser:
+The generated JSON files are hosted on Cloudflare Pages and can be viewed in your browser:
 
-- **Stable plugins:** [https://decky-extended-plugins.beallio.com/plugins.json](https://decky-extended-plugins.beallio.com/plugins.json)
-- **Testing plugins:** [https://decky-extended-plugins.beallio.com/testing_plugins.json](https://decky-extended-plugins.beallio.com/testing_plugins.json)
-
-The `decky-plugins-extended.pages.dev` URLs serve the same content and keep
-working.
+- **Stable plugins:** [https://zany130-decky-plugins-extended.pages.dev/plugins.json](https://zany130-decky-plugins-extended.pages.dev/plugins.json)
+- **Testing plugins:** [https://zany130-decky-plugins-extended.pages.dev/testing_plugins.json](https://zany130-decky-plugins-extended.pages.dev/testing_plugins.json)
 
 ## Developer guide
 
@@ -182,6 +182,44 @@ deployments -> Deploy hooks, and store the URL as the repository secret
 `CLOUDFLARE_DEPLOY_HOOK`. Without the secret the job fails loudly rather than silently
 skipping the rebuild.
 
+## Cloudflare Pages deployment
+
+This fork is deployed via Cloudflare Pages Git integration.  The production
+hostname is always **<https://zany130-decky-plugins-extended.pages.dev>**.
+
+### Production configuration
+
+| Setting | Value |
+|---|---|
+| Cloudflare project | `zany130-decky-plugins-extended` |
+| Production branch | `main` |
+| Framework preset | None |
+| Build command | `python -m pip install uv && python -m uv run --frozen python generate_json.py` |
+| Build output directory | `public` |
+| Root directory | repository root (blank) |
+
+### Required Cloudflare environment variable
+
+`GITHUB_TOKEN` must be stored as an **encrypted** environment variable in the
+Cloudflare Pages project (Settings → Environment variables).  It is used by
+`generate_json.py` to read release information from GitHub.
+
+- The token only needs the minimum access necessary to read public GitHub
+  repository information.
+- It must **never** be committed to Git or printed in build logs.
+- Cloudflare automatically re-deploys `main` to the production hostname on
+  every push.
+- Pull requests receive temporary **preview** deployment URLs.  Preview URLs
+  must not be used as permanent store URLs — they change with every commit.
+
+### Optional GitHub Actions secret: `CLOUDFLARE_DEPLOY_HOOK`
+
+The `refresh` workflow job uses this secret to trigger a Cloudflare rebuild
+when upstream content may have changed without a commit to this repository.
+Create a deploy hook under Pages → Settings → Builds & deployments → Deploy
+hooks, and store the URL as the `CLOUDFLARE_DEPLOY_HOOK` repository secret.
+The URL is never printed in logs.
+
 ## Security auditing
 
 Every plugin repository and release ZIP is statically inspected before it is
@@ -327,3 +365,19 @@ audits the newest eligible release of every configured repository.  Results are
 cached by artifact SHA-256 plus policy version, so unchanged artifacts are not
 re-downloaded.  A new ZIP hash always triggers a fresh audit.  The scheduled
 workflow never modifies the allowlist or auto-approves any finding.
+
+## Attribution
+
+This repository is a fork of the original
+[decky-plugins-extended](https://github.com/beallio/decky-plugins-extended)
+project created and maintained by [beallio](https://github.com/beallio).
+
+| | |
+|---|---|
+| **Original upstream project** | <https://github.com/beallio/decky-plugins-extended> |
+| **This fork's source repository** | <https://github.com/zany130/decky-plugins-extended> |
+| **This fork's live Cloudflare Pages deployment** | <https://zany130-decky-plugins-extended.pages.dev> |
+
+This fork is independently maintained by [zany130](https://github.com/zany130)
+and is not affiliated with or endorsed by the upstream project owner.  It does
+not control or maintain `decky-extended-plugins.beallio.com`.
