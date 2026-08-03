@@ -671,6 +671,31 @@ class TestAllowlist(unittest.TestCase):
         finally:
             os.unlink(name)
 
+    def test_missing_required_scope_fields_raise(self):
+        for field in ("release", "artifact_sha256", "expires"):
+            with self.subTest(field=field):
+                base = {
+                    "repository": "owner/repo",
+                    "release": "1.0.0",
+                    "artifact_sha256": "a" * 64,
+                    "rule": "ROOT_ACCESS",
+                    "reason": "test",
+                    "approved_by": "reviewer",
+                    "expires": "2027-01-01",
+                }
+                base.pop(field)
+                with tempfile.NamedTemporaryFile("w", suffix=".yml", delete=False) as f:
+                    f.write("version: '1'\nexceptions:\n")
+                    f.write("  -\n")
+                    for k, v in base.items():
+                        f.write(f'    {k}: "{v}"\n')
+                    name = f.name
+                try:
+                    with self.assertRaises(ValueError):
+                        ap.load_allowlist(name)
+                finally:
+                    os.unlink(name)
+
     def test_expired_entry_warning(self):
         excs = [{
             "repository": "owner/repo",

@@ -227,7 +227,15 @@ def load_allowlist(path: str = DEFAULT_ALLOWLIST_FILE) -> list[dict[str, Any]]:
     for i, entry in enumerate(exceptions):
         if not isinstance(entry, dict):
             raise ValueError(f"Allowlist entry {i} is not a mapping.")
-        for required in ("repository", "rule", "reason", "approved_by"):
+        for required in (
+            "repository",
+            "release",
+            "artifact_sha256",
+            "rule",
+            "reason",
+            "approved_by",
+            "expires",
+        ):
             if not entry.get(required):
                 raise ValueError(
                     f"Allowlist entry {i} missing required field '{required}'."
