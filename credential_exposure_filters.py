@@ -249,7 +249,7 @@ def scan_for_credentials(core: Any, content: str, path: str) -> list[Any]:
                 core,
                 rule_id="SECRET_GITHUB_TOKEN",
                 severity="low" if fixture else "high",
-                classification="PASS_WITH_WARNINGS" if fixture else "MANUAL_REVIEW",
+                classification="MANUAL_REVIEW",
                 path=path,
                 line=line_no,
                 message=(
@@ -294,7 +294,7 @@ def scan_for_credentials(core: Any, content: str, path: str) -> list[Any]:
                 core,
                 rule_id="SECRET_PRIVATE_KEY",
                 severity="low" if fixture else "high",
-                classification="PASS_WITH_WARNINGS" if fixture else "MANUAL_REVIEW",
+                classification="MANUAL_REVIEW",
                 path=path,
                 line=line_no,
                 message=(
