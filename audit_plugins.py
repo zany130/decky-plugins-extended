@@ -44,9 +44,14 @@ from pathlib import Path, PurePosixPath
 from typing import Any, Optional
 from urllib.parse import urlparse
 
+import posixpath
+
 import requests
+import yaml
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+
+import plugin_release_utils
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -136,110 +141,22 @@ class AuditReport:
 # Configuration loading
 # ---------------------------------------------------------------------------
 
-def _load_yaml_simple(path: str) -> dict[str, Any]:
-    """Minimal YAML loader using only the standard library.
+def _load_yaml(path: str) -> dict[str, Any]:
+    """Load a YAML file exclusively via PyYAML's safe_load.
 
-    Supports the subset of YAML used by this project:
-    key: value, nested dicts with indentation, lists with '- ',
-    quoted strings, boolean, integer.  Does NOT support anchors,
-    multi-line scalars, or complex YAML features.
+    Raises ValueError when the top-level value is not a mapping or when the
+    file cannot be parsed.
     """
-    try:
-        import yaml  # type: ignore
-        with open(path, encoding="utf-8") as f:
-            return yaml.safe_load(f) or {}
-    except ImportError:
-        pass
-    # Fallback: line-by-line parser for the simple subset used here.
-    return _parse_simple_yaml_file(path)
-
-
-def _parse_simple_yaml_file(path: str) -> dict[str, Any]:
-    """Very limited YAML subset parser (no external deps)."""
     with open(path, encoding="utf-8") as f:
-        lines = f.readlines()
-    result: dict[str, Any] = {}
-    stack: list[tuple[int, dict | list]] = [(-1, result)]
-
-    def parse_scalar(s: str) -> Any:
-        s = s.strip()
-        if s.startswith('"') and s.endswith('"'):
-            return s[1:-1]
-        if s.startswith("'") and s.endswith("'"):
-            return s[1:-1]
-        if s.lower() in ("true", "yes"):
-            return True
-        if s.lower() in ("false", "no"):
-            return False
-        if s.lower() in ("null", "~", ""):
-            return None
-        try:
-            return int(s)
-        except ValueError:
-            pass
-        try:
-            return float(s)
-        except ValueError:
-            pass
-        return s
-
-    for raw in lines:
-        line = raw.rstrip("\n")
-        stripped = line.lstrip()
-        if not stripped or stripped.startswith("#"):
-            continue
-        indent = len(line) - len(stripped)
-        # Pop stack to correct indent level
-        while len(stack) > 1 and stack[-1][0] >= indent:
-            stack.pop()
-        parent = stack[-1][1]
-
-        if stripped.startswith("- "):
-            # List item
-            val_str = stripped[2:].strip()
-            if not isinstance(parent, list):
-                # Convert the empty-dict container to a list in the grandparent
-                new_list: list = []
-                if len(stack) >= 2:
-                    grandparent = stack[-2][1]
-                    if isinstance(grandparent, dict):
-                        for k, v in list(grandparent.items()):
-                            if v is parent:
-                                grandparent[k] = new_list
-                                break
-                stack[-1] = (stack[-1][0], new_list)
-                parent = new_list
-            if ":" in val_str:
-                # Dict inside list
-                k2, v2 = val_str.split(":", 1)
-                item: dict[str, Any] = {k2.strip(): parse_scalar(v2)}
-                if isinstance(parent, list):
-                    parent.append(item)
-                stack.append((indent + 2, item))
-            else:
-                if isinstance(parent, list):
-                    parent.append(parse_scalar(val_str))
-        elif ":" in stripped:
-            key, _, val_str = stripped.partition(":")
-            key = key.strip()
-            val_str = val_str.strip()
-            # Handle block scalars (> or |): skip
-            if val_str in (">", "|", ">-", "|-"):
-                val_str = ""
-            if val_str == "":
-                # Could be a dict or list to follow
-                new_container: dict | list = {}
-                if isinstance(parent, dict):
-                    parent[key] = new_container
-                stack.append((indent, new_container))
-            elif val_str == "[]":
-                if isinstance(parent, dict):
-                    parent[key] = []
-            else:
-                if isinstance(parent, dict):
-                    parent[key] = parse_scalar(val_str)
-
-    return result
+        data = yaml.safe_load(f)
+    if data is None:
+        return {}
+    if not isinstance(data, dict):
+        raise ValueError(
+            f"{path}: expected a YAML mapping at the top level, "
+            f"got {type(data).__name__!r}."
+        )
+    return data
 
 
 def load_policy(path: str = DEFAULT_POLICY_FILE) -> dict[str, Any]:
@@ -247,7 +164,10 @@ def load_policy(path: str = DEFAULT_POLICY_FILE) -> dict[str, Any]:
     if not os.path.exists(path):
         log.warning("Policy file %s not found; using built-in defaults.", path)
         return _default_policy()
-    data = _load_yaml_simple(path)
+    try:
+        data = _load_yaml(path)
+    except (ValueError, yaml.YAMLError) as exc:
+        raise ValueError(f"Malformed policy file {path}: {exc}") from exc
     # Merge with defaults so new fields are always present
     policy = _default_policy()
     _deep_merge(policy, data)
@@ -270,10 +190,10 @@ def _default_policy() -> dict[str, Any]:
             "review_severity": "high",
         },
         "scanners": {
-            "trivy": True,
-            "osv_scanner": True,
-            "semgrep": True,
-            "clamav": True,
+            "clamav": {"enabled": True, "required": True},
+            "trivy": {"enabled": True, "required": True},
+            "semgrep": {"enabled": False, "required": False},
+            "osv_scanner": {"enabled": False, "required": False},
         },
     }
 
@@ -294,7 +214,10 @@ def load_allowlist(path: str = DEFAULT_ALLOWLIST_FILE) -> list[dict[str, Any]]:
     """
     if not os.path.exists(path):
         return []
-    data = _load_yaml_simple(path)
+    try:
+        data = _load_yaml(path)
+    except (ValueError, yaml.YAMLError) as exc:
+        raise ValueError(f"Malformed allowlist file {path}: {exc}") from exc
     if not isinstance(data, dict):
         raise ValueError(f"Allowlist {path} must be a YAML mapping.")
     exceptions = data.get("exceptions") or []
@@ -421,6 +344,26 @@ def _normalise_repo_key(repo: str) -> str:
     return repo.lower()
 
 
+def _scanner_enabled(policy: dict[str, Any], name: str) -> bool:
+    """Return True when the named scanner is enabled in policy."""
+    scanners = policy.get("scanners", {})
+    cfg = scanners.get(name, {})
+    # Support both old bool format and new {enabled, required} format.
+    if isinstance(cfg, dict):
+        return bool(cfg.get("enabled", True))
+    return bool(cfg)
+
+
+def _scanner_required(policy: dict[str, Any], name: str) -> bool:
+    """Return True when the named scanner is required in policy."""
+    scanners = policy.get("scanners", {})
+    cfg = scanners.get(name, {})
+    if isinstance(cfg, dict):
+        return bool(cfg.get("required", False))
+    # Legacy bool: treat enabled as required for backward compatibility.
+    return bool(cfg)
+
+
 # ---------------------------------------------------------------------------
 # Classification logic
 # ---------------------------------------------------------------------------
@@ -428,18 +371,45 @@ def _normalise_repo_key(repo: str) -> str:
 SEVERITY_SCORE = {"critical": 40, "high": 15, "medium": 5, "low": 2, "info": 0}
 
 
-def classify_findings(findings: list[Finding], has_error: bool = False) -> tuple[str, int]:
+def classify_findings(
+    findings: list[Finding],
+    has_error: bool = False,
+    scanner_statuses: Optional[list[ScannerStatus]] = None,
+    policy: Optional[dict[str, Any]] = None,
+) -> tuple[str, int]:
     """Aggregate findings into a final classification and risk score.
+
+    Required scanner failures (status "failed" or "unavailable") cause
+    AUDIT_ERROR regardless of findings.  "unsupported" on a required scanner
+    causes at least MANUAL_REVIEW.
 
     Returns (classification_string, risk_score).
     """
     if has_error:
         return "AUDIT_ERROR", 0
 
+    # Check required scanner statuses.
+    if scanner_statuses and policy:
+        for ss in scanner_statuses:
+            name = ss.name if isinstance(ss, ScannerStatus) else ss.get("name", "")
+            status = ss.status if isinstance(ss, ScannerStatus) else ss.get("status", "")
+            if not _scanner_required(policy, name):
+                continue
+            if status in ("failed", "unavailable"):
+                return "AUDIT_ERROR", 0
+
     active = [f for f in findings if not f.allowlisted]
     score = sum(SEVERITY_SCORE.get(f.severity, 0) for f in active)
 
     classifications = {f.classification for f in active}
+
+    # Unsupported required scanner → at least MANUAL_REVIEW.
+    if scanner_statuses and policy:
+        for ss in scanner_statuses:
+            name = ss.name if isinstance(ss, ScannerStatus) else ss.get("name", "")
+            status = ss.status if isinstance(ss, ScannerStatus) else ss.get("status", "")
+            if _scanner_required(policy, name) and status == "unsupported":
+                classifications.add("MANUAL_REVIEW")
 
     if "BLOCK" in classifications:
         return "BLOCK", score
@@ -472,8 +442,10 @@ def _make_github_session() -> requests.Session:
         "Accept": "application/vnd.github+json",
         "X-GitHub-Api-Version": "2022-11-28",
     }
-    if GITHUB_TOKEN:
-        headers["Authorization"] = "Bearer " + GITHUB_TOKEN
+    # Read token at call time so tests can control it via os.environ.
+    token = os.environ.get("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = "Bearer " + token
     s.headers.update(headers)
     return s
 
@@ -553,19 +525,15 @@ def find_best_release(releases: list[dict[str, Any]]) -> Optional[dict[str, Any]
     """Return the newest non-prerelease release with exactly one ZIP asset.
 
     Falls back to prerelease if no stable release exists.
-    """
-    def has_one_zip(rel: dict) -> bool:
-        assets = rel.get("assets") or []
-        zips = [a for a in assets if a.get("name", "").lower().endswith(".zip")]
-        return len(zips) == 1
 
-    stable = [r for r in releases if not r.get("prerelease") and has_one_zip(r)]
-    if stable:
-        return stable[0]
-    pre = [r for r in releases if r.get("prerelease") and has_one_zip(r)]
-    if pre:
-        return pre[0]
-    return None
+    Uses the same selection logic as the catalog generator (via plugin_release_utils)
+    so the auditor inspects the exact artifact users would install.
+    """
+    # Try stable first, then allow prereleases.
+    result = plugin_release_utils.select_best_release(releases, allow_prerelease=False)
+    if result is None:
+        result = plugin_release_utils.select_best_release(releases, allow_prerelease=True)
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -775,30 +743,79 @@ def inspect_zip(
 
             # --- Symlinks escaping extraction dir ---
             if info.external_attr >> 28 == 0xA:  # Unix symlink type
+                target = "<unreadable>"
                 try:
                     target = zf.read(info.filename).decode(errors="replace")
-                except Exception:
-                    target = "<unreadable>"
-                # Check if symlink escapes
+                except Exception as exc:
+                    stats.safe = False
+                    findings.append(Finding(
+                        rule_id="ARCHIVE_ESCAPE_SYMLINK",
+                        severity="critical",
+                        classification="BLOCK",
+                        path=name,
+                        line=0,
+                        message=f"Symlink {name!r}: target could not be read: {exc}",
+                        evidence="",
+                        scanner="zip-inspector",
+                    ))
+                    continue
+                # Reject null bytes in symlink target.
+                if "\x00" in target:
+                    stats.safe = False
+                    findings.append(Finding(
+                        rule_id="ARCHIVE_ESCAPE_SYMLINK",
+                        severity="critical",
+                        classification="BLOCK",
+                        path=name,
+                        line=0,
+                        message=f"Symlink {name!r} target contains a null byte.",
+                        evidence="",
+                        scanner="zip-inspector",
+                    ))
+                    continue
+                # Validate using lexical POSIX path normalization only; no
+                # filesystem access.  The extraction base is "/extract".
+                _symlink_safe = False
+                _symlink_reason = "unknown validation error"
                 try:
-                    base = PurePosixPath("/extract")
-                    link_parent = base / PurePosixPath(name).parent
-                    joined = str(link_parent / PurePosixPath(target))
-                    normalized = PurePosixPath(os.path.normpath(joined))
-                    if not str(normalized).startswith("/extract"):
-                        stats.safe = False
-                        findings.append(Finding(
-                            rule_id="ARCHIVE_ESCAPE_SYMLINK",
-                            severity="critical",
-                            classification="BLOCK",
-                            path=name,
-                            line=0,
-                            message=f"Symlink {name!r} → {target!r} escapes extraction directory.",
-                            evidence=_truncate(target, EVIDENCE_MAX_LEN),
-                            scanner="zip-inspector",
-                        ))
-                except Exception:
-                    pass
+                    _BASE = "/extract"
+                    # Absolute symlink targets are always unsafe.
+                    if target.startswith("/"):
+                        _symlink_reason = f"absolute symlink target {target!r}"
+                    else:
+                        link_parent = posixpath.normpath(
+                            posixpath.join(_BASE, posixpath.dirname(name))
+                        )
+                        resolved = posixpath.normpath(
+                            posixpath.join(link_parent, target)
+                        )
+                        # Containment: resolved must equal _BASE or be strictly
+                        # below it (i.e., resolved starts with _BASE + "/").
+                        if resolved == _BASE or resolved.startswith(_BASE + "/"):
+                            _symlink_safe = True
+                        else:
+                            _symlink_reason = (
+                                f"symlink resolves to {resolved!r}, "
+                                f"which is outside {_BASE!r}"
+                            )
+                except Exception as exc:  # noqa: BLE001
+                    _symlink_reason = f"validation error: {exc}"
+
+                if not _symlink_safe:
+                    stats.safe = False
+                    findings.append(Finding(
+                        rule_id="ARCHIVE_ESCAPE_SYMLINK",
+                        severity="critical",
+                        classification="BLOCK",
+                        path=name,
+                        line=0,
+                        message=(
+                            f"Symlink {name!r} → {_truncate(target, 80)!r} "
+                            f"escapes extraction directory: {_symlink_reason}"
+                        ),
+                        evidence=_truncate(target, EVIDENCE_MAX_LEN),
+                        scanner="zip-inspector",
+                    ))
 
             # --- Device files and special files ---
             mode = (info.external_attr >> 16) & 0xFFFF
@@ -1391,44 +1408,103 @@ def _run_scanner(
         return False, "", f"{name} error: {exc}"
 
 
-def run_trivy(extract_dir: str, policy: dict[str, Any]) -> ScannerStatus:
-    """Run Trivy filesystem scan. Returns ScannerStatus."""
-    if not policy.get("scanners", {}).get("trivy", True):
-        return ScannerStatus(name="trivy", status="skipped")
+def _severity_rank(sev: str) -> int:
+    """Map a severity string to a numeric rank for comparison."""
+    return {"critical": 4, "high": 3, "medium": 2, "low": 1}.get(sev.lower(), 0)
+
+
+def run_trivy(extract_dir: str, policy: dict[str, Any]) -> tuple[ScannerStatus, list[Finding]]:
+    """Run Trivy filesystem scan. Returns (ScannerStatus, findings)."""
+    if not _scanner_enabled(policy, "trivy"):
+        return ScannerStatus(name="trivy", status="skipped"), []
 
     if not shutil.which("trivy"):
-        return ScannerStatus(
-            name="trivy",
-            status="unavailable",
-            detail="trivy not found in PATH",
+        return (
+            ScannerStatus(
+                name="trivy",
+                status="unavailable",
+                detail="trivy not found in PATH",
+            ),
+            [],
         )
 
+    # trivy exits 0 for no issues, 1 when vulnerabilities are found (with --exit-code 1),
+    # 2 for internal errors.  Without --exit-code, it always exits 0 on success.
+    # We capture stdout regardless of exit code and parse; only treat a non-zero
+    # exit with *no* parseable JSON as a failure.
     ok, stdout, stderr = _run_scanner(
         ["trivy", "fs", "--format", "json", "--quiet", extract_dir],
         "trivy",
     )
-    if not ok and not stdout:
-        return ScannerStatus(name="trivy", status="failed", detail=stderr[:500])
+
+    # Try to parse JSON even when exit code is non-zero (findings exit).
+    if not stdout.strip():
+        detail = stderr[:500] if stderr else "no output"
+        return ScannerStatus(name="trivy", status="failed", detail=detail), []
 
     try:
         data = json.loads(stdout)
-        # Check if any vulnerabilities were found
-        vuln_count = 0
-        for result in data.get("Results") or []:
-            vuln_count += len(result.get("Vulnerabilities") or [])
-        status = "found_issue" if vuln_count > 0 else "passed"
-        return ScannerStatus(
-            name="trivy",
-            status=status,
-            detail=f"{vuln_count} vulnerability/vulnerabilities found" if vuln_count else None,
-        )
-    except Exception as exc:
-        return ScannerStatus(name="trivy", status="failed", detail=str(exc))
+    except (json.JSONDecodeError, ValueError) as exc:
+        return ScannerStatus(name="trivy", status="failed", detail=f"JSON parse error: {exc}"), []
+
+    vuln_cfg = policy.get("vulnerabilities", {})
+    block_sev = vuln_cfg.get("block_severity", "critical")
+    review_sev = vuln_cfg.get("review_severity", "high")
+    block_rank = _severity_rank(block_sev)
+    review_rank = _severity_rank(review_sev)
+
+    findings: list[Finding] = []
+    for result in data.get("Results") or []:
+        for vuln in result.get("Vulnerabilities") or []:
+            vuln_id = vuln.get("VulnerabilityID", "UNKNOWN")
+            pkg_name = vuln.get("PkgName", "unknown")
+            installed = vuln.get("InstalledVersion", "")
+            fixed = vuln.get("FixedVersion", "")
+            raw_sev = (vuln.get("Severity") or "UNKNOWN").lower()
+            # Normalise Trivy severity strings.
+            sev = raw_sev if raw_sev in SEVERITY_SCORE else "low"
+            # Advisory URL: prefer primary URL.
+            refs = vuln.get("References") or []
+            advisory_url = refs[0] if refs else ""
+            # Short title (length-limited).
+            title = _truncate(
+                vuln.get("Title") or vuln.get("Description") or vuln_id,
+                120,
+            )
+            rank = _severity_rank(sev)
+            if rank >= block_rank:
+                classification = "BLOCK"
+            elif rank >= review_rank:
+                classification = "MANUAL_REVIEW"
+            else:
+                classification = "PASS_WITH_WARNINGS"
+
+            fixed_str = f" (fix: {fixed})" if fixed else ""
+            findings.append(Finding(
+                rule_id=f"TRIVY_{vuln_id.replace('-', '_').upper()}",
+                severity=sev,
+                classification=classification,
+                path=pkg_name,
+                line=0,
+                message=(
+                    f"{vuln_id} in {pkg_name}@{installed}{fixed_str}: {title}"
+                    + (f" — {advisory_url}" if advisory_url else "")
+                ),
+                evidence=_truncate(
+                    f"{vuln_id} {pkg_name}@{installed}" + fixed_str,
+                    EVIDENCE_MAX_LEN,
+                ),
+                scanner="trivy",
+            ))
+
+    status = "found_issue" if findings else "passed"
+    detail = f"{len(findings)} vulnerability/vulnerabilities found" if findings else None
+    return ScannerStatus(name="trivy", status=status, detail=detail), findings
 
 
 def run_clamav(extract_dir: str, policy: dict[str, Any]) -> tuple[ScannerStatus, list[Finding]]:
     """Run ClamAV scan. Returns (ScannerStatus, findings)."""
-    if not policy.get("scanners", {}).get("clamav", True):
+    if not _scanner_enabled(policy, "clamav"):
         return ScannerStatus(name="clamav", status="skipped"), []
 
     if not shutil.which("clamscan"):
@@ -1480,7 +1556,7 @@ def run_clamav(extract_dir: str, policy: dict[str, Any]) -> tuple[ScannerStatus,
 
 def run_semgrep(extract_dir: str, policy: dict[str, Any]) -> tuple[ScannerStatus, list[Finding]]:
     """Run Semgrep static analysis. Returns (ScannerStatus, findings)."""
-    if not policy.get("scanners", {}).get("semgrep", True):
+    if not _scanner_enabled(policy, "semgrep"):
         return ScannerStatus(name="semgrep", status="skipped"), []
 
     if not shutil.which("semgrep"):
@@ -1506,8 +1582,14 @@ def run_semgrep(extract_dir: str, policy: dict[str, Any]) -> tuple[ScannerStatus
     )
 
     findings: list[Finding] = []
+    if not stdout.strip():
+        # No output at all - treat as failure regardless of exit code
+        return ScannerStatus(name="semgrep", status="failed", detail="no JSON output"), []
     try:
         data = json.loads(stdout)
+    except (json.JSONDecodeError, ValueError) as exc:
+        return ScannerStatus(name="semgrep", status="failed", detail=f"JSON parse error: {exc}"), []
+    try:
         for result in data.get("results") or []:
             severity = result.get("extra", {}).get("severity", "info").lower()
             findings.append(Finding(
@@ -2117,8 +2199,9 @@ def audit_repository(
 
         # --- External scanners ---
         if zip_stats.safe and os.path.isdir(extract_dir):
-            trivy_status = run_trivy(extract_dir, policy)
+            trivy_status, trivy_findings = run_trivy(extract_dir, policy)
             report.scanner_statuses.append(trivy_status)
+            report.findings.extend(trivy_findings)
 
             clam_status, clam_findings = run_clamav(extract_dir, policy)
             report.scanner_statuses.append(clam_status)
@@ -2154,7 +2237,10 @@ def audit_repository(
         # --- Final classification ---
         has_error = bool(report.errors)
         report.final_classification, report.risk_score = classify_findings(
-            report.findings, has_error=has_error
+            report.findings,
+            has_error=has_error,
+            scanner_statuses=report.scanner_statuses,
+            policy=policy,
         )
 
         # --- Cache result ---
@@ -2178,6 +2264,8 @@ def write_reports(
     """Write JSON and Markdown aggregate reports to output_dir.
 
     Returns (json_path, md_path).
+    When reports is empty, produces deterministic empty aggregate files so the
+    workflow artifact upload always finds files.
     """
     os.makedirs(output_dir, exist_ok=True)
     json_path = os.path.join(output_dir, "security-report.json")
@@ -2194,21 +2282,29 @@ def write_reports(
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(agg, f, indent=2, sort_keys=True, default=str)
 
-    md_parts: list[str] = [
-        "# Decky Plugin Security Audit",
-        "",
-        f"Generated: {agg['generated_at']}",
-        f"Reports: {len(reports)}",
-        "",
-        "---",
-        "",
-    ]
-    for report in reports:
-        md_parts.append(generate_markdown_report(report))
-        md_parts.append("\n---\n")
+    if not reports:
+        md_content = (
+            "# Decky Plugin Security Audit\n\n"
+            f"Generated: {agg['generated_at']}\n\n"
+            "No plugin repository changes were detected.\n"
+        )
+    else:
+        md_parts: list[str] = [
+            "# Decky Plugin Security Audit",
+            "",
+            f"Generated: {agg['generated_at']}",
+            f"Reports: {len(reports)}",
+            "",
+            "---",
+            "",
+        ]
+        for report in reports:
+            md_parts.append(generate_markdown_report(report))
+            md_parts.append("\n---\n")
+        md_content = "\n".join(md_parts)
 
     with open(md_path, "w", encoding="utf-8") as f:
-        f.write("\n".join(md_parts))
+        f.write(md_content)
 
     return json_path, md_path
 
@@ -2322,6 +2418,27 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     if not repo_urls:
         log.info("No repositories to audit.")
+        # Still write deterministic empty reports so the workflow artifact
+        # upload always finds files and CI does not produce a spurious
+        # "No files were found" warning.
+        try:
+            json_path, md_path = write_reports([], args.output_dir)
+            log.info("Empty reports written: %s, %s", json_path, md_path)
+        except Exception as exc:
+            log.error("Failed to write empty reports: %s", exc)
+            return 1
+        # Print distinction in job summary
+        summary_file = os.environ.get("GITHUB_STEP_SUMMARY")
+        if summary_file:
+            try:
+                with open(summary_file, "a", encoding="utf-8") as f:
+                    f.write(
+                        "## Security Audit\n\n"
+                        "No plugin repository changes were detected. "
+                        "No plugins were scanned in this run.\n"
+                    )
+            except Exception:
+                pass
         return 0
 
     log.info("Auditing %d repository/repositories.", len(repo_urls))

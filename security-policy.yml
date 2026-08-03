@@ -32,11 +32,22 @@ vulnerabilities:
   review_severity: high
 
 scanners:
-  # Set to false to disable a scanner (it will be recorded as "skipped").
-  trivy: true
-  osv_scanner: true
-  semgrep: true
-  clamav: true
+  # enabled: false → scanner is skipped (status "skipped") and never blocks.
+  # required: true → if the scanner is enabled and exits with anything other
+  #                   than "passed" or "found_issue" the audit becomes
+  #                   AUDIT_ERROR; "unsupported" → at least MANUAL_REVIEW.
+  clamav:
+    enabled: true
+    required: true
+  trivy:
+    enabled: true
+    required: true
+  semgrep:
+    enabled: false
+    required: false
+  osv_scanner:
+    enabled: false
+    required: false
 
 # Future integration point for catalog generation:
 # catalog_generation:

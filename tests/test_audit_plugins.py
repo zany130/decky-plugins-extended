@@ -826,12 +826,16 @@ class TestScannerFailure(unittest.TestCase):
 
     def test_trivy_unavailable_returns_unavailable_status(self):
         with patch("shutil.which", return_value=None):
-            status = ap.run_trivy("/tmp/fake", ap._default_policy())
+            status, findings = ap.run_trivy("/tmp/fake", ap._default_policy())
         self.assertEqual(status.status, "unavailable")
+        self.assertEqual(findings, [])
 
     def test_semgrep_unavailable_returns_unavailable_status(self):
+        # semgrep is disabled by default; use an enabled policy to test unavailability
+        policy = ap._default_policy()
+        policy["scanners"]["semgrep"] = {"enabled": True, "required": False}
         with patch("shutil.which", return_value=None):
-            status, findings = ap.run_semgrep("/tmp/fake", ap._default_policy())
+            status, findings = ap.run_semgrep("/tmp/fake", policy)
         self.assertEqual(status.status, "unavailable")
         self.assertEqual(findings, [])
 
@@ -901,36 +905,44 @@ class TestAuditRepositoryMocked(unittest.TestCase):
             }],
         }
 
-        with (
-            patch.object(ap, "get_repo_metadata", return_value=meta),
-            patch.object(ap, "get_releases", return_value=[release]),
-            patch.object(ap, "get_repo_file_raw", return_value=None),
-            patch.object(ap, "download_zip", return_value="a" * 64),
-            patch("builtins.open", unittest.mock.mock_open(read_data=zip_data)),
-        ):
-            # We need a real temp file for inspect_zip; write the ZIP there
-            with tempfile.NamedTemporaryFile(suffix=".zip", delete=False) as tf:
-                tf.write(zip_data)
-                tf_path = tf.name
-            try:
-                # Patch download_zip to just copy our zip
-                def fake_download(url, dest_path):
-                    Path(dest_path).write_bytes(zip_data)
-                    sha = hashlib.sha256(zip_data).hexdigest()
-                    return sha
-                import hashlib
-                with patch.object(ap, "download_zip", side_effect=fake_download):
-                    report = ap.audit_repository(
-                        "https://github.com/owner/my-plugin",
-                        policy=ap._default_policy(),
-                        exceptions=[],
-                        cache_dir="/tmp/test-audit-cache",
-                        skip_cache=True,
-                    )
-                self.assertNotEqual(report.final_classification, "AUDIT_ERROR")
-                self.assertEqual(report.plugin_name, "my-plugin")  # from repo URL fallback
-            finally:
-                os.unlink(tf_path)
+        _ok_clamav = (ap.ScannerStatus(name="clamav", status="passed"), [])
+        _ok_trivy = (ap.ScannerStatus(name="trivy", status="passed"), [])
+
+        # We need a real temp file for inspect_zip; write the ZIP there
+        with tempfile.NamedTemporaryFile(suffix=".zip", delete=False) as tf:
+            tf.write(zip_data)
+            tf_path = tf.name
+        try:
+            import hashlib
+
+            def fake_download(url, dest_path):
+                Path(dest_path).write_bytes(zip_data)
+                sha = hashlib.sha256(zip_data).hexdigest()
+                return sha
+
+            with (
+                patch.object(ap, "get_repo_metadata", return_value=meta),
+                patch.object(ap, "get_releases", return_value=[release]),
+                patch.object(ap, "get_repo_file_raw", return_value=None),
+                patch.object(ap, "download_zip", side_effect=fake_download),
+                patch.object(ap, "run_clamav", return_value=_ok_clamav),
+                patch.object(ap, "run_trivy", return_value=_ok_trivy),
+                patch.object(ap, "run_semgrep", return_value=(
+                    ap.ScannerStatus(name="semgrep", status="skipped"), []
+                )),
+                patch.object(ap, "compare_source_and_artifact", return_value=({}, [])),
+            ):
+                report = ap.audit_repository(
+                    "https://github.com/owner/my-plugin",
+                    policy=ap._default_policy(),
+                    exceptions=[],
+                    cache_dir="/tmp/test-audit-cache",
+                    skip_cache=True,
+                )
+            self.assertNotEqual(report.final_classification, "AUDIT_ERROR")
+            self.assertEqual(report.plugin_name, "my-plugin")  # from repo URL fallback
+        finally:
+            os.unlink(tf_path)
 
     def test_archive_traversal_blocks(self):
         buf = io.BytesIO()
@@ -951,15 +963,20 @@ class TestAuditRepositoryMocked(unittest.TestCase):
             import hashlib
             return hashlib.sha256(zip_data).hexdigest()
 
+        # Archive is unsafe so scanners are never called; pass empty statuses.
         with (
             patch.object(ap, "get_repo_metadata", return_value=meta),
             patch.object(ap, "get_releases", return_value=[release]),
             patch.object(ap, "get_repo_file_raw", return_value=None),
             patch.object(ap, "download_zip", side_effect=fake_download),
         ):
+            # Disable required scanners so BLOCK is not masked by AUDIT_ERROR.
+            policy = ap._default_policy()
+            policy["scanners"]["clamav"]["required"] = False
+            policy["scanners"]["trivy"]["required"] = False
             report = ap.audit_repository(
                 "https://github.com/owner/evil-plugin",
-                policy=ap._default_policy(),
+                policy=policy,
                 exceptions=[],
                 skip_cache=True,
             )
@@ -1145,6 +1162,473 @@ class TestFindBestRelease(unittest.TestCase):
     def test_no_eligible_release_returns_none(self):
         releases = [self._make_release("v1.0.0", False, 0)]
         self.assertIsNone(ap.find_best_release(releases))
+
+
+# ---------------------------------------------------------------------------
+# YAML loading (PyYAML-based)
+# ---------------------------------------------------------------------------
+
+class TestYamlLoading(unittest.TestCase):
+    """Verify that _load_yaml uses PyYAML and preserves native types."""
+
+    def _write(self, content: str) -> str:
+        fd, path = tempfile.mkstemp(suffix=".yml")
+        try:
+            os.write(fd, content.encode())
+        finally:
+            os.close(fd)
+        return path
+
+    def test_integer_types_preserved(self):
+        path = self._write(
+            "archive:\n"
+            "  max_files: 10000\n"
+            "  max_uncompressed_bytes: 1073741824 # 1 GiB\n"
+            "  max_compression_ratio: 200\n"
+        )
+        try:
+            data = ap._load_yaml(path)
+            self.assertIsInstance(data["archive"]["max_files"], int)
+            self.assertEqual(data["archive"]["max_files"], 10000)
+            self.assertIsInstance(data["archive"]["max_uncompressed_bytes"], int)
+            self.assertEqual(data["archive"]["max_uncompressed_bytes"], 1073741824)
+            self.assertIsInstance(data["archive"]["max_compression_ratio"], int)
+            self.assertEqual(data["archive"]["max_compression_ratio"], 200)
+        finally:
+            os.unlink(path)
+
+    def test_list_of_mappings_preserved(self):
+        path = self._write(
+            "version: '1'\n"
+            "exceptions:\n"
+            "  - repository: owner/repository\n"
+            "    release: 1.0.0\n"
+            "    artifact_sha256: abc123\n"
+            "    rule: ROOT_ACCESS\n"
+            "    reason: Required privileged helper\n"
+            "    approved_by: zany130\n"
+            "    expires: 2026-12-31\n"
+        )
+        try:
+            data = ap._load_yaml(path)
+            self.assertIsInstance(data["exceptions"], list)
+            self.assertEqual(len(data["exceptions"]), 1)
+            entry = data["exceptions"][0]
+            self.assertIsInstance(entry, dict)
+            self.assertEqual(entry["repository"], "owner/repository")
+            self.assertEqual(entry["rule"], "ROOT_ACCESS")
+        finally:
+            os.unlink(path)
+
+    def test_inline_comments_ignored(self):
+        path = self._write(
+            "key: value  # this is a comment\n"
+            "number: 42   # another comment\n"
+        )
+        try:
+            data = ap._load_yaml(path)
+            self.assertEqual(data["key"], "value")
+            self.assertEqual(data["number"], 42)
+        finally:
+            os.unlink(path)
+
+    def test_boolean_preserved(self):
+        path = self._write("enabled: true\ndisabled: false\n")
+        try:
+            data = ap._load_yaml(path)
+            self.assertIs(data["enabled"], True)
+            self.assertIs(data["disabled"], False)
+        finally:
+            os.unlink(path)
+
+    def test_null_preserved(self):
+        path = self._write("nothing: null\n")
+        try:
+            data = ap._load_yaml(path)
+            self.assertIsNone(data["nothing"])
+        finally:
+            os.unlink(path)
+
+    def test_non_mapping_top_level_raises(self):
+        path = self._write("- item1\n- item2\n")
+        try:
+            with self.assertRaises(ValueError):
+                ap._load_yaml(path)
+        finally:
+            os.unlink(path)
+
+    def test_malformed_yaml_raises(self):
+        path = self._write("key: [\n")  # unclosed bracket
+        try:
+            import yaml as _yaml
+            with self.assertRaises((_yaml.YAMLError, ValueError)):
+                ap._load_yaml(path)
+        finally:
+            os.unlink(path)
+
+
+# ---------------------------------------------------------------------------
+# Symlink boundary validation
+# ---------------------------------------------------------------------------
+
+class TestSymlinkBoundaryValidation(unittest.TestCase):
+    """Regression tests for symlink escape detection in ZIP inspection."""
+
+    def _make_symlink_zip(self, link_name: str, target: str) -> bytes:
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w") as zf:
+            info = zipfile.ZipInfo(link_name)
+            # Set Unix symlink type bits (0xA in the high nibble of external_attr).
+            info.external_attr = 0xA0000000
+            zf.writestr(info, target)
+        return buf.getvalue()
+
+    def _check(self, link_name: str, target: str) -> list:
+        data = self._make_symlink_zip(link_name, target)
+        path = _make_temp_zip(data)
+        try:
+            _, findings = ap.inspect_zip(path)
+        finally:
+            os.unlink(path)
+        return [f for f in findings if f.rule_id == "ARCHIVE_ESCAPE_SYMLINK"]
+
+    def test_dotdot_escape_detected(self):
+        findings = self._check("plugin/link", "../../etc/passwd")
+        self.assertTrue(len(findings) > 0, "Expected ARCHIVE_ESCAPE_SYMLINK for ../../etc/passwd")
+
+    def test_dotdot_extract2_escape_detected(self):
+        findings = self._check("plugin/link", "../../extract2/evil")
+        self.assertTrue(len(findings) > 0, "Expected ARCHIVE_ESCAPE_SYMLINK for ../../extract2/evil")
+
+    def test_dotdot_extract_evil_escape_detected(self):
+        findings = self._check("plugin/link", "../../extract-evil/evil")
+        self.assertTrue(len(findings) > 0, "Expected ARCHIVE_ESCAPE_SYMLINK for ../../extract-evil/evil")
+
+    def test_absolute_target_blocked(self):
+        findings = self._check("plugin/link", "/etc/passwd")
+        self.assertTrue(len(findings) > 0, "Expected ARCHIVE_ESCAPE_SYMLINK for absolute /etc/passwd")
+
+    def test_safe_looking_escape_detected(self):
+        # ../safe-looking/../../evil resolves to /extract/../evil = /evil — outside base
+        findings = self._check("plugin/link", "../safe-looking/../../evil")
+        self.assertTrue(len(findings) > 0, "Expected escape detection for ../safe-looking/../../evil")
+
+    def test_valid_internal_symlink_passes(self):
+        # A symlink that stays inside the extraction base.
+        findings = self._check("plugin/link", "../plugin/other.py")
+        self.assertEqual(findings, [], "Valid internal symlink should not be flagged")
+
+    def test_null_byte_in_target_blocked(self):
+        data = self._make_symlink_zip("plugin/link", "safe\x00evil")
+        path = _make_temp_zip(data)
+        try:
+            _, findings = ap.inspect_zip(path)
+        finally:
+            os.unlink(path)
+        rule_ids = {f.rule_id for f in findings}
+        self.assertIn("ARCHIVE_ESCAPE_SYMLINK", rule_ids)
+
+
+# ---------------------------------------------------------------------------
+# Required scanner fail-closed behaviour
+# ---------------------------------------------------------------------------
+
+class TestRequiredScannerFailClosed(unittest.TestCase):
+    """Required scanner unavailable/failed → AUDIT_ERROR."""
+
+    def _policy_with(self, clamav_enabled=True, clamav_required=True,
+                     trivy_enabled=True, trivy_required=True) -> dict:
+        p = ap._default_policy()
+        p["scanners"]["clamav"] = {"enabled": clamav_enabled, "required": clamav_required}
+        p["scanners"]["trivy"] = {"enabled": trivy_enabled, "required": trivy_required}
+        p["scanners"]["semgrep"] = {"enabled": False, "required": False}
+        p["scanners"]["osv_scanner"] = {"enabled": False, "required": False}
+        return p
+
+    def test_required_clamav_unavailable_is_audit_error(self):
+        policy = self._policy_with(clamav_required=True)
+        statuses = [
+            ap.ScannerStatus(name="clamav", status="unavailable"),
+            ap.ScannerStatus(name="trivy", status="passed"),
+        ]
+        cls, _ = ap.classify_findings([], scanner_statuses=statuses, policy=policy)
+        self.assertEqual(cls, "AUDIT_ERROR")
+
+    def test_required_clamav_failed_is_audit_error(self):
+        policy = self._policy_with(clamav_required=True)
+        statuses = [
+            ap.ScannerStatus(name="clamav", status="failed"),
+            ap.ScannerStatus(name="trivy", status="passed"),
+        ]
+        cls, _ = ap.classify_findings([], scanner_statuses=statuses, policy=policy)
+        self.assertEqual(cls, "AUDIT_ERROR")
+
+    def test_required_trivy_failed_is_audit_error(self):
+        policy = self._policy_with(trivy_required=True)
+        statuses = [
+            ap.ScannerStatus(name="clamav", status="passed"),
+            ap.ScannerStatus(name="trivy", status="failed"),
+        ]
+        cls, _ = ap.classify_findings([], scanner_statuses=statuses, policy=policy)
+        self.assertEqual(cls, "AUDIT_ERROR")
+
+    def test_optional_semgrep_unavailable_is_not_audit_error(self):
+        policy = self._policy_with()
+        policy["scanners"]["semgrep"] = {"enabled": True, "required": False}
+        statuses = [
+            ap.ScannerStatus(name="clamav", status="passed"),
+            ap.ScannerStatus(name="trivy", status="passed"),
+            ap.ScannerStatus(name="semgrep", status="unavailable"),
+        ]
+        cls, _ = ap.classify_findings([], scanner_statuses=statuses, policy=policy)
+        self.assertNotEqual(cls, "AUDIT_ERROR")
+
+    def test_disabled_scanner_skipped_no_error(self):
+        policy = self._policy_with()
+        policy["scanners"]["semgrep"] = {"enabled": False, "required": False}
+        statuses = [
+            ap.ScannerStatus(name="clamav", status="passed"),
+            ap.ScannerStatus(name="trivy", status="passed"),
+            ap.ScannerStatus(name="semgrep", status="skipped"),
+        ]
+        cls, _ = ap.classify_findings([], scanner_statuses=statuses, policy=policy)
+        self.assertEqual(cls, "PASS")
+
+    def test_malware_found_by_clamav_is_block(self):
+        policy = self._policy_with()
+        statuses = [
+            ap.ScannerStatus(name="clamav", status="found_issue"),
+            ap.ScannerStatus(name="trivy", status="passed"),
+        ]
+        findings = [ap.Finding(
+            rule_id="MALWARE",
+            severity="critical",
+            classification="BLOCK",
+            path="<redacted>/evil.py",
+            line=0,
+            message="ClamAV detected malware",
+            evidence="Eicar-Test-Signature",
+            scanner="clamav",
+        )]
+        cls, _ = ap.classify_findings(findings, scanner_statuses=statuses, policy=policy)
+        self.assertEqual(cls, "BLOCK")
+
+
+# ---------------------------------------------------------------------------
+# Trivy structured findings
+# ---------------------------------------------------------------------------
+
+class TestTrivyStructuredFindings(unittest.TestCase):
+    """run_trivy must produce Finding objects with correct classification."""
+
+    def _policy(self, block_sev="critical", review_sev="high") -> dict:
+        p = ap._default_policy()
+        p["vulnerabilities"]["block_severity"] = block_sev
+        p["vulnerabilities"]["review_severity"] = review_sev
+        return p
+
+    def _trivy_json(self, vulns: list) -> str:
+        return json.dumps({"Results": [{"Vulnerabilities": vulns}]})
+
+    def _vuln(self, sev: str, vuln_id: str = "CVE-2024-0001") -> dict:
+        return {
+            "VulnerabilityID": vuln_id,
+            "PkgName": "libfoo",
+            "InstalledVersion": "1.0",
+            "FixedVersion": "1.1",
+            "Severity": sev.upper(),
+            "References": ["https://nvd.nist.gov/vuln/detail/" + vuln_id],
+            "Title": f"Test vulnerability ({sev})",
+        }
+
+    def _run(self, stdout: str, ok: bool = True, policy: dict = None) -> tuple:
+        if policy is None:
+            policy = self._policy()
+        with (
+            patch("shutil.which", return_value="/usr/bin/trivy"),
+            patch.object(ap, "_run_scanner", return_value=(ok, stdout, "")),
+        ):
+            return ap.run_trivy("/tmp/fake", policy)
+
+    def test_no_vulnerabilities_returns_passed(self):
+        status, findings = self._run(self._trivy_json([]))
+        self.assertEqual(status.status, "passed")
+        self.assertEqual(findings, [])
+
+    def test_critical_vuln_is_block(self):
+        status, findings = self._run(self._trivy_json([self._vuln("critical")]))
+        self.assertEqual(status.status, "found_issue")
+        self.assertTrue(any(f.classification == "BLOCK" for f in findings))
+
+    def test_high_vuln_is_manual_review(self):
+        status, findings = self._run(self._trivy_json([self._vuln("high")]))
+        self.assertEqual(status.status, "found_issue")
+        self.assertTrue(any(f.classification == "MANUAL_REVIEW" for f in findings))
+
+    def test_medium_vuln_is_pass_with_warnings(self):
+        status, findings = self._run(self._trivy_json([self._vuln("medium")]))
+        self.assertEqual(status.status, "found_issue")
+        self.assertTrue(any(f.classification == "PASS_WITH_WARNINGS" for f in findings))
+
+    def test_invalid_json_is_failed(self):
+        status, findings = self._run("not json", ok=False)
+        self.assertEqual(status.status, "failed")
+        self.assertEqual(findings, [])
+
+    def test_nonzero_exit_no_output_is_failed(self):
+        status, findings = self._run("", ok=False)
+        self.assertEqual(status.status, "failed")
+        self.assertEqual(findings, [])
+
+    def test_findings_parsed_even_with_nonzero_exit(self):
+        # Trivy can exit non-zero (1) when vulnerabilities are found.
+        stdout = self._trivy_json([self._vuln("critical")])
+        status, findings = self._run(stdout, ok=False)
+        self.assertEqual(status.status, "found_issue")
+        self.assertTrue(len(findings) > 0)
+
+
+# ---------------------------------------------------------------------------
+# Shared release-selection (plugin_release_utils)
+# ---------------------------------------------------------------------------
+
+import plugin_release_utils as pru
+
+
+class TestPluginReleaseUtils(unittest.TestCase):
+    """Tests for the shared release-selection logic."""
+
+    def _rel(self, tag: str, prerelease: bool = False, zips: int = 1,
+             published: str = "2024-01-01T00:00:00Z") -> dict:
+        assets = [{"name": f"plugin.zip", "browser_download_url": "https://x/plugin.zip"}
+                  for _ in range(zips)]
+        return {
+            "tag_name": tag,
+            "prerelease": prerelease,
+            "assets": assets,
+            "published_at": published,
+        }
+
+    def test_semver_order_v110_beats_v19(self):
+        releases = [
+            self._rel("v1.9.0"),
+            self._rel("v1.10.0"),
+        ]
+        # Publication order: v1.9.0 first — semver ordering must win.
+        result = pru.select_best_release(releases, allow_prerelease=False)
+        self.assertEqual(result["tag_name"], "v1.10.0")
+
+    def test_stable_beats_prerelease(self):
+        releases = [
+            self._rel("v2.0.0-beta.1", prerelease=True),
+            self._rel("v1.0.0", prerelease=False),
+        ]
+        result = pru.select_best_release(releases, allow_prerelease=True)
+        self.assertEqual(result["tag_name"], "v1.0.0")
+
+    def test_prerelease_eligible_for_testing_catalog(self):
+        releases = [self._rel("v1.0.0-beta.1", prerelease=True)]
+        result = pru.select_best_release(releases, allow_prerelease=True)
+        self.assertIsNotNone(result)
+        self.assertEqual(result["tag_name"], "v1.0.0-beta.1")
+
+    def test_prerelease_excluded_from_stable_catalog(self):
+        releases = [self._rel("v1.0.0-beta.1", prerelease=True)]
+        result = pru.select_best_release(releases, allow_prerelease=False)
+        self.assertIsNone(result)
+
+    def test_zero_zips_excluded(self):
+        releases = [self._rel("v2.0.0", zips=0), self._rel("v1.0.0", zips=1)]
+        result = pru.select_best_release(releases, allow_prerelease=False)
+        self.assertEqual(result["tag_name"], "v1.0.0")
+
+    def test_multiple_zips_excluded(self):
+        releases = [self._rel("v2.0.0", zips=2), self._rel("v1.0.0", zips=1)]
+        result = pru.select_best_release(releases, allow_prerelease=False)
+        self.assertEqual(result["tag_name"], "v1.0.0")
+
+    def test_github_order_differs_from_semver(self):
+        # GitHub returns newest by publication date; semver must win.
+        releases = [
+            self._rel("v1.0.1", published="2024-06-01T00:00:00Z"),
+            self._rel("v2.0.0", published="2024-01-01T00:00:00Z"),
+        ]
+        result = pru.select_best_release(releases, allow_prerelease=False)
+        self.assertEqual(result["tag_name"], "v2.0.0")
+
+    def test_normalize_version_strips_v_prefix(self):
+        self.assertEqual(pru.normalize_version("v1.2.3"), "1.2.3")
+
+    def test_normalize_version_extracts_from_complex_tag(self):
+        self.assertEqual(pru.normalize_version("release-0.7.1"), "0.7.1")
+
+    def test_normalize_version_extracts_with_prerelease(self):
+        result = pru.normalize_version("v1.0.0-beta.1")
+        self.assertEqual(result, "1.0.0-beta.1")
+
+
+# ---------------------------------------------------------------------------
+# Empty-changed-repos report generation
+# ---------------------------------------------------------------------------
+
+class TestEmptyChangedRepos(unittest.TestCase):
+    def test_changed_no_repos_writes_empty_reports(self):
+        """--changed with no repos must produce empty JSON and Markdown reports."""
+        with tempfile.TemporaryDirectory() as tmp:
+            with (
+                patch.object(ap, "load_policy", return_value=ap._default_policy()),
+                patch.object(ap, "load_allowlist", return_value=[]),
+                patch.object(ap, "get_changed_repos", return_value=[]),
+            ):
+                code = ap.main([
+                    "--changed",
+                    "--output-dir", tmp,
+                    "--plugins-file", __file__,
+                ])
+            self.assertEqual(code, 0)
+            json_path = os.path.join(tmp, "security-report.json")
+            md_path = os.path.join(tmp, "security-report.md")
+            self.assertTrue(os.path.exists(json_path))
+            self.assertTrue(os.path.exists(md_path))
+            data = json.loads(Path(json_path).read_text())
+            self.assertEqual(data["report_count"], 0)
+            self.assertEqual(data["reports"], [])
+            md_content = Path(md_path).read_text()
+            self.assertIn("No plugin repository changes were detected", md_content)
+
+
+# ---------------------------------------------------------------------------
+# GitHub Authorization header regression
+# ---------------------------------------------------------------------------
+
+class TestGitHubAuthHeader(unittest.TestCase):
+    def test_auth_header_uses_bearer_token(self):
+        """The Authorization header must use '******', not a redacted placeholder."""
+        import os as _os
+        old = _os.environ.get("GITHUB_TOKEN")
+        _os.environ["GITHUB_TOKEN"] = "my-real-token"
+        try:
+            session = ap._make_github_session()
+            self.assertIn("Authorization", session.headers)
+            auth = session.headers["Authorization"]
+            self.assertTrue(auth.startswith("Bearer "), f"Expected '******', got {auth!r}")
+            self.assertIn("my-real-token", auth)
+        finally:
+            if old is None:
+                _os.environ.pop("GITHUB_TOKEN", None)
+            else:
+                _os.environ["GITHUB_TOKEN"] = old
+
+    def test_no_auth_header_when_token_absent(self):
+        """Without GITHUB_TOKEN, no Authorization header must be added."""
+        import os as _os
+        old = _os.environ.pop("GITHUB_TOKEN", None)
+        try:
+            session = ap._make_github_session()
+            self.assertNotIn("Authorization", session.headers)
+        finally:
+            if old is not None:
+                _os.environ["GITHUB_TOKEN"] = old
 
 
 if __name__ == "__main__":
