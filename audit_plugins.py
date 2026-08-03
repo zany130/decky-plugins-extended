@@ -628,8 +628,12 @@ def _is_safe_member_path(name: str) -> tuple[bool, str]:
     # Null bytes
     if "\x00" in name:
         return False, "null byte in path"
+
+    # Normalise path separators so backslash traversal ("..\\") can't bypass checks.
+    name = name.replace("\\\\", "/")
+
     # Absolute path
-    if name.startswith("/") or name.startswith("\\"):
+    if name.startswith("/"):
         return False, "absolute path"
     # Windows drive letter
     if len(name) >= 2 and name[1] == ":" and name[0].isalpha():
