@@ -194,6 +194,7 @@ def _default_policy() -> dict[str, Any]:
             "trivy": {"enabled": True, "required": True},
             "semgrep": {"enabled": False, "required": False},
             "osv_scanner": {"enabled": False, "required": False},
+            "source_artifact_diff": {"enabled": True, "required": True},
         },
     }
 
@@ -355,7 +356,13 @@ def _normalise_repo_key(repo: str) -> str:
 def _scanner_enabled(policy: dict[str, Any], name: str) -> bool:
     """Return True when the named scanner is enabled in policy."""
     scanners = policy.get("scanners", {})
-    cfg = scanners.get(name, {})
+    cfg = scanners.get(name)
+    if cfg is None and "-" in name:
+        cfg = scanners.get(name.replace("-", "_"))
+    if cfg is None and "_" in name:
+        cfg = scanners.get(name.replace("_", "-"))
+    if cfg is None:
+        cfg = {}
     # Support both old bool format and new {enabled, required} format.
     if isinstance(cfg, dict):
         return bool(cfg.get("enabled", True))
@@ -365,7 +372,13 @@ def _scanner_enabled(policy: dict[str, Any], name: str) -> bool:
 def _scanner_required(policy: dict[str, Any], name: str) -> bool:
     """Return True when the named scanner is required in policy."""
     scanners = policy.get("scanners", {})
-    cfg = scanners.get(name, {})
+    cfg = scanners.get(name)
+    if cfg is None and "-" in name:
+        cfg = scanners.get(name.replace("-", "_"))
+    if cfg is None and "_" in name:
+        cfg = scanners.get(name.replace("_", "-"))
+    if cfg is None:
+        cfg = {}
     if isinstance(cfg, dict):
         return bool(cfg.get("required", False))
     # Legacy bool: treat enabled as required for backward compatibility.
@@ -1597,13 +1610,23 @@ def run_semgrep(extract_dir: str, policy: dict[str, Any]) -> tuple[ScannerStatus
         data = json.loads(stdout)
     except (json.JSONDecodeError, ValueError) as exc:
         return ScannerStatus(name="semgrep", status="failed", detail=f"JSON parse error: {exc}"), []
+    # Unknown severities are treated conservatively as high/MANUAL_REVIEW.
+    semgrep_severity_map: dict[str, tuple[str, str]] = {
+        "error": ("high", "MANUAL_REVIEW"),
+        "warning": ("medium", "MANUAL_REVIEW"),
+        "info": ("info", "PASS_WITH_WARNINGS"),
+    }
     try:
         for result in data.get("results") or []:
-            severity = result.get("extra", {}).get("severity", "info").lower()
+            raw_severity = str(result.get("extra", {}).get("severity", "INFO")).strip().lower()
+            norm_severity, classification = semgrep_severity_map.get(
+                raw_severity,
+                ("high", "MANUAL_REVIEW"),
+            )
             findings.append(Finding(
                 rule_id="SEMGREP_" + result.get("check_id", "unknown").upper().replace(".", "_")[:60],
-                severity=severity if severity in SEVERITY_SCORE else "info",
-                classification="MANUAL_REVIEW" if severity in ("error", "warning") else "PASS_WITH_WARNINGS",
+                severity=norm_severity,
+                classification=classification,
                 path=os.path.relpath(result.get("path", ""), extract_dir),
                 line=result.get("start", {}).get("line", 0),
                 message=result.get("extra", {}).get("message", "Semgrep finding"),
@@ -1621,15 +1644,114 @@ def run_semgrep(extract_dir: str, policy: dict[str, Any]) -> tuple[ScannerStatus
 # Source/artifact comparison
 # ---------------------------------------------------------------------------
 
+_SCRIPT_EXTENSIONS = {
+    ".py", ".pyw", ".js", ".mjs", ".cjs", ".ts", ".tsx", ".jsx",
+    ".sh", ".bash", ".zsh", ".fish", ".pl", ".rb", ".lua", ".ps1",
+}
+
+_NON_SCRIPT_GENERATED_EXTENSIONS = {
+    ".map", ".json", ".css", ".png", ".jpg", ".jpeg", ".gif", ".webp",
+    ".svg", ".ico", ".bmp", ".avif",
+}
+
+_KNOWN_SCRIPT_SHEBANGS = (
+    "#!/bin/sh",
+    "#!/bin/bash",
+    "#!/usr/bin/env python",
+    "#!/usr/bin/env node",
+)
+
+
+def _is_probably_text(data: bytes) -> bool:
+    if not data:
+        return True
+    if b"\x00" in data:
+        return False
+    try:
+        data.decode("utf-8")
+        return True
+    except UnicodeDecodeError:
+        return False
+
+
+def _looks_like_script_asset(path: str, data: bytes, executable_bits: bool) -> bool:
+    low = path.lower()
+    ext = os.path.splitext(low)[1]
+    if ext in _NON_SCRIPT_GENERATED_EXTENSIONS:
+        return False
+
+    first_line = data.splitlines()[0].decode("utf-8", errors="replace").strip() if data else ""
+    has_known_shebang = any(first_line.startswith(s) for s in _KNOWN_SCRIPT_SHEBANGS)
+    is_script_ext = ext in _SCRIPT_EXTENSIONS
+    # Avoid flagging common generated minified bundles as scripts solely by extension.
+    if is_script_ext and (low.endswith(".min.js") or ".bundle." in low or ".chunk." in low):
+        is_script_ext = False
+
+    if has_known_shebang:
+        return True
+    if is_script_ext:
+        return True
+    if executable_bits and _is_probably_text(data):
+        return True
+    return False
+
+
+def _resolve_ref_to_tree_sha(owner: str, repo: str, ref: str) -> tuple[Optional[str], Optional[str]]:
+    """Resolve tag/ref/commit to a tree SHA. Returns (tree_sha, error_detail)."""
+    try:
+        ref_data = _gh_get(f"https://api.github.com/repos/{owner}/{repo}/git/ref/tags/{ref}")
+        if not isinstance(ref_data, dict):
+            return None, f"Invalid ref response for tag {ref!r}"
+        obj = ref_data.get("object") or {}
+        obj_type = obj.get("type")
+        obj_sha = obj.get("sha")
+        if not obj_type or not obj_sha:
+            return None, f"Malformed tag object for {ref!r}"
+
+        if obj_type == "tag":
+            tag_obj = _gh_get(f"https://api.github.com/repos/{owner}/{repo}/git/tags/{obj_sha}")
+            if not isinstance(tag_obj, dict):
+                return None, f"Invalid annotated-tag response for {ref!r}"
+            inner = tag_obj.get("object") or {}
+            if inner.get("type") != "commit" or not inner.get("sha"):
+                return None, f"Annotated tag {ref!r} does not point to a commit"
+            commit_sha = inner["sha"]
+        elif obj_type == "commit":
+            commit_sha = obj_sha
+        else:
+            return None, f"Unsupported tag target type {obj_type!r} for {ref!r}"
+    except requests.HTTPError as exc:
+        status = exc.response.status_code if exc.response is not None else None
+        if status == 404:
+            # Fallback for refs that are direct commit SHAs or branches.
+            commit_sha = ref
+        else:
+            return None, f"Tag resolution failed for {ref!r}: {exc}"
+    except Exception as exc:
+        return None, f"Tag resolution failed for {ref!r}: {exc}"
+
+    try:
+        commit_obj = _gh_get(f"https://api.github.com/repos/{owner}/{repo}/git/commits/{commit_sha}")
+        if not isinstance(commit_obj, dict):
+            return None, f"Invalid commit response for {commit_sha!r}"
+        tree = commit_obj.get("tree") or {}
+        tree_sha = tree.get("sha")
+        if not tree_sha:
+            return None, f"Missing tree SHA on commit {commit_sha!r}"
+        return str(tree_sha), None
+    except Exception as exc:
+        return None, f"Commit/tree resolution failed for {commit_sha!r}: {exc}"
+
+
 def compare_source_and_artifact(
     extract_dir: str,
     owner: str,
     repo: str,
     ref: str,
-) -> tuple[dict[str, Any], list[Finding]]:
+) -> tuple[dict[str, Any], list[Finding], ScannerStatus]:
     """Compare extracted ZIP against the repository source at ref.
 
-    Returns (diff_summary, findings).
+    Returns (diff_summary, findings, status).
     """
     summary: dict[str, Any] = {
         "ref": ref,
@@ -1641,12 +1763,35 @@ def compare_source_and_artifact(
     }
     findings: list[Finding] = []
 
-    # Get the file tree from the GitHub repository at the tag/commit
+    if not os.path.isdir(extract_dir):
+        return summary, findings, ScannerStatus(
+            name="source-artifact-diff",
+            status="unavailable",
+            detail="Extraction directory is unavailable.",
+        )
+
     try:
-        tree_url = f"https://api.github.com/repos/{owner}/{repo}/git/trees/{ref}"
+        tree_sha, tree_err = _resolve_ref_to_tree_sha(owner, repo, ref)
+        if not tree_sha:
+            return summary, findings, ScannerStatus(
+                name="source-artifact-diff",
+                status="failed",
+                detail=tree_err or f"Could not resolve ref {ref!r} to a tree SHA",
+            )
+        tree_url = f"https://api.github.com/repos/{owner}/{repo}/git/trees/{tree_sha}"
         tree_data = _gh_get(tree_url + "?recursive=1")
         if not isinstance(tree_data, dict):
-            return summary, findings
+            return summary, findings, ScannerStatus(
+                name="source-artifact-diff",
+                status="failed",
+                detail="Malformed tree response.",
+            )
+        if tree_data.get("truncated") is True:
+            return summary, findings, ScannerStatus(
+                name="source-artifact-diff",
+                status="failed",
+                detail="Tree response truncated by GitHub API.",
+            )
         source_files: set[str] = {
             item["path"].lower()
             for item in (tree_data.get("tree") or [])
@@ -1654,8 +1799,13 @@ def compare_source_and_artifact(
         }
         summary["checked"] = True
     except Exception as exc:
-        log.debug("Could not fetch source tree for %s/%s@%s: %s", owner, repo, ref, exc)
-        return summary, findings
+        detail = f"Could not fetch source tree for {owner}/{repo}@{ref}: {exc}"
+        log.debug(detail)
+        return summary, findings, ScannerStatus(
+            name="source-artifact-diff",
+            status="failed",
+            detail=detail,
+        )
 
     # Walk extracted directory and compare
     for root, _dirs, files in os.walk(extract_dir):
@@ -1672,11 +1822,11 @@ def compare_source_and_artifact(
 
             try:
                 with open(full_path, "rb") as fh:
-                    header = fh.read(16)
+                    raw = fh.read(2048)
             except Exception:
                 continue
 
-            bin_info = identify_binary(header, rel_path)
+            bin_info = identify_binary(raw[:16], rel_path)
             if bin_info and not in_source:
                 summary["zip_only_executables"].append(rel_path)
                 findings.append(Finding(
@@ -1692,8 +1842,36 @@ def compare_source_and_artifact(
                     evidence=bin_info["label"],
                     scanner="source-artifact-diff",
                 ))
+                continue
 
-    return summary, findings
+            if in_source:
+                continue
+
+            try:
+                executable_bits = bool(os.stat(full_path).st_mode & (stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH))
+            except OSError:
+                executable_bits = False
+
+            if _looks_like_script_asset(short_path, raw, executable_bits):
+                summary["zip_only_scripts"].append(rel_path)
+                findings.append(Finding(
+                    rule_id="ZIP_ONLY_SCRIPT",
+                    severity="high",
+                    classification="MANUAL_REVIEW",
+                    path=rel_path,
+                    line=0,
+                    message=(
+                        f"Script-like file {rel_path!r} is present in the release ZIP "
+                        "but absent from the repository source."
+                    ),
+                    evidence="script-heuristic",
+                    scanner="source-artifact-diff",
+                ))
+
+    summary["zip_only_executables"].sort()
+    summary["zip_only_scripts"].sort()
+    status = "found_issue" if findings else "passed"
+    return summary, findings, ScannerStatus(name="source-artifact-diff", status=status)
 
 
 # ---------------------------------------------------------------------------
@@ -1992,6 +2170,39 @@ def download_zip(url: str, dest_path: str) -> str:
     return sha256.hexdigest()
 
 
+def _find_metadata_in_extracted(extract_dir: str, meta_file: str) -> tuple[Optional[bytes], Optional[str]]:
+    """Return first metadata file bytes/path from extracted ZIP, if present."""
+    for root, _dirs, files in os.walk(extract_dir):
+        if meta_file in files:
+            fp = os.path.join(root, meta_file)
+            rel = os.path.relpath(fp, extract_dir)
+            try:
+                with open(fp, "rb") as fh:
+                    return fh.read(), rel
+            except Exception:
+                return None, rel
+    return None, None
+
+
+def _merge_findings_unique(existing: list[Finding], new_items: list[Finding]) -> None:
+    """Append findings while preventing exact duplicates."""
+    seen = {
+        (
+            f.rule_id,
+            f.path,
+            f.line,
+            f.message,
+            f.scanner,
+        )
+        for f in existing
+    }
+    for f in new_items:
+        key = (f.rule_id, f.path, f.line, f.message, f.scanner)
+        if key not in seen:
+            existing.append(f)
+            seen.add(key)
+
+
 def audit_repository(
     repo_url: str,
     policy: dict[str, Any],
@@ -2005,7 +2216,7 @@ def audit_repository(
     called independently of CLI argument parsing or git diffs.
     """
     report = AuditReport(
-        audit_timestamp=datetime.datetime.utcnow().isoformat() + "Z",
+        audit_timestamp=datetime.datetime.now(datetime.UTC).isoformat().replace("+00:00", "Z"),
         repository=repo_url.rstrip("/"),
     )
 
@@ -2034,8 +2245,6 @@ def audit_repository(
     if meta.get("archived"):
         report.errors.append(f"Repository {owner}/{repo} is archived.")
         # Archived repos are not necessarily bad; treat as warning but continue
-
-    default_branch = meta.get("default_branch", "main")
 
     # --- Releases ---
     try:
@@ -2072,21 +2281,15 @@ def audit_repository(
     artifact_url = asset.get("browser_download_url", "")
     report.artifact_url = artifact_url
 
-    # --- Plugin name from repo metadata ---
-    try:
-        plugin_json_bytes = get_repo_file_raw(owner, repo, default_branch, "plugin.json")
-        package_json_bytes = get_repo_file_raw(owner, repo, default_branch, "package.json")
-        pj_data, pj_findings = check_plugin_json(plugin_json_bytes)
-        report.findings.extend(pj_findings)
-        pkg_data, pkg_findings = check_package_json(package_json_bytes)
-        report.findings.extend(pkg_findings)
-        report.plugin_name = (
-            (pj_data.get("name") or "")
-            or (pkg_data.get("name") or "")
-            or repo
-        )
-    except Exception as exc:
-        report.errors.append(f"Failed to fetch plugin/package metadata: {exc}")
+    # --- Metadata from exact release tag ---
+    tag_plugin_json = get_repo_file_raw(owner, repo, tag_name, "plugin.json")
+    tag_package_json = get_repo_file_raw(owner, repo, tag_name, "package.json")
+
+    plugin_meta_data = tag_plugin_json
+    plugin_meta_path = f"plugin.json@{tag_name}"
+    package_meta_data = tag_package_json
+    package_meta_path = f"package.json@{tag_name}"
+    report.plugin_name = repo
 
     # --- Cache check ---
     release_id = f"{tag_name}@{asset.get('id', '')}"
@@ -2187,23 +2390,44 @@ def audit_repository(
 
         report.extracted_domains = sorted(all_domains)
 
-        # --- plugin.json and package.json from ZIP ---
-        for meta_file in ("plugin.json", "package.json"):
-            for root, _dirs, files in os.walk(extract_dir):
-                if meta_file in files:
-                    fp = os.path.join(root, meta_file)
-                    rel = os.path.relpath(fp, extract_dir)
-                    try:
-                        with open(fp, "rb") as fh:
-                            raw = fh.read()
-                        if meta_file == "plugin.json":
-                            _, mf = check_plugin_json(raw, rel)
-                        else:
-                            _, mf = check_package_json(raw, rel)
-                        report.findings.extend(mf)
-                    except Exception:
-                        pass
-                    break  # first occurrence only
+        # --- Metadata fallback from ZIP when missing at tag ---
+        zip_plugin_json, zip_plugin_rel = _find_metadata_in_extracted(extract_dir, "plugin.json")
+        zip_package_json, zip_package_rel = _find_metadata_in_extracted(extract_dir, "package.json")
+        if plugin_meta_data is None and zip_plugin_json is not None:
+            plugin_meta_data = zip_plugin_json
+            plugin_meta_path = zip_plugin_rel or "plugin.json"
+        if package_meta_data is None and zip_package_json is not None:
+            package_meta_data = zip_package_json
+            package_meta_path = zip_package_rel or "package.json"
+
+        try:
+            pj_data, pj_findings = check_plugin_json(plugin_meta_data, plugin_meta_path)
+            pkg_data, pkg_findings = check_package_json(package_meta_data, package_meta_path)
+            _merge_findings_unique(report.findings, pj_findings)
+            _merge_findings_unique(report.findings, pkg_findings)
+            report.plugin_name = (
+                (pj_data.get("name") or "")
+                or (pkg_data.get("name") or "")
+                or report.plugin_name
+                or repo
+            )
+        except Exception as exc:
+            report.errors.append(f"Failed to process release metadata: {exc}")
+
+        if plugin_meta_data is None and package_meta_data is None:
+            report.findings.append(Finding(
+                rule_id="MISSING_RELEASE_METADATA",
+                severity="low",
+                classification="PASS_WITH_WARNINGS",
+                path="plugin.json,package.json",
+                line=0,
+                message=(
+                    f"Metadata unavailable for {owner}/{repo}@{tag_name}: neither tagged-source "
+                    "nor ZIP plugin.json/package.json was found."
+                ),
+                evidence="",
+                scanner="metadata-checker",
+            ))
 
         # --- External scanners ---
         if zip_stats.safe and os.path.isdir(extract_dir):
@@ -2220,13 +2444,32 @@ def audit_repository(
             report.findings.extend(semgrep_findings)
 
             # Source/artifact comparison
-            diff_summary, diff_findings = compare_source_and_artifact(
-                extract_dir, owner, repo, tag_name
-            )
+            if _scanner_enabled(policy, "source-artifact-diff"):
+                diff_summary, diff_findings, diff_status = compare_source_and_artifact(
+                    extract_dir, owner, repo, tag_name
+                )
+            else:
+                diff_summary, diff_findings, diff_status = (
+                    {"ref": tag_name, "checked": False},
+                    [],
+                    ScannerStatus(name="source-artifact-diff", status="skipped"),
+                )
             report.source_artifact_diff = diff_summary
+            report.scanner_statuses.append(diff_status)
             report.findings.extend(diff_findings)
+            if diff_status.status in ("failed", "unavailable", "unsupported") and not _scanner_required(policy, "source-artifact-diff"):
+                report.findings.append(Finding(
+                    rule_id="SOURCE_ARTIFACT_DIFF_INCOMPLETE",
+                    severity="low",
+                    classification="PASS_WITH_WARNINGS",
+                    path="",
+                    line=0,
+                    message=diff_status.detail or "Source/artifact comparison did not complete.",
+                    evidence="",
+                    scanner="source-artifact-diff",
+                ))
         else:
-            for scanner_name in ("trivy", "clamav", "semgrep"):
+            for scanner_name in ("trivy", "clamav", "semgrep", "source-artifact-diff"):
                 report.scanner_statuses.append(ScannerStatus(
                     name=scanner_name,
                     status="unavailable",
@@ -2282,7 +2525,7 @@ def write_reports(
     agg = {
         "schema_version": AUDIT_SCHEMA_VERSION,
         "policy_version": POLICY_VERSION,
-        "generated_at": datetime.datetime.utcnow().isoformat() + "Z",
+        "generated_at": datetime.datetime.now(datetime.UTC).isoformat().replace("+00:00", "Z"),
         "report_count": len(reports),
         "reports": [_report_to_dict(r) for r in reports],
     }

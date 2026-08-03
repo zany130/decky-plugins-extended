@@ -9,6 +9,7 @@ import datetime
 import io
 import json
 import os
+import requests
 import stat
 import struct
 import sys
@@ -865,6 +866,195 @@ class TestScannerFailure(unittest.TestCase):
         self.assertEqual(findings, [])
 
 
+class TestSemgrepSeverityMapping(unittest.TestCase):
+    def _policy(self) -> dict:
+        p = ap._default_policy()
+        p["scanners"]["semgrep"] = {"enabled": True, "required": False}
+        return p
+
+    def _run_with_severity(self, severity: str):
+        payload = json.dumps({
+            "results": [{
+                "check_id": "rule.id",
+                "path": "/tmp/fake/main.py",
+                "start": {"line": 3},
+                "extra": {"severity": severity, "message": "x", "lines": "x"},
+            }]
+        })
+        with (
+            patch("shutil.which", return_value="/usr/bin/semgrep"),
+            patch.object(ap, "_run_scanner", return_value=(True, payload, "")),
+        ):
+            return ap.run_semgrep("/tmp/fake", self._policy())
+
+    def test_error_maps_to_high_manual_review(self):
+        status, findings = self._run_with_severity("ERROR")
+        self.assertEqual(status.status, "found_issue")
+        self.assertEqual(findings[0].severity, "high")
+        self.assertEqual(findings[0].classification, "MANUAL_REVIEW")
+
+    def test_warning_maps_to_medium_manual_review(self):
+        _, findings = self._run_with_severity("WARNING")
+        self.assertEqual(findings[0].severity, "medium")
+        self.assertEqual(findings[0].classification, "MANUAL_REVIEW")
+
+    def test_info_maps_to_info_pass_with_warnings(self):
+        _, findings = self._run_with_severity("INFO")
+        self.assertEqual(findings[0].severity, "info")
+        self.assertEqual(findings[0].classification, "PASS_WITH_WARNINGS")
+
+    def test_unknown_maps_conservatively(self):
+        _, findings = self._run_with_severity("NOTICE")
+        self.assertEqual(findings[0].severity, "high")
+        self.assertEqual(findings[0].classification, "MANUAL_REVIEW")
+
+
+class TestSourceArtifactDiff(unittest.TestCase):
+    def _policy(self, required: bool = True, enabled: bool = True) -> dict:
+        p = ap._default_policy()
+        p["scanners"]["source_artifact_diff"] = {"enabled": enabled, "required": required}
+        p["scanners"]["semgrep"] = {"enabled": False, "required": False}
+        return p
+
+    def _mk_extract(self, files: dict[str, bytes | str], executable_paths: set[str] | None = None) -> str:
+        td = tempfile.TemporaryDirectory()
+        executable_paths = executable_paths or set()
+        for rel, content in files.items():
+            p = Path(td.name) / rel
+            p.parent.mkdir(parents=True, exist_ok=True)
+            if isinstance(content, str):
+                content = content.encode("utf-8")
+            p.write_bytes(content)
+            if rel in executable_paths:
+                p.chmod(p.stat().st_mode | stat.S_IXUSR)
+        self.addCleanup(td.cleanup)
+        return td.name
+
+    def _patch_tree(self, *, tag_type: str = "commit", truncated: bool = False):
+        def side_effect(url, params=None):
+            if "/git/ref/tags/" in url:
+                return {"object": {"type": tag_type, "sha": "sha-tag"}}
+            if "/git/tags/" in url:
+                return {"object": {"type": "commit", "sha": "sha-commit"}}
+            if "/git/commits/" in url:
+                return {"tree": {"sha": "sha-tree"}}
+            if "/git/trees/" in url:
+                return {
+                    "truncated": truncated,
+                    "tree": [{"path": "plugin/main.py"}],
+                }
+            raise AssertionError(f"Unexpected URL {url}")
+        return patch.object(ap, "_gh_get", side_effect=side_effect)
+
+    def test_zip_only_python_script(self):
+        extract = self._mk_extract({"plugin/extra.py": "print('x')"})
+        with self._patch_tree():
+            summary, findings, status = ap.compare_source_and_artifact(extract, "o", "r", "v1")
+        self.assertEqual(status.status, "found_issue")
+        self.assertIn("plugin/extra.py", summary["zip_only_scripts"])
+        self.assertIn("ZIP_ONLY_SCRIPT", {f.rule_id for f in findings})
+
+    def test_zip_only_shebang_script(self):
+        extract = self._mk_extract({"plugin/run": "#!/bin/sh\necho ok\n"})
+        with self._patch_tree():
+            summary, findings, _ = ap.compare_source_and_artifact(extract, "o", "r", "v1")
+        self.assertIn("plugin/run", summary["zip_only_scripts"])
+        self.assertIn("ZIP_ONLY_SCRIPT", {f.rule_id for f in findings})
+
+    def test_zip_only_executable_text_file(self):
+        extract = self._mk_extract({"plugin/tool": "echo hi\n"}, executable_paths={"plugin/tool"})
+        with self._patch_tree():
+            summary, findings, _ = ap.compare_source_and_artifact(extract, "o", "r", "v1")
+        self.assertIn("plugin/tool", summary["zip_only_scripts"])
+        self.assertIn("ZIP_ONLY_SCRIPT", {f.rule_id for f in findings})
+
+    def test_script_in_source_not_flagged(self):
+        extract = self._mk_extract({"plugin/main.py": "print('x')"})
+        with self._patch_tree():
+            summary, findings, status = ap.compare_source_and_artifact(extract, "o", "r", "v1")
+        self.assertEqual(status.status, "passed")
+        self.assertEqual(summary["zip_only_scripts"], [])
+        self.assertFalse(any(f.rule_id == "ZIP_ONLY_SCRIPT" for f in findings))
+
+    def test_native_binary_is_executable_not_script(self):
+        extract = self._mk_extract({"plugin/helper": b"\x7fELF\x02\x01\x01\x00abc"})
+        with self._patch_tree():
+            summary, findings, _ = ap.compare_source_and_artifact(extract, "o", "r", "v1")
+        self.assertIn("plugin/helper", summary["zip_only_executables"])
+        self.assertNotIn("plugin/helper", summary["zip_only_scripts"])
+        self.assertIn("ZIP_ONLY_EXECUTABLE", {f.rule_id for f in findings})
+        self.assertNotIn("ZIP_ONLY_SCRIPT", {f.rule_id for f in findings})
+
+    def test_non_script_data_not_flagged(self):
+        extract = self._mk_extract({
+            "plugin/data.json": '{"k":1}',
+            "plugin/style.css": "body{}",
+            "plugin/image.png": b"\x89PNG\r\n\x1a\n",
+            "plugin/app.min.js": "var a=1;",
+        })
+        with self._patch_tree():
+            summary, findings, status = ap.compare_source_and_artifact(extract, "o", "r", "v1")
+        self.assertEqual(status.status, "passed")
+        self.assertEqual(summary["zip_only_scripts"], [])
+        self.assertEqual(findings, [])
+
+    def test_lightweight_tag_resolution(self):
+        extract = self._mk_extract({"plugin/main.py": "print('x')"})
+        with self._patch_tree(tag_type="commit"):
+            summary, _, status = ap.compare_source_and_artifact(extract, "o", "r", "v1.0.0")
+        self.assertTrue(summary["checked"])
+        self.assertEqual(status.status, "passed")
+
+    def test_annotated_tag_resolution(self):
+        extract = self._mk_extract({"plugin/main.py": "print('x')"})
+        with self._patch_tree(tag_type="tag"):
+            summary, _, status = ap.compare_source_and_artifact(extract, "o", "r", "v1.0.0")
+        self.assertTrue(summary["checked"])
+        self.assertEqual(status.status, "passed")
+
+    def test_missing_tag_returns_failed_status(self):
+        extract = self._mk_extract({"plugin/main.py": "print('x')"})
+        with patch.object(ap, "_gh_get", side_effect=requests.HTTPError(response=MagicMock(status_code=404))):
+            summary, _, status = ap.compare_source_and_artifact(extract, "o", "r", "missing-tag")
+        self.assertFalse(summary["checked"])
+        self.assertEqual(status.status, "failed")
+
+    def test_api_failure_returns_failed_status(self):
+        extract = self._mk_extract({"plugin/main.py": "print('x')"})
+        with patch.object(ap, "_gh_get", side_effect=RuntimeError("boom")):
+            summary, _, status = ap.compare_source_and_artifact(extract, "o", "r", "v1")
+        self.assertFalse(summary["checked"])
+        self.assertEqual(status.status, "failed")
+
+    def test_truncated_tree_is_failed(self):
+        extract = self._mk_extract({"plugin/main.py": "print('x')"})
+        with self._patch_tree(truncated=True):
+            summary, _, status = ap.compare_source_and_artifact(extract, "o", "r", "v1")
+        self.assertFalse(summary["checked"])
+        self.assertEqual(status.status, "failed")
+
+    def test_required_failure_becomes_audit_error(self):
+        policy = self._policy(required=True, enabled=True)
+        statuses = [ap.ScannerStatus(name="source-artifact-diff", status="failed")]
+        cls, _ = ap.classify_findings([], scanner_statuses=statuses, policy=policy)
+        self.assertEqual(cls, "AUDIT_ERROR")
+
+    def test_optional_failure_becomes_pass_with_warnings(self):
+        policy = self._policy(required=False, enabled=True)
+        findings = [ap.Finding(
+            rule_id="SOURCE_ARTIFACT_DIFF_INCOMPLETE",
+            severity="low",
+            classification="PASS_WITH_WARNINGS",
+            path="",
+            line=0,
+            message="incomplete",
+            evidence="",
+            scanner="source-artifact-diff",
+        )]
+        statuses = [ap.ScannerStatus(name="source-artifact-diff", status="failed")]
+        cls, _ = ap.classify_findings(findings, scanner_statuses=statuses, policy=policy)
+        self.assertEqual(cls, "PASS_WITH_WARNINGS")
+
 # ---------------------------------------------------------------------------
 # Safe extraction
 # ---------------------------------------------------------------------------
@@ -912,6 +1102,16 @@ class TestAuditRepositoryMocked(unittest.TestCase):
             zf.writestr("my-plugin/main.py", "# hello world\n")
         return buf.getvalue()
 
+    def _make_zip_with_metadata(self, plugin_name: str | None, package_name: str | None) -> bytes:
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w") as zf:
+            if plugin_name is not None:
+                zf.writestr("my-plugin/plugin.json", json.dumps({"name": plugin_name, "flags": []}))
+            if package_name is not None:
+                zf.writestr("my-plugin/package.json", json.dumps({"name": package_name}))
+            zf.writestr("my-plugin/main.py", "# hello world\n")
+        return buf.getvalue()
+
     def test_clean_plugin_passes(self):
         zip_data = self._make_simple_zip()
 
@@ -955,7 +1155,11 @@ class TestAuditRepositoryMocked(unittest.TestCase):
                 patch.object(ap, "run_semgrep", return_value=(
                     ap.ScannerStatus(name="semgrep", status="skipped"), []
                 )),
-                patch.object(ap, "compare_source_and_artifact", return_value=({}, [])),
+                patch.object(
+                    ap,
+                    "compare_source_and_artifact",
+                    return_value=({}, [], ap.ScannerStatus(name="source-artifact-diff", status="passed")),
+                ),
             ):
                 report = ap.audit_repository(
                     "https://github.com/owner/my-plugin",
@@ -965,7 +1169,7 @@ class TestAuditRepositoryMocked(unittest.TestCase):
                     skip_cache=True,
                 )
             self.assertNotEqual(report.final_classification, "AUDIT_ERROR")
-            self.assertEqual(report.plugin_name, "my-plugin")  # from repo URL fallback
+            self.assertEqual(report.plugin_name, "MyPlugin")
         finally:
             os.unlink(tf_path)
 
@@ -999,6 +1203,7 @@ class TestAuditRepositoryMocked(unittest.TestCase):
             policy = ap._default_policy()
             policy["scanners"]["clamav"]["required"] = False
             policy["scanners"]["trivy"]["required"] = False
+            policy["scanners"]["source_artifact_diff"]["required"] = False
             report = ap.audit_repository(
                 "https://github.com/owner/evil-plugin",
                 policy=policy,
@@ -1036,6 +1241,196 @@ class TestAuditRepositoryMocked(unittest.TestCase):
                 skip_cache=True,
             )
         self.assertEqual(report.final_classification, "AUDIT_ERROR")
+
+    def test_metadata_prefers_release_tag_not_default_branch(self):
+        zip_data = self._make_zip_with_metadata(plugin_name="ZipPlugin", package_name="zip-package")
+        meta = {"default_branch": "main", "archived": False}
+        release = {
+            "tag_name": "v1.0.0",
+            "prerelease": False,
+            "assets": [{"name": "plugin.zip", "id": 1, "browser_download_url": "https://example.com/plugin.zip"}],
+        }
+
+        def fake_download(url, dest_path):
+            Path(dest_path).write_bytes(zip_data)
+            import hashlib
+            return hashlib.sha256(zip_data).hexdigest()
+
+        def fake_get_repo_file_raw(owner, repo, ref, path):
+            if ref == "v1.0.0" and path == "plugin.json":
+                return json.dumps({"name": "TaggedPlugin", "flags": []}).encode()
+            if ref == "v1.0.0" and path == "package.json":
+                return json.dumps({"name": "tagged-package"}).encode()
+            if ref == "main" and path == "plugin.json":
+                return json.dumps({"name": "MainBranchPlugin", "flags": []}).encode()
+            return None
+
+        with (
+            patch.object(ap, "get_repo_metadata", return_value=meta),
+            patch.object(ap, "get_releases", return_value=[release]),
+            patch.object(ap, "get_repo_file_raw", side_effect=fake_get_repo_file_raw) as mocked_raw,
+            patch.object(ap, "download_zip", side_effect=fake_download),
+            patch.object(ap, "run_clamav", return_value=(ap.ScannerStatus(name="clamav", status="passed"), [])),
+            patch.object(ap, "run_trivy", return_value=(ap.ScannerStatus(name="trivy", status="passed"), [])),
+            patch.object(ap, "run_semgrep", return_value=(ap.ScannerStatus(name="semgrep", status="skipped"), [])),
+            patch.object(ap, "compare_source_and_artifact", return_value=(
+                {"ref": "v1.0.0", "checked": True}, [], ap.ScannerStatus(name="source-artifact-diff", status="passed")
+            )),
+        ):
+            report = ap.audit_repository(
+                "https://github.com/owner/my-plugin",
+                policy=ap._default_policy(),
+                exceptions=[],
+                skip_cache=True,
+            )
+        self.assertEqual(report.plugin_name, "TaggedPlugin")
+        self.assertFalse(any(call.args[2] == "main" for call in mocked_raw.call_args_list))
+
+    def test_zip_metadata_used_when_tag_metadata_absent(self):
+        zip_data = self._make_zip_with_metadata(plugin_name="ZipOnlyPlugin", package_name="zip-only-pkg")
+        meta = {"default_branch": "main", "archived": False}
+        release = {
+            "tag_name": "v1.0.0",
+            "prerelease": False,
+            "assets": [{"name": "plugin.zip", "id": 1, "browser_download_url": "https://example.com/plugin.zip"}],
+        }
+
+        def fake_download(url, dest_path):
+            Path(dest_path).write_bytes(zip_data)
+            import hashlib
+            return hashlib.sha256(zip_data).hexdigest()
+
+        with (
+            patch.object(ap, "get_repo_metadata", return_value=meta),
+            patch.object(ap, "get_releases", return_value=[release]),
+            patch.object(ap, "get_repo_file_raw", return_value=None),
+            patch.object(ap, "download_zip", side_effect=fake_download),
+            patch.object(ap, "run_clamav", return_value=(ap.ScannerStatus(name="clamav", status="passed"), [])),
+            patch.object(ap, "run_trivy", return_value=(ap.ScannerStatus(name="trivy", status="passed"), [])),
+            patch.object(ap, "run_semgrep", return_value=(ap.ScannerStatus(name="semgrep", status="skipped"), [])),
+            patch.object(ap, "compare_source_and_artifact", return_value=(
+                {"ref": "v1.0.0", "checked": True}, [], ap.ScannerStatus(name="source-artifact-diff", status="passed")
+            )),
+        ):
+            report = ap.audit_repository(
+                "https://github.com/owner/my-plugin",
+                policy=ap._default_policy(),
+                exceptions=[],
+                skip_cache=True,
+            )
+        self.assertEqual(report.plugin_name, "ZipOnlyPlugin")
+
+    def test_missing_metadata_does_not_crash(self):
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w") as zf:
+            zf.writestr("my-plugin/main.py", "# hello world\n")
+        zip_data = buf.getvalue()
+        meta = {"default_branch": "main", "archived": False}
+        release = {
+            "tag_name": "v1.0.0",
+            "prerelease": False,
+            "assets": [{"name": "plugin.zip", "id": 1, "browser_download_url": "https://example.com/plugin.zip"}],
+        }
+
+        def fake_download(url, dest_path):
+            Path(dest_path).write_bytes(zip_data)
+            import hashlib
+            return hashlib.sha256(zip_data).hexdigest()
+
+        with (
+            patch.object(ap, "get_repo_metadata", return_value=meta),
+            patch.object(ap, "get_releases", return_value=[release]),
+            patch.object(ap, "get_repo_file_raw", return_value=None),
+            patch.object(ap, "download_zip", side_effect=fake_download),
+            patch.object(ap, "run_clamav", return_value=(ap.ScannerStatus(name="clamav", status="passed"), [])),
+            patch.object(ap, "run_trivy", return_value=(ap.ScannerStatus(name="trivy", status="passed"), [])),
+            patch.object(ap, "run_semgrep", return_value=(ap.ScannerStatus(name="semgrep", status="skipped"), [])),
+            patch.object(ap, "compare_source_and_artifact", return_value=(
+                {"ref": "v1.0.0", "checked": True}, [], ap.ScannerStatus(name="source-artifact-diff", status="passed")
+            )),
+        ):
+            report = ap.audit_repository(
+                "https://github.com/owner/my-plugin",
+                policy=ap._default_policy(),
+                exceptions=[],
+                skip_cache=True,
+            )
+        self.assertNotEqual(report.final_classification, "AUDIT_ERROR")
+        self.assertTrue(any(f.rule_id == "MISSING_RELEASE_METADATA" for f in report.findings))
+
+    def test_required_source_diff_failure_is_audit_error(self):
+        zip_data = self._make_simple_zip()
+        meta = {"default_branch": "main", "archived": False}
+        release = {
+            "tag_name": "v1.0.0",
+            "prerelease": False,
+            "assets": [{"name": "plugin.zip", "id": 1, "browser_download_url": "https://example.com/plugin.zip"}],
+        }
+
+        def fake_download(url, dest_path):
+            Path(dest_path).write_bytes(zip_data)
+            import hashlib
+            return hashlib.sha256(zip_data).hexdigest()
+
+        policy = ap._default_policy()
+        policy["scanners"]["source_artifact_diff"] = {"enabled": True, "required": True}
+        with (
+            patch.object(ap, "get_repo_metadata", return_value=meta),
+            patch.object(ap, "get_releases", return_value=[release]),
+            patch.object(ap, "get_repo_file_raw", return_value=None),
+            patch.object(ap, "download_zip", side_effect=fake_download),
+            patch.object(ap, "run_clamav", return_value=(ap.ScannerStatus(name="clamav", status="passed"), [])),
+            patch.object(ap, "run_trivy", return_value=(ap.ScannerStatus(name="trivy", status="passed"), [])),
+            patch.object(ap, "run_semgrep", return_value=(ap.ScannerStatus(name="semgrep", status="skipped"), [])),
+            patch.object(ap, "compare_source_and_artifact", return_value=(
+                {"ref": "v1.0.0", "checked": False}, [], ap.ScannerStatus(name="source-artifact-diff", status="failed", detail="x")
+            )),
+        ):
+            report = ap.audit_repository(
+                "https://github.com/owner/my-plugin",
+                policy=policy,
+                exceptions=[],
+                skip_cache=True,
+            )
+        self.assertEqual(report.final_classification, "AUDIT_ERROR")
+
+    def test_optional_source_diff_failure_is_pass_with_warnings(self):
+        zip_data = self._make_simple_zip()
+        meta = {"default_branch": "main", "archived": False}
+        release = {
+            "tag_name": "v1.0.0",
+            "prerelease": False,
+            "assets": [{"name": "plugin.zip", "id": 1, "browser_download_url": "https://example.com/plugin.zip"}],
+        }
+
+        def fake_download(url, dest_path):
+            Path(dest_path).write_bytes(zip_data)
+            import hashlib
+            return hashlib.sha256(zip_data).hexdigest()
+
+        policy = ap._default_policy()
+        policy["scanners"]["source_artifact_diff"] = {"enabled": True, "required": False}
+        with (
+            patch.object(ap, "get_repo_metadata", return_value=meta),
+            patch.object(ap, "get_releases", return_value=[release]),
+            patch.object(ap, "get_repo_file_raw", return_value=None),
+            patch.object(ap, "download_zip", side_effect=fake_download),
+            patch.object(ap, "run_clamav", return_value=(ap.ScannerStatus(name="clamav", status="passed"), [])),
+            patch.object(ap, "run_trivy", return_value=(ap.ScannerStatus(name="trivy", status="passed"), [])),
+            patch.object(ap, "run_semgrep", return_value=(ap.ScannerStatus(name="semgrep", status="skipped"), [])),
+            patch.object(ap, "compare_source_and_artifact", return_value=(
+                {"ref": "v1.0.0", "checked": False}, [], ap.ScannerStatus(name="source-artifact-diff", status="failed", detail="x")
+            )),
+        ):
+            report = ap.audit_repository(
+                "https://github.com/owner/my-plugin",
+                policy=policy,
+                exceptions=[],
+                skip_cache=True,
+            )
+        self.assertEqual(report.final_classification, "PASS_WITH_WARNINGS")
+        self.assertTrue(any(s.name == "source-artifact-diff" and s.status == "failed" for s in report.scanner_statuses))
+        self.assertTrue(report.source_artifact_diff.get("checked") is False)
 
 
 # ---------------------------------------------------------------------------

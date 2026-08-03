@@ -48,6 +48,9 @@ scanners:
   osv_scanner:
     enabled: false
     required: false
+  source_artifact_diff:
+    enabled: true
+    required: true
 
 # Future integration point for catalog generation:
 # catalog_generation:
