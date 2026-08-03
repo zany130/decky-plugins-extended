@@ -66,6 +66,7 @@ jobs:
             audit_plugins.py \
             audit_plugins_core.py \
             audit_noise_filters.py \
+            credential_exposure_filters.py \
             plugin_release_utils.py \
             pyproject.toml \
             | sha256sum | cut -c1-16)
