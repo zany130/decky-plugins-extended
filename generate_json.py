@@ -1,5 +1,4 @@
 import os
-import re
 import sys
 import json
 import base64
@@ -8,6 +7,8 @@ import requests
 import hashlib
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+
+import plugin_release_utils
 
 # Source URLs
 PLUGINS_URL = "https://plugins.deckbrew.xyz/plugins"
@@ -190,32 +191,22 @@ def calculate_hash(download_url):
     return h.hexdigest()
 
 
-# Matches the version inside a release tag: "v1.2.3", "Release-0.7.1",
-# "decky-romm-sync-v0.29.0" all yield the bare version.
-VERSION_IN_TAG = re.compile(r"\d+\.\d+(?:\.\d+)?(?:[-+][0-9A-Za-z.\-]+)?")
-
-
 def normalize_version(tag_name):
-    """Decky runs store version strings through compare-versions' validate()
-    before offering an update, and anything that is not semver-shaped is
-    discarded -- a plugin tagged "Release-0.7.1" can never show an update. Pull
-    the version out of the tag, falling back to the bare tag when it holds
-    nothing version-shaped."""
-    match = VERSION_IN_TAG.search(tag_name)
-    if match:
-        return match.group(0)
-    return tag_name.lstrip("v")
+    return plugin_release_utils.normalize_version(tag_name)
 
 
 def build_version_object(release, existing_plugin=None):
     tag_name = normalize_version(release.get("tag_name", "1.0.0"))
-
     zip_assets = [a for a in release.get("assets", []) if a.get("name", "").endswith(".zip")]
-    if len(zip_assets) != 1:
+
+    if not plugin_release_utils.has_exactly_one_zip(release):
         print(f"    Warning: Expected exactly 1 zip asset for {tag_name}, found {len(zip_assets)}. Skipping.")
         return None
 
-    download_url = zip_assets[0].get("browser_download_url")
+    zip_asset = plugin_release_utils.get_zip_asset(release)
+    if not zip_asset:
+        return None
+    download_url = zip_asset.get("browser_download_url")
 
     # Performance Optimization: Avoid re-hashing if we already know this version
     known_hash = None
@@ -228,7 +219,7 @@ def build_version_object(release, existing_plugin=None):
     final_hash = None
     
     # Check if GitHub natively provided the SHA-256 (recent GitHub feature)
-    github_digest = zip_assets[0].get("digest")
+    github_digest = zip_asset.get("digest")
     if github_digest and github_digest.startswith("sha256:"):
         final_hash = github_digest.split(":")[1]
         
@@ -245,22 +236,8 @@ def build_version_object(release, existing_plugin=None):
     }
 
 
-SEMVER = re.compile(r"^(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:-([0-9A-Za-z.\-]+))?(?:\+[0-9A-Za-z.\-]+)?$")
-
-
 def parse_semver(name):
-    """Returns (major, minor, patch, prerelease_identifiers) or None. Prerelease
-    identifiers are compared per semver: numeric ones numerically, so beta.10
-    outranks beta.9. Build metadata is ignored, as compare-versions ignores it."""
-    match = SEMVER.match((name or "").strip())
-    if not match:
-        return None
-
-    major, minor, patch, prerelease = match.groups()
-    identifiers = []
-    for part in (prerelease or "").split(".") if prerelease else []:
-        identifiers.append((0, int(part), "") if part.isdigit() else (1, 0, part))
-    return int(major), int(minor or 0), int(patch or 0), identifiers
+    return plugin_release_utils.parse_semver(name)
 
 
 def version_sort_key(version):
@@ -270,14 +247,10 @@ def version_sort_key(version):
     a late hotfix to an old branch on top, and floats rolling tags ("nightly",
     "dev-build") above every real release, where validate() then rejects them and
     no update is ever offered. Versions with no parseable number sort last."""
-    parsed = parse_semver(version.get("name", ""))
-    created = version.get("created") or ""
-    if parsed is None:
-        return (0, 0, 0, 0, 0, [], created)
-
-    major, minor, patch, prerelease = parsed
-    # A prerelease ranks below the release it leads to: 1.0.0 > 1.0.0-beta.1.
-    return (1, major, minor, patch, 0 if prerelease else 1, prerelease, created)
+    return plugin_release_utils.version_sort_key(
+        version.get("name", ""),
+        version.get("created") or "",
+    )
 
 
 def sort_versions(versions):
@@ -378,24 +351,46 @@ def main():
             existing_testing = next((p for p in testing_plugins if p.get("name", "").lower() == plugin_name.lower()), None)
 
             releases = get_releases(owner, repo)
+            best_stable_release = plugin_release_utils.select_best_release(
+                releases, allow_prerelease=False
+            )
+            best_testing_release = plugin_release_utils.select_best_release(
+                releases, allow_prerelease=True
+            )
+            if best_testing_release is None:
+                print(f"  Warning: No valid releases found for {plugin_name}. Skipping.")
+                continue
 
             stable_versions = []
             testing_versions = []
+            eligible_releases = [
+                rel for rel in releases if plugin_release_utils.has_exactly_one_zip(rel)
+            ]
+            eligible_releases.sort(
+                key=lambda rel: (
+                    1 if not rel.get("prerelease") else 0,
+                    plugin_release_utils.version_sort_key(
+                        normalize_version(rel.get("tag_name", "")),
+                        rel.get("published_at") or rel.get("created_at") or "",
+                    ),
+                ),
+                reverse=True,
+            )
 
-            for rel in releases:
+            if best_stable_release is not None:
+                eligible_releases = [
+                    best_stable_release
+                ] + [r for r in eligible_releases if r is not best_stable_release]
+            if best_testing_release is not None and best_testing_release not in eligible_releases:
+                eligible_releases.insert(0, best_testing_release)
+
+            for rel in eligible_releases:
                 v_obj = build_version_object(rel, existing_testing or existing_stable)
                 if not v_obj:
                     continue
-
-                # Testing includes stable + prereleases
                 testing_versions.append(v_obj.copy())
-                # Stable only includes non-prereleases
                 if not rel.get("prerelease"):
                     stable_versions.append(v_obj.copy())
-
-            if not testing_versions:
-                print(f"  Warning: No valid releases found for {plugin_name}. Skipping.")
-                continue
 
             sort_versions(stable_versions)
             sort_versions(testing_versions)
