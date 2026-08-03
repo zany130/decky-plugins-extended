@@ -48,6 +48,17 @@ class CredentialExposurePolicyTests(unittest.TestCase):
         self.assertNotIn(token, github.evidence)
         self.assertIn(audit_plugins.SECRET_REDACT, github.evidence)
 
+    def test_fixture_provider_token_still_requires_review_at_low_severity(self):
+        token = "ghp_" + ("Ab1" * 12)
+        findings = audit_plugins.scan_for_secrets(
+            f'# test fixture: token = "{token}"\n',
+            "tests/test_auth.py",
+        )
+        github = next(f for f in findings if f.rule_id == "SECRET_GITHUB_TOKEN")
+        self.assertEqual(github.classification, "MANUAL_REVIEW")
+        self.assertEqual(github.severity, "low")
+        self.assertNotEqual(github.classification, "BLOCK")
+
     def test_generic_patterns_are_suppressed_in_generated_content(self):
         findings = audit_plugins.scan_for_secrets(
             '{"api_key":"aB3dE5fG7hJ9kL2mN4pQ6rS8"}',
@@ -81,6 +92,19 @@ class CredentialExposurePolicyTests(unittest.TestCase):
         self.assertEqual(private_key.classification, "MANUAL_REVIEW")
         self.assertNotEqual(private_key.classification, "BLOCK")
         self.assertNotIn("SECRET_PRIVATE_KEY_HEADER", {f.rule_id for f in findings})
+
+    def test_fixture_complete_private_key_still_requires_review_at_low_severity(self):
+        body = base64.b64encode(bytes(range(96))).decode()
+        content = (
+            "-----BEGIN RSA PRIVATE KEY-----\n"
+            f"{body}\n"
+            "-----END RSA PRIVATE KEY-----\n"
+        )
+        findings = audit_plugins.scan_for_secrets(content, "tests/fixtures/test_key.pem")
+        private_key = next(f for f in findings if f.rule_id == "SECRET_PRIVATE_KEY")
+        self.assertEqual(private_key.classification, "MANUAL_REVIEW")
+        self.assertEqual(private_key.severity, "low")
+        self.assertNotEqual(private_key.classification, "BLOCK")
 
     def test_credential_findings_cannot_make_final_result_block(self):
         token = "ghp_" + ("Ab1" * 12)
