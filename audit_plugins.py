@@ -198,8 +198,17 @@ def _parse_simple_yaml_file(path: str) -> dict[str, Any]:
             # List item
             val_str = stripped[2:].strip()
             if not isinstance(parent, list):
-                # Convert to list if needed
-                pass
+                # Convert the empty-dict container to a list in the grandparent
+                new_list: list = []
+                if len(stack) >= 2:
+                    grandparent = stack[-2][1]
+                    if isinstance(grandparent, dict):
+                        for k, v in list(grandparent.items()):
+                            if v is parent:
+                                grandparent[k] = new_list
+                                break
+                stack[-1] = (stack[-1][0], new_list)
+                parent = new_list
             if ":" in val_str:
                 # Dict inside list
                 k2, v2 = val_str.split(":", 1)
@@ -464,8 +473,7 @@ def _make_github_session() -> requests.Session:
         "X-GitHub-Api-Version": "2022-11-28",
     }
     if GITHUB_TOKEN:
-        # Never log the token value
-        headers["Authorization"] = f"******"
+        headers["Authorization"] = "Bearer " + GITHUB_TOKEN
     s.headers.update(headers)
     return s
 
@@ -596,6 +604,11 @@ def get_changed_repos(plugins_file: str = PLUGINS_FILE, base_ref: str = "HEAD~1"
             text=True,
             timeout=30,
         )
+        if result.returncode != 0:
+            log.warning(
+                "git diff failed (exit %d); auditing all repos.", result.returncode
+            )
+            return read_repo_urls(plugins_file)
         added: list[str] = []
         for line in result.stdout.splitlines():
             if line.startswith("+") and not line.startswith("+++"):
@@ -770,8 +783,9 @@ def inspect_zip(
                 try:
                     base = PurePosixPath("/extract")
                     link_parent = base / PurePosixPath(name).parent
-                    resolved = (link_parent / PurePosixPath(target)).resolve()
-                    if not str(resolved).startswith("/extract"):
+                    joined = str(link_parent / PurePosixPath(target))
+                    normalized = PurePosixPath(os.path.normpath(joined))
+                    if not str(normalized).startswith("/extract"):
                         stats.safe = False
                         findings.append(Finding(
                             rule_id="ARCHIVE_ESCAPE_SYMLINK",
@@ -1507,8 +1521,7 @@ def run_semgrep(extract_dir: str, policy: dict[str, Any]) -> tuple[ScannerStatus
                 scanner="semgrep",
             ))
     except Exception as exc:
-        if not ok:
-            return ScannerStatus(name="semgrep", status="failed", detail=str(exc)), []
+        return ScannerStatus(name="semgrep", status="failed", detail=str(exc)), []
 
     status = "found_issue" if findings else "passed"
     return ScannerStatus(name="semgrep", status=status), findings

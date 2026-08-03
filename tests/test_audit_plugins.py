@@ -597,9 +597,6 @@ class TestAllowlist(unittest.TestCase):
 
     def test_matching_entry_allowlists_finding(self):
         sha = "a" * 64
-        exceptions = [
-            ap.load_allowlist.__wrapped__ if hasattr(ap.load_allowlist, "__wrapped__") else None
-        ]
         # Build exceptions directly
         excs = [{
             "repository": "owner/repo",
