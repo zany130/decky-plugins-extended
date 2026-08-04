@@ -37,8 +37,7 @@ _VERSION_CONTEXT = re.compile(
     re.IGNORECASE,
 )
 _NETWORK_OPERATION_CONTEXT = re.compile(
-    r"\b(?:connect|bind|listen|socket|endpoint|address|proxy|gateway|dns|"
-    r"host|hostname)\b",
+    r"\b(?:connect|bind|listen|socket|endpoint|address|proxy|gateway|dns)\b",
     re.IGNORECASE,
 )
 _MAX_RAW_IP_LINE_LENGTH = 2000
