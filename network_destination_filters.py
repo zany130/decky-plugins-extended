@@ -40,6 +40,7 @@ _NETWORK_OPERATION_CONTEXT = re.compile(
     r"\b(?:connect|bind|listen|socket|endpoint|address|proxy|gateway|dns)\b",
     re.IGNORECASE,
 )
+_LOCAL_SINGLE_LABEL_HOSTS = {"localhost"}
 _MAX_RAW_IP_LINE_LENGTH = 2000
 _CONTEXT_RADIUS = 120
 _TRAILING_URL_PUNCTUATION = ".,;!?)]}'\""
@@ -76,6 +77,15 @@ def _normalise_host(host: str) -> str | None:
             return None
         if not re.fullmatch(r"[a-z0-9-]+", label):
             return None
+
+    # A URL parser accepts single-label names such as http://bar, http://error,
+    # and http://myrepo. In packaged test fixtures and dependency documentation,
+    # those values are overwhelmingly placeholders rather than destinations.
+    # Preserve the one universally meaningful local endpoint while requiring a
+    # DNS-style dotted name for all other hostname destinations.
+    if len(labels) == 1 and ascii_host not in _LOCAL_SINGLE_LABEL_HOSTS:
+        return None
+
     return ascii_host
 
 
@@ -118,10 +128,11 @@ def _raw_ip_has_network_context(line: str, start: int, end: int) -> bool:
 def extract_urls_and_domains(content: str) -> tuple[list[str], list[str]]:
     """Return unique URLs and normalized network destinations from text.
 
-    URL destinations are always retained when their hosts are valid. Bare IPv4
-    literals are retained only when a nearby network-related token indicates
-    they are being used as an endpoint. This avoids treating versions and random
-    source-map/minified numeric sequences as network activity.
+    URL destinations are retained when their hosts are valid DNS-style names,
+    IP addresses, or localhost. Bare IPv4 literals are retained only when a
+    nearby network-related token indicates they are being used as an endpoint.
+    This avoids treating placeholders, versions, and random source-map/minified
+    numeric sequences as network activity.
     """
 
     urls: list[str] = []
