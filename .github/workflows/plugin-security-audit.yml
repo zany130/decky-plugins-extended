@@ -23,6 +23,7 @@ on:
       - audit_plugins.py
       - metadata_build_stamp_filters.py
       - source_content_comparison.py
+      - source_content_hardening.py
       - trivy_source_scanning.py
       - plugin_release_utils.py
       - security-policy.yml
