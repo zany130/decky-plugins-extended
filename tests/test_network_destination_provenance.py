@@ -37,6 +37,8 @@ class NetworkReferenceProvenanceTests(unittest.TestCase):
             "node_modules/pkg/README.md": ("dependency_or_vendored", "low"),
             "tests/fixture.py": ("documentation_or_test", "low"),
             "docs/README.md": ("documentation_or_test", "low"),
+            ".github/workflows/release.yml": ("documentation_or_test", "low"),
+            "./.github/workflows/release.yml": ("documentation_or_test", "low"),
             "package.json": ("source_map_or_build_metadata", "low"),
         }
         for path, expected in cases.items():
