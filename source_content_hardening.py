@@ -65,12 +65,14 @@ def install(core: ModuleType) -> ModuleType:
         if shared is None:
             return original_compare(extract_dir, owner, repo, ref)
 
-        try:
-            source_root = scc._ensure_shared_source(core)
-        except Exception:
-            # The installed content comparator already produces the canonical
-            # fail-closed status and detail for source retrieval failures.
-            return original_compare(extract_dir, owner, repo, ref)
+        source_root = str(shared.get("source_root") or "")
+        if not source_root:
+            try:
+                source_root = scc._ensure_shared_source(core)
+            except Exception:
+                # The installed content comparator already produces the canonical
+                # fail-closed status and detail for source retrieval failures.
+                return original_compare(extract_dir, owner, repo, ref)
 
         collisions = _source_case_collisions(source_root)
         if collisions:
