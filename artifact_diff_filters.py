@@ -311,7 +311,7 @@ def _render_source_diff_inventory(report: Any) -> list[str]:
             lines += [
                 "<details>",
                 (
-                    f"<summary>{icon} {label.title()} — {count} ZIP-only "
+                    f"<summary>{icon} {label[0].upper() + label[1:]} — {count} ZIP-only "
                     f"{noun}(s) under <code>{_escape_code(root)}</code></summary>"
                 ),
                 "",
