@@ -1,6 +1,8 @@
 """Regression tests for selective collapsible Markdown report sections."""
 
+import tempfile
 import unittest
+from pathlib import Path
 
 import audit_plugins
 
@@ -99,6 +101,77 @@ class ReportLayoutFilterTests(unittest.TestCase):
         once = audit_plugins.apply_collapsible_report_layout(_SAMPLE)
         twice = audit_plugins.apply_collapsible_report_layout(once)
         self.assertEqual(once, twice)
+
+    def test_plugin_report_is_collapsed_with_risk_visible_in_summary(self):
+        report = audit_plugins.AuditReport(
+            plugin_name="Example & Plugin",
+            repository="https://github.com/owner/example",
+            release="v1.2.3",
+            final_classification="MANUAL_REVIEW",
+            risk_score=42,
+        )
+
+        rendered = audit_plugins.generate_markdown_report(report)
+
+        self.assertTrue(
+            rendered.startswith(
+                "<!-- collapsible-plugin-audit-report -->\n"
+                "<details>\n"
+                "<summary>🔍 <strong>Example &amp; Plugin</strong>"
+            )
+        )
+        self.assertIn("<code>v1.2.3</code>", rendered)
+        self.assertIn("<strong>MANUAL_REVIEW</strong>", rendered)
+        self.assertIn("risk 42", rendered)
+        self.assertIn("# Security Audit Report: Example & Plugin", rendered)
+
+    def test_plugin_report_wrapper_is_idempotent(self):
+        report = audit_plugins.AuditReport(
+            plugin_name="Example",
+            repository="https://github.com/owner/example",
+            release="v1",
+            final_classification="PASS",
+        )
+        once = audit_plugins.wrap_collapsible_plugin_report(_SAMPLE, report)
+        twice = audit_plugins.wrap_collapsible_plugin_report(once, report)
+        self.assertEqual(once, twice)
+
+    def test_aggregate_report_wraps_each_plugin_independently(self):
+        reports = [
+            audit_plugins.AuditReport(
+                plugin_name="CleanPlugin",
+                repository="https://github.com/owner/clean",
+                release="v1",
+                final_classification="PASS",
+                risk_score=0,
+            ),
+            audit_plugins.AuditReport(
+                plugin_name="BlockedPlugin",
+                repository="https://github.com/owner/blocked",
+                release="v2",
+                final_classification="BLOCK",
+                risk_score=100,
+            ),
+        ]
+
+        with tempfile.TemporaryDirectory() as tmp:
+            _, markdown_path = audit_plugins.write_reports(reports, tmp)
+            rendered = Path(markdown_path).read_text(encoding="utf-8")
+
+        self.assertEqual(
+            rendered.count("<!-- collapsible-plugin-audit-report -->"),
+            2,
+        )
+        self.assertIn(
+            "<summary>✅ <strong>CleanPlugin</strong> — <code>v1</code>"
+            " — <strong>PASS</strong> — risk 0</summary>",
+            rendered,
+        )
+        self.assertIn(
+            "<summary>🚫 <strong>BlockedPlugin</strong> — <code>v2</code>"
+            " — <strong>BLOCK</strong> — risk 100</summary>",
+            rendered,
+        )
 
 
 if __name__ == "__main__":
