@@ -2,12 +2,6 @@ MIT License
 
 Copyright (c) 2026 Andres Ortiz (zany130) and contributors
 
-The MIT terms below apply to original contributions authored for the
-zany130/decky-plugins-extended fork by Andres Ortiz or by contributors who
-submit their work under these terms. Code inherited or adapted from upstream
-or other third-party projects remains subject to the rights and terms of its
-original authors.
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -15,9 +9,8 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice, this permission notice, and the applicability
-statement above shall be included in all copies or substantial portions of the
-Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
