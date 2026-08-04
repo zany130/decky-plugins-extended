@@ -260,9 +260,17 @@ def _packaged_python_provenance(parts: list[str]) -> tuple[str, str] | None:
     return "dependency_or_vendored", "low"
 
 
+def _normalise_packaged_path(path: str) -> str:
+    """Normalize separators and literal leading ``./`` segments only."""
+    normalized = path.replace("\\", "/")
+    while normalized.startswith("./"):
+        normalized = normalized[2:]
+    return normalized
+
+
 def classify_network_source(path: str) -> tuple[str, str]:
     """Classify a packaged path and return ``(provenance, confidence)``."""
-    normalized = path.replace("\\", "/").lstrip("./")
+    normalized = _normalise_packaged_path(path)
     pure = PurePosixPath(normalized)
     parts = [part.casefold() for part in pure.parts]
     directories = set(parts[:-1])
