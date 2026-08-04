@@ -2,10 +2,10 @@
 """Compatibility entry point for the Decky plugin security audit.
 
 The implementation remains in :mod:`audit_plugins_core`; context-aware noise,
-network-destination, exact-source dependency and content comparison, behavioral
-false-positive, credential-exposure, packaged-artifact, source-link, and
-report-layout policies are installed before the module is exposed to callers or
-the CLI runs.
+network-destination, exact-source dependency and content comparison, exact
+metadata build-stamp, behavioral false-positive, credential-exposure,
+packaged-artifact, source-link, and report-layout policies are installed before
+the module is exposed to callers or the CLI runs.
 """
 
 from __future__ import annotations
@@ -17,6 +17,7 @@ from artifact_diff_filters import install as install_artifact_diff_filters
 from audit_noise_filters import install as install_noise_filters
 from behavior_false_positive_filters import install as install_behavior_filters
 from credential_exposure_filters import install as install_credential_policy
+from metadata_build_stamp_filters import install as install_metadata_build_stamp_filters
 from network_destination_filters import install as install_network_destination_filters
 from report_layout_filters import install as install_report_layout
 from source_content_comparison import install as install_source_content_comparison
@@ -27,6 +28,7 @@ install_noise_filters(_core)
 install_network_destination_filters(_core)
 install_trivy_source_scanning(_core)
 install_source_content_comparison(_core)
+install_metadata_build_stamp_filters(_core)
 install_behavior_filters(_core)
 install_credential_policy(_core)
 install_artifact_diff_filters(_core)
