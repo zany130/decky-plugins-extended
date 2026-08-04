@@ -69,7 +69,10 @@ jobs:
             audit_noise_filters.py \
             behavior_false_positive_filters.py \
             credential_exposure_filters.py \
+            metadata_build_stamp_filters.py \
             network_destination_filters.py \
+            source_content_comparison.py \
+            source_content_hardening.py \
             trivy_source_scanning.py \
             report_layout_filters.py \
             upstream_source_links.py \
