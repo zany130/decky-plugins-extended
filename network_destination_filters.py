@@ -41,6 +41,11 @@ _NETWORK_OPERATION_CONTEXT = re.compile(
     re.IGNORECASE,
 )
 _LOCAL_SINGLE_LABEL_HOSTS = {"localhost"}
+_CANONICAL_HOST_ALIASES = {
+    # GitHub redirects this legacy hostname to its canonical apex host. Keep one
+    # review target rather than reporting both spellings as separate services.
+    "www.github.com": "github.com",
+}
 _MAX_RAW_IP_LINE_LENGTH = 2000
 _CONTEXT_RADIUS = 120
 _TRAILING_URL_PUNCTUATION = ".,;!?)]}'\""
@@ -86,7 +91,7 @@ def _normalise_host(host: str) -> str | None:
     if len(labels) == 1 and ascii_host not in _LOCAL_SINGLE_LABEL_HOSTS:
         return None
 
-    return ascii_host
+    return _CANONICAL_HOST_ALIASES.get(ascii_host, ascii_host)
 
 
 def _format_destination(host: str, port: int | None) -> str:
