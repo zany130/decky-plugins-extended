@@ -110,6 +110,15 @@ def _category_label(category: str) -> str:
     }[category]
 
 
+def _category_icon(category: str) -> str:
+    return {
+        "python_dependencies": "🐍",
+        "javascript_dependencies": "📦",
+        "vendored_dependencies": "📚",
+        "generated_build_output": "🏗️",
+    }[category]
+
+
 def _group_message(category: str, original_rule: str, root: str, count: int) -> str:
     label = _category_label(category)
     if original_rule == "ZIP_ONLY_EXECUTABLE":
@@ -216,6 +225,9 @@ def _transform_results(
             "classification": finding.classification,
             "count": len(paths),
             "sample_paths": paths[:5],
+            # Preserve the complete evidence inventory. The Markdown renderer keeps
+            # this collapsed by default, but JSON consumers can inspect every path.
+            "paths": paths,
         })
 
     grouped_script_count = sum(
@@ -244,8 +256,90 @@ def _transform_results(
     return summary, retained, status
 
 
+def _escape_code(value: str) -> str:
+    return value.replace("`", "\\`")
+
+
+def _render_source_diff_inventory(report: Any) -> list[str]:
+    """Render complete ZIP-only inventories without expanding the report by default."""
+
+    summary = getattr(report, "source_artifact_diff", None) or {}
+    groups = summary.get("grouped_packaged_outputs") or []
+    scripts = sorted(summary.get("zip_only_scripts") or [])
+    executables = sorted(summary.get("zip_only_executables") or [])
+    if not groups and not scripts and not executables:
+        return []
+
+    grouped_count = sum(int(group.get("count") or 0) for group in groups)
+    actionable_count = len(scripts) + len(executables)
+    lines = [
+        "## Source vs. Release Artifact Differences",
+        "",
+        (
+            f"The release contains **{grouped_count + actionable_count}** script or "
+            "executable file(s) that are absent from the audited source tree. "
+            f"**{grouped_count}** expected packaged-output file(s) are grouped below; "
+            f"**{actionable_count}** unexpected file(s) remain individually actionable."
+        ),
+        "",
+    ]
+
+    if scripts or executables:
+        lines += ["### Actionable ZIP-only Files", ""]
+        if scripts:
+            lines.append(f"**Unexpected scripts ({len(scripts)}):**")
+            lines.append("")
+            lines.extend(f"- `{_escape_code(path)}`" for path in scripts)
+            lines.append("")
+        if executables:
+            lines.append(f"**Unexpected executables ({len(executables)}):**")
+            lines.append("")
+            lines.extend(f"- `{_escape_code(path)}`" for path in executables)
+            lines.append("")
+
+    if groups:
+        lines += ["### Grouped Packaged Output", ""]
+        for group in groups:
+            category = str(group.get("category") or "generated_build_output")
+            kind = str(group.get("kind") or "script")
+            paths = sorted(group.get("paths") or group.get("sample_paths") or [])
+            count = int(group.get("count") or len(paths))
+            root = str(group.get("root") or "<archive-root>/")
+            noun = "native executable" if kind == "executable" else "script-like file"
+            label = _category_label(category)
+            icon = _category_icon(category)
+            lines += [
+                "<details>",
+                (
+                    f"<summary>{icon} {label.title()} — {count} ZIP-only "
+                    f"{noun}(s) under <code>{_escape_code(root)}</code></summary>"
+                ),
+                "",
+            ]
+            lines.extend(f"- `{_escape_code(path)}`" for path in paths)
+            lines += ["", "</details>", ""]
+
+    return lines
+
+
+def _inject_source_diff_inventory(markdown: str, report: Any) -> str:
+    section = _render_source_diff_inventory(report)
+    if not section:
+        return markdown
+
+    marker = "\n## Malware Scan Results\n"
+    rendered = "\n".join(section).rstrip() + "\n"
+    if marker in markdown:
+        return markdown.replace(marker, "\n" + rendered + marker, 1)
+
+    note = "\n_Note: A passing audit does not guarantee a plugin is safe."
+    if note in markdown:
+        return markdown.replace(note, "\n" + rendered + note, 1)
+    return markdown.rstrip() + "\n\n" + rendered
+
+
 def install(core: Any) -> None:
-    """Install packaged-output grouping onto the source/artifact comparator."""
+    """Install packaged-output grouping and complete collapsible reporting."""
 
     if getattr(core, "_artifact_diff_filters_installed", False):
         return
@@ -253,6 +347,7 @@ def install(core: Any) -> None:
     original_compare: Callable[..., tuple[dict[str, Any], list[Any], Any]] = (
         core.compare_source_and_artifact
     )
+    original_markdown: Callable[[Any], str] = core.generate_markdown_report
 
     def compare_source_and_artifact(
         extract_dir: str,
@@ -263,5 +358,10 @@ def install(core: Any) -> None:
         summary, findings, status = original_compare(extract_dir, owner, repo, ref)
         return _transform_results(core, summary, findings, status)
 
+    def generate_markdown_report(report: Any) -> str:
+        markdown = original_markdown(report)
+        return _inject_source_diff_inventory(markdown, report)
+
     core.compare_source_and_artifact = compare_source_and_artifact
+    core.generate_markdown_report = generate_markdown_report
     core._artifact_diff_filters_installed = True
