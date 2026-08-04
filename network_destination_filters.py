@@ -56,7 +56,7 @@ _DOCUMENTATION_OR_TEST_PARTS = {
     "fixtures", "test", "tests", "__tests__", "spec", "specs", ".github",
 }
 _DEPENDENCY_PARTS = {
-    "node_modules", "py_modules", "site-packages", "vendor", "vendors",
+    "node_modules", "site-packages", "vendor", "vendors",
     "third_party", "third-party", "deps", "dependencies", ".venv", "venv",
 }
 _GENERATED_RUNTIME_PARTS = {
@@ -240,6 +240,26 @@ def extract_urls_and_domains(content: str) -> tuple[list[str], list[str]]:
     return urls, sorted(destinations)
 
 
+def _slug(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", value.casefold())
+
+
+def _packaged_python_provenance(parts: list[str]) -> tuple[str, str] | None:
+    """Distinguish a plugin's own package from dependencies in py_modules."""
+    try:
+        index = parts.index("py_modules")
+    except ValueError:
+        return None
+
+    if index + 1 >= len(parts):
+        return "dependency_or_vendored", "low"
+    package = parts[index + 1]
+    wrapper = parts[0] if index > 0 else ""
+    if wrapper and _slug(package) == _slug(wrapper):
+        return "plugin_runtime", "high"
+    return "dependency_or_vendored", "low"
+
+
 def classify_network_source(path: str) -> tuple[str, str]:
     """Classify a packaged path and return ``(provenance, confidence)``."""
     normalized = path.replace("\\", "/").lstrip("./")
@@ -252,6 +272,9 @@ def classify_network_source(path: str) -> tuple[str, str]:
     # node_modules/pkg/README.md is dependency evidence, not plugin docs.
     if name.endswith(".map"):
         return "source_map_or_build_metadata", "low"
+    packaged_python = _packaged_python_provenance(parts)
+    if packaged_python is not None:
+        return packaged_python
     if directories & _DEPENDENCY_PARTS:
         return "dependency_or_vendored", "low"
     if directories & _DOCUMENTATION_OR_TEST_PARTS or name in _DOCUMENTATION_NAMES:
