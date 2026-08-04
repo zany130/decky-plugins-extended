@@ -21,6 +21,8 @@ on:
     paths:
       - additional_plugins.txt
       - audit_plugins.py
+      - metadata_build_stamp_filters.py
+      - source_content_comparison.py
       - trivy_source_scanning.py
       - plugin_release_utils.py
       - security-policy.yml
@@ -272,8 +274,8 @@ jobs:
             --repository https://github.com/beallio/SDH-Ludusavi \
             --output-dir smoke-reports \
             --skip-cache
-          # Verify that at least one report was produced and that Trivy scanned
-          # both the packaged artifact and the exact-release source tree.
+          # Verify that at least one report was produced, Trivy scanned both
+          # scopes, and exact-source same-path content comparison actually ran.
           python3 - <<'PYEOF'
           import json, sys
           data = json.load(open("smoke-reports/security-report.json"))
@@ -296,6 +298,21 @@ jobs:
               print(f"ERROR: Trivy did not prove dual-scope coverage: {trivy_detail!r}")
               sys.exit(1)
           print(f"  Trivy: {trivy_detail}")
+          source_diff = r.get("source_artifact_diff") or {}
+          same_path_compared = int(source_diff.get("same_path_compared") or 0)
+          if not source_diff.get("checked") or same_path_compared < 1:
+              print(
+                  "ERROR: Exact-source content comparison did not prove same-path "
+                  f"coverage: {source_diff!r}"
+              )
+              sys.exit(1)
+          expected_stamps = len(
+              source_diff.get("expected_build_stamp_differences") or []
+          )
+          print(
+              f"  Source comparison: {same_path_compared} same-path files; "
+              f"{expected_stamps} expected metadata build stamp(s)"
+          )
           PYEOF
         timeout-minutes: 20
 
