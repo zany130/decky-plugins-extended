@@ -132,6 +132,29 @@ class NetworkDestinationFilterTests(unittest.TestCase):
         self.assertEqual(urls, ["http://LOCALHOST:8765/status"])
         self.assertEqual(destinations, ["localhost:8765"])
 
+    def test_www_github_alias_collapses_to_canonical_host(self):
+        content = (
+            "https://www.github.com/owner/repo\n"
+            "https://github.com/owner/repo/issues\n"
+        )
+        urls, destinations = ap.extract_urls_and_domains(content)
+
+        self.assertEqual(
+            urls,
+            [
+                "https://www.github.com/owner/repo",
+                "https://github.com/owner/repo/issues",
+            ],
+        )
+        self.assertEqual(destinations, ["github.com"])
+
+    def test_unrelated_www_host_is_not_rewritten(self):
+        _, destinations = ap.extract_urls_and_domains(
+            "schema = 'https://www.w3.org/TR/xml/'"
+        )
+
+        self.assertEqual(destinations, ["www.w3.org"])
+
 
 if __name__ == "__main__":
     unittest.main()
