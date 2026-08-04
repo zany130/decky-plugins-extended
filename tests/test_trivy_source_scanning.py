@@ -33,7 +33,13 @@ class FakeStatus:
 
 
 class TrivySourceScanningTests(unittest.TestCase):
-    def make_core(self, artifact_findings=None, source_findings=None):
+    def make_core(
+        self,
+        artifact_findings=None,
+        source_findings=None,
+        artifact_status=None,
+        source_status=None,
+    ):
         artifact_findings = artifact_findings or []
         source_findings = source_findings or []
         core = SimpleNamespace()
@@ -58,11 +64,14 @@ class TrivySourceScanningTests(unittest.TestCase):
             calls.append(directory)
             if directory == "/artifact":
                 findings = list(artifact_findings)
+                status_name = artifact_status
             else:
                 findings = list(source_findings)
-            return FakeStatus(
-                "trivy", "found_issue" if findings else "passed"
-            ), findings
+                status_name = source_status
+            status_name = status_name or (
+                "found_issue" if findings else "passed"
+            )
+            return FakeStatus("trivy", status_name), findings
 
         core.run_trivy = raw_run
 
@@ -124,6 +133,21 @@ class TrivySourceScanningTests(unittest.TestCase):
             "source fetch failed: boom", report.scanner_statuses[0].detail
         )
 
+    def test_failed_source_scope_is_not_described_as_scanned(self):
+        core, _ = self.make_core(source_status="failed")
+        tss.install(core)
+
+        with patch.object(tss, "_fetch_source_tree", return_value="/source"):
+            report = core.audit_repository(
+                "https://github.com/owner/repo",
+                {"archive": {}},
+                [],
+            )
+
+        detail = report.scanner_statuses[0].detail
+        self.assertIn("source failed (0 findings)", detail)
+        self.assertNotIn("source scanned", detail)
+
     def test_duplicate_vulnerability_across_scopes_is_collapsed(self):
         artifact = [FakeFinding()]
         source = [FakeFinding()]
@@ -158,6 +182,21 @@ class TrivySourceScanningTests(unittest.TestCase):
             archive_path = Path(temp) / "bad.tar.gz"
             with tarfile.open(archive_path, "w:gz") as archive:
                 info = tarfile.TarInfo("root/../../escape.txt")
+                payload = b"bad"
+                info.size = len(payload)
+                archive.addfile(info, io.BytesIO(payload))
+            with self.assertRaisesRegex(ValueError, "Unsafe source archive"):
+                tss._extract_source_archive(
+                    core, archive_path, Path(temp) / "out", policy
+                )
+
+    def test_source_archive_rejects_windows_style_traversal(self):
+        core, _ = self.make_core()
+        policy = {"archive": {}}
+        with tempfile.TemporaryDirectory() as temp:
+            archive_path = Path(temp) / "bad-windows.tar.gz"
+            with tarfile.open(archive_path, "w:gz") as archive:
+                info = tarfile.TarInfo(r"root\..\..\escape.txt")
                 payload = b"bad"
                 info.size = len(payload)
                 archive.addfile(info, io.BytesIO(payload))
