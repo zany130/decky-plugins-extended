@@ -90,9 +90,10 @@ class ArtifactDiffReportingTests(unittest.TestCase):
         self.assertIn("2 ZIP-only script-like file(s)", markdown)
         self.assertIn("`Plugin/py_modules/pkg/a.py`", markdown)
         self.assertIn("`Plugin/py_modules/pkg/b.py`", markdown)
+        grouped_summary = "<summary>🐍 Bundled Python dependencies — 2 ZIP-only"
         self.assertLess(
             markdown.index("### Actionable ZIP-only Files"),
-            markdown.index("<details>"),
+            markdown.index(grouped_summary),
         )
 
 
