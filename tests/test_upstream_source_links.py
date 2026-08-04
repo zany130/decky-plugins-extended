@@ -114,6 +114,28 @@ class UpstreamSourceLinkTests(unittest.TestCase):
         self.assertIn("[View upstream code]", markdown)
         self.assertIn("abc123def456/src/main.py#L42", markdown)
 
+    def test_tree_failure_preserves_resolved_commit(self):
+        report = self._report()
+
+        def side_effect(url, params=None):
+            if "/commits/v1.2.3" in url:
+                return {
+                    "sha": "abc123def456",
+                    "commit": {"tree": {"sha": "tree-sha"}},
+                }
+            if "/git/trees/tree-sha" in url:
+                raise RuntimeError("tree unavailable")
+            raise AssertionError(f"Unexpected URL: {url}")
+
+        with patch.object(audit_plugins, "_gh_get", side_effect=side_effect):
+            audit_plugins.enrich_report_source_links(report)
+
+        self.assertEqual(report.source_commit, "abc123def456")
+        self.assertIn("tree unavailable", report.source_link_error)
+        self.assertEqual(report.findings[0].source_commit, "abc123def456")
+        self.assertEqual(report.findings[0].source_status, "unmapped")
+        self.assertEqual(report.findings[0].source_url, "")
+
     def test_link_api_failure_does_not_change_security_classification(self):
         report = self._report()
         with patch.object(audit_plugins, "_gh_get", side_effect=RuntimeError("offline")):
