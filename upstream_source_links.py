@@ -55,6 +55,7 @@ def _resolve_source_tree(
     if cached is not None:
         return cached
 
+    commit_sha = ""
     try:
         encoded_ref = quote(ref, safe="")
         commit_data = core._gh_get(
@@ -87,7 +88,8 @@ def _resolve_source_tree(
 
         result = (commit_sha, path_map, "")
     except Exception as exc:  # Link generation must never fail the security audit.
-        result = ("", {}, str(exc))
+        # Preserve a successfully resolved commit even when the tree lookup fails.
+        result = (commit_sha, {}, str(exc))
 
     _SOURCE_TREE_CACHE[key] = result
     return result
@@ -160,6 +162,12 @@ def enrich_report_source_links(core: ModuleType, report: Any) -> Any:
         finding.source_commit = commit_sha
         if not commit_sha:
             finding.source_status = "unresolved"
+            continue
+        if error:
+            fallback = _unmapped_status(finding)
+            finding.source_status = (
+                "not-applicable" if fallback == "not-applicable" else "unmapped"
+            )
             continue
 
         source_path = _find_source_path(path_map, str(finding.path or ""))
