@@ -67,6 +67,7 @@ jobs:
             audit_plugins_core.py \
             artifact_diff_filters.py \
             audit_noise_filters.py \
+            behavior_false_positive_filters.py \
             credential_exposure_filters.py \
             plugin_release_utils.py \
             pyproject.toml \
