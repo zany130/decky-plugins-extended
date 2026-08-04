@@ -65,6 +65,7 @@ jobs:
             security-policy.yml \
             audit_plugins.py \
             audit_plugins_core.py \
+            artifact_diff_filters.py \
             audit_noise_filters.py \
             credential_exposure_filters.py \
             plugin_release_utils.py \
