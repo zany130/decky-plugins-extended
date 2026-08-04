@@ -1,12 +1,14 @@
 """Make long Markdown audit reports easier to review without hiding risk.
 
-Blocking and manual-review findings stay expanded by default, while repetitive
-supporting inventories are collapsed. The JSON report and security classification
-are untouched.
+Each plugin report is collapsed behind a summary that still exposes its release,
+classification, and risk score. Inside the report, blocking and manual-review
+findings stay expanded by default, while repetitive supporting inventories are
+collapsed. The JSON report and security classification are untouched.
 """
 
 from __future__ import annotations
 
+import html
 import re
 from dataclasses import dataclass
 from types import ModuleType
@@ -71,6 +73,14 @@ _SECTION_RULES = (
     ),
 )
 
+_CLASSIFICATION_ICONS = {
+    "PASS": "✅",
+    "PASS_WITH_WARNINGS": "⚠️",
+    "MANUAL_REVIEW": "🔍",
+    "BLOCK": "🚫",
+    "AUDIT_ERROR": "❌",
+}
+_PLUGIN_REPORT_MARKER = "<!-- collapsible-plugin-audit-report -->"
 _NONE_BODIES = {"*none.*", "_none._", "none."}
 
 
@@ -140,6 +150,48 @@ def apply_collapsible_report_layout(markdown: str) -> str:
     return rendered
 
 
+def _report_value(report: object, name: str, default: object = "") -> object:
+    if isinstance(report, dict):
+        return report.get(name, default)
+    return getattr(report, name, default)
+
+
+def _plugin_summary(report: object) -> str:
+    plugin_name = (
+        _report_value(report, "plugin_name")
+        or _report_value(report, "repository")
+        or "Unknown plugin"
+    )
+    release = _report_value(report, "release") or "unknown release"
+    classification = str(
+        _report_value(report, "final_classification") or "UNKNOWN"
+    )
+    risk_score = _report_value(report, "risk_score", 0)
+    icon = _CLASSIFICATION_ICONS.get(classification, "❓")
+
+    return (
+        f"{icon} <strong>{html.escape(str(plugin_name))}</strong>"
+        f" — <code>{html.escape(str(release))}</code>"
+        f" — <strong>{html.escape(classification)}</strong>"
+        f" — risk {html.escape(str(risk_score))}"
+    )
+
+
+def wrap_collapsible_plugin_report(markdown: str, report: object) -> str:
+    """Wrap one rendered plugin report in a collapsed top-level details block."""
+    stripped = markdown.strip()
+    if stripped.startswith(_PLUGIN_REPORT_MARKER):
+        return markdown
+
+    return (
+        f"{_PLUGIN_REPORT_MARKER}\n"
+        "<details>\n"
+        f"<summary>{_plugin_summary(report)}</summary>\n\n"
+        f"{stripped}\n\n"
+        "</details>\n"
+    )
+
+
 def install(core: ModuleType) -> ModuleType:
     """Install the Markdown-only layout transformation."""
     if getattr(core, "_report_layout_filters_installed", False):
@@ -148,10 +200,12 @@ def install(core: ModuleType) -> ModuleType:
     raw_generate_markdown: Callable[[object], str] = core.generate_markdown_report
 
     def generate_markdown_report(report: object) -> str:
-        return apply_collapsible_report_layout(raw_generate_markdown(report))
+        rendered = apply_collapsible_report_layout(raw_generate_markdown(report))
+        return wrap_collapsible_plugin_report(rendered, report)
 
     core._generate_markdown_report_without_layout = raw_generate_markdown
     core.generate_markdown_report = generate_markdown_report
     core.apply_collapsible_report_layout = apply_collapsible_report_layout
+    core.wrap_collapsible_plugin_report = wrap_collapsible_plugin_report
     core._report_layout_filters_installed = True
     return core
