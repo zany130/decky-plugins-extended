@@ -21,6 +21,7 @@ on:
     paths:
       - additional_plugins.txt
       - audit_plugins.py
+      - trivy_source_scanning.py
       - plugin_release_utils.py
       - security-policy.yml
       - security-allowlist.yml
@@ -271,7 +272,8 @@ jobs:
             --repository https://github.com/beallio/SDH-Ludusavi \
             --output-dir smoke-reports \
             --skip-cache
-          # Verify that at least one report was produced.
+          # Verify that at least one report was produced and that Trivy scanned
+          # both the packaged artifact and the exact-release source tree.
           python3 - <<'PYEOF'
           import json, sys
           data = json.load(open("smoke-reports/security-report.json"))
@@ -285,6 +287,15 @@ jobs:
           if r.get("final_classification") == "AUDIT_ERROR":
               print("ERROR: Smoke audit returned AUDIT_ERROR.")
               sys.exit(1)
+          trivy = next(
+              (s for s in r.get("scanner_statuses", []) if s.get("name") == "trivy"),
+              None,
+          )
+          trivy_detail = (trivy or {}).get("detail") or ""
+          if "artifact scanned (" not in trivy_detail or "source scanned (" not in trivy_detail:
+              print(f"ERROR: Trivy did not prove dual-scope coverage: {trivy_detail!r}")
+              sys.exit(1)
+          print(f"  Trivy: {trivy_detail}")
           PYEOF
         timeout-minutes: 20
 

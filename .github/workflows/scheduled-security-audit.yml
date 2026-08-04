@@ -70,6 +70,7 @@ jobs:
             behavior_false_positive_filters.py \
             credential_exposure_filters.py \
             network_destination_filters.py \
+            trivy_source_scanning.py \
             report_layout_filters.py \
             upstream_source_links.py \
             plugin_release_utils.py \
