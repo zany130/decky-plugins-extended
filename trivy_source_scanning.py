@@ -111,13 +111,17 @@ def _extract_source_archive(
 
     with tarfile.open(archive_path, "r:*") as archive:
         for member in archive:
-            safe, reason = core._is_safe_member_path(member.name)
+            # Archive member paths are platform-neutral. Normalize Windows-style
+            # separators before validation and construction so a path such as
+            # ``root\\..\\..\\evil`` cannot become traversal on Windows.
+            normalized_name = member.name.replace("\\", "/")
+            safe, reason = core._is_safe_member_path(normalized_name)
             if not safe:
                 raise ValueError(
                     f"Unsafe source archive member {member.name!r}: {reason}"
                 )
 
-            relative = PurePosixPath(member.name)
+            relative = PurePosixPath(normalized_name)
             if not relative.parts:
                 continue
             if len(relative.parts) > max_depth:
@@ -234,6 +238,15 @@ def _status_name(status: Any) -> str:
     return str(getattr(status, "status", ""))
 
 
+def _scope_status_detail(scope: str, status: Any, count: int) -> str:
+    status_name = _status_name(status)
+    if status_name in {"passed", "found_issue"}:
+        return f"{scope} scanned ({count} findings)"
+    if status_name == "skipped":
+        return f"{scope} skipped"
+    return f"{scope} {status_name or 'unknown'} ({count} findings)"
+
+
 def _combine_statuses(
     core: ModuleType,
     artifact_status: Any,
@@ -242,9 +255,11 @@ def _combine_statuses(
     source_count: int,
 ) -> Any:
     statuses = {_status_name(artifact_status), _status_name(source_status)}
-    detail = (
-        f"artifact scanned ({artifact_count} findings); "
-        f"source scanned ({source_count} findings)"
+    detail = "; ".join(
+        (
+            _scope_status_detail("artifact", artifact_status, artifact_count),
+            _scope_status_detail("source", source_status, source_count),
+        )
     )
     source_detail = getattr(source_status, "detail", None)
     artifact_detail = getattr(artifact_status, "detail", None)
