@@ -110,6 +110,28 @@ class NetworkDestinationFilterTests(unittest.TestCase):
         self.assertEqual(urls, ["wss://events.example.com/feed"])
         self.assertEqual(destinations, ["events.example.com"])
 
+    def test_single_label_placeholder_urls_are_rejected(self):
+        content = (
+            "http://bar/path\n"
+            "https://error/failure\n"
+            "http://myrepo/archive\n"
+            "https://proxy/config\n"
+            "http://rev/value\n"
+            "https://xyz/test\n"
+        )
+        urls, destinations = ap.extract_urls_and_domains(content)
+
+        self.assertEqual(urls, [])
+        self.assertEqual(destinations, [])
+
+    def test_localhost_url_and_port_are_preserved(self):
+        urls, destinations = ap.extract_urls_and_domains(
+            "server = 'http://LOCALHOST:8765/status'"
+        )
+
+        self.assertEqual(urls, ["http://LOCALHOST:8765/status"])
+        self.assertEqual(destinations, ["localhost:8765"])
+
 
 if __name__ == "__main__":
     unittest.main()
