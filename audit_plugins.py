@@ -20,6 +20,7 @@ from credential_exposure_filters import install as install_credential_policy
 from metadata_build_stamp_filters import install as install_metadata_build_stamp_filters
 from network_destination_filters import install as install_network_destination_filters
 from report_layout_filters import install as install_report_layout
+from semgrep_source_link_hardening import install as install_semgrep_link_hardening
 from semgrep_source_scanning import install as install_semgrep_source_scanning
 from source_content_comparison import install as install_source_content_comparison
 from source_content_hardening import install as install_source_content_hardening
@@ -37,6 +38,7 @@ install_behavior_filters(_core)
 install_credential_policy(_core)
 install_artifact_diff_filters(_core)
 install_source_links(_core)
+install_semgrep_link_hardening(_core)
 install_report_layout(_core)
 
 if __name__ == "__main__":
