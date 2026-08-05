@@ -31,13 +31,19 @@ def _harden_report(report: Any) -> list[tuple[Any, str]]:
         if str(getattr(finding, "scanner", "") or "") != "semgrep":
             continue
 
-        finding.source_line_exact = False
-        if hasattr(finding, "source_note"):
-            delattr(finding, "source_note")
-
         line = int(getattr(finding, "line", 0) or 0)
         status = str(getattr(finding, "source_status", "") or "")
         source_url = str(getattr(finding, "source_url", "") or "")
+
+        # Preserve an already-hardened file-only state across JSON and Markdown
+        # rendering. Repeated report generation must not erase its explanation.
+        if status == "file-only":
+            finding.source_line_exact = False
+            continue
+
+        finding.source_line_exact = False
+        if hasattr(finding, "source_note"):
+            delattr(finding, "source_note")
 
         # A finding emitted by the exact-source scan is already anchored to the
         # tagged source tree. An artifact+source finding also has direct tagged
@@ -140,8 +146,11 @@ def install(core: ModuleType) -> ModuleType:
         return report
 
     def report_to_dict(report: Any) -> dict[str, Any]:
+        # Cache serialization may intentionally operate on a bare report before
+        # source-link enrichment. Do not mutate that object or add link-only
+        # fields, otherwise cache round-tripping breaks.
         if not getattr(report, "_source_links_enriched", False):
-            core.enrich_report_source_links(report)
+            return raw_report_to_dict(report)
         _harden_report(report)
         data = raw_report_to_dict(report)
         return _inject_semgrep_link_fields(report, data)
