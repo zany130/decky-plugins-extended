@@ -30,3 +30,17 @@ https://github.com/cwtechshiz/nordvpn-decky
 https://github.com/Wurielle/decky-launch-options
 https://github.com/andriuspetravicius/Deckcord
 https://github.com/xXJSONDeruloXx/cec-mote
+https://github.com/chenx-dust/DeckyClash
+https://github.com/cat-in-a-box/Decky-Translator 
+https://github.com/santojon/Deck-Shelves 
+https://github.com/bschelst/protondb-decky 
+https://github.com/AkazaRenn/SDH-GameSync 
+https://github.com/KrishGaur1354/network-sentinel 
+https://github.com/xXJSONDeruloXx/Decky-Framegen  
+https://github.com/wtlnetwork/muon 
+https://github.com/andrewburgess/steamdeck-discord-status 
+https://github.com/wynn1212/SDH-PauseGames 
+https://github.com/0u73r-h34v3n/SDH-PlayTime 
+https://github.com/steam3d/MagicBlackDecky 
+https://github.com/steam3d/MagicPodsDecky 
+https://github.com/FrogTheFrog/moondeck
