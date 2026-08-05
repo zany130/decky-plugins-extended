@@ -196,8 +196,12 @@ def _result_to_finding(
     # AST behavior in dependencies, tests, repository tooling, maps, and metadata
     # is not evidence of plugin-owned runtime behavior. Header-only key constants
     # in source code are also handled more accurately by the dedicated credential
-    # scanner, which validates complete key material and redacts it.
-    if provenance in _SUPPRESSED_CODE_PROVENANCE:
+    # scanner, which validates complete key material and redacts it. Actual key
+    # files remain visible regardless of whether they are located in docs/tests.
+    if (
+        check_id != "decky.generic.private-key"
+        and provenance in _SUPPRESSED_CODE_PROVENANCE
+    ):
         return None, provenance
     if (
         check_id == "decky.generic.private-key"
