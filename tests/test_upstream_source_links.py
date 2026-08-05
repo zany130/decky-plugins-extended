@@ -17,6 +17,9 @@ class UpstreamSourceLinkTests(unittest.TestCase):
         path: str = "plugin/src/main.py",
         line: int = 42,
         rule: str = "EXEC_OS_SYSTEM",
+        network: bool = False,
+        comparison_checked: bool = True,
+        differences: dict | None = None,
     ):
         report = audit_plugins.AuditReport(
             repository="https://github.com/owner/plugin",
@@ -39,6 +42,42 @@ class UpstreamSourceLinkTests(unittest.TestCase):
                 ),
             )
         ]
+        report.source_artifact_diff = {
+            "checked": comparison_checked,
+            "same_path_modified": [],
+            "generated_or_dependency_differences": [],
+            "other_same_path_differences": [],
+            "expected_build_stamp_differences": [],
+            **(differences or {}),
+        }
+        if network:
+            report.extracted_domains = ["api.example.com"]
+            report.network_destinations = [
+                {
+                    "destination": "api.example.com",
+                    "confidence": "high",
+                    "review_priority": "primary",
+                    "reason": "referenced by plugin-owned runtime code",
+                    "source_count": 1,
+                    "sources": [
+                        {
+                            "path": path,
+                            "line": line,
+                            "provenance": "plugin_runtime",
+                            "confidence": "high",
+                            "kind": "url",
+                            "url": "https://api.example.com",
+                        }
+                    ],
+                }
+            ]
+            report.network_destination_summary = {
+                "total_destinations": 1,
+                "high_confidence": 1,
+                "medium_confidence": 0,
+                "low_confidence": 0,
+                "source_occurrences": 1,
+            }
         return report
 
     def _api(self, tree_paths=("src/main.py",)):
@@ -113,6 +152,86 @@ class UpstreamSourceLinkTests(unittest.TestCase):
             markdown = audit_plugins.generate_markdown_report(report)
         self.assertIn("[View upstream code]", markdown)
         self.assertIn("abc123def456/src/main.py#L42", markdown)
+
+    def test_network_evidence_links_to_exact_commit_line(self):
+        report = self._report(network=True)
+        with patch.object(audit_plugins, "_gh_get", side_effect=self._api()):
+            audit_plugins.enrich_report_source_links(report)
+
+        source = report.network_destinations[0]["sources"][0]
+        self.assertEqual(source["source_status"], "linked")
+        self.assertEqual(source["source_path"], "src/main.py")
+        self.assertEqual(source["source_commit"], "abc123def456")
+        self.assertTrue(source["source_line_exact"])
+        self.assertEqual(
+            source["source_url"],
+            "https://github.com/owner/plugin/blob/abc123def456/src/main.py#L42",
+        )
+
+        data = json.loads(audit_plugins.generate_json_report(report))
+        serialized = data["network_destinations"][0]["sources"][0]
+        self.assertEqual(serialized["source_status"], "linked")
+        self.assertTrue(serialized["source_line_exact"])
+        self.assertTrue(serialized["source_url"].endswith("src/main.py#L42"))
+
+        markdown = audit_plugins.generate_markdown_report(report)
+        self.assertIn(
+            "[`plugin/src/main.py:42`](https://github.com/owner/plugin/blob/"
+            "abc123def456/src/main.py#L42)",
+            markdown,
+        )
+
+    def test_network_content_mismatch_links_file_without_false_line(self):
+        report = self._report(
+            network=True,
+            differences={
+                "same_path_modified": [
+                    {
+                        "artifact_path": "plugin/src/main.py",
+                        "source_path": "src/main.py",
+                        "artifact_sha256": "a",
+                        "source_sha256": "b",
+                    }
+                ]
+            },
+        )
+        with patch.object(audit_plugins, "_gh_get", side_effect=self._api()):
+            audit_plugins.enrich_report_source_links(report)
+
+        source = report.network_destinations[0]["sources"][0]
+        self.assertEqual(source["source_status"], "file-only")
+        self.assertFalse(source["source_line_exact"])
+        self.assertNotIn("#L42", source["source_url"])
+        self.assertIn("release contents differ", source["source_note"])
+
+        markdown = audit_plugins.generate_markdown_report(report)
+        self.assertIn("release contents differ from tagged source", markdown)
+        self.assertNotIn("src/main.py#L42", markdown)
+
+    def test_network_unverified_comparison_does_not_claim_exact_line(self):
+        report = self._report(network=True, comparison_checked=False)
+        with patch.object(audit_plugins, "_gh_get", side_effect=self._api()):
+            audit_plugins.enrich_report_source_links(report)
+
+        source = report.network_destinations[0]["sources"][0]
+        self.assertEqual(source["source_status"], "file-only")
+        self.assertFalse(source["source_line_exact"])
+        self.assertNotIn("#L42", source["source_url"])
+        self.assertIn("not verified", source["source_note"])
+
+    def test_network_release_only_keeps_artifact_location_without_false_link(self):
+        report = self._report(network=True)
+        with patch.object(audit_plugins, "_gh_get", side_effect=self._api(tree_paths=())):
+            audit_plugins.enrich_report_source_links(report)
+
+        source = report.network_destinations[0]["sources"][0]
+        self.assertEqual(source["source_status"], "release-only")
+        self.assertEqual(source["source_url"], "")
+        self.assertFalse(source["source_line_exact"])
+
+        markdown = audit_plugins.generate_markdown_report(report)
+        self.assertIn("`plugin/src/main.py:42`", markdown)
+        self.assertIn("release-only; no tagged-source line", markdown)
 
     def test_tree_failure_preserves_resolved_commit(self):
         report = self._report()
