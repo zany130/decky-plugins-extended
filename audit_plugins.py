@@ -2,8 +2,8 @@
 """Compatibility entry point for the Decky plugin security audit.
 
 The implementation remains in :mod:`audit_plugins_core`; context-aware noise,
-network-destination, exact-source dependency, Semgrep and content comparison,
-source mapping hardening, exact metadata build-stamp, behavioral false-positive,
+network-destination, exact-source dependency, Semgrep, content-comparison,
+source-mapping hardening, exact metadata build-stamp, behavioral false-positive,
 credential-exposure, packaged-artifact, source-link, and report-layout policies
 are installed before the module is exposed to callers or the CLI runs.
 """
