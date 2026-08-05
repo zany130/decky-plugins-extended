@@ -42,8 +42,10 @@ scanners:
   trivy:
     enabled: true
     required: true
+  # Uses the checked-in Decky-specific ruleset. Findings remain capped at
+  # MANUAL_REVIEW while the full-store false-positive rate is measured.
   semgrep:
-    enabled: false
+    enabled: true
     required: false
   osv_scanner:
     enabled: false
