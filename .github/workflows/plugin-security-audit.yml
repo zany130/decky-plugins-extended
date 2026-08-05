@@ -22,6 +22,7 @@ on:
       - additional_plugins.txt
       - audit_plugins.py
       - metadata_build_stamp_filters.py
+      - network_destination_filters.py
       - source_content_comparison.py
       - source_content_hardening.py
       - trivy_source_scanning.py
@@ -276,9 +277,12 @@ jobs:
             --output-dir smoke-reports \
             --skip-cache
           # Verify that at least one report was produced, Trivy scanned both
-          # scopes, and exact-source same-path content comparison actually ran.
+          # scopes, exact-source content comparison ran, and structured network
+          # provenance contains only redacted origins.
           python3 - <<'PYEOF'
           import json, sys
+          from urllib.parse import urlsplit
+
           data = json.load(open("smoke-reports/security-report.json"))
           if data["report_count"] < 1:
               print("ERROR: Smoke audit produced zero reports.")
@@ -313,6 +317,48 @@ jobs:
           print(
               f"  Source comparison: {same_path_compared} same-path files; "
               f"{expected_stamps} expected metadata build stamp(s)"
+          )
+
+          destinations = r.get("network_destinations") or []
+          network_summary = r.get("network_destination_summary") or {}
+          if not destinations or int(network_summary.get("total_destinations") or 0) < 1:
+              print("ERROR: Structured network provenance is missing.")
+              sys.exit(1)
+          source_occurrences = int(network_summary.get("source_occurrences") or 0)
+          if source_occurrences < 1:
+              print("ERROR: Network provenance has no source occurrences.")
+              sys.exit(1)
+          for destination in destinations:
+              sources = destination.get("sources") or []
+              if not sources:
+                  print(f"ERROR: Destination has no source evidence: {destination!r}")
+                  sys.exit(1)
+              for source in sources:
+                  if not source.get("path") or int(source.get("line") or 0) < 1:
+                      print(f"ERROR: Invalid source location: {source!r}")
+                      sys.exit(1)
+                  if not source.get("provenance"):
+                      print(f"ERROR: Missing source provenance: {source!r}")
+                      sys.exit(1)
+                  report_url = source.get("url")
+                  if report_url:
+                      parsed = urlsplit(report_url)
+                      if (
+                          parsed.username
+                          or parsed.password
+                          or parsed.query
+                          or parsed.fragment
+                          or parsed.path not in ("", "/")
+                      ):
+                          print(f"ERROR: Unredacted report URL: {report_url!r}")
+                          sys.exit(1)
+          print(
+              "  Network provenance: "
+              f"{network_summary.get('total_destinations')} destinations; "
+              f"{network_summary.get('high_confidence')} high, "
+              f"{network_summary.get('medium_confidence')} medium, "
+              f"{network_summary.get('low_confidence')} low; "
+              f"{source_occurrences} source occurrences"
           )
           PYEOF
         timeout-minutes: 20
