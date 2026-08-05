@@ -206,7 +206,16 @@ class UpstreamSourceLinkTests(unittest.TestCase):
 
         markdown = audit_plugins.generate_markdown_report(report)
         self.assertIn("release contents differ from tagged source", markdown)
-        self.assertNotIn("src/main.py#L42", markdown)
+        self.assertIn(
+            "[`plugin/src/main.py:42`](https://github.com/owner/plugin/blob/"
+            "abc123def456/src/main.py) _(",
+            markdown,
+        )
+        self.assertNotIn(
+            "[`plugin/src/main.py:42`](https://github.com/owner/plugin/blob/"
+            "abc123def456/src/main.py#L42)",
+            markdown,
+        )
 
     def test_network_unverified_comparison_does_not_claim_exact_line(self):
         report = self._report(network=True, comparison_checked=False)
