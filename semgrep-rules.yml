@@ -8,10 +8,7 @@
 
 rules:
   - id: decky.python.dynamic-execution
-    message: >-
-      Python dynamically evaluates or compiles code. Trace the executed value to
-      its origin and confirm that frontend, RPC, configuration, file, and network
-      data cannot supply executable content.
+    message: Python dynamically evaluates or compiles code.
     severity: WARNING
     languages: [python]
     metadata:
@@ -27,10 +24,7 @@ rules:
       - pattern: compile(..., "single", ...)
 
   - id: decky.python.shell-command
-    message: >-
-      Python launches a subprocess through a shell. Verify that shell execution is
-      necessary and that every executable, argument, environment value, and working
-      directory is fixed or strictly validated.
+    message: Python launches a subprocess through a shell.
     severity: WARNING
     languages: [python]
     metadata:
@@ -45,10 +39,7 @@ rules:
           regex: ^(Popen|call|check_call|check_output|run)$
 
   - id: decky.javascript.dynamic-execution
-    message: >-
-      JavaScript or TypeScript dynamically evaluates code. Trace the evaluated
-      value and confirm that remote responses, plugin settings, frontend messages,
-      and other mutable data cannot become executable source.
+    message: JavaScript or TypeScript dynamically evaluates code.
     severity: WARNING
     languages: [javascript, typescript]
     metadata:
@@ -67,10 +58,7 @@ rules:
       - pattern: require("node:vm").runInThisContext(...)
 
   - id: decky.javascript.child-process-exec
-    message: >-
-      Node.js invokes a shell-backed child-process API. Confirm the command is an
-      expected plugin capability and that no frontend, RPC, network, file, or
-      configuration value can alter the command text.
+    message: Node.js invokes a shell-backed child-process API.
     severity: WARNING
     languages: [javascript, typescript]
     metadata:
@@ -127,9 +115,7 @@ rules:
           regex: ^(exec|execSync)$
 
   - id: decky.generic.private-key
-    message: >-
-      Shipped plugin content contains a private-key header. Confirm that it is
-      synthetic test material; remove it and rotate the credential if it is real.
+    message: Shipped plugin content contains a private-key header.
     severity: ERROR
     languages: [generic]
     metadata:
