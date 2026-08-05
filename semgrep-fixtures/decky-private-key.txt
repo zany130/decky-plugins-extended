@@ -1,0 +1,4 @@
+# ruleid: decky.generic.private-key
+-----BEGIN PRIVATE KEY-----
+TEST-FIXTURE-NOT-A-REAL-KEY
+-----END PRIVATE KEY-----
