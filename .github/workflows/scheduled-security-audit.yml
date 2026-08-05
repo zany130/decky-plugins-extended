@@ -134,19 +134,18 @@ jobs:
           SKIP_AUDIT_CACHE: ${{ github.event_name == 'workflow_dispatch' && inputs.skip_cache || false }}
         run: |
           mkdir -p security-reports
-          EXTRA_ARGS=()
 
           if [[ "$SKIP_AUDIT_CACHE" == "true" ]]; then
-            echo "Running a complete audit without cached reports."
+            echo "Running a complete audit without restoring cached reports."
+            # Start from an empty cache, but allow this run to repopulate it for
+            # subsequent scheduled audits.
             rm -rf .audit-cache
-            EXTRA_ARGS+=(--skip-cache)
           fi
 
           uv run python audit_plugins.py \
             --all \
             --output-dir security-reports \
-            --cache-dir .audit-cache \
-            "${EXTRA_ARGS[@]}"
+            --cache-dir .audit-cache
         timeout-minutes: 45
 
       - name: Save audit cache
