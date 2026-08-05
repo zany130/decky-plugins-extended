@@ -1,44 +1,140 @@
-# Decky-specific Semgrep review rules.
+# Decky-specific Semgrep review rules for human-led plugin review.
 #
-# Ported from beallio/decky-plugins-extended commit
-# f98f5974d5963d7dc08568b30d1a7a728eee15a9 and kept intentionally small.
-# Findings are review signals, not automatic blocks, until full-store results
-# establish a measured false-positive rate.
+# The initial five review categories were inspired by the small local baseline in
+# beallio/decky-plugins-extended commit
+# f98f5974d5963d7dc08568b30d1a7a728eee15a9. The rule definitions below are an
+# independent implementation with broader syntax coverage and reviewer-oriented
+# messages. Findings remain review signals, never automatic blocks.
 
 rules:
   - id: decky.python.dynamic-execution
-    message: Dynamic Python execution requires review in a Decky plugin.
+    message: >-
+      Python dynamically evaluates or compiles code. Trace the executed value to
+      its origin and confirm that frontend, RPC, configuration, file, and network
+      data cannot supply executable content.
     severity: WARNING
     languages: [python]
+    metadata:
+      implementation: independent
+      review_area: dynamic-code-execution
+      confidence: HIGH
+      inspired_by: beallio/decky-plugins-extended@f98f5974d5963d7dc08568b30d1a7a728eee15a9
     pattern-either:
       - pattern: eval(...)
       - pattern: exec(...)
+      - pattern: compile(..., "eval", ...)
+      - pattern: compile(..., "exec", ...)
+      - pattern: compile(..., "single", ...)
 
   - id: decky.python.shell-command
-    message: Python launches a command through a shell.
+    message: >-
+      Python launches a subprocess through a shell. Verify that shell execution is
+      necessary and that every executable, argument, environment value, and working
+      directory is fixed or strictly validated.
     severity: WARNING
     languages: [python]
+    metadata:
+      implementation: independent
+      review_area: operating-system-command
+      confidence: HIGH
+      inspired_by: beallio/decky-plugins-extended@f98f5974d5963d7dc08568b30d1a7a728eee15a9
     patterns:
       - pattern: subprocess.$FUNC(..., shell=True, ...)
+      - metavariable-regex:
+          metavariable: $FUNC
+          regex: ^(Popen|call|check_call|check_output|run)$
 
   - id: decky.javascript.dynamic-execution
-    message: Dynamic JavaScript execution requires review in a Decky plugin.
+    message: >-
+      JavaScript or TypeScript dynamically evaluates code. Trace the evaluated
+      value and confirm that remote responses, plugin settings, frontend messages,
+      and other mutable data cannot become executable source.
     severity: WARNING
     languages: [javascript, typescript]
+    metadata:
+      implementation: independent
+      review_area: dynamic-code-execution
+      confidence: HIGH
+      inspired_by: beallio/decky-plugins-extended@f98f5974d5963d7dc08568b30d1a7a728eee15a9
     pattern-either:
       - pattern: eval(...)
+      - pattern: globalThis.eval(...)
+      - pattern: window.eval(...)
       - pattern: new Function(...)
+      - pattern: require("vm").runInNewContext(...)
+      - pattern: require("node:vm").runInNewContext(...)
+      - pattern: require("vm").runInThisContext(...)
+      - pattern: require("node:vm").runInThisContext(...)
 
   - id: decky.javascript.child-process-exec
-    message: JavaScript launches a shell command through child_process.
+    message: >-
+      Node.js invokes a shell-backed child-process API. Confirm the command is an
+      expected plugin capability and that no frontend, RPC, network, file, or
+      configuration value can alter the command text.
     severity: WARNING
     languages: [javascript, typescript]
-    pattern-either:
-      - pattern: require("child_process").exec(...)
-      - pattern: require("node:child_process").exec(...)
+    metadata:
+      implementation: independent
+      review_area: operating-system-command
+      confidence: HIGH
+      inspired_by: beallio/decky-plugins-extended@f98f5974d5963d7dc08568b30d1a7a728eee15a9
+    patterns:
+      - pattern-either:
+          - pattern: require("child_process").$EXEC(...)
+          - pattern: require("node:child_process").$EXEC(...)
+          - patterns:
+              - pattern-inside: |
+                  const $CP = require("child_process");
+                  ...
+              - pattern: $CP.$EXEC(...)
+          - patterns:
+              - pattern-inside: |
+                  const $CP = require("node:child_process");
+                  ...
+              - pattern: $CP.$EXEC(...)
+          - patterns:
+              - pattern-inside: |
+                  import * as $CP from "child_process";
+                  ...
+              - pattern: $CP.$EXEC(...)
+          - patterns:
+              - pattern-inside: |
+                  import * as $CP from "node:child_process";
+                  ...
+              - pattern: $CP.$EXEC(...)
+          - patterns:
+              - pattern-inside: |
+                  import { $EXEC } from "child_process";
+                  ...
+              - pattern: $EXEC(...)
+          - patterns:
+              - pattern-inside: |
+                  import { $EXEC } from "node:child_process";
+                  ...
+              - pattern: $EXEC(...)
+          - patterns:
+              - pattern-inside: |
+                  const { $EXEC } = require("child_process");
+                  ...
+              - pattern: $EXEC(...)
+          - patterns:
+              - pattern-inside: |
+                  const { $EXEC } = require("node:child_process");
+                  ...
+              - pattern: $EXEC(...)
+      - metavariable-regex:
+          metavariable: $EXEC
+          regex: ^(exec|execSync)$
 
   - id: decky.generic.private-key
-    message: A private-key block is embedded in shipped plugin content.
+    message: >-
+      Shipped plugin content contains a private-key header. Confirm that it is
+      synthetic test material; remove it and rotate the credential if it is real.
     severity: ERROR
     languages: [generic]
-    pattern-regex: '-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----'
+    metadata:
+      implementation: independent
+      review_area: embedded-credential
+      confidence: HIGH
+      inspired_by: beallio/decky-plugins-extended@f98f5974d5963d7dc08568b30d1a7a728eee15a9
+    pattern-regex: '-----BEGIN (?:(?:ENCRYPTED |RSA |DSA |EC |OPENSSH )?PRIVATE KEY|PGP PRIVATE KEY BLOCK)-----'
