@@ -63,6 +63,7 @@ jobs:
           # into the key so filter changes cannot reuse stale audit reports.
           POLICY_HASH=$(sha256sum \
             security-policy.yml \
+            semgrep-rules.yml \
             audit_plugins.py \
             audit_plugins_core.py \
             artifact_diff_filters.py \
@@ -71,6 +72,7 @@ jobs:
             credential_exposure_filters.py \
             metadata_build_stamp_filters.py \
             network_destination_filters.py \
+            semgrep_source_scanning.py \
             source_content_comparison.py \
             source_content_hardening.py \
             trivy_source_scanning.py \
@@ -105,6 +107,11 @@ jobs:
             | sudo tee /etc/apt/sources.list.d/trivy.list
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends trivy || echo "::warning::trivy install failed"
+          uv tool install --python 3.12 --with setuptools==70.3.0 semgrep==1.132.0
+          SEMGREP_BIN_DIR=$(uv tool dir --bin)
+          echo "$SEMGREP_BIN_DIR" >> "$GITHUB_PATH"
+          export PATH="$SEMGREP_BIN_DIR:$PATH"
+          semgrep --version --disable-version-check
           sudo apt-get install -y --no-install-recommends clamav || {
             echo "::error::clamav install failed"
             exit 1
