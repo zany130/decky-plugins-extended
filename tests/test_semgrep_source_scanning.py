@@ -54,7 +54,7 @@ class SemgrepRuleTests(unittest.TestCase):
                 "decky.generic.private-key",
             },
         )
-        self.assertNotIn("auto", rules_path.read_text(encoding="utf-8").lower())
+        self.assertTrue(all(rule["severity"] in {"WARNING", "ERROR"} for rule in data["rules"]))
 
 
 class SemgrepIntegrationTests(unittest.TestCase):
