@@ -380,16 +380,20 @@ def _add_network_markdown_links(report: Any, markdown: str) -> str:
     section = match.group(0)
     # The network renderer shows at most the first three sources per
     # destination. Walk the same order so repeated path:line labels are linked
-    # to the correct destination occurrence.
+    # to the correct destination occurrence. Match only plain tokens: the same
+    # artifact line can contain multiple destinations and must not be replaced
+    # again inside a link created for an earlier destination.
     for destination in getattr(report, "network_destinations", []) or []:
         for source in (destination.get("sources") or [])[:3]:
             path = str(source.get("path") or "")
             line = int(source.get("line") or 0)
             label = f"`{path}:{line}`"
-            section = section.replace(
-                label,
-                _network_source_markdown(source),
-                1,
+            plain_label = re.compile(rf"(?<!\[){re.escape(label)}")
+            replacement = _network_source_markdown(source)
+            section = plain_label.sub(
+                lambda _match: replacement,
+                section,
+                count=1,
             )
 
     return markdown[: match.start()] + section + markdown[match.end():]
