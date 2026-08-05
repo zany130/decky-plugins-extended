@@ -138,6 +138,7 @@ def install(core: ModuleType) -> ModuleType:
 
     raw_audit_repository: Callable[..., Any] = core.audit_repository
     raw_report_to_dict: Callable[[Any], dict[str, Any]] = core._report_to_dict
+    raw_generate_json: Callable[[Any], str] = core.generate_json_report
     raw_generate_markdown: Callable[[Any], str] = core.generate_markdown_report
 
     def audit_repository(*args: Any, **kwargs: Any) -> Any:
@@ -155,6 +156,14 @@ def install(core: ModuleType) -> ModuleType:
         data = raw_report_to_dict(report)
         return _inject_semgrep_link_fields(report, data)
 
+    def generate_json_report(report: Any) -> str:
+        # User-facing JSON should receive the same source provenance as
+        # Markdown, while internal cache serialization remains untouched.
+        if not getattr(report, "_source_links_enriched", False):
+            core.enrich_report_source_links(report)
+        _harden_report(report)
+        return raw_generate_json(report)
+
     def generate_markdown_report(report: Any) -> str:
         markdown = raw_generate_markdown(report)
         changed = _harden_report(report)
@@ -162,6 +171,7 @@ def install(core: ModuleType) -> ModuleType:
 
     core.audit_repository = audit_repository
     core._report_to_dict = report_to_dict
+    core.generate_json_report = generate_json_report
     core.generate_markdown_report = generate_markdown_report
     core._semgrep_source_link_hardening_installed = True
     return core
