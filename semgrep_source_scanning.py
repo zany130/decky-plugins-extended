@@ -1,9 +1,9 @@
 """Exact-source Semgrep review assistance for Decky plugin releases.
 
-The local rules and baseline invocation are adapted from
+The initial Decky-focused review categories were inspired by
 beallio/decky-plugins-extended@f98f5974d5963d7dc08568b30d1a7a728eee15a9.
-Unlike the old ``--config auto`` implementation, this module uses only the
-checked-in ``semgrep-rules.yml`` with metrics and version checks disabled.
+The checked-in rules are independently implemented and use only the local
+``semgrep-rules.yml`` with metrics and version checks disabled.
 
 Both the safely extracted release artifact and the exact immutable tagged source
 snapshot are scanned. Plugin code is parsed only; it is never imported, built,
@@ -37,6 +37,37 @@ _SUPPRESSED_CODE_PROVENANCE = {
     "dependency_or_vendored",
     "documentation_or_test",
     "source_map_or_build_metadata",
+    "repository_tooling",
+}
+_TOOLING_DIRS = {"scripts", "tools", "tooling", "build", "dev"}
+_TOOLING_FILE_RE = re.compile(
+    r"^(?:(?:package|build|release|publish|bundle)|dev(?:_[a-z0-9_-]+)?)"
+    r"\.(?:js|mjs|cjs|ts|mts|cts|py|sh)$",
+    re.IGNORECASE,
+)
+_CONFIG_TOOLING_FILE_RE = re.compile(
+    r"^(?:vite|webpack|rollup|esbuild|babel|eslint|prettier)\.config\."
+    r"(?:js|mjs|cjs|ts|mts|cts)$",
+    re.IGNORECASE,
+)
+_PRIVATE_KEY_CODE_SUFFIXES = {
+    ".c",
+    ".cc",
+    ".cpp",
+    ".cs",
+    ".go",
+    ".h",
+    ".hpp",
+    ".java",
+    ".js",
+    ".jsx",
+    ".mjs",
+    ".cjs",
+    ".py",
+    ".rb",
+    ".rs",
+    ".ts",
+    ".tsx",
 }
 _REVIEWER_GUIDANCE = {
     "decky.python.dynamic-execution": (
@@ -92,6 +123,25 @@ def _relative_result_path(raw_path: str, scan_root: str) -> str:
     return raw
 
 
+def _classify_semgrep_path(path: str) -> tuple[str, str]:
+    """Classify runtime ownership, including common repository-only tooling."""
+    provenance, confidence = network_provenance.classify_network_source(path)
+    normalized = _normalise_path(path).casefold()
+    parts = PurePosixPath(normalized).parts
+    name = parts[-1] if parts else ""
+    parent_parts = set(parts[:-1])
+
+    if provenance == "plugin_runtime" and (
+        _CONFIG_TOOLING_FILE_RE.match(name)
+        or (
+            parent_parts.intersection(_TOOLING_DIRS)
+            and _TOOLING_FILE_RE.match(name)
+        )
+    ):
+        return "repository_tooling", "high"
+    return provenance, confidence
+
+
 def _rule_id(check_id: str) -> str:
     normalized = re.sub(r"[^A-Z0-9]+", "_", check_id.upper()).strip("_")
     return "SEMGREP_" + (normalized or "UNKNOWN")[:80]
@@ -102,6 +152,37 @@ def _canonical_path(path: str) -> str:
     return (candidates[-1] if candidates else _normalise_path(path)).casefold()
 
 
+def _result_evidence(
+    core: ModuleType,
+    result: dict[str, Any],
+    scan_root: str,
+    relative_path: str,
+) -> str:
+    """Read matched source locally because Semgrep OSS redacts ``extra.lines``."""
+    extra = result.get("extra") or {}
+    semgrep_lines = str(extra.get("lines") or "").strip()
+    if semgrep_lines and semgrep_lines.casefold() != "requires login":
+        return core._truncate(semgrep_lines, core.EVIDENCE_MAX_LEN)
+
+    root = Path(scan_root).resolve()
+    candidate = root.joinpath(*PurePosixPath(relative_path).parts)
+    try:
+        resolved = candidate.resolve()
+        resolved.relative_to(root)
+        lines = resolved.read_text(encoding="utf-8", errors="replace").splitlines()
+    except (OSError, ValueError):
+        return "[matched code unavailable]"
+
+    start = result.get("start") or {}
+    end = result.get("end") or {}
+    start_line = max(1, int(start.get("line") or 1))
+    end_line = max(start_line, int(end.get("line") or start_line))
+    # Keep evidence focused and bounded even for unusually large Semgrep ranges.
+    selected = lines[start_line - 1 : min(end_line, start_line + 4)]
+    evidence = "\n".join(line.strip() for line in selected).strip()
+    return core._truncate(evidence or "[matched code unavailable]", core.EVIDENCE_MAX_LEN)
+
+
 def _result_to_finding(
     core: ModuleType,
     result: dict[str, Any],
@@ -110,16 +191,19 @@ def _result_to_finding(
 ) -> tuple[Any | None, str]:
     check_id = str(result.get("check_id") or "unknown")
     path = _relative_result_path(str(result.get("path") or ""), scan_root)
-    provenance, path_confidence = network_provenance.classify_network_source(path)
+    provenance, path_confidence = _classify_semgrep_path(path)
 
-    # AST findings in dependencies, tests, documentation, maps, and metadata are
-    # not evidence of plugin-owned runtime behavior. Private-key material remains
-    # visible wherever it is shipped because location does not make a real key safe.
-    if (
-        check_id != "decky.generic.private-key"
-        and provenance in _SUPPRESSED_CODE_PROVENANCE
-    ):
+    # AST behavior in dependencies, tests, repository tooling, maps, and metadata
+    # is not evidence of plugin-owned runtime behavior. Header-only key constants
+    # in source code are also handled more accurately by the dedicated credential
+    # scanner, which validates complete key material and redacts it.
+    if provenance in _SUPPRESSED_CODE_PROVENANCE:
         return None, provenance
+    if (
+        check_id == "decky.generic.private-key"
+        and PurePosixPath(path.casefold()).suffix in _PRIVATE_KEY_CODE_SUFFIXES
+    ):
+        return None, "credential_scanner_owned"
 
     extra = result.get("extra") or {}
     raw_severity = str(extra.get("severity") or "INFO").strip().lower()
@@ -136,7 +220,10 @@ def _result_to_finding(
         message = f"{message} Reviewer focus: {guidance}"
     message = f"[{scope}; {provenance}; confidence={path_confidence}] {message}"
 
-    evidence = str(extra.get("lines") or "").strip()
+    if check_id == "decky.generic.private-key":
+        evidence = "[private-key material redacted]"
+    else:
+        evidence = _result_evidence(core, result, scan_root, path)
     start = result.get("start") or {}
     finding = core.Finding(
         rule_id=_rule_id(check_id),
@@ -145,10 +232,18 @@ def _result_to_finding(
         path=path,
         line=int(start.get("line") or 0),
         message=message,
-        evidence=core._truncate(evidence, core.EVIDENCE_MAX_LEN),
+        evidence=evidence,
         scanner="semgrep",
     )
     return finding, provenance
+
+
+def _error_detail(error: dict[str, Any]) -> str:
+    for key in ("message", "type", "level"):
+        value = str(error.get(key) or "").strip()
+        if value:
+            return value
+    return "parse or target error"
 
 
 def _parse_error_findings(
@@ -156,34 +251,58 @@ def _parse_error_findings(
     errors: Any,
     scan_root: str,
     scope: str,
-) -> list[Any]:
+) -> tuple[list[Any], int]:
     if not isinstance(errors, list) or not errors:
-        return []
+        return [], 0
 
-    paths: list[str] = []
+    reportable: list[tuple[str, int, str]] = []
+    suppressed = 0
     for error in errors:
         if not isinstance(error, dict):
             continue
         raw_path = str(error.get("path") or "")
-        if raw_path:
-            paths.append(_relative_result_path(raw_path, scan_root))
-    unique_paths = list(dict.fromkeys(paths))
-    sample = ", ".join(unique_paths[:5]) if unique_paths else "see scanner detail"
+        if not raw_path:
+            reportable.append(("", 0, _error_detail(error)))
+            continue
+        path = _relative_result_path(raw_path, scan_root)
+        provenance, _confidence = _classify_semgrep_path(path)
+        if provenance in _SUPPRESSED_CODE_PROVENANCE:
+            suppressed += 1
+            continue
+        location = error.get("location") or {}
+        start = location.get("start") if isinstance(location, dict) else {}
+        line = int((start or {}).get("line") or 0)
+        reportable.append((path, line, _error_detail(error)))
+
+    if not reportable:
+        return [], suppressed
+
+    unique: list[tuple[str, int, str]] = []
+    seen: set[tuple[str, int, str]] = set()
+    for entry in reportable:
+        if entry not in seen:
+            seen.add(entry)
+            unique.append(entry)
+
+    sample_paths = [path for path, _line, _detail in unique if path]
+    sample = ", ".join(sample_paths[:5]) or "scanner-level error"
+    first_detail = unique[0][2]
+    evidence = f"{sample}; first error: {first_detail}"
     return [
         core.Finding(
             rule_id="SEMGREP_PARTIAL_SCAN",
             severity="low",
             classification="PASS_WITH_WARNINGS",
-            path=unique_paths[0] if unique_paths else "",
-            line=0,
+            path=unique[0][0],
+            line=unique[0][1],
             message=(
-                f"[{scope}] Semgrep reported {len(errors)} parse or target errors; "
-                "some code may not have been analyzed."
+                f"[{scope}] Semgrep could not fully analyze {len(unique)} "
+                "plugin-owned target(s); review coverage is incomplete."
             ),
-            evidence=core._truncate(sample, core.EVIDENCE_MAX_LEN),
+            evidence=core._truncate(evidence, core.EVIDENCE_MAX_LEN),
             scanner="semgrep",
         )
-    ]
+    ], suppressed
 
 
 def _run_scope(
@@ -264,14 +383,16 @@ def _run_scope(
             suppressed += 1
         else:
             findings.append(finding)
-    findings.extend(
-        _parse_error_findings(core, data.get("errors") or [], scan_root, scope)
+    parse_findings, parse_suppressed = _parse_error_findings(
+        core, data.get("errors") or [], scan_root, scope
     )
+    findings.extend(parse_findings)
+    suppressed += parse_suppressed
 
     status = "found_issue" if findings else "passed"
     detail = (
         f"{scope} scanned ({len(findings)} report findings; "
-        f"{suppressed} dependency/test/metadata matches suppressed)"
+        f"{suppressed} non-runtime or redundant matches suppressed)"
     )
     return (
         core.ScannerStatus(
@@ -293,11 +414,16 @@ def _merge_scoped_findings(artifact: list[Any], source: list[Any]) -> list[Any]:
 
     for scope, findings in (("artifact", artifact), ("source", source)):
         for finding in findings:
+            rule_id = str(getattr(finding, "rule_id", ""))
+            evidence = str(getattr(finding, "evidence", ""))
+            # Artifact wrapper paths make partial-scan evidence text differ even
+            # when both scopes refer to the same underlying file.
+            evidence_key = "" if rule_id == "SEMGREP_PARTIAL_SCAN" else evidence
             key = (
-                str(getattr(finding, "rule_id", "")),
+                rule_id,
                 _canonical_path(str(getattr(finding, "path", "") or "")),
                 int(getattr(finding, "line", 0) or 0),
-                str(getattr(finding, "evidence", "")),
+                evidence_key,
             )
             if key not in merged:
                 merged[key] = finding
@@ -311,11 +437,18 @@ def _merge_scoped_findings(artifact: list[Any], source: list[Any]) -> list[Any]:
         finding = merged[key]
         if scopes[key] == {"artifact", "source"}:
             message = str(getattr(finding, "message", ""))
-            message = re.sub(
-                r"^\[(?:artifact|source);",
-                "[artifact+source;",
-                message,
-            )
+            if str(getattr(finding, "rule_id", "")) == "SEMGREP_PARTIAL_SCAN":
+                message = re.sub(
+                    r"^\[(?:artifact|source)\]",
+                    "[artifact+source]",
+                    message,
+                )
+            else:
+                message = re.sub(
+                    r"^\[(?:artifact|source);",
+                    "[artifact+source;",
+                    message,
+                )
             finding = replace(finding, message=message)
         output.append(finding)
     return output
