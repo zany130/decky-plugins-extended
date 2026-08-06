@@ -108,7 +108,7 @@ class CapaReviewFilterTests(unittest.TestCase):
         self.assertEqual(status.version, "9.4.0")
         self.assertIn("coverage incomplete for 1", status.detail)
 
-    def test_arm64_skip_reason_is_reviewer_explicit(self):
+    def test_arm64_skip_reason_and_scanner_status_are_reviewer_explicit(self):
         core = self._core()
         raw_results = {
             "bin/helper-arm64.so": {
@@ -118,10 +118,15 @@ class CapaReviewFilterTests(unittest.TestCase):
             }
         }
 
-        _status, results = filters.finalize_capa_results(
-            core, ScannerStatus("capa", "passed"), raw_results
+        status, results = filters.finalize_capa_results(
+            core,
+            ScannerStatus("capa", "passed", version="9.4.0", detail="0 analyzed"),
+            raw_results,
         )
 
+        self.assertEqual(status.status, "unsupported")
+        self.assertEqual(status.version, "9.4.0")
+        self.assertIn("unsupported for 1 ARM64", status.detail)
         self.assertIn(
             "direct ARM64 ELF analysis is unsupported",
             results["bin/helper-arm64.so"]["reason"],
