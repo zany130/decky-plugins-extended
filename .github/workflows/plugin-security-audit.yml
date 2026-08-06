@@ -23,6 +23,7 @@ on:
       - audit_noise_filters.py
       - behavior_false_positive_filters.py
       - capa_binary_analysis.py
+      - capa_review_filters.py
       - capa-fixtures/**
       - credential_exposure_filters.py
       - metadata_build_stamp_filters.py
