@@ -5,7 +5,6 @@ from __future__ import annotations
 import unittest
 from dataclasses import dataclass
 from types import ModuleType
-from unittest.mock import patch
 
 import capa_review_filters as filters
 
@@ -20,10 +19,6 @@ class ScannerStatus:
 
 
 class CapaReviewFilterTests(unittest.TestCase):
-    def tearDown(self):
-        if hasattr(filters.capa, "_capa_review_filters_installed"):
-            delattr(filters.capa, "_capa_review_filters_installed")
-
     @staticmethod
     def _core() -> ModuleType:
         core = ModuleType("fake_capa_filter_core")
@@ -75,15 +70,8 @@ class CapaReviewFilterTests(unittest.TestCase):
                 "confidence": "high",
             },
         ]
-        core = self._core()
 
-        with patch.object(filters.capa, "_discover_binaries", return_value=discovered), patch.object(
-            filters.capa,
-            "_run_capa",
-            return_value=(ScannerStatus("capa", "passed"), {}),
-        ):
-            filters.install(core)
-            ordered = filters.capa._discover_binaries(core, "/artifact")
+        ordered = filters.prepare_discovered_binaries(discovered)
 
         paths = [item["path"] for item in ordered]
         self.assertEqual(paths[0], "Plugin/bin/tool-glibc-x86_64.so")
@@ -111,15 +99,9 @@ class CapaReviewFilterTests(unittest.TestCase):
             "bin/large": {"status": "failed", "detail": "timed out"},
         }
 
-        with patch.object(filters.capa, "_discover_binaries", return_value=[]), patch.object(
-            filters.capa,
-            "_run_capa",
-            return_value=(raw_status, raw_results),
-        ):
-            filters.install(core)
-            status, results = filters.capa._run_capa(
-                core, "/artifact", {"scanners": {"capa": {"enabled": True}}}, ".cache"
-            )
+        status, results = filters.finalize_capa_results(
+            core, raw_status, raw_results
+        )
 
         self.assertIs(results, raw_results)
         self.assertEqual(status.status, "failed")
@@ -136,18 +118,18 @@ class CapaReviewFilterTests(unittest.TestCase):
             }
         }
 
-        with patch.object(filters.capa, "_discover_binaries", return_value=[]), patch.object(
-            filters.capa,
-            "_run_capa",
-            return_value=(ScannerStatus("capa", "passed"), raw_results),
-        ):
-            filters.install(core)
-            _status, results = filters.capa._run_capa(
-                core, "/artifact", {"scanners": {"capa": {"enabled": True}}}, ".cache"
-            )
+        _status, results = filters.finalize_capa_results(
+            core, ScannerStatus("capa", "passed"), raw_results
+        )
 
-        self.assertIn("direct ARM64 ELF analysis is unsupported", results["bin/helper-arm64.so"]["reason"])
-        self.assertIn("manual binary review", results["bin/helper-arm64.so"]["reason"])
+        self.assertIn(
+            "direct ARM64 ELF analysis is unsupported",
+            results["bin/helper-arm64.so"]["reason"],
+        )
+        self.assertIn(
+            "manual binary review",
+            results["bin/helper-arm64.so"]["reason"],
+        )
 
 
 if __name__ == "__main__":
