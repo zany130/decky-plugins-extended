@@ -1,0 +1,140 @@
+# Real-binary integration control for reviewer-focused capa enrichment.
+# The plugin release is downloaded and statically inspected; no plugin code or
+# native binary is executed.
+
+name: capa Binary Smoke
+
+on:
+  pull_request:
+    paths:
+      - audit_plugins.py
+      - audit_plugins_core.py
+      - capa_binary_analysis.py
+      - security-policy.yml
+      - tests/test_capa_binary_analysis.py
+      - .github/workflows/capa-binary-smoke.yml
+      - .github/workflows/plugin-security-audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capa-binary-smoke:
+    name: Analyze real plugin binary
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version-file: pyproject.toml
+
+      - name: Install pinned capa
+        run: |
+          uv tool install --python 3.12 flare-capa==9.4.0
+          TOOL_BIN_DIR=$(uv tool dir --bin)
+          echo "$TOOL_BIN_DIR" >> "$GITHUB_PATH"
+          export PATH="$TOOL_BIN_DIR:$PATH"
+          capa --version
+
+      - name: Create capa-only policy
+        run: |
+          cat > "$RUNNER_TEMP/capa-smoke-policy.yml" <<'YAML'
+          version: "1"
+          enforcement:
+            mode: report-only
+          scanners:
+            clamav:
+              enabled: false
+              required: false
+            trivy:
+              enabled: false
+              required: false
+            semgrep:
+              enabled: false
+              required: false
+            capa:
+              enabled: true
+              required: false
+              include_dependencies: false
+              max_binaries_per_plugin: 2
+              max_binary_bytes: 67108864
+              timeout_seconds: 90
+            source_artifact_diff:
+              enabled: false
+              required: false
+          YAML
+
+      - name: Audit real plugin-owned ELF
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p capa-smoke-reports
+          uv run python audit_plugins.py \
+            --repository https://github.com/Hooandee/panel-de-control \
+            --policy "$RUNNER_TEMP/capa-smoke-policy.yml" \
+            --output-dir capa-smoke-reports \
+            --cache-dir "$RUNNER_TEMP/capa-cache" \
+            --skip-cache
+
+          python3 - <<'PYEOF'
+          import json
+
+          data = json.load(open("capa-smoke-reports/security-report.json", encoding="utf-8"))
+          if data.get("report_count") != 1:
+              raise SystemExit(f"Expected one report, got {data.get('report_count')!r}")
+          report = data["reports"][0]
+          if report.get("final_classification") == "AUDIT_ERROR":
+              raise SystemExit(f"Audit failed: {report.get('errors')!r}")
+
+          status = next(
+              (item for item in report.get("scanner_statuses", []) if item.get("name") == "capa"),
+              None,
+          )
+          if not status or status.get("status") != "passed":
+              raise SystemExit(f"capa did not complete: {status!r}")
+
+          analyzed = [
+              item
+              for item in report.get("native_binaries", [])
+              if (item.get("capa") or {}).get("status") == "analyzed"
+          ]
+          if not analyzed:
+              raise SystemExit(
+                  f"No real native binary was enriched: {report.get('native_binaries')!r}"
+              )
+          if not any(int((item.get("capa") or {}).get("capability_count") or 0) > 0 for item in analyzed):
+              raise SystemExit(f"capa returned no top-level capabilities: {analyzed!r}")
+          if not all((item.get("capa") or {}).get("sha256") for item in analyzed):
+              raise SystemExit(f"Binary SHA-256 provenance missing: {analyzed!r}")
+
+          print(status.get("detail"))
+          for item in analyzed:
+              capa = item["capa"]
+              print(
+                  f"{item.get('path')}: {capa.get('capability_count')} capabilities; "
+                  f"groups={[group.get('name') for group in capa.get('groups') or []]}"
+              )
+          PYEOF
+        timeout-minutes: 12
+
+      - name: Upload capa smoke report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: capa-binary-smoke-report
+          path: |
+            capa-smoke-reports/security-report.json
+            capa-smoke-reports/security-report.md
+          retention-days: 14
+          if-no-files-found: error
