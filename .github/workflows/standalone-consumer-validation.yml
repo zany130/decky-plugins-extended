@@ -233,7 +233,7 @@ jobs:
               raise SystemExit("Standalone smoke audit returned AUDIT_ERROR")
 
           statuses = {item.get("name"): item for item in report.get("scanner_statuses", [])}
-          for required in ("clamav", "trivy", "source_artifact_diff"):
+          for required in ("clamav", "trivy"):
               status = (statuses.get(required) or {}).get("status")
               if status not in {"passed", "found_issue"}:
                   raise SystemExit(
@@ -247,6 +247,12 @@ jobs:
                   raise SystemExit(
                       f"{dual_scope} did not prove dual-scope coverage: {item!r}"
                   )
+
+          source_diff = report.get("source_artifact_diff") or {}
+          if not source_diff.get("checked") or int(source_diff.get("same_path_compared") or 0) < 1:
+              raise SystemExit(
+                  f"Exact-source content comparison did not complete: {source_diff!r}"
+              )
 
           print(
               f"Standalone consumer validation passed: {report.get('plugin_name')} "
