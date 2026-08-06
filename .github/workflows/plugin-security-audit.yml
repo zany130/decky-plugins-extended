@@ -1,8 +1,7 @@
-# Plugin Security Audit Workflow
+# Store-owned security audit workflow.
 #
-# The store owns repository selection, policy, allowlist, scheduling, and report
-# retention. Audit implementation is installed from decky-plugin-auditor at the
-# immutable commit below. Plugin code is never imported or executed.
+# Repository selection, policy, allowlist, and report retention remain in this
+# repository. The audit engine is installed from an immutable standalone commit.
 
 name: Plugin Security Audit
 
@@ -15,27 +14,10 @@ on:
       - additional_plugins.txt
       - security-policy.yml
       - security-allowlist.yml
-      - audit_plugins.py
-      - audit_plugins_core.py
-      - artifact_diff_filters.py
-      - audit_noise_filters.py
-      - behavior_false_positive_filters.py
-      - credential_exposure_filters.py
-      - metadata_build_stamp_filters.py
-      - network_destination_filters.py
-      - plugin_release_utils.py
-      - report_layout_filters.py
-      - semgrep_source_link_hardening.py
-      - semgrep_source_scanning.py
-      - source_content_comparison.py
-      - source_content_hardening.py
-      - trivy_source_scanning.py
-      - upstream_source_links.py
-      - semgrep-rules.yml
-      - tests/**
       - .github/actions/setup-decky-auditor/**
       - .github/workflows/plugin-security-audit.yml
       - .github/workflows/scheduled-security-audit.yml
+      - .github/workflows/standalone-consumer-validation.yml
   workflow_dispatch:
     inputs:
       mode:
@@ -55,104 +37,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  consumer-parity:
-    name: Embedded vs standalone parity
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-
-    steps:
-      - name: Checkout store
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          fetch-depth: 0
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
-        with:
-          enable-cache: true
-
-      - name: Set up Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
-        with:
-          python-version: "3.12"
-
-      - name: Install pinned standalone auditor
-        id: auditor
-        uses: ./.github/actions/setup-decky-auditor
-        with:
-          auditor-ref: ${{ env.DECKY_AUDITOR_REF }}
-
-      - name: Create deterministic parity policy
-        run: |
-          cat > "$RUNNER_TEMP/parity-policy.yml" <<'YAML'
-          version: "1"
-          enforcement:
-            mode: report-only
-          scanners:
-            clamav:
-              enabled: false
-              required: false
-            trivy:
-              enabled: false
-              required: false
-            semgrep:
-              enabled: false
-              required: false
-            osv_scanner:
-              enabled: false
-              required: false
-            source_artifact_diff:
-              enabled: true
-              required: true
-          YAML
-
-      - name: Compare embedded and standalone reports
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          AUDITOR_COMMAND: ${{ steps.auditor.outputs.command }}
-          AUDITOR_SOURCE: ${{ steps.auditor.outputs.source-directory }}
-        run: |
-          set -euo pipefail
-          rm -rf \
-            "$RUNNER_TEMP/embedded-reports" \
-            "$RUNNER_TEMP/standalone-reports" \
-            "$RUNNER_TEMP/embedded-cache" \
-            "$RUNNER_TEMP/standalone-cache"
-
-          uv run python audit_plugins.py \
-            --repository https://github.com/beallio/SDH-Ludusavi \
-            --policy "$RUNNER_TEMP/parity-policy.yml" \
-            --allowlist "$GITHUB_WORKSPACE/security-allowlist.yml" \
-            --output-dir "$RUNNER_TEMP/embedded-reports" \
-            --cache-dir "$RUNNER_TEMP/embedded-cache" \
-            --skip-cache
-
-          "$AUDITOR_COMMAND" \
-            --repository https://github.com/beallio/SDH-Ludusavi \
-            --policy "$RUNNER_TEMP/parity-policy.yml" \
-            --allowlist "$GITHUB_WORKSPACE/security-allowlist.yml" \
-            --output-dir "$RUNNER_TEMP/standalone-reports" \
-            --cache-dir "$RUNNER_TEMP/standalone-cache" \
-            --skip-cache
-
-          "$RUNNER_TEMP/decky-auditor-venv/bin/python" \
-            "$AUDITOR_SOURCE/scripts/compare_audit_reports.py" \
-            "$RUNNER_TEMP/embedded-reports" \
-            "$RUNNER_TEMP/standalone-reports"
-
-      - name: Upload parity evidence
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: standalone-consumer-parity
-          path: |
-            ${{ runner.temp }}/embedded-reports/security-report.json
-            ${{ runner.temp }}/embedded-reports/security-report.md
-            ${{ runner.temp }}/standalone-reports/security-report.json
-            ${{ runner.temp }}/standalone-reports/security-report.md
-          retention-days: 30
-          if-no-files-found: warn
-
   audit:
     name: Security Audit
     runs-on: ubuntu-latest
@@ -182,8 +66,12 @@ jobs:
 
       - name: Install security scanners
         run: |
+          set -euo pipefail
+
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends wget apt-transport-https gnupg lsb-release
+          sudo apt-get install -y --no-install-recommends \
+            wget apt-transport-https gnupg lsb-release clamav
+
           wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key \
             | gpg --dearmor \
             | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
@@ -191,7 +79,8 @@ jobs:
             $(lsb_release -sc) main" \
             | sudo tee /etc/apt/sources.list.d/trivy.list
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends trivy || echo "::warning::trivy install failed; audit policy will decide whether this is fatal"
+          sudo apt-get install -y --no-install-recommends trivy || \
+            echo "::warning::trivy install failed; audit policy will decide whether this is fatal"
 
           uv tool install --python 3.12 --with setuptools==70.3.0 semgrep==1.132.0
           SEMGREP_BIN_DIR=$(uv tool dir --bin)
@@ -199,13 +88,12 @@ jobs:
           export PATH="$SEMGREP_BIN_DIR:$PATH"
           semgrep --version --disable-version-check
 
-          sudo apt-get install -y --no-install-recommends clamav || {
-            echo "::error::clamav install failed"
-            exit 1
-          }
           sudo systemctl stop clamav-freshclam || true
           sudo freshclam
-          clamscan --version || { echo "::error::clamscan unavailable after install"; exit 1; }
+          clamscan --version || {
+            echo "::error::clamscan unavailable after install"
+            exit 1
+          }
           ls /var/lib/clamav/*.c?d 2>/dev/null || {
             echo "::error::No ClamAV signature databases found after freshclam"
             exit 1
@@ -219,6 +107,7 @@ jobs:
           DISPATCH_MODE: ${{ inputs.mode }}
           GITHUB_BASE_REF_VALUE: ${{ github.base_ref }}
         run: |
+          set -euo pipefail
           if [[ "$EVENT_NAME" == "pull_request" ]]; then
             echo "audit_mode=changed" >> "$GITHUB_OUTPUT"
             echo "base_ref=origin/${GITHUB_BASE_REF_VALUE}" >> "$GITHUB_OUTPUT"
@@ -247,7 +136,10 @@ jobs:
           if [[ "$AUDIT_MODE" == "all" ]]; then
             "$AUDITOR_COMMAND" --all "${common_args[@]}"
           else
-            "$AUDITOR_COMMAND" --changed --base-ref "$BASE_REF" "${common_args[@]}"
+            "$AUDITOR_COMMAND" \
+              --changed \
+              --base-ref "$BASE_REF" \
+              "${common_args[@]}"
           fi
         timeout-minutes: 20
 
@@ -269,114 +161,5 @@ jobs:
           path: |
             security-reports/security-report.json
             security-reports/security-report.md
-          retention-days: 30
-          if-no-files-found: warn
-
-  smoke-audit:
-    name: Standalone smoke audit
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-
-    steps:
-      - name: Checkout store
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
-        with:
-          enable-cache: true
-
-      - name: Set up Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
-        with:
-          python-version: "3.12"
-
-      - name: Install pinned standalone auditor
-        id: auditor
-        uses: ./.github/actions/setup-decky-auditor
-        with:
-          auditor-ref: ${{ env.DECKY_AUDITOR_REF }}
-
-      - name: Install required security scanners
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends wget apt-transport-https gnupg lsb-release
-          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key \
-            | gpg --dearmor \
-            | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
-          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb \
-            $(lsb_release -sc) main" \
-            | sudo tee /etc/apt/sources.list.d/trivy.list
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends trivy
-
-          uv tool install --python 3.12 --with setuptools==70.3.0 semgrep==1.132.0
-          SEMGREP_BIN_DIR=$(uv tool dir --bin)
-          echo "$SEMGREP_BIN_DIR" >> "$GITHUB_PATH"
-          export PATH="$SEMGREP_BIN_DIR:$PATH"
-          semgrep --version --disable-version-check
-
-          sudo apt-get install -y --no-install-recommends clamav
-          sudo systemctl stop clamav-freshclam || true
-          sudo freshclam
-          clamscan --version
-          ls /var/lib/clamav/*.c?d 2>/dev/null
-        timeout-minutes: 10
-
-      - name: Run standalone smoke audit
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          AUDITOR_COMMAND: ${{ steps.auditor.outputs.command }}
-        run: |
-          set -euo pipefail
-          rm -rf smoke-reports smoke-cache
-          "$AUDITOR_COMMAND" \
-            --repository https://github.com/beallio/SDH-Ludusavi \
-            --policy "$GITHUB_WORKSPACE/security-policy.yml" \
-            --allowlist "$GITHUB_WORKSPACE/security-allowlist.yml" \
-            --output-dir "$GITHUB_WORKSPACE/smoke-reports" \
-            --cache-dir "$GITHUB_WORKSPACE/smoke-cache" \
-            --skip-cache
-
-          python3 - <<'PYEOF'
-          import json
-          from pathlib import Path
-
-          report_path = Path("smoke-reports/security-report.json")
-          data = json.loads(report_path.read_text(encoding="utf-8"))
-          if data.get("report_count") != 1:
-              raise SystemExit(f"Expected one smoke report, got {data.get('report_count')!r}")
-
-          report = data["reports"][0]
-          classification = report.get("final_classification")
-          if classification == "AUDIT_ERROR":
-              raise SystemExit("Standalone smoke audit returned AUDIT_ERROR")
-
-          statuses = {item.get("name"): item for item in report.get("scanner_statuses", [])}
-          for required in ("clamav", "trivy", "source_artifact_diff"):
-              status = (statuses.get(required) or {}).get("status")
-              if status not in {"passed", "found_issue"}:
-                  raise SystemExit(f"Required scanner {required} did not complete: {statuses.get(required)!r}")
-
-          for dual_scope in ("trivy", "semgrep"):
-              item = statuses.get(dual_scope) or {}
-              detail = item.get("detail") or ""
-              if "artifact scanned (" not in detail or "source scanned (" not in detail:
-                  raise SystemExit(f"{dual_scope} did not prove dual-scope coverage: {item!r}")
-
-          print(
-              f"Standalone smoke audit passed: {report.get('plugin_name')} "
-              f"@ {report.get('release')} -> {classification}"
-          )
-          PYEOF
-
-      - name: Upload smoke evidence
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: standalone-smoke-audit
-          path: |
-            smoke-reports/security-report.json
-            smoke-reports/security-report.md
           retention-days: 30
           if-no-files-found: warn
