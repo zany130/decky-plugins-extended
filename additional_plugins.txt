@@ -35,7 +35,6 @@ https://github.com/cat-in-a-box/Decky-Translator
 https://github.com/santojon/Deck-Shelves
 https://github.com/bschelst/protondb-decky
 https://github.com/AkazaRenn/SDH-GameSync
-https://github.com/KrishGaur1354/network-sentinel
 https://github.com/xXJSONDeruloXx/Decky-Framegen  
 https://github.com/wtlnetwork/muon 
 https://github.com/andrewburgess/steamdeck-discord-status 
