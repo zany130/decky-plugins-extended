@@ -47,6 +47,16 @@ scanners:
   semgrep:
     enabled: true
     required: false
+  # Statically enriches existing native-binary review findings with grouped
+  # capabilities. capa never executes plugin binaries and does not emit one
+  # audit finding per rule match. Dependency binaries are collapsed by default.
+  capa:
+    enabled: true
+    required: false
+    include_dependencies: false
+    max_binaries_per_plugin: 8
+    max_binary_bytes: 67108864           # 64 MiB
+    timeout_seconds: 90
   osv_scanner:
     enabled: false
     required: false
