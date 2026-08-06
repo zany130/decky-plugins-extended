@@ -1,6 +1,6 @@
-# Real-binary integration control for reviewer-focused capa enrichment.
-# The plugin release is downloaded and statically inspected; no plugin code or
-# native binary is executed.
+# Integration controls for reviewer-focused capa enrichment.
+# Fixtures and plugin binaries are compiled/downloaded and statically inspected;
+# none of them are executed.
 
 name: capa Binary Smoke
 
@@ -10,6 +10,7 @@ on:
       - audit_plugins.py
       - audit_plugins_core.py
       - capa_binary_analysis.py
+      - capa-fixtures/**
       - scripts/install_capa.sh
       - security-policy.yml
       - tests/test_capa_binary_analysis.py
@@ -22,7 +23,7 @@ permissions:
 
 jobs:
   capa-binary-smoke:
-    name: Analyze real plugin binary
+    name: Analyze deterministic and real binaries
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -46,6 +47,30 @@ jobs:
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
           export PATH="$HOME/.local/bin:$PATH"
           capa --version
+
+      - name: Validate known-capability ELF and JSON parser
+        run: |
+          cc -O0 -o "$RUNNER_TEMP/capa-capability-fixture" \
+            capa-fixtures/reviewer_capabilities.c
+          capa -j "$RUNNER_TEMP/capa-capability-fixture" \
+            > "$RUNNER_TEMP/capa-capability-fixture.json"
+          uv run python - "$RUNNER_TEMP/capa-capability-fixture.json" <<'PYEOF'
+          import json
+          import sys
+
+          import capa_binary_analysis
+
+          document = json.load(open(sys.argv[1], encoding="utf-8"))
+          summary = capa_binary_analysis._parse_capa_document(document)
+          if int(summary.get("capability_count") or 0) < 1:
+              raise SystemExit(f"Pinned capa rules produced no fixture capabilities: {summary!r}")
+          if not summary.get("groups"):
+              raise SystemExit(f"Reviewer capability grouping is empty: {summary!r}")
+          print(
+              f"Deterministic fixture: {summary['capability_count']} capabilities; "
+              f"groups={[group['name'] for group in summary['groups']]}"
+          )
+          PYEOF
 
       - name: Create capa-only policy
         run: |
@@ -113,10 +138,20 @@ jobs:
               raise SystemExit(
                   f"No real native binary was enriched: {report.get('native_binaries')!r}"
               )
-          if not any(int((item.get("capa") or {}).get("capability_count") or 0) > 0 for item in analyzed):
-              raise SystemExit(f"capa returned no top-level capabilities: {analyzed!r}")
-          if not all((item.get("capa") or {}).get("sha256") for item in analyzed):
-              raise SystemExit(f"Binary SHA-256 provenance missing: {analyzed!r}")
+          for item in analyzed:
+              capa = item.get("capa") or {}
+              if not capa.get("sha256"):
+                  raise SystemExit(f"Binary SHA-256 provenance missing: {item!r}")
+              if capa.get("version") != "9.4.0":
+                  raise SystemExit(f"Unexpected capa version in JSON: {item!r}")
+              if not isinstance(capa.get("capability_count"), int):
+                  raise SystemExit(f"Capability count missing from JSON: {item!r}")
+              if not isinstance(capa.get("groups"), list):
+                  raise SystemExit(f"Capability groups missing from JSON: {item!r}")
+
+          markdown = open("capa-smoke-reports/security-report.md", encoding="utf-8").read()
+          if "Native Binary Capability Analysis" not in markdown:
+              raise SystemExit("Reviewer-facing capa Markdown section is missing")
 
           print(status.get("detail"))
           for item in analyzed:
