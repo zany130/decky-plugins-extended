@@ -18,6 +18,7 @@ from artifact_diff_filters import install as install_artifact_diff_filters
 from audit_noise_filters import install as install_noise_filters
 from behavior_false_positive_filters import install as install_behavior_filters
 from capa_binary_analysis import install as install_capa_binary_analysis
+from capa_review_filters import install as install_capa_review_filters
 from credential_exposure_filters import install as install_credential_policy
 from metadata_build_stamp_filters import install as install_metadata_build_stamp_filters
 from network_destination_filters import install as install_network_destination_filters
@@ -51,6 +52,7 @@ install_trivy_source_scanning(_core)
 install_source_content_comparison(_core)
 install_source_content_hardening(_core)
 install_semgrep_source_scanning(_core)
+install_capa_review_filters(_core)
 install_capa_binary_analysis(_core)
 install_metadata_build_stamp_filters(_core)
 install_behavior_filters(_core)
