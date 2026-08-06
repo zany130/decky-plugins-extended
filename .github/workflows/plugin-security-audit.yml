@@ -23,6 +23,9 @@ on:
       - audit_plugins.py
       - metadata_build_stamp_filters.py
       - network_destination_filters.py
+      - semgrep_source_scanning.py
+      - semgrep-rules.yml
+      - semgrep-fixtures/**
       - source_content_comparison.py
       - source_content_hardening.py
       - trivy_source_scanning.py
@@ -79,7 +82,7 @@ jobs:
 
       - name: Install optional security scanners
         # Scanners are installed from verified package managers; no piped-shell downloads.
-        # The audit degrades gracefully when scanners are unavailable.
+        # The audit degrades gracefully when scanners are unavailable outside CI.
         run: |
           # Trivy (static vulnerability scanner) – from the official apt repo.
           # See https://aquasecurity.github.io/trivy/latest/getting-started/installation/
@@ -93,6 +96,13 @@ jobs:
             | sudo tee /etc/apt/sources.list.d/trivy.list
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends trivy || echo "::warning::trivy install failed; audit will skip it"
+
+          # Semgrep – pin the same engine used by the upstream Decky audit work.
+          uv tool install --python 3.12 --with setuptools==70.3.0 semgrep==1.132.0
+          SEMGREP_BIN_DIR=$(uv tool dir --bin)
+          echo "$SEMGREP_BIN_DIR" >> "$GITHUB_PATH"
+          export PATH="$SEMGREP_BIN_DIR:$PATH"
+          semgrep --version --disable-version-check
 
           # ClamAV (malware signature scanner)
           sudo apt-get install -y --no-install-recommends clamav || {
@@ -177,12 +187,12 @@ jobs:
           if-no-files-found: warn
 
   # -------------------------------------------------------------------------
-  # Run the existing unit tests to ensure audit infrastructure is intact.
+  # Run the existing unit tests and the checked-in Semgrep rule controls.
   # -------------------------------------------------------------------------
   unit-tests:
     name: Unit Tests
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -197,6 +207,49 @@ jobs:
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version-file: "pyproject.toml"
+
+      - name: Install pinned Semgrep
+        run: |
+          uv tool install --python 3.12 --with setuptools==70.3.0 semgrep==1.132.0
+          SEMGREP_BIN_DIR=$(uv tool dir --bin)
+          echo "$SEMGREP_BIN_DIR" >> "$GITHUB_PATH"
+          export PATH="$SEMGREP_BIN_DIR:$PATH"
+          semgrep --version --disable-version-check
+
+      - name: Validate Decky Semgrep rules
+        run: |
+          semgrep \
+            --config semgrep-rules.yml \
+            --json \
+            --metrics=off \
+            --disable-version-check \
+            semgrep-fixtures \
+            > "$RUNNER_TEMP/semgrep-rule-results.json"
+          python3 - "$RUNNER_TEMP/semgrep-rule-results.json" <<'PYEOF'
+          import collections
+          import json
+          import sys
+
+          data = json.load(open(sys.argv[1], encoding="utf-8"))
+          errors = data.get("errors") or []
+          if errors:
+              print(f"ERROR: Semgrep rule fixtures produced errors: {errors!r}")
+              raise SystemExit(1)
+          counts = collections.Counter(
+              result.get("check_id") for result in data.get("results") or []
+          )
+          expected = collections.Counter({
+              "decky.python.dynamic-execution": 1,
+              "decky.python.shell-command": 1,
+              "decky.javascript.dynamic-execution": 2,
+              "decky.javascript.child-process-exec": 1,
+              "decky.generic.private-key": 1,
+          })
+          if counts != expected:
+              print(f"ERROR: Semgrep rule fixture mismatch: expected={expected}, actual={counts}")
+              raise SystemExit(1)
+          print(f"Semgrep rule controls passed: {sum(counts.values())} expected matches")
+          PYEOF
 
       - name: Run all tests
         env:
@@ -254,6 +307,11 @@ jobs:
             echo "::error::trivy install failed; smoke audit requires trivy"
             exit 1
           }
+          uv tool install --python 3.12 --with setuptools==70.3.0 semgrep==1.132.0
+          SEMGREP_BIN_DIR=$(uv tool dir --bin)
+          echo "$SEMGREP_BIN_DIR" >> "$GITHUB_PATH"
+          export PATH="$SEMGREP_BIN_DIR:$PATH"
+          semgrep --version --disable-version-check
           sudo apt-get install -y --no-install-recommends clamav || {
             echo "::error::clamav install failed; smoke audit requires clamav"
             exit 1
@@ -276,9 +334,9 @@ jobs:
             --repository https://github.com/beallio/SDH-Ludusavi \
             --output-dir smoke-reports \
             --skip-cache
-          # Verify that at least one report was produced, Trivy scanned both
-          # scopes, exact-source content comparison ran, and structured network
-          # provenance contains only redacted origins.
+          # Verify that at least one report was produced, Trivy and Semgrep
+          # scanned both scopes, exact-source content comparison ran, and
+          # structured network provenance contains only redacted origins.
           python3 - <<'PYEOF'
           import json, sys
           from urllib.parse import urlsplit
@@ -303,6 +361,21 @@ jobs:
               print(f"ERROR: Trivy did not prove dual-scope coverage: {trivy_detail!r}")
               sys.exit(1)
           print(f"  Trivy: {trivy_detail}")
+
+          semgrep = next(
+              (s for s in r.get("scanner_statuses", []) if s.get("name") == "semgrep"),
+              None,
+          )
+          semgrep_status = (semgrep or {}).get("status") or ""
+          semgrep_detail = (semgrep or {}).get("detail") or ""
+          if semgrep_status not in {"passed", "found_issue"}:
+              print(f"ERROR: Semgrep did not complete: {semgrep!r}")
+              sys.exit(1)
+          if "artifact scanned (" not in semgrep_detail or "source scanned (" not in semgrep_detail:
+              print(f"ERROR: Semgrep did not prove dual-scope coverage: {semgrep_detail!r}")
+              sys.exit(1)
+          print(f"  Semgrep: {semgrep_detail}")
+
           source_diff = r.get("source_artifact_diff") or {}
           same_path_compared = int(source_diff.get("same_path_compared") or 0)
           if not source_diff.get("checked") or same_path_compared < 1:
