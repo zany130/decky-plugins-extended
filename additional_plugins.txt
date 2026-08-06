@@ -43,3 +43,6 @@ https://github.com/0u73r-h34v3n/SDH-PlayTime
 https://github.com/steam3d/MagicBlackDecky 
 https://github.com/steam3d/MagicPodsDecky 
 https://github.com/FrogTheFrog/moondeck
+https://github.com/Janleyx/DeckBridge
+https://github.com/datbird/docky
+https://github.com/Janleyx/decky-spotify-connect
