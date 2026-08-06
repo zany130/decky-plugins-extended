@@ -2,10 +2,11 @@
 """Compatibility entry point for the Decky plugin security audit.
 
 The implementation remains in :mod:`audit_plugins_core`; context-aware noise,
-network-destination, exact-source dependency, Semgrep, content-comparison,
-source-mapping hardening, exact metadata build-stamp, behavioral false-positive,
-credential-exposure, packaged-artifact, source-link, and report-layout policies
-are installed before the module is exposed to callers or the CLI runs.
+network-destination, exact-source dependency, Semgrep, capa binary-capability,
+content-comparison, source-mapping hardening, exact metadata build-stamp,
+behavioral false-positive, credential-exposure, packaged-artifact, source-link,
+and report-layout policies are installed before the module is exposed to callers
+or the CLI runs.
 """
 
 from __future__ import annotations
@@ -16,6 +17,7 @@ import audit_plugins_core as _core
 from artifact_diff_filters import install as install_artifact_diff_filters
 from audit_noise_filters import install as install_noise_filters
 from behavior_false_positive_filters import install as install_behavior_filters
+from capa_binary_analysis import install as install_capa_binary_analysis
 from credential_exposure_filters import install as install_credential_policy
 from metadata_build_stamp_filters import install as install_metadata_build_stamp_filters
 from network_destination_filters import install as install_network_destination_filters
@@ -33,6 +35,7 @@ install_trivy_source_scanning(_core)
 install_source_content_comparison(_core)
 install_source_content_hardening(_core)
 install_semgrep_source_scanning(_core)
+install_capa_binary_analysis(_core)
 install_metadata_build_stamp_filters(_core)
 install_behavior_filters(_core)
 install_credential_policy(_core)
