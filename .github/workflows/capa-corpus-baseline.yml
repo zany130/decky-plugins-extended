@@ -1,0 +1,247 @@
+# Temporary PR baseline for capa behavior across the current native-binary corpus.
+# Remove this workflow after its artifact has been reviewed.
+
+name: capa Corpus Baseline
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/capa-corpus-baseline.yml
+      - capa_binary_analysis.py
+      - scripts/install_capa.sh
+      - security-policy.yml
+
+permissions:
+  contents: read
+
+jobs:
+  corpus-baseline:
+    name: Analyze native-binary plugin corpus
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version-file: pyproject.toml
+
+      - name: Install pinned capa with embedded rules
+        run: |
+          bash scripts/install_capa.sh "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.local/bin:$PATH"
+          capa --version
+
+      - name: Create capa-only baseline policy
+        run: |
+          cat > "$RUNNER_TEMP/capa-corpus-policy.yml" <<'YAML'
+          version: "1"
+          enforcement:
+            mode: report-only
+          scanners:
+            clamav:
+              enabled: false
+              required: false
+            trivy:
+              enabled: false
+              required: false
+            semgrep:
+              enabled: false
+              required: false
+            capa:
+              enabled: true
+              required: false
+              include_dependencies: false
+              max_binaries_per_plugin: 2
+              max_binary_bytes: 67108864
+              timeout_seconds: 90
+            source_artifact_diff:
+              enabled: false
+              required: false
+          YAML
+
+      - name: Audit current native-binary corpus
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -u
+          mkdir -p capa-corpus-reports
+          repositories=(
+            "https://github.com/mubaraknumann/unifideck"
+            "https://github.com/danielcopper/decky-romm-sync"
+            "https://github.com/MrWaip/vpn-deck"
+            "https://github.com/Necrosiak/Steamcord"
+            "https://github.com/jjuuzzii/decky-ha-mqtt-plugin"
+            "https://github.com/hostsrc/decky-prysm"
+            "https://github.com/Hooandee/panel-de-control"
+            "https://github.com/snoein/decky-insignia"
+            "https://github.com/xXJSONDeruloXx/decky-lsfg-vk"
+            "https://github.com/xXJSONDeruloXx/Decky-bionic-fg"
+            "https://github.com/Wurielle/decky-launch-options"
+          )
+
+          for repository in "${repositories[@]}"; do
+            slug="$(printf '%s' "$repository" | sed 's#https://github.com/##; s#/#__#g')"
+            output="capa-corpus-reports/$slug"
+            mkdir -p "$output"
+            echo "::group::capa baseline $repository"
+            uv run python audit_plugins.py \
+              --repository "$repository" \
+              --policy "$RUNNER_TEMP/capa-corpus-policy.yml" \
+              --output-dir "$output" \
+              --cache-dir "$RUNNER_TEMP/capa-cache" \
+              --skip-cache || echo "AUDIT_EXIT=$?" > "$output/audit-exit.txt"
+            echo "::endgroup::"
+          done
+        timeout-minutes: 50
+
+      - name: Build corpus summary
+        run: |
+          uv run python - <<'PYEOF'
+          from __future__ import annotations
+
+          import json
+          from pathlib import Path
+
+          root = Path("capa-corpus-reports")
+          rows = []
+          errors = []
+          for report_path in sorted(root.glob("*/security-report.json")):
+              aggregate = json.loads(report_path.read_text(encoding="utf-8"))
+              if aggregate.get("report_count") != 1:
+                  errors.append(f"{report_path.parent.name}: report_count={aggregate.get('report_count')!r}")
+                  continue
+              report = aggregate["reports"][0]
+              status = next(
+                  (item for item in report.get("scanner_statuses", []) if item.get("name") == "capa"),
+                  {},
+              )
+              binaries = report.get("native_binaries") or []
+              analyzed = [item for item in binaries if (item.get("capa") or {}).get("status") == "analyzed"]
+              failed = [item for item in binaries if (item.get("capa") or {}).get("status") == "failed"]
+              skipped = [item for item in binaries if (item.get("capa") or {}).get("status") == "skipped"]
+              groups = []
+              for item in analyzed:
+                  for group in (item.get("capa") or {}).get("groups") or []:
+                      name = group.get("name")
+                      if name and name not in groups:
+                          groups.append(name)
+              rows.append(
+                  {
+                      "repository": report.get("repository"),
+                      "plugin_name": report.get("plugin_name"),
+                      "release": report.get("release"),
+                      "classification": report.get("final_classification"),
+                      "capa_status": status.get("status"),
+                      "capa_detail": status.get("detail"),
+                      "native_binaries": len(binaries),
+                      "analyzed": len(analyzed),
+                      "failed": len(failed),
+                      "skipped": len(skipped),
+                      "capabilities": sum(
+                          int((item.get("capa") or {}).get("capability_count") or 0)
+                          for item in analyzed
+                      ),
+                      "groups": groups,
+                      "failed_details": [
+                          {
+                              "path": item.get("path"),
+                              "detail": (item.get("capa") or {}).get("detail"),
+                          }
+                          for item in failed
+                      ],
+                  }
+              )
+              if report.get("final_classification") == "AUDIT_ERROR":
+                  errors.append(f"{report.get('repository')}: AUDIT_ERROR")
+              if binaries and not all(isinstance(item.get("capa"), dict) for item in binaries):
+                  errors.append(f"{report.get('repository')}: native binary missing capa metadata")
+
+          missing_reports = [
+              path.parent.name
+              for path in root.glob("*/audit-exit.txt")
+              if not (path.parent / "security-report.json").exists()
+          ]
+          errors.extend(f"{name}: no JSON report" for name in missing_reports)
+
+          summary = {
+              "plugins": rows,
+              "plugin_count": len(rows),
+              "native_binaries": sum(row["native_binaries"] for row in rows),
+              "analyzed": sum(row["analyzed"] for row in rows),
+              "failed": sum(row["failed"] for row in rows),
+              "skipped": sum(row["skipped"] for row in rows),
+              "capabilities": sum(row["capabilities"] for row in rows),
+              "errors": errors,
+          }
+          Path("capa-corpus-summary.json").write_text(
+              json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8"
+          )
+
+          lines = [
+              "# capa Native-Binary Corpus Baseline",
+              "",
+              f"- Plugins: {summary['plugin_count']}",
+              f"- Native binaries: {summary['native_binaries']}",
+              f"- Analyzed: {summary['analyzed']}",
+              f"- Incomplete: {summary['failed']}",
+              f"- Skipped: {summary['skipped']}",
+              f"- Grouped top-level capabilities: {summary['capabilities']}",
+              "",
+              "| Plugin | capa | Native | Analyzed | Incomplete | Skipped | Capabilities | Groups |",
+              "|---|---:|---:|---:|---:|---:|---:|---|",
+          ]
+          for row in rows:
+              lines.append(
+                  f"| {row['plugin_name'] or row['repository']} | {row['capa_status']} | "
+                  f"{row['native_binaries']} | {row['analyzed']} | {row['failed']} | "
+                  f"{row['skipped']} | {row['capabilities']} | {', '.join(row['groups']) or 'none'} |"
+              )
+              for failure in row["failed_details"]:
+                  lines.append(
+                      f"| ↳ `{failure['path']}` | incomplete |  |  |  |  |  | "
+                      f"{failure['detail'] or 'no detail'} |"
+                  )
+          if errors:
+              lines.extend(["", "## Baseline errors", ""])
+              lines.extend(f"- {error}" for error in errors)
+          Path("capa-corpus-summary.md").write_text(
+              "\n".join(lines) + "\n", encoding="utf-8"
+          )
+          print("\n".join(lines))
+
+          if errors:
+              raise SystemExit(f"Corpus baseline produced errors: {errors!r}")
+          if summary["analyzed"] < 1:
+              raise SystemExit("Corpus baseline analyzed no native binaries")
+          PYEOF
+
+      - name: Add baseline to job summary
+        if: always()
+        run: |
+          if [[ -f capa-corpus-summary.md ]]; then
+            cat capa-corpus-summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload corpus baseline
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: capa-native-binary-corpus-baseline
+          path: |
+            capa-corpus-summary.json
+            capa-corpus-summary.md
+            capa-corpus-reports/**/security-report.json
+            capa-corpus-reports/**/security-report.md
+            capa-corpus-reports/**/audit-exit.txt
+          retention-days: 30
+          if-no-files-found: error
