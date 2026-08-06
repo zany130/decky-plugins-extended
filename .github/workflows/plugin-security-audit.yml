@@ -2,6 +2,14 @@
 #
 # Performs static security analysis on Decky Loader plugin repositories and
 # their release ZIP artifacts. Plugin code is NEVER executed.
+#
+# Enforcement mode is controlled by security-policy.yml:
+#   enforcement.mode: report-only   (default) — findings are surfaced but do
+#                                   not block merging.
+#   enforcement.mode: enforce       — BLOCK exits 2, MANUAL_REVIEW exits 3.
+#
+# Internal audit errors (download failure, corrupt ZIP, infrastructure faults)
+# always fail CI in both modes.
 
 name: Plugin Security Audit
 
@@ -10,16 +18,25 @@ on:
     paths:
       - additional_plugins.txt
       - audit_plugins.py
+      - audit_plugins_core.py
+      - artifact_diff_filters.py
+      - audit_noise_filters.py
+      - behavior_false_positive_filters.py
       - capa_binary_analysis.py
-      - scripts/install_capa.sh
+      - capa-fixtures/**
+      - credential_exposure_filters.py
       - metadata_build_stamp_filters.py
       - network_destination_filters.py
+      - report_layout_filters.py
+      - scripts/install_capa.sh
+      - semgrep_source_link_hardening.py
       - semgrep_source_scanning.py
       - semgrep-rules.yml
       - semgrep-fixtures/**
       - source_content_comparison.py
       - source_content_hardening.py
       - trivy_source_scanning.py
+      - upstream_source_links.py
       - plugin_release_utils.py
       - security-policy.yml
       - security-allowlist.yml
@@ -36,6 +53,8 @@ on:
         required: false
         default: changed
 
+# Least-privilege: read-only repository access.
+# This workflow uses pull_request, not pull_request_target.
 permissions:
   contents: read
 
@@ -66,6 +85,9 @@ jobs:
           python-version-file: "pyproject.toml"
 
       - name: Install optional security scanners
+        # Trivy and ClamAV use their official package sources. Semgrep is pinned
+        # through uv. capa uses a pinned, hash-verified official standalone
+        # release containing the matching embedded rules.
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends wget apt-transport-https gnupg lsb-release
@@ -120,6 +142,7 @@ jobs:
           fi
 
       - name: Run security audit
+        id: audit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AUDIT_MODE: ${{ steps.repos.outputs.audit_mode }}
@@ -127,11 +150,18 @@ jobs:
         run: |
           mkdir -p security-reports
           if [[ "$AUDIT_MODE" == "all" ]]; then
-            uv run python audit_plugins.py --all --output-dir security-reports --base-ref "$BASE_REF"
+            uv run python audit_plugins.py \
+              --all \
+              --output-dir security-reports \
+              --base-ref "$BASE_REF"
           else
-            uv run python audit_plugins.py --changed --output-dir security-reports --base-ref "$BASE_REF"
+            uv run python audit_plugins.py \
+              --changed \
+              --output-dir security-reports \
+              --base-ref "$BASE_REF"
           fi
         timeout-minutes: 30
+        continue-on-error: false
 
       - name: Add audit summary to job summary
         if: always()
@@ -144,6 +174,7 @@ jobs:
           fi
 
       - name: Upload audit reports as artifacts
+        # Only redacted reports are uploaded; extracted plugin content is not.
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -227,10 +258,16 @@ jobs:
         run: uv run python -m unittest discover -s tests -v
         timeout-minutes: 8
 
+  # End-to-end audit of one real plugin to preserve every existing source,
+  # artifact, Semgrep, Trivy, and network-provenance control while also proving
+  # capa is installed and reports a bounded scanner status.
   smoke-audit:
     name: Smoke Audit (end-to-end)
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    if: >
+      github.event_name == 'pull_request' ||
+      github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Checkout repository
@@ -259,21 +296,32 @@ jobs:
             $(lsb_release -sc) main" \
             | sudo tee /etc/apt/sources.list.d/trivy.list
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends trivy || exit 1
+          sudo apt-get install -y --no-install-recommends trivy || {
+            echo "::error::trivy install failed; smoke audit requires trivy"
+            exit 1
+          }
           uv tool install --python 3.12 --with setuptools==70.3.0 semgrep==1.132.0
           SEMGREP_BIN_DIR=$(uv tool dir --bin)
           echo "$SEMGREP_BIN_DIR" >> "$GITHUB_PATH"
           export PATH="$SEMGREP_BIN_DIR:$PATH"
           semgrep --version --disable-version-check
+
           bash scripts/install_capa.sh "$HOME/.local/bin"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
           export PATH="$HOME/.local/bin:$PATH"
           capa --version
-          sudo apt-get install -y --no-install-recommends clamav || exit 1
+
+          sudo apt-get install -y --no-install-recommends clamav || {
+            echo "::error::clamav install failed; smoke audit requires clamav"
+            exit 1
+          }
           sudo systemctl stop clamav-freshclam || true
           sudo freshclam
-          clamscan --version
-          ls /var/lib/clamav/*.c?d 2>/dev/null
+          clamscan --version || { echo "::error::clamscan unavailable"; exit 1; }
+          ls /var/lib/clamav/*.c?d 2>/dev/null || {
+            echo "::error::No ClamAV signature databases found"
+            exit 1
+          }
         timeout-minutes: 15
 
       - name: Run smoke audit on beallio/SDH-Ludusavi
@@ -289,46 +337,110 @@ jobs:
           import json, sys
           from urllib.parse import urlsplit
 
-          data = json.load(open("smoke-reports/security-report.json"))
+          data = json.load(open("smoke-reports/security-report.json", encoding="utf-8"))
           if data["report_count"] < 1:
-              raise SystemExit("Smoke audit produced zero reports")
-          r = data["reports"][0]
-          if r.get("final_classification") == "AUDIT_ERROR":
-              raise SystemExit("Smoke audit returned AUDIT_ERROR")
+              print("ERROR: Smoke audit produced zero reports.")
+              sys.exit(1)
+          print(f"Smoke audit complete: {data['report_count']} report(s) produced.")
+          report = data["reports"][0]
+          print(f"  Plugin: {report.get('plugin_name')} @ {report.get('release')}")
+          print(f"  Classification: {report.get('final_classification')}")
+          if report.get("final_classification") == "AUDIT_ERROR":
+              print("ERROR: Smoke audit returned AUDIT_ERROR.")
+              sys.exit(1)
 
-          trivy = next((s for s in r.get("scanner_statuses", []) if s.get("name") == "trivy"), None)
+          trivy = next(
+              (item for item in report.get("scanner_statuses", []) if item.get("name") == "trivy"),
+              None,
+          )
           trivy_detail = (trivy or {}).get("detail") or ""
           if "artifact scanned (" not in trivy_detail or "source scanned (" not in trivy_detail:
-              raise SystemExit(f"Trivy dual-scope coverage missing: {trivy_detail!r}")
+              print(f"ERROR: Trivy did not prove dual-scope coverage: {trivy_detail!r}")
+              sys.exit(1)
+          print(f"  Trivy: {trivy_detail}")
 
-          semgrep = next((s for s in r.get("scanner_statuses", []) if s.get("name") == "semgrep"), None)
+          semgrep = next(
+              (item for item in report.get("scanner_statuses", []) if item.get("name") == "semgrep"),
+              None,
+          )
+          semgrep_status = (semgrep or {}).get("status") or ""
           semgrep_detail = (semgrep or {}).get("detail") or ""
-          if (semgrep or {}).get("status") not in {"passed", "found_issue"}:
-              raise SystemExit(f"Semgrep did not complete: {semgrep!r}")
+          if semgrep_status not in {"passed", "found_issue"}:
+              print(f"ERROR: Semgrep did not complete: {semgrep!r}")
+              sys.exit(1)
           if "artifact scanned (" not in semgrep_detail or "source scanned (" not in semgrep_detail:
-              raise SystemExit(f"Semgrep dual-scope coverage missing: {semgrep_detail!r}")
+              print(f"ERROR: Semgrep did not prove dual-scope coverage: {semgrep_detail!r}")
+              sys.exit(1)
+          print(f"  Semgrep: {semgrep_detail}")
 
-          capa = next((s for s in r.get("scanner_statuses", []) if s.get("name") == "capa"), None)
+          capa = next(
+              (item for item in report.get("scanner_statuses", []) if item.get("name") == "capa"),
+              None,
+          )
+          capa_status = (capa or {}).get("status") or ""
           capa_detail = (capa or {}).get("detail") or ""
-          if (capa or {}).get("status") != "passed" or "binary/binaries analyzed" not in capa_detail:
-              raise SystemExit(f"capa bounded artifact analysis missing: {capa!r}")
+          if capa_status != "passed" or "binary/binaries analyzed" not in capa_detail:
+              print(f"ERROR: capa did not produce bounded artifact coverage: {capa!r}")
+              sys.exit(1)
+          print(f"  capa: {capa_detail}")
 
-          source_diff = r.get("source_artifact_diff") or {}
-          if not source_diff.get("checked") or int(source_diff.get("same_path_compared") or 0) < 1:
-              raise SystemExit(f"Exact-source comparison incomplete: {source_diff!r}")
+          source_diff = report.get("source_artifact_diff") or {}
+          same_path_compared = int(source_diff.get("same_path_compared") or 0)
+          if not source_diff.get("checked") or same_path_compared < 1:
+              print(
+                  "ERROR: Exact-source content comparison did not prove same-path "
+                  f"coverage: {source_diff!r}"
+              )
+              sys.exit(1)
+          expected_stamps = len(
+              source_diff.get("expected_build_stamp_differences") or []
+          )
+          print(
+              f"  Source comparison: {same_path_compared} same-path files; "
+              f"{expected_stamps} expected metadata build stamp(s)"
+          )
 
-          destinations = r.get("network_destinations") or []
-          if not destinations:
-              raise SystemExit("Structured network provenance is missing")
+          destinations = report.get("network_destinations") or []
+          network_summary = report.get("network_destination_summary") or {}
+          if not destinations or int(network_summary.get("total_destinations") or 0) < 1:
+              print("ERROR: Structured network provenance is missing.")
+              sys.exit(1)
+          source_occurrences = int(network_summary.get("source_occurrences") or 0)
+          if source_occurrences < 1:
+              print("ERROR: Network provenance has no source occurrences.")
+              sys.exit(1)
           for destination in destinations:
-              for source in destination.get("sources") or []:
+              sources = destination.get("sources") or []
+              if not sources:
+                  print(f"ERROR: Destination has no source evidence: {destination!r}")
+                  sys.exit(1)
+              for source in sources:
+                  if not source.get("path") or int(source.get("line") or 0) < 1:
+                      print(f"ERROR: Invalid source location: {source!r}")
+                      sys.exit(1)
+                  if not source.get("provenance"):
+                      print(f"ERROR: Missing source provenance: {source!r}")
+                      sys.exit(1)
                   report_url = source.get("url")
                   if report_url:
                       parsed = urlsplit(report_url)
-                      if parsed.username or parsed.password or parsed.query or parsed.fragment or parsed.path not in ("", "/"):
-                          raise SystemExit(f"Unredacted report URL: {report_url!r}")
-          print(f"capa: {capa_detail}")
-          print("Smoke audit controls passed")
+                      if (
+                          parsed.username
+                          or parsed.password
+                          or parsed.query
+                          or parsed.fragment
+                          or parsed.path not in ("", "/")
+                      ):
+                          print(f"ERROR: Unredacted report URL: {report_url!r}")
+                          sys.exit(1)
+          print(
+              "  Network provenance: "
+              f"{network_summary.get('total_destinations')} destinations; "
+              f"{network_summary.get('high_confidence')} high, "
+              f"{network_summary.get('medium_confidence')} medium, "
+              f"{network_summary.get('low_confidence')} low; "
+              f"{source_occurrences} source occurrences"
+          )
           PYEOF
         timeout-minutes: 30
 
