@@ -89,6 +89,7 @@ def finalize_capa_results(
     results: dict[str, dict[str, Any]],
 ) -> tuple[Any, dict[str, dict[str, Any]]]:
     """Make platform limitations and partial selected-target coverage explicit."""
+    unsupported = 0
     for result in results.values():
         if (
             result.get("status") == "skipped"
@@ -98,18 +99,30 @@ def finalize_capa_results(
                 "direct ARM64 ELF analysis is unsupported by the pinned "
                 "capa CLI backend; retain for manual binary review"
             )
+            unsupported += 1
 
     incomplete = sum(
         1 for result in results.values() if result.get("status") == "failed"
     )
-    if incomplete and getattr(status, "status", "") == "passed":
-        detail = str(getattr(status, "detail", "") or "")
+    current_status = getattr(status, "status", "")
+    detail = str(getattr(status, "detail", "") or "")
+    if incomplete and current_status == "passed":
         status = core_module.ScannerStatus(
             name="capa",
             status="failed",
             version=getattr(status, "version", None),
             detail=(
                 f"{detail}; coverage incomplete for {incomplete} selected "
+                "binary/binaries"
+            ),
+        )
+    elif unsupported and current_status == "passed":
+        status = core_module.ScannerStatus(
+            name="capa",
+            status="unsupported",
+            version=getattr(status, "version", None),
+            detail=(
+                f"{detail}; direct analysis unsupported for {unsupported} ARM64 "
                 "binary/binaries"
             ),
         )
