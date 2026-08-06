@@ -58,7 +58,8 @@ runs:
           uv sync \
             --project "$AUDITOR_SOURCE" \
             --frozen \
-            --no-dev
+            --no-dev \
+            --no-editable
 
         "$AUDITOR_COMMAND" --help > /dev/null
 
