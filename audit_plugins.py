@@ -29,6 +29,22 @@ from source_content_hardening import install as install_source_content_hardening
 from trivy_source_scanning import install as install_trivy_source_scanning
 from upstream_source_links import install as install_source_links
 
+# New optional scanners must be opt-in for custom or missing policies. The
+# repository's checked-in security-policy.yml explicitly enables capa, while a
+# caller that omits the setting retains the pre-capa behavior.
+_default_policy_without_capa = _core._default_policy
+
+
+def _default_policy_with_capa() -> dict:
+    policy = _default_policy_without_capa()
+    policy.setdefault("scanners", {}).setdefault(
+        "capa", {"enabled": False, "required": False}
+    )
+    return policy
+
+
+_core._default_policy = _default_policy_with_capa
+
 install_noise_filters(_core)
 install_network_destination_filters(_core)
 install_trivy_source_scanning(_core)
