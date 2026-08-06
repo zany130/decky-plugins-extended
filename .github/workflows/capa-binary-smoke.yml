@@ -75,13 +75,13 @@ jobs:
               required: false
           YAML
 
-      - name: Audit real plugin-owned ELF
+      - name: Audit small real plugin-owned ELF
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p capa-smoke-reports
           uv run python audit_plugins.py \
-            --repository https://github.com/Hooandee/panel-de-control \
+            --repository https://github.com/Wurielle/decky-launch-options \
             --policy "$RUNNER_TEMP/capa-smoke-policy.yml" \
             --output-dir capa-smoke-reports \
             --cache-dir "$RUNNER_TEMP/capa-cache" \
