@@ -36,7 +36,7 @@ runs:
         path: .decky-plugin-auditor
         persist-credentials: false
 
-    - name: Install pinned auditor wheel
+    - name: Install pinned auditor environment
       id: install
       shell: bash
       env:
@@ -54,8 +54,11 @@ runs:
           exit 1
         fi
 
-        uv venv "$AUDITOR_VENV" --python 3.12
-        uv pip install --python "$AUDITOR_VENV/bin/python" "$AUDITOR_SOURCE"
+        UV_PROJECT_ENVIRONMENT="$AUDITOR_VENV" \
+          uv sync \
+            --project "$AUDITOR_SOURCE" \
+            --frozen \
+            --no-dev
 
         "$AUDITOR_COMMAND" --help > /dev/null
 
