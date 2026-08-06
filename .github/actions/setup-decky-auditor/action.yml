@@ -17,6 +17,17 @@ outputs:
 runs:
   using: composite
   steps:
+    - name: Validate immutable auditor reference
+      shell: bash
+      env:
+        AUDITOR_REF: ${{ inputs.auditor-ref }}
+      run: |
+        set -euo pipefail
+        if [[ ! "$AUDITOR_REF" =~ ^[0-9a-f]{40}$ ]]; then
+          echo "::error::auditor-ref must be a full 40-character lowercase commit SHA"
+          exit 1
+        fi
+
     - name: Checkout pinned auditor source
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       with:
@@ -28,12 +39,20 @@ runs:
     - name: Install pinned auditor wheel
       id: install
       shell: bash
+      env:
+        AUDITOR_REF: ${{ inputs.auditor-ref }}
       run: |
         set -euo pipefail
 
         AUDITOR_SOURCE="$GITHUB_WORKSPACE/.decky-plugin-auditor"
         AUDITOR_VENV="$RUNNER_TEMP/decky-auditor-venv"
         AUDITOR_COMMAND="$AUDITOR_VENV/bin/decky-audit"
+        ACTUAL_REF=$(git -C "$AUDITOR_SOURCE" rev-parse HEAD)
+
+        if [[ "$ACTUAL_REF" != "$AUDITOR_REF" ]]; then
+          echo "::error::auditor checkout mismatch: expected $AUDITOR_REF, got $ACTUAL_REF"
+          exit 1
+        fi
 
         uv venv "$AUDITOR_VENV" --python 3.12
         uv pip install --python "$AUDITOR_VENV/bin/python" "$AUDITOR_SOURCE"
