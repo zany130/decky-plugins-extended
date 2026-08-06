@@ -11,6 +11,7 @@ on:
       - additional_plugins.txt
       - audit_plugins.py
       - capa_binary_analysis.py
+      - scripts/install_capa.sh
       - metadata_build_stamp_filters.py
       - network_destination_filters.py
       - semgrep_source_scanning.py
@@ -25,6 +26,7 @@ on:
       - pyproject.toml
       - uv.lock
       - tests/**
+      - .github/workflows/capa-binary-smoke.yml
       - .github/workflows/plugin-security-audit.yml
       - .github/workflows/scheduled-security-audit.yml
   workflow_dispatch:
@@ -77,11 +79,14 @@ jobs:
           sudo apt-get install -y --no-install-recommends trivy || echo "::warning::trivy install failed; audit will skip it"
 
           uv tool install --python 3.12 --with setuptools==70.3.0 semgrep==1.132.0
-          uv tool install --python 3.12 flare-capa==9.4.0
-          TOOL_BIN_DIR=$(uv tool dir --bin)
-          echo "$TOOL_BIN_DIR" >> "$GITHUB_PATH"
-          export PATH="$TOOL_BIN_DIR:$PATH"
+          SEMGREP_BIN_DIR=$(uv tool dir --bin)
+          echo "$SEMGREP_BIN_DIR" >> "$GITHUB_PATH"
+          export PATH="$SEMGREP_BIN_DIR:$PATH"
           semgrep --version --disable-version-check
+
+          bash scripts/install_capa.sh "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.local/bin:$PATH"
           capa --version
 
           sudo apt-get install -y --no-install-recommends clamav || {
@@ -171,11 +176,14 @@ jobs:
       - name: Install pinned analysis tools
         run: |
           uv tool install --python 3.12 --with setuptools==70.3.0 semgrep==1.132.0
-          uv tool install --python 3.12 flare-capa==9.4.0
-          TOOL_BIN_DIR=$(uv tool dir --bin)
-          echo "$TOOL_BIN_DIR" >> "$GITHUB_PATH"
-          export PATH="$TOOL_BIN_DIR:$PATH"
+          SEMGREP_BIN_DIR=$(uv tool dir --bin)
+          echo "$SEMGREP_BIN_DIR" >> "$GITHUB_PATH"
+          export PATH="$SEMGREP_BIN_DIR:$PATH"
           semgrep --version --disable-version-check
+
+          bash scripts/install_capa.sh "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.local/bin:$PATH"
           capa --version
 
       - name: Validate Decky Semgrep rules
@@ -253,11 +261,13 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends trivy || exit 1
           uv tool install --python 3.12 --with setuptools==70.3.0 semgrep==1.132.0
-          uv tool install --python 3.12 flare-capa==9.4.0
-          TOOL_BIN_DIR=$(uv tool dir --bin)
-          echo "$TOOL_BIN_DIR" >> "$GITHUB_PATH"
-          export PATH="$TOOL_BIN_DIR:$PATH"
+          SEMGREP_BIN_DIR=$(uv tool dir --bin)
+          echo "$SEMGREP_BIN_DIR" >> "$GITHUB_PATH"
+          export PATH="$SEMGREP_BIN_DIR:$PATH"
           semgrep --version --disable-version-check
+          bash scripts/install_capa.sh "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.local/bin:$PATH"
           capa --version
           sudo apt-get install -y --no-install-recommends clamav || exit 1
           sudo systemctl stop clamav-freshclam || true
