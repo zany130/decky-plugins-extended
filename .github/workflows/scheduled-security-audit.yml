@@ -2,12 +2,21 @@
 #
 # Re-audits every configured plugin repository on a schedule to detect
 # new releases or updated artifacts that may introduce security issues.
+#
 # Cache results by artifact SHA-256 so unchanged releases are not re-audited.
+# Never automatically approves allowlist entries or modifies the allowlist.
+#
+# Cache key design:
+#   - Restore key: audit-cache-v{POLICY_VERSION}-{hash(policy+impl)}
+#   - Save key: audit-cache-v{POLICY_VERSION}-{hash(policy+impl)}-{run_id}
+# This allows cache hits for compatible policy versions while writing a new
+# entry after each run (so changes propagate on the next run).
 
 name: Scheduled Security Audit
 
 on:
   schedule:
+    # Every 6 hours — matches the existing catalog-refresh schedule.
     - cron: "0 */6 * * *"
   workflow_dispatch:
     inputs:
@@ -32,14 +41,17 @@ jobs:
 
     steps:
       - name: Checkout repository
+        # actions/checkout v4.2.2
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Install uv
+        # astral-sh/setup-uv v9.0.0
         uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
         with:
           enable-cache: true
 
       - name: Set up Python
+        # actions/setup-python v7.0.0
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version-file: "pyproject.toml"
@@ -47,6 +59,8 @@ jobs:
       - name: Compute audit cache key
         id: cache-key
         run: |
+          # Incorporate policy version and every audit implementation module
+          # into the key so filter changes cannot reuse stale audit reports.
           POLICY_HASH=$(sha256sum \
             security-policy.yml \
             semgrep-rules.yml \
@@ -74,6 +88,8 @@ jobs:
 
       - name: Restore audit cache
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.skip_cache == false }}
+        # Restore-only action avoids a second automatic save during post-job cleanup.
+        # actions/cache v4.2.3
         uses: actions/cache/restore@5a3ec84eff668545956fd18022155c47e93e2684
         with:
           path: .audit-cache
@@ -100,6 +116,8 @@ jobs:
           export PATH="$SEMGREP_BIN_DIR:$PATH"
           semgrep --version --disable-version-check
 
+          # Official standalone capa v9.4.0, including matching embedded rules,
+          # verified against the release asset's published SHA-256.
           bash scripts/install_capa.sh "$HOME/.local/bin"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
           export PATH="$HOME/.local/bin:$PATH"
@@ -109,8 +127,11 @@ jobs:
             echo "::error::clamav install failed"
             exit 1
           }
+          # Stop the auto-updater daemon so freshclam can run without lock conflicts.
           sudo systemctl stop clamav-freshclam || true
+          # Update signature databases; fail loudly on error.
           sudo freshclam
+          # Verify that usable signature databases are present.
           clamscan --version || { echo "::error::clamscan unavailable after install"; exit 1; }
           ls /var/lib/clamav/*.c?d 2>/dev/null || {
             echo "::error::No ClamAV signature databases found after freshclam"
@@ -124,10 +145,14 @@ jobs:
           SKIP_AUDIT_CACHE: ${{ github.event_name == 'workflow_dispatch' && inputs.skip_cache || false }}
         run: |
           mkdir -p security-reports
+
           if [[ "$SKIP_AUDIT_CACHE" == "true" ]]; then
             echo "Running a complete audit without restoring cached reports."
+            # Start from an empty cache, but allow this run to repopulate it for
+            # subsequent scheduled audits.
             rm -rf .audit-cache
           fi
+
           uv run python audit_plugins.py \
             --all \
             --output-dir security-reports \
@@ -135,7 +160,11 @@ jobs:
         timeout-minutes: 100
 
       - name: Save audit cache
+        # Save cache after scanning so newly generated reports persist for the
+        # next normal run, including after an intentionally cacheless run.
+        # A cache-save failure must not be interpreted as a passing audit.
         if: always()
+        # actions/cache v4.2.3
         uses: actions/cache/save@5a3ec84eff668545956fd18022155c47e93e2684
         with:
           path: .audit-cache
@@ -153,6 +182,7 @@ jobs:
 
       - name: Upload audit reports
         if: always()
+        # actions/upload-artifact v4.6.2
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: scheduled-security-audit-reports
