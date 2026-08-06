@@ -10,6 +10,7 @@ on:
       - audit_plugins.py
       - audit_plugins_core.py
       - capa_binary_analysis.py
+      - scripts/install_capa.sh
       - security-policy.yml
       - tests/test_capa_binary_analysis.py
       - .github/workflows/capa-binary-smoke.yml
@@ -39,12 +40,11 @@ jobs:
         with:
           python-version-file: pyproject.toml
 
-      - name: Install pinned capa
+      - name: Install pinned capa with embedded rules
         run: |
-          uv tool install --python 3.12 flare-capa==9.4.0
-          TOOL_BIN_DIR=$(uv tool dir --bin)
-          echo "$TOOL_BIN_DIR" >> "$GITHUB_PATH"
-          export PATH="$TOOL_BIN_DIR:$PATH"
+          bash scripts/install_capa.sh "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.local/bin:$PATH"
           capa --version
 
       - name: Create capa-only policy
