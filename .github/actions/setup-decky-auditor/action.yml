@@ -1,0 +1,44 @@
+name: Setup Decky Plugin Auditor
+description: Install the standalone Decky Plugin Auditor from an immutable commit
+
+inputs:
+  auditor-ref:
+    description: Immutable commit SHA from zany130/decky-plugin-auditor
+    required: true
+
+outputs:
+  command:
+    description: Absolute path to the installed decky-audit command
+    value: ${{ steps.install.outputs.command }}
+  source-directory:
+    description: Absolute path to the pinned auditor checkout
+    value: ${{ steps.install.outputs.source-directory }}
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout pinned auditor source
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      with:
+        repository: zany130/decky-plugin-auditor
+        ref: ${{ inputs.auditor-ref }}
+        path: .decky-plugin-auditor
+        persist-credentials: false
+
+    - name: Install pinned auditor wheel
+      id: install
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        AUDITOR_SOURCE="$GITHUB_WORKSPACE/.decky-plugin-auditor"
+        AUDITOR_VENV="$RUNNER_TEMP/decky-auditor-venv"
+        AUDITOR_COMMAND="$AUDITOR_VENV/bin/decky-audit"
+
+        uv venv "$AUDITOR_VENV" --python 3.12
+        uv pip install --python "$AUDITOR_VENV/bin/python" "$AUDITOR_SOURCE"
+
+        "$AUDITOR_COMMAND" --help > /dev/null
+
+        echo "command=$AUDITOR_COMMAND" >> "$GITHUB_OUTPUT"
+        echo "source-directory=$AUDITOR_SOURCE" >> "$GITHUB_OUTPUT"
