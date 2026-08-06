@@ -10,10 +10,12 @@ on:
       - audit_plugins.py
       - audit_plugins_core.py
       - capa_binary_analysis.py
+      - capa_review_filters.py
       - capa-fixtures/**
       - scripts/install_capa.sh
       - security-policy.yml
       - tests/test_capa_binary_analysis.py
+      - tests/test_capa_review_filters.py
       - .github/workflows/capa-binary-smoke.yml
       - .github/workflows/plugin-security-audit.yml
   workflow_dispatch:
