@@ -79,7 +79,9 @@ jobs:
             semgrep-fixtures \
             > "$RUNNER_TEMP/semgrep-rule-results.json"
           python3 - "$RUNNER_TEMP/semgrep-rule-results.json" <<'PYEOF'
-          import collections, json, sys
+          import collections
+          import json
+          import sys
 
           data = json.load(open(sys.argv[1], encoding="utf-8"))
           errors = data.get("errors") or []
