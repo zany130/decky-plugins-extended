@@ -64,21 +64,131 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install pinned standalone auditor for compatibility tests
+      - name: Install pinned standalone auditor for compatibility check
         id: auditor
         uses: ./.github/actions/setup-decky-auditor
         with:
           auditor-ref: ${{ env.DECKY_AUDITOR_REF }}
 
+      - name: Sync frozen store environment
+        run: |
+          set -euo pipefail
+          uv sync --frozen --no-dev
+
       - name: Run store unit tests
         env:
           GITHUB_TOKEN: test-token
+        run: |
+          set -euo pipefail
+          uv run --frozen python -m unittest discover -s tests -v
+        timeout-minutes: 5
+
+      - name: Verify generator and auditor release selection agree
+        env:
           AUDITOR_COMMAND: ${{ steps.auditor.outputs.command }}
         run: |
           set -euo pipefail
+
+          RELEASES_FILE="$RUNNER_TEMP/release-selection-fixture.json"
+          cat > "$RELEASES_FILE" <<'JSON'
+          [
+            {
+              "tag_name": "v1.9.0",
+              "prerelease": false,
+              "published_at": "2026-08-01T00:00:00Z",
+              "assets": [
+                {
+                  "name": "plugin.zip",
+                  "browser_download_url": "https://example.invalid/190.zip"
+                }
+              ]
+            },
+            {
+              "tag_name": "v1.10.0",
+              "prerelease": false,
+              "published_at": "2026-07-01T00:00:00Z",
+              "assets": [
+                {
+                  "name": "plugin.zip",
+                  "browser_download_url": "https://example.invalid/1100.zip"
+                }
+              ]
+            },
+            {
+              "tag_name": "v2.0.0-beta.1",
+              "prerelease": true,
+              "published_at": "2026-09-01T00:00:00Z",
+              "assets": [
+                {
+                  "name": "plugin.zip",
+                  "browser_download_url": "https://example.invalid/200b1.zip"
+                }
+              ]
+            },
+            {
+              "tag_name": "v3.0.0",
+              "prerelease": false,
+              "published_at": "2026-10-01T00:00:00Z",
+              "assets": [
+                {"name": "a.zip"},
+                {"name": "b.zip"}
+              ]
+            }
+          ]
+          JSON
+
+          STORE_SELECTED=$(
+            uv run --frozen python - "$RELEASES_FILE" <<'PY'
+          import json
+          import sys
+
+          import plugin_release_utils as release_utils
+
+          with open(sys.argv[1], encoding="utf-8") as handle:
+              releases = json.load(handle)
+          selected = release_utils.select_best_release(releases, allow_prerelease=False)
+          asset = release_utils.get_zip_asset(selected)
+          print(json.dumps(
+              {
+                  "tag_name": selected["tag_name"],
+                  "artifact": asset["browser_download_url"],
+              },
+              sort_keys=True,
+          ))
+          PY
+          )
+
           AUDITOR_PYTHON="$(dirname "$AUDITOR_COMMAND")/python"
-          "$AUDITOR_PYTHON" -m unittest discover -s tests -v
-        timeout-minutes: 5
+          AUDITOR_SELECTED=$(
+            "$AUDITOR_PYTHON" - "$RELEASES_FILE" <<'PY'
+          import json
+          import sys
+
+          import audit_plugins
+          import plugin_release_utils as release_utils
+
+          with open(sys.argv[1], encoding="utf-8") as handle:
+              releases = json.load(handle)
+          selected = audit_plugins.find_best_release(releases)
+          asset = release_utils.get_zip_asset(selected)
+          print(json.dumps(
+              {
+                  "tag_name": selected["tag_name"],
+                  "artifact": asset["browser_download_url"],
+              },
+              sort_keys=True,
+          ))
+          PY
+          )
+
+          if [[ "$STORE_SELECTED" != "$AUDITOR_SELECTED" ]]; then
+            echo "::error::release-selection mismatch"
+            echo "store:   $STORE_SELECTED"
+            echo "auditor: $AUDITOR_SELECTED"
+            exit 1
+          fi
+
+          echo "Release selection matches: $STORE_SELECTED"
 
   audit:
     name: Security Audit
