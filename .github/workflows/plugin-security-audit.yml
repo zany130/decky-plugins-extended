@@ -11,15 +11,19 @@ env:
 on:
   pull_request:
     paths:
+      - README.md
       - additional_plugins.txt
       - security-policy.yml
       - security-allowlist.yml
       - generate_json.py
       - check_for_updates.py
+      - plugin_release_utils.py
       - pyproject.toml
       - uv.lock
+      - static/**
       - tests/**
       - .github/actions/setup-decky-auditor/**
+      - .github/workflows/generate.yml
       - .github/workflows/plugin-security-audit.yml
       - .github/workflows/scheduled-security-audit.yml
   workflow_dispatch:
@@ -44,7 +48,7 @@ jobs:
   store-tests:
     name: Store Unit Tests
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout store
@@ -60,12 +64,20 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install pinned standalone auditor for compatibility tests
+        id: auditor
+        uses: ./.github/actions/setup-decky-auditor
+        with:
+          auditor-ref: ${{ env.DECKY_AUDITOR_REF }}
+
       - name: Run store unit tests
         env:
           GITHUB_TOKEN: test-token
+          AUDITOR_COMMAND: ${{ steps.auditor.outputs.command }}
         run: |
           set -euo pipefail
-          uv run python -m unittest discover -s tests -v
+          AUDITOR_PYTHON="$(dirname "$AUDITOR_COMMAND")/python"
+          "$AUDITOR_PYTHON" -m unittest discover -s tests -v
         timeout-minutes: 5
 
   audit:
