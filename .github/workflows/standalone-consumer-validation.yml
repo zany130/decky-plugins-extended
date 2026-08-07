@@ -63,7 +63,7 @@ jobs:
 
           git init "$STORE_SOURCE"
           git -C "$STORE_SOURCE" remote add origin "https://github.com/${STORE_REPOSITORY}.git"
-          git -C "$STORE_SOURCE" fetch --depth=1 origin "$STORE_HEAD_SHA"
+          git -C "$STORE_SOURCE" fetch --depth=1 origin "refs/pull/${{ github.event.pull_request.number }}/head"
           git -C "$STORE_SOURCE" checkout --detach FETCH_HEAD
 
           git init "$AUDITOR_SOURCE"
@@ -92,7 +92,8 @@ jobs:
             uv sync \
               --project "$STORE_SOURCE" \
               --frozen \
-              --no-dev
+              --no-dev \
+              --no-editable
 
           UV_PROJECT_ENVIRONMENT="$AUDITOR_VENV" \
             uv sync \
