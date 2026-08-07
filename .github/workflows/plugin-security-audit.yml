@@ -11,16 +11,21 @@ env:
 on:
   pull_request:
     paths:
+      - README.md
       - additional_plugins.txt
       - security-policy.yml
       - security-allowlist.yml
-      - semgrep-rules.yml
-      - semgrep-fixtures/**
+      - generate_json.py
+      - check_for_updates.py
+      - plugin_release_utils.py
+      - pyproject.toml
+      - uv.lock
+      - static/**
       - tests/**
       - .github/actions/setup-decky-auditor/**
+      - .github/workflows/generate.yml
       - .github/workflows/plugin-security-audit.yml
       - .github/workflows/scheduled-security-audit.yml
-      - .github/workflows/standalone-consumer-validation.yml
   workflow_dispatch:
     inputs:
       mode:
@@ -40,8 +45,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  unit-tests:
-    name: Unit Tests
+  store-tests:
+    name: Store Unit Tests
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -59,58 +64,131 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install pinned Semgrep
+      - name: Install pinned standalone auditor for compatibility check
+        id: auditor
+        uses: ./.github/actions/setup-decky-auditor
+        with:
+          auditor-ref: ${{ env.DECKY_AUDITOR_REF }}
+
+      - name: Sync frozen store environment
         run: |
           set -euo pipefail
-          uv tool install --python 3.12 --with setuptools==70.3.0 semgrep==1.132.0
-          SEMGREP_BIN_DIR=$(uv tool dir --bin)
-          echo "$SEMGREP_BIN_DIR" >> "$GITHUB_PATH"
-          export PATH="$SEMGREP_BIN_DIR:$PATH"
-          semgrep --version --disable-version-check
+          uv sync --frozen --no-dev
 
-      - name: Validate Semgrep rule fixture contracts
-        run: |
-          set -euo pipefail
-          semgrep \
-            --config semgrep-rules.yml \
-            --json \
-            --metrics=off \
-            --disable-version-check \
-            semgrep-fixtures \
-            > "$RUNNER_TEMP/semgrep-rule-results.json"
-          python3 - "$RUNNER_TEMP/semgrep-rule-results.json" <<'PYEOF'
-          import collections
-          import json
-          import sys
-
-          data = json.load(open(sys.argv[1], encoding="utf-8"))
-          errors = data.get("errors") or []
-          if errors:
-              print(f"ERROR: Semgrep rule fixtures produced errors: {errors!r}")
-              raise SystemExit(1)
-          counts = collections.Counter(
-              result.get("check_id") for result in data.get("results") or []
-          )
-          expected = collections.Counter({
-              "decky.python.dynamic-execution": 1,
-              "decky.python.shell-command": 1,
-              "decky.javascript.dynamic-execution": 2,
-              "decky.javascript.child-process-exec": 1,
-              "decky.generic.private-key": 1,
-          })
-          if counts != expected:
-              print(f"ERROR: Semgrep rule fixture mismatch: expected={expected}, actual={counts}")
-              raise SystemExit(1)
-          print(f"Semgrep rule controls passed: {sum(counts.values())} expected matches")
-          PYEOF
-
-      - name: Run unit tests
+      - name: Run store unit tests
         env:
           GITHUB_TOKEN: test-token
         run: |
           set -euo pipefail
-          uv run python -m unittest discover -s tests -v
+          uv run --frozen python -m unittest discover -s tests -v
         timeout-minutes: 5
+
+      - name: Verify generator and auditor release selection agree
+        env:
+          AUDITOR_COMMAND: ${{ steps.auditor.outputs.command }}
+        run: |
+          set -euo pipefail
+
+          RELEASES_FILE="$RUNNER_TEMP/release-selection-fixture.json"
+          cat > "$RELEASES_FILE" <<'JSON'
+          [
+            {
+              "tag_name": "v1.9.0",
+              "prerelease": false,
+              "published_at": "2026-08-01T00:00:00Z",
+              "assets": [
+                {
+                  "name": "plugin.zip",
+                  "browser_download_url": "https://example.invalid/190.zip"
+                }
+              ]
+            },
+            {
+              "tag_name": "v1.10.0",
+              "prerelease": false,
+              "published_at": "2026-07-01T00:00:00Z",
+              "assets": [
+                {
+                  "name": "plugin.zip",
+                  "browser_download_url": "https://example.invalid/1100.zip"
+                }
+              ]
+            },
+            {
+              "tag_name": "v2.0.0-beta.1",
+              "prerelease": true,
+              "published_at": "2026-09-01T00:00:00Z",
+              "assets": [
+                {
+                  "name": "plugin.zip",
+                  "browser_download_url": "https://example.invalid/200b1.zip"
+                }
+              ]
+            },
+            {
+              "tag_name": "v3.0.0",
+              "prerelease": false,
+              "published_at": "2026-10-01T00:00:00Z",
+              "assets": [
+                {"name": "a.zip"},
+                {"name": "b.zip"}
+              ]
+            }
+          ]
+          JSON
+
+          STORE_SELECTED=$(
+            uv run --frozen python - "$RELEASES_FILE" <<'PY'
+          import json
+          import sys
+
+          import plugin_release_utils as release_utils
+
+          with open(sys.argv[1], encoding="utf-8") as handle:
+              releases = json.load(handle)
+          selected = release_utils.select_best_release(releases, allow_prerelease=False)
+          asset = release_utils.get_zip_asset(selected)
+          print(json.dumps(
+              {
+                  "tag_name": selected["tag_name"],
+                  "artifact": asset["browser_download_url"],
+              },
+              sort_keys=True,
+          ))
+          PY
+          )
+
+          AUDITOR_PYTHON="$(dirname "$AUDITOR_COMMAND")/python"
+          AUDITOR_SELECTED=$(
+            "$AUDITOR_PYTHON" - "$RELEASES_FILE" <<'PY'
+          import json
+          import sys
+
+          import audit_plugins
+          import plugin_release_utils as release_utils
+
+          with open(sys.argv[1], encoding="utf-8") as handle:
+              releases = json.load(handle)
+          selected = audit_plugins.find_best_release(releases)
+          asset = release_utils.get_zip_asset(selected)
+          print(json.dumps(
+              {
+                  "tag_name": selected["tag_name"],
+                  "artifact": asset["browser_download_url"],
+              },
+              sort_keys=True,
+          ))
+          PY
+          )
+
+          if [[ "$STORE_SELECTED" != "$AUDITOR_SELECTED" ]]; then
+            echo "::error::release-selection mismatch"
+            echo "store:   $STORE_SELECTED"
+            echo "auditor: $AUDITOR_SELECTED"
+            exit 1
+          fi
+
+          echo "Release selection matches: $STORE_SELECTED"
 
   audit:
     name: Security Audit
