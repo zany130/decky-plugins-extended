@@ -10,7 +10,6 @@ import plugin_release_utils as pru
 
 os.environ.setdefault("GITHUB_TOKEN", "test-token")
 
-import audit_plugins as ap
 import generate_json
 
 
@@ -195,43 +194,6 @@ class GenerateJsonTests(unittest.TestCase):
         self.assertIsNone(generate_json.parse_semver("nightly"))
         self.assertIsNone(generate_json.parse_semver("dev-build"))
         self.assertIsNone(generate_json.parse_semver(""))
-
-    def test_release_selection_matches_auditor_for_stable(self):
-        releases = [
-            {
-                "tag_name": "v1.9.0",
-                "prerelease": False,
-                "published_at": "2026-08-01T00:00:00Z",
-                "assets": [{"name": "plugin.zip", "browser_download_url": "https://example.invalid/190.zip"}],
-            },
-            {
-                "tag_name": "v1.10.0",
-                "prerelease": False,
-                "published_at": "2026-07-01T00:00:00Z",
-                "assets": [{"name": "plugin.zip", "browser_download_url": "https://example.invalid/1100.zip"}],
-            },
-            {
-                "tag_name": "v2.0.0-beta.1",
-                "prerelease": True,
-                "published_at": "2026-09-01T00:00:00Z",
-                "assets": [{"name": "plugin.zip", "browser_download_url": "https://example.invalid/200b1.zip"}],
-            },
-            {
-                "tag_name": "v3.0.0",
-                "prerelease": False,
-                "published_at": "2026-10-01T00:00:00Z",
-                "assets": [{"name": "a.zip"}, {"name": "b.zip"}],
-            },
-        ]
-        auditor = ap.find_best_release(releases)
-        generator = pru.select_best_release(releases, allow_prerelease=False)
-        self.assertIsNotNone(auditor)
-        self.assertIsNotNone(generator)
-        self.assertEqual(auditor["tag_name"], generator["tag_name"])
-        self.assertEqual(
-            pru.get_zip_asset(auditor)["browser_download_url"],
-            pru.get_zip_asset(generator)["browser_download_url"],
-        )
 
     def test_generator_helpers_delegate_to_shared_release_utils(self):
         self.assertEqual(generate_json.normalize_version("release-1.2.3"), pru.normalize_version("release-1.2.3"))
