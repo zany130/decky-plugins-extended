@@ -1,0 +1,262 @@
+# Migration validation that deliberately uses no marketplace/composite actions.
+# This keeps the consumer boundary test runnable even when GitHub's action
+# download service is degraded. It can be removed with the embedded auditor
+# after migration parity is accepted.
+
+name: Standalone Consumer Validation
+
+on:
+  pull_request:
+    paths:
+      - additional_plugins.txt
+      - security-policy.yml
+      - security-allowlist.yml
+      - audit_plugins.py
+      - audit_plugins_core.py
+      - artifact_diff_filters.py
+      - audit_noise_filters.py
+      - behavior_false_positive_filters.py
+      - credential_exposure_filters.py
+      - metadata_build_stamp_filters.py
+      - network_destination_filters.py
+      - plugin_release_utils.py
+      - report_layout_filters.py
+      - semgrep_source_link_hardening.py
+      - semgrep_source_scanning.py
+      - source_content_comparison.py
+      - source_content_hardening.py
+      - trivy_source_scanning.py
+      - upstream_source_links.py
+      - semgrep-rules.yml
+      - .github/actions/setup-decky-auditor/**
+      - .github/workflows/plugin-security-audit.yml
+      - .github/workflows/scheduled-security-audit.yml
+      - .github/workflows/standalone-consumer-validation.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: standalone-consumer-validation-${{ github.event.pull_request.head.sha }}
+  cancel-in-progress: false
+
+env:
+  DECKY_AUDITOR_REF: 06df90e77c55180f067bf5208938ddd398aa1907
+  UV_VERSION: 0.12.2
+
+jobs:
+  validate:
+    name: Frozen consumer parity and scanner smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Fetch exact store and auditor revisions
+        env:
+          STORE_REPOSITORY: ${{ github.repository }}
+          STORE_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+
+          STORE_SOURCE="$RUNNER_TEMP/store"
+          AUDITOR_SOURCE="$RUNNER_TEMP/auditor"
+
+          git init "$STORE_SOURCE"
+          git -C "$STORE_SOURCE" remote add origin "https://github.com/${STORE_REPOSITORY}.git"
+          git -C "$STORE_SOURCE" fetch --depth=1 origin "refs/pull/${{ github.event.pull_request.number }}/head"
+          git -C "$STORE_SOURCE" checkout --detach FETCH_HEAD
+
+          git init "$AUDITOR_SOURCE"
+          git -C "$AUDITOR_SOURCE" remote add origin "https://github.com/zany130/decky-plugin-auditor.git"
+          git -C "$AUDITOR_SOURCE" fetch --depth=1 origin "$DECKY_AUDITOR_REF"
+          git -C "$AUDITOR_SOURCE" checkout --detach FETCH_HEAD
+
+          [[ "$(git -C "$STORE_SOURCE" rev-parse HEAD)" == "$STORE_HEAD_SHA" ]]
+          [[ "$(git -C "$AUDITOR_SOURCE" rev-parse HEAD)" == "$DECKY_AUDITOR_REF" ]]
+
+          echo "STORE_SOURCE=$STORE_SOURCE" >> "$GITHUB_ENV"
+          echo "AUDITOR_SOURCE=$AUDITOR_SOURCE" >> "$GITHUB_ENV"
+
+      - name: Install frozen non-editable environments
+        run: |
+          set -euo pipefail
+
+          python3 -m pip install --user "uv==$UV_VERSION"
+          export PATH="$HOME/.local/bin:$PATH"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+          STORE_VENV="$RUNNER_TEMP/store-venv"
+          AUDITOR_VENV="$RUNNER_TEMP/auditor-venv"
+
+          UV_PROJECT_ENVIRONMENT="$STORE_VENV" \
+            uv sync \
+              --project "$STORE_SOURCE" \
+              --frozen \
+              --no-dev \
+              --no-editable
+
+          UV_PROJECT_ENVIRONMENT="$AUDITOR_VENV" \
+            uv sync \
+              --project "$AUDITOR_SOURCE" \
+              --frozen \
+              --no-dev \
+              --no-editable
+
+          "$AUDITOR_VENV/bin/decky-audit" --help > /dev/null
+
+          echo "STORE_PYTHON=$STORE_VENV/bin/python" >> "$GITHUB_ENV"
+          echo "AUDITOR_PYTHON=$AUDITOR_VENV/bin/python" >> "$GITHUB_ENV"
+          echo "AUDITOR_COMMAND=$AUDITOR_VENV/bin/decky-audit" >> "$GITHUB_ENV"
+
+      - name: Prove embedded and external-list report parity
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          CONSUMER_CONFIG="$RUNNER_TEMP/consumer-config"
+          mkdir -p "$CONSUMER_CONFIG"
+          printf '%s\n' 'https://github.com/beallio/SDH-Ludusavi' \
+            > "$CONSUMER_CONFIG/plugins.txt"
+
+          cat > "$CONSUMER_CONFIG/parity-policy.yml" <<'YAML'
+          version: "1"
+          enforcement:
+            mode: report-only
+          scanners:
+            clamav:
+              enabled: false
+              required: false
+            trivy:
+              enabled: false
+              required: false
+            semgrep:
+              enabled: false
+              required: false
+            osv_scanner:
+              enabled: false
+              required: false
+            source_artifact_diff:
+              enabled: true
+              required: true
+          YAML
+
+          rm -rf \
+            "$RUNNER_TEMP/embedded-reports" \
+            "$RUNNER_TEMP/standalone-reports" \
+            "$RUNNER_TEMP/embedded-cache" \
+            "$RUNNER_TEMP/standalone-cache"
+
+          (
+            cd "$STORE_SOURCE"
+            "$STORE_PYTHON" audit_plugins.py \
+              --repository https://github.com/beallio/SDH-Ludusavi \
+              --policy "$CONSUMER_CONFIG/parity-policy.yml" \
+              --allowlist "$STORE_SOURCE/security-allowlist.yml" \
+              --output-dir "$RUNNER_TEMP/embedded-reports" \
+              --cache-dir "$RUNNER_TEMP/embedded-cache" \
+              --skip-cache
+          )
+
+          (
+            cd "$CONSUMER_CONFIG"
+            "$AUDITOR_COMMAND" \
+              --all \
+              --plugins-file "$CONSUMER_CONFIG/plugins.txt" \
+              --policy "$CONSUMER_CONFIG/parity-policy.yml" \
+              --allowlist "$STORE_SOURCE/security-allowlist.yml" \
+              --output-dir "$RUNNER_TEMP/standalone-reports" \
+              --cache-dir "$RUNNER_TEMP/standalone-cache" \
+              --skip-cache
+          )
+
+          "$AUDITOR_PYTHON" \
+            "$AUDITOR_SOURCE/scripts/compare_audit_reports.py" \
+            "$RUNNER_TEMP/embedded-reports" \
+            "$RUNNER_TEMP/standalone-reports"
+
+      - name: Install full scanner set
+        run: |
+          set -euo pipefail
+
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            wget apt-transport-https gnupg lsb-release clamav
+
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key \
+            | gpg --dearmor \
+            | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb \
+            $(lsb_release -sc) main" \
+            | sudo tee /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends trivy
+
+          uv tool install --python 3.12 --with setuptools==70.3.0 semgrep==1.132.0
+          SEMGREP_BIN_DIR=$(uv tool dir --bin)
+          echo "$SEMGREP_BIN_DIR" >> "$GITHUB_PATH"
+          export PATH="$SEMGREP_BIN_DIR:$PATH"
+          semgrep --version --disable-version-check
+
+          sudo systemctl stop clamav-freshclam || true
+          sudo freshclam
+          clamscan --version
+          ls /var/lib/clamav/*.c?d 2>/dev/null
+
+      - name: Run full standalone scanner smoke audit
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf "$RUNNER_TEMP/smoke-reports" "$RUNNER_TEMP/smoke-cache"
+
+          "$AUDITOR_COMMAND" \
+            --repository https://github.com/beallio/SDH-Ludusavi \
+            --policy "$STORE_SOURCE/security-policy.yml" \
+            --allowlist "$STORE_SOURCE/security-allowlist.yml" \
+            --output-dir "$RUNNER_TEMP/smoke-reports" \
+            --cache-dir "$RUNNER_TEMP/smoke-cache" \
+            --skip-cache
+
+          "$AUDITOR_PYTHON" - <<'PYEOF'
+          import json
+          import os
+          from pathlib import Path
+
+          report_path = Path(os.environ["RUNNER_TEMP"]) / "smoke-reports/security-report.json"
+          data = json.loads(report_path.read_text(encoding="utf-8"))
+          if data.get("report_count") != 1:
+              raise SystemExit(f"Expected one smoke report, got {data.get('report_count')!r}")
+
+          report = data["reports"][0]
+          classification = report.get("final_classification")
+          if classification == "AUDIT_ERROR":
+              raise SystemExit("Standalone smoke audit returned AUDIT_ERROR")
+
+          statuses = {item.get("name"): item for item in report.get("scanner_statuses", [])}
+          for required in ("clamav", "trivy"):
+              status = (statuses.get(required) or {}).get("status")
+              if status not in {"passed", "found_issue"}:
+                  raise SystemExit(
+                      f"Required scanner {required} did not complete: {statuses.get(required)!r}"
+                  )
+
+          for dual_scope in ("trivy", "semgrep"):
+              item = statuses.get(dual_scope) or {}
+              detail = item.get("detail") or ""
+              if "artifact scanned (" not in detail or "source scanned (" not in detail:
+                  raise SystemExit(
+                      f"{dual_scope} did not prove dual-scope coverage: {item!r}"
+                  )
+
+          source_diff = report.get("source_artifact_diff") or {}
+          if not source_diff.get("checked") or int(source_diff.get("same_path_compared") or 0) < 1:
+              raise SystemExit(
+                  f"Exact-source content comparison did not complete: {source_diff!r}"
+              )
+
+          print(
+              f"Standalone consumer validation passed: {report.get('plugin_name')} "
+              f"@ {report.get('release')} -> {classification}"
+          )
+          PYEOF

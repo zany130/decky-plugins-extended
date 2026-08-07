@@ -1,0 +1,67 @@
+name: Setup Decky Plugin Auditor
+description: Install the standalone Decky Plugin Auditor from an immutable commit
+
+inputs:
+  auditor-ref:
+    description: Immutable commit SHA from zany130/decky-plugin-auditor
+    required: true
+
+outputs:
+  command:
+    description: Absolute path to the installed decky-audit command
+    value: ${{ steps.install.outputs.command }}
+  source-directory:
+    description: Absolute path to the pinned auditor checkout
+    value: ${{ steps.install.outputs.source-directory }}
+
+runs:
+  using: composite
+  steps:
+    - name: Validate immutable auditor reference
+      shell: bash
+      env:
+        AUDITOR_REF: ${{ inputs.auditor-ref }}
+      run: |
+        set -euo pipefail
+        if [[ ! "$AUDITOR_REF" =~ ^[0-9a-f]{40}$ ]]; then
+          echo "::error::auditor-ref must be a full 40-character lowercase commit SHA"
+          exit 1
+        fi
+
+    - name: Checkout pinned auditor source
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      with:
+        repository: zany130/decky-plugin-auditor
+        ref: ${{ inputs.auditor-ref }}
+        path: .decky-plugin-auditor
+        persist-credentials: false
+
+    - name: Install pinned auditor environment
+      id: install
+      shell: bash
+      env:
+        AUDITOR_REF: ${{ inputs.auditor-ref }}
+      run: |
+        set -euo pipefail
+
+        AUDITOR_SOURCE="$GITHUB_WORKSPACE/.decky-plugin-auditor"
+        AUDITOR_VENV="$RUNNER_TEMP/decky-auditor-venv"
+        AUDITOR_COMMAND="$AUDITOR_VENV/bin/decky-audit"
+        ACTUAL_REF=$(git -C "$AUDITOR_SOURCE" rev-parse HEAD)
+
+        if [[ "$ACTUAL_REF" != "$AUDITOR_REF" ]]; then
+          echo "::error::auditor checkout mismatch: expected $AUDITOR_REF, got $ACTUAL_REF"
+          exit 1
+        fi
+
+        UV_PROJECT_ENVIRONMENT="$AUDITOR_VENV" \
+          uv sync \
+            --project "$AUDITOR_SOURCE" \
+            --frozen \
+            --no-dev \
+            --no-editable
+
+        "$AUDITOR_COMMAND" --help > /dev/null
+
+        echo "command=$AUDITOR_COMMAND" >> "$GITHUB_OUTPUT"
+        echo "source-directory=$AUDITOR_SOURCE" >> "$GITHUB_OUTPUT"
