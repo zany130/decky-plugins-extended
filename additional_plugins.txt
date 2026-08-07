@@ -46,3 +46,5 @@ https://github.com/FrogTheFrog/moondeck
 https://github.com/Janleyx/DeckBridge
 https://github.com/datbird/docky
 https://github.com/Janleyx/decky-spotify-connect
+https://github.com/nucat176/decky-16x10-fixes
+https://github.com/jeanbottein/DeckaTV
