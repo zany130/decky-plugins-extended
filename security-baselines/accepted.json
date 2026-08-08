@@ -13,7 +13,68 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "127.0.0.1:1337"
+        },
+        {
+          "destination": "date-fns.org"
+        },
+        {
+          "destination": "developer.mozilla.org"
+        },
+        {
+          "destination": "discord.com"
+        },
+        {
+          "destination": "en.wikipedia.org"
+        },
+        {
+          "destination": "es5.github.io"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "img.shields.io"
+        },
+        {
+          "destination": "ko-fi.com"
+        },
+        {
+          "destination": "plugins.deckbrew.xyz"
+        },
+        {
+          "destination": "radashi.js.org"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "scaledinnovation.com"
+        },
+        {
+          "destination": "stackoverflow.com"
+        },
+        {
+          "destination": "tailwindcss.com"
+        },
+        {
+          "destination": "www.chartjs.org"
+        },
+        {
+          "destination": "www.geeksforgeeks.org"
+        },
+        {
+          "destination": "www.robertpenner.com"
+        },
+        {
+          "destination": "www.unicode.org"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "PlayTime",
       "policy_version": "1",
       "release": "v3.3.0",
@@ -152,7 +213,20 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "PASS_WITH_WARNINGS",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "decky.xyz"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "images.steamusercontent.com"
+        },
+        {
+          "destination": "img.shields.io"
+        }
+      ],
       "plugin_name": "steam-achievements",
       "policy_version": "1",
       "release": "v1.2.3",
@@ -292,7 +366,35 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "PASS_WITH_WARNINGS",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "127.0.0.1"
+        },
+        {
+          "destination": "127.0.0.1:1337"
+        },
+        {
+          "destination": "downloads.rclone.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "opengraph.githubassets.com"
+        },
+        {
+          "destination": "plugins.deckbrew.xyz"
+        },
+        {
+          "destination": "rclone.org"
+        },
+        {
+          "destination": "www.craig-wood.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "Game Sync",
       "policy_version": "1",
       "release": "20260530153903",
@@ -434,7 +536,20 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "PASS_WITH_WARNINGS",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "cdn.discordapp.com"
+        },
+        {
+          "destination": "discord.com"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "Discord Status",
       "policy_version": "1",
       "release": "v1.6.0",
@@ -569,7 +684,38 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "PASS_WITH_WARNINGS",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "127.0.0.1:65123"
+        },
+        {
+          "destination": "127.0.0.1:65124"
+        },
+        {
+          "destination": "127.0.0.1:8080"
+        },
+        {
+          "destination": "cdn.discordapp.com"
+        },
+        {
+          "destination": "discord.com"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "gitlab.freedesktop.org"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "steamloopback.host"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "Deckcord",
       "policy_version": "1",
       "release": "v1.0.9",
@@ -704,7 +850,53 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "PASS",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "api.steampowered.com"
+        },
+        {
+          "destination": "cdn.akamai.steamstatic.com"
+        },
+        {
+          "destination": "clan.cloudflare.steamstatic.com"
+        },
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "i.ytimg.com"
+        },
+        {
+          "destination": "mollusk.apis.ign.com"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "shared.akamai.steamstatic.com"
+        },
+        {
+          "destination": "steam-tracker.com"
+        },
+        {
+          "destination": "steamcommunity.com"
+        },
+        {
+          "destination": "store.steampowered.com"
+        },
+        {
+          "destination": "www.ign.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "Decky Metadata",
       "policy_version": "1",
       "release": "v0.3.6",
@@ -833,7 +1025,23 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "PASS_WITH_WARNINGS",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "Achievements Restored",
       "policy_version": "1",
       "release": "v0.2.0",
@@ -971,7 +1179,47 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "0.0.0.0"
+        },
+        {
+          "destination": "127.0.0.1"
+        },
+        {
+          "destination": "127.0.0.1:1337"
+        },
+        {
+          "destination": "127.0.0.1:8384"
+        },
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "cdn2.steamgriddb.com"
+        },
+        {
+          "destination": "fontawesome.com"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "img.shields.io"
+        },
+        {
+          "destination": "pypi.org"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "www.npmjs.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "SDH-Ludusavi",
       "policy_version": "1",
       "release": "v0.4.3",
@@ -1119,7 +1367,44 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "discord.gg"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "i.ytimg.com"
+        },
+        {
+          "destination": "images.steamusercontent.com"
+        },
+        {
+          "destination": "ko-fi.com"
+        },
+        {
+          "destination": "opengraph.githubassets.com"
+        },
+        {
+          "destination": "steamcommunity.com"
+        },
+        {
+          "destination": "storage.ko-fi.com"
+        },
+        {
+          "destination": "store.steampowered.com"
+        },
+        {
+          "destination": "www.w3.org"
+        },
+        {
+          "destination": "www.youtube.com"
+        },
+        {
+          "destination": "yt-dlp.org"
+        }
+      ],
       "plugin_name": "ThemeDeck",
       "policy_version": "1",
       "release": "v3.0.1",
@@ -1261,7 +1546,53 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "PASS_WITH_WARNINGS",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "code.google.com"
+        },
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "localforage.github.io"
+        },
+        {
+          "destination": "localhost:8080"
+        },
+        {
+          "destination": "mozilla.github.io"
+        },
+        {
+          "destination": "msdn.microsoft.com"
+        },
+        {
+          "destination": "protondb.schelstraete.org"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "stackoverflow.com"
+        },
+        {
+          "destination": "steamcommunity.com"
+        },
+        {
+          "destination": "store.steampowered.com"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.protondb.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "ProtonDB Badges",
       "policy_version": "1",
       "release": "v1.3.3",
@@ -1396,7 +1727,110 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "127.0.0.1:1337"
+        },
+        {
+          "destination": "ai.google.dev"
+        },
+        {
+          "destination": "ai.meta.com"
+        },
+        {
+          "destination": "aistudio.google.com"
+        },
+        {
+          "destination": "api.ocr.space"
+        },
+        {
+          "destination": "cdn.jsdelivr.net"
+        },
+        {
+          "destination": "chrome-infra-packages.appspot.com"
+        },
+        {
+          "destination": "chromium.googlesource.com"
+        },
+        {
+          "destination": "cloud.google.com"
+        },
+        {
+          "destination": "console.cloud.google.com"
+        },
+        {
+          "destination": "fonts.google.com"
+        },
+        {
+          "destination": "fonts.googleapis.com"
+        },
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "generativelanguage.googleapis.com"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "google.com"
+        },
+        {
+          "destination": "huggingface.co"
+        },
+        {
+          "destination": "img.shields.io"
+        },
+        {
+          "destination": "ko-fi.com"
+        },
+        {
+          "destination": "ns.adobe.com"
+        },
+        {
+          "destination": "ocr.space"
+        },
+        {
+          "destination": "opendyslexic.org"
+        },
+        {
+          "destination": "purl.org"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "source.chromium.org"
+        },
+        {
+          "destination": "translate.google.com"
+        },
+        {
+          "destination": "translate.googleapis.com"
+        },
+        {
+          "destination": "translation.googleapis.com"
+        },
+        {
+          "destination": "vision.googleapis.com"
+        },
+        {
+          "destination": "www.chromium.org"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.npmjs.com"
+        },
+        {
+          "destination": "www.valvesoftware.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "Decky Translator",
       "policy_version": "1",
       "release": "0.9.1",
@@ -1564,7 +1998,17 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "cdn.jsdelivr.net"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "NordVPN",
       "policy_version": "1",
       "release": "v1.1.0",
@@ -1706,7 +2150,29 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "localhost:8080"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.steamgriddb.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "RomM Sync",
       "policy_version": "1",
       "release": "decky-romm-sync-v0.30.0",
@@ -1852,7 +2318,29 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "127.0.0.1:47989"
+        },
+        {
+          "destination": "decky.xyz"
+        },
+        {
+          "destination": "flathub.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "localhost:47990"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "semver.org"
+        }
+      ],
       "plugin_name": "Docky",
       "policy_version": "1",
       "release": "v1.4.8",
@@ -2004,7 +2492,68 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "127.0.0.1:5335"
+        },
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "bug-collector-khaki.vercel.app"
+        },
+        {
+          "destination": "decky.xyz"
+        },
+        {
+          "destination": "discord.gg"
+        },
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "git.ngni.us"
+        },
+        {
+          "destination": "git.ngram.ca"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "img.shields.io"
+        },
+        {
+          "destination": "img.youtube.com"
+        },
+        {
+          "destination": "ko-fi.com"
+        },
+        {
+          "destination": "linktr.ee"
+        },
+        {
+          "destination": "opengraph.githubassets.com"
+        },
+        {
+          "destination": "steamloopback.host"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.patreon.com"
+        },
+        {
+          "destination": "www.w3.org"
+        },
+        {
+          "destination": "www.youtube.com"
+        },
+        {
+          "destination": "youtu.be"
+        }
+      ],
       "plugin_name": "Panel de Control",
       "policy_version": "1",
       "release": "panel-de-control-v0.34.0",
@@ -2163,7 +2712,44 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "0.0.0.0"
+        },
+        {
+          "destination": "127.0.0.1"
+        },
+        {
+          "destination": "127.0.0.1:9997"
+        },
+        {
+          "destination": "192.168.1.50"
+        },
+        {
+          "destination": "8.8.8.8"
+        },
+        {
+          "destination": "cdn.jsdelivr.net"
+        },
+        {
+          "destination": "decky.xyz"
+        },
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "Prysm",
       "policy_version": "1",
       "release": "v0.2.0",
@@ -2327,7 +2913,38 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "1.1.1.1"
+        },
+        {
+          "destination": "127.0.0.1"
+        },
+        {
+          "destination": "172.31.255.1"
+        },
+        {
+          "destination": "192.168.49.1"
+        },
+        {
+          "destination": "example.com"
+        },
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "opengraph.githubassets.com"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "DeckBridge",
       "policy_version": "1",
       "release": "v1.1.0",
@@ -2471,7 +3088,26 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "127.0.0.1"
+        },
+        {
+          "destination": "127.0.0.1:8977"
+        },
+        {
+          "destination": "accounts.spotify.com"
+        },
+        {
+          "destination": "api.spotify.com"
+        },
+        {
+          "destination": "opengraph.githubassets.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "Spotify Connect",
       "policy_version": "1",
       "release": "v1.0.0",
@@ -2607,7 +3243,41 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "0.0.0.0"
+        },
+        {
+          "destination": "bugs.python.org"
+        },
+        {
+          "destination": "datatracker.ietf.org"
+        },
+        {
+          "destination": "docs.python.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "localhost"
+        },
+        {
+          "destination": "opengraph.githubassets.com"
+        },
+        {
+          "destination": "websockets.readthedocs.io"
+        },
+        {
+          "destination": "www.iana.org"
+        },
+        {
+          "destination": "www.rfc-editor.org"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "DeckaTV",
       "policy_version": "1",
       "release": "v3.1.2",
@@ -2758,7 +3428,209 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "10.0.0.1"
+        },
+        {
+          "destination": "127.0.0.1"
+        },
+        {
+          "destination": "192.168.1.255"
+        },
+        {
+          "destination": "192.168.1.3"
+        },
+        {
+          "destination": "255.0.0.0"
+        },
+        {
+          "destination": "255.255.255.0"
+        },
+        {
+          "destination": "72.14.234.100"
+        },
+        {
+          "destination": "8.8.8.8"
+        },
+        {
+          "destination": "93.186.135.91"
+        },
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "arstechnica.com"
+        },
+        {
+          "destination": "askubuntu.com"
+        },
+        {
+          "destination": "blog.famzah.net"
+        },
+        {
+          "destination": "bootlin.com"
+        },
+        {
+          "destination": "bugs.python.org"
+        },
+        {
+          "destination": "chromium.googlesource.com"
+        },
+        {
+          "destination": "ci.appveyor.com"
+        },
+        {
+          "destination": "code.activestate.com"
+        },
+        {
+          "destination": "coveralls.io"
+        },
+        {
+          "destination": "cvs.opensolaris.org"
+        },
+        {
+          "destination": "decky.xyz"
+        },
+        {
+          "destination": "dev.eclipse.org"
+        },
+        {
+          "destination": "docs.python.org"
+        },
+        {
+          "destination": "eclipse.org"
+        },
+        {
+          "destination": "git.kernel.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "gitlab.com"
+        },
+        {
+          "destination": "gmpy.dev"
+        },
+        {
+          "destination": "goo.gl"
+        },
+        {
+          "destination": "groups.google.com"
+        },
+        {
+          "destination": "img.shields.io"
+        },
+        {
+          "destination": "linux.die.net"
+        },
+        {
+          "destination": "linuxdevcenter.com"
+        },
+        {
+          "destination": "lists.gt.net"
+        },
+        {
+          "destination": "lkml.org"
+        },
+        {
+          "destination": "mail.python.org"
+        },
+        {
+          "destination": "manpages.ubuntu.com"
+        },
+        {
+          "destination": "mqtt.org"
+        },
+        {
+          "destination": "msdn.microsoft.com"
+        },
+        {
+          "destination": "my.home-assistant.io"
+        },
+        {
+          "destination": "opencollective.com"
+        },
+        {
+          "destination": "people.freebsd.org"
+        },
+        {
+          "destination": "pepy.tech"
+        },
+        {
+          "destination": "psutil.readthedocs.io"
+        },
+        {
+          "destination": "publib.boulder.ibm.com"
+        },
+        {
+          "destination": "pypi.org"
+        },
+        {
+          "destination": "pypy.org"
+        },
+        {
+          "destination": "pyxr.sourceforge.net"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "readthedocs.org"
+        },
+        {
+          "destination": "repology.org"
+        },
+        {
+          "destination": "serverfault.com"
+        },
+        {
+          "destination": "stackoverflow.com"
+        },
+        {
+          "destination": "tidelift.com"
+        },
+        {
+          "destination": "travis-ci.org"
+        },
+        {
+          "destination": "twitter.com"
+        },
+        {
+          "destination": "unix.stackexchange.com"
+        },
+        {
+          "destination": "www.apache.org"
+        },
+        {
+          "destination": "www.cyberciti.biz"
+        },
+        {
+          "destination": "www.eclipse.org"
+        },
+        {
+          "destination": "www.eecs.harvard.edu"
+        },
+        {
+          "destination": "www.kernel.org"
+        },
+        {
+          "destination": "www.mozilla.org"
+        },
+        {
+          "destination": "www.opengroup.org"
+        },
+        {
+          "destination": "www.paypal.com"
+        },
+        {
+          "destination": "www.systutorials.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "MQTT Status",
       "policy_version": "1",
       "release": "v0.6.1",
@@ -2907,7 +3779,17 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "PASS_WITH_WARNINGS",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "opengraph.githubassets.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "DS5 Bridge",
       "policy_version": "1",
       "release": "v0.2.0",
@@ -3051,7 +3933,32 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "1.0.0.1"
+        },
+        {
+          "destination": "1.1.1.1"
+        },
+        {
+          "destination": "10.8.1.2"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "opengraph.githubassets.com"
+        },
+        {
+          "destination": "rutracker.org"
+        },
+        {
+          "destination": "www.google.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "vpn-deck",
       "policy_version": "1",
       "release": "v2.3.0",
@@ -3342,7 +4249,1322 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "0.0.0.0"
+        },
+        {
+          "destination": "127.0.0.1"
+        },
+        {
+          "destination": "127.0.0.1:8080"
+        },
+        {
+          "destination": "127.0.0.1:8443"
+        },
+        {
+          "destination": "192.168.1.0"
+        },
+        {
+          "destination": "192.168.1.1"
+        },
+        {
+          "destination": "192.168.100.0"
+        },
+        {
+          "destination": "8.8.8.8"
+        },
+        {
+          "destination": "aio-libs.discourse.group"
+        },
+        {
+          "destination": "aiohappyeyeballs.readthedocs.io"
+        },
+        {
+          "destination": "aiohttp.readthedocs.io"
+        },
+        {
+          "destination": "aiosignal.readthedocs.io"
+        },
+        {
+          "destination": "aka.ms"
+        },
+        {
+          "destination": "am.net"
+        },
+        {
+          "destination": "amazon.com"
+        },
+        {
+          "destination": "android.git.kernel.org"
+        },
+        {
+          "destination": "android.stackexchange.com"
+        },
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "api.gog.com"
+        },
+        {
+          "destination": "api.securityscorecards.dev"
+        },
+        {
+          "destination": "api.star-history.com"
+        },
+        {
+          "destination": "app.codecov.io"
+        },
+        {
+          "destination": "appdb.winehq.org"
+        },
+        {
+          "destination": "appldnld.apple.com"
+        },
+        {
+          "destination": "appldnld.apple.com.edgesuite.net"
+        },
+        {
+          "destination": "archive.org"
+        },
+        {
+          "destination": "article.gmane.org"
+        },
+        {
+          "destination": "assets.ubuntu.com"
+        },
+        {
+          "destination": "auth.gog.com"
+        },
+        {
+          "destination": "auth.xboxlive.com"
+        },
+        {
+          "destination": "backend.metacritic.com"
+        },
+        {
+          "destination": "backportstarfile.readthedocs.io"
+        },
+        {
+          "destination": "badge.fury.io"
+        },
+        {
+          "destination": "badges.gitter.im"
+        },
+        {
+          "destination": "bestpractices.coreinfrastructure.org"
+        },
+        {
+          "destination": "betterexplained.com"
+        },
+        {
+          "destination": "bford.info"
+        },
+        {
+          "destination": "bgstack15.ddns.net"
+        },
+        {
+          "destination": "birds.camden.rutgers.edu"
+        },
+        {
+          "destination": "bit.ly"
+        },
+        {
+          "destination": "bitbucket.org"
+        },
+        {
+          "destination": "blog.ganssle.io"
+        },
+        {
+          "destination": "blog.jaraco.com"
+        },
+        {
+          "destination": "blogs.msdn.microsoft.com"
+        },
+        {
+          "destination": "brew.sh"
+        },
+        {
+          "destination": "bugs.python.org"
+        },
+        {
+          "destination": "bugs.winehq.org"
+        },
+        {
+          "destination": "bugzilla.mindrot.org"
+        },
+        {
+          "destination": "bugzilla.openwatcom.org"
+        },
+        {
+          "destination": "builds.dotnet.microsoft.com"
+        },
+        {
+          "destination": "catalog.gamepass.com"
+        },
+        {
+          "destination": "cdn.akamai.steamstatic.com"
+        },
+        {
+          "destination": "cdn.jsdelivr.net"
+        },
+        {
+          "destination": "cdn.steamgriddb.com"
+        },
+        {
+          "destination": "cdnjs.cloudflare.com"
+        },
+        {
+          "destination": "cffi.readthedocs.io"
+        },
+        {
+          "destination": "cffi.readthedocs.org"
+        },
+        {
+          "destination": "cgit.freedesktop.org"
+        },
+        {
+          "destination": "chardet.feedparser.org"
+        },
+        {
+          "destination": "charset-normalizer.readthedocs.io"
+        },
+        {
+          "destination": "charsetnormalizerweb.ousret.now.sh"
+        },
+        {
+          "destination": "cloud.google.com"
+        },
+        {
+          "destination": "cloudstorage.gog.com"
+        },
+        {
+          "destination": "code.activestate.com"
+        },
+        {
+          "destination": "code.google.com"
+        },
+        {
+          "destination": "codeberg.org"
+        },
+        {
+          "destination": "codec.alshow.co.kr"
+        },
+        {
+          "destination": "codecov.io"
+        },
+        {
+          "destination": "codspeed.io"
+        },
+        {
+          "destination": "content-system.gog.com"
+        },
+        {
+          "destination": "copier.readthedocs.io"
+        },
+        {
+          "destination": "coveralls.io"
+        },
+        {
+          "destination": "cryptography.io"
+        },
+        {
+          "destination": "cs.opensource.google"
+        },
+        {
+          "destination": "cs.ucsb.edu"
+        },
+        {
+          "destination": "csclub.uwaterloo.ca"
+        },
+        {
+          "destination": "cython.org"
+        },
+        {
+          "destination": "datatracker.ietf.org"
+        },
+        {
+          "destination": "deb.debian.org"
+        },
+        {
+          "destination": "debian.fmi.uni-sofia.bg"
+        },
+        {
+          "destination": "deps.dev"
+        },
+        {
+          "destination": "descargas.udenar.edu.co"
+        },
+        {
+          "destination": "dev.to"
+        },
+        {
+          "destination": "developer.android.com"
+        },
+        {
+          "destination": "developer.apple.com"
+        },
+        {
+          "destination": "developer.mozilla.org"
+        },
+        {
+          "destination": "discord.com"
+        },
+        {
+          "destination": "discord.gg"
+        },
+        {
+          "destination": "discuss.python.org"
+        },
+        {
+          "destination": "displaycatalog.mp.microsoft.com"
+        },
+        {
+          "destination": "dl.flathub.org"
+        },
+        {
+          "destination": "docs.aiohttp.org"
+        },
+        {
+          "destination": "docs.aiosignal.org"
+        },
+        {
+          "destination": "docs.github.com"
+        },
+        {
+          "destination": "docs.microsoft.com"
+        },
+        {
+          "destination": "docs.pydantic.dev"
+        },
+        {
+          "destination": "docs.python.org"
+        },
+        {
+          "destination": "docs.rs"
+        },
+        {
+          "destination": "domain.tld"
+        },
+        {
+          "destination": "dotnet.microsoft.com"
+        },
+        {
+          "destination": "download-new.utorrent.com"
+        },
+        {
+          "destination": "download.adobe.com"
+        },
+        {
+          "destination": "download.betanews.com"
+        },
+        {
+          "destination": "download.civforum.de"
+        },
+        {
+          "destination": "download.kobobooks.com"
+        },
+        {
+          "destination": "download.lenovo.com"
+        },
+        {
+          "destination": "download.microsoft.com"
+        },
+        {
+          "destination": "download.mozilla.org"
+        },
+        {
+          "destination": "download.sysinternals.com"
+        },
+        {
+          "destination": "download.visualstudio.microsoft.com"
+        },
+        {
+          "destination": "download.windowsupdate.com"
+        },
+        {
+          "destination": "download1.rpmfusion.org"
+        },
+        {
+          "destination": "downloads.sourceforge.net"
+        },
+        {
+          "destination": "downloads.xiph.org"
+        },
+        {
+          "destination": "downloads.xvid.com"
+        },
+        {
+          "destination": "dvcs.w3.org"
+        },
+        {
+          "destination": "dxwnd.sourceforge.io"
+        },
+        {
+          "destination": "eli.thegreenplace.net"
+        },
+        {
+          "destination": "embed.gog.com"
+        },
+        {
+          "destination": "en.wikibooks.org"
+        },
+        {
+          "destination": "en.wikipedia.org"
+        },
+        {
+          "destination": "encoding.spec.whatwg.org"
+        },
+        {
+          "destination": "epicgames.com"
+        },
+        {
+          "destination": "erickt.github.io"
+        },
+        {
+          "destination": "example.bar"
+        },
+        {
+          "destination": "example.com"
+        },
+        {
+          "destination": "example.com:80"
+        },
+        {
+          "destination": "example.com:8080"
+        },
+        {
+          "destination": "example.org"
+        },
+        {
+          "destination": "ffdshow-tryout.sourceforge.io"
+        },
+        {
+          "destination": "filemare.com"
+        },
+        {
+          "destination": "filepreviews.io"
+        },
+        {
+          "destination": "files.gsc-game.com"
+        },
+        {
+          "destination": "files.holarse-linuxgaming.de"
+        },
+        {
+          "destination": "force-color.org"
+        },
+        {
+          "destination": "forum.paradoxplaza.com"
+        },
+        {
+          "destination": "foss.heptapod.net"
+        },
+        {
+          "destination": "fpdownload.macromedia.com"
+        },
+        {
+          "destination": "freedesktop.org"
+        },
+        {
+          "destination": "frippery.org"
+        },
+        {
+          "destination": "frozenlist.aio-libs.org"
+        },
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "ftp.gnome.org"
+        },
+        {
+          "destination": "ftp.gnu.org"
+        },
+        {
+          "destination": "ftp.hp.com"
+        },
+        {
+          "destination": "ftp.mozilla.org"
+        },
+        {
+          "destination": "ftp.njstar.com"
+        },
+        {
+          "destination": "ftp.us.debian.org"
+        },
+        {
+          "destination": "ftpmirror.your.org"
+        },
+        {
+          "destination": "galinet13.free.fr"
+        },
+        {
+          "destination": "gameplay.gog.com"
+        },
+        {
+          "destination": "gamesdb.gog.com"
+        },
+        {
+          "destination": "gaming.amazon.com"
+        },
+        {
+          "destination": "get.videolan.org"
+        },
+        {
+          "destination": "gist.github.com"
+        },
+        {
+          "destination": "git-scm.com"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "gitlab.com"
+        },
+        {
+          "destination": "gitter.im"
+        },
+        {
+          "destination": "globalcdn.nuget.org"
+        },
+        {
+          "destination": "go.microsoft.com"
+        },
+        {
+          "destination": "google.com"
+        },
+        {
+          "destination": "groups.google.com"
+        },
+        {
+          "destination": "gssv.xboxlive.com"
+        },
+        {
+          "destination": "hdl.handle.net"
+        },
+        {
+          "destination": "hell.pl"
+        },
+        {
+          "destination": "help.ea.com"
+        },
+        {
+          "destination": "help.steampowered.com"
+        },
+        {
+          "destination": "hg.mozilla.org"
+        },
+        {
+          "destination": "hg.python.org"
+        },
+        {
+          "destination": "host.com:80"
+        },
+        {
+          "destination": "host.name"
+        },
+        {
+          "destination": "html.spec.whatwg.org"
+        },
+        {
+          "destination": "httpbin.org"
+        },
+        {
+          "destination": "httpwg.org"
+        },
+        {
+          "destination": "hugovk.github.io"
+        },
+        {
+          "destination": "hynek.me"
+        },
+        {
+          "destination": "i.imgflip.com"
+        },
+        {
+          "destination": "img.shields.io"
+        },
+        {
+          "destination": "importlib-metadata.readthedocs.io"
+        },
+        {
+          "destination": "insights.linuxfoundation.org"
+        },
+        {
+          "destination": "ipinfo.io"
+        },
+        {
+          "destination": "itch.io"
+        },
+        {
+          "destination": "ja.osdn.net"
+        },
+        {
+          "destination": "jaracocontext.readthedocs.io"
+        },
+        {
+          "destination": "jaracofunctools.readthedocs.io"
+        },
+        {
+          "destination": "jaracotext.readthedocs.io"
+        },
+        {
+          "destination": "joe.rilla"
+        },
+        {
+          "destination": "json-schema.org"
+        },
+        {
+          "destination": "jsonschema-specifications.readthedocs.io"
+        },
+        {
+          "destination": "kb2.adobe.com"
+        },
+        {
+          "destination": "keepachangelog.com"
+        },
+        {
+          "destination": "kegel.com"
+        },
+        {
+          "destination": "kennethreitz.org"
+        },
+        {
+          "destination": "kiwiirc.com"
+        },
+        {
+          "destination": "kldp.net"
+        },
+        {
+          "destination": "ko-fi.com"
+        },
+        {
+          "destination": "launchpad.net"
+        },
+        {
+          "destination": "learn.microsoft.com"
+        },
+        {
+          "destination": "legendary.epicgames.com"
+        },
+        {
+          "destination": "legendary.gl"
+        },
+        {
+          "destination": "library-service.live.use1a.on.epicgames.com"
+        },
+        {
+          "destination": "llvm.org"
+        },
+        {
+          "destination": "localhost"
+        },
+        {
+          "destination": "localhost:1234"
+        },
+        {
+          "destination": "localhost:3128"
+        },
+        {
+          "destination": "localhost:8765"
+        },
+        {
+          "destination": "login.live.com"
+        },
+        {
+          "destination": "login.microsoftonline.com"
+        },
+        {
+          "destination": "lxr.mozilla.org"
+        },
+        {
+          "destination": "mail.python.org"
+        },
+        {
+          "destination": "martinheinz.dev"
+        },
+        {
+          "destination": "master.dl.sourceforge.net"
+        },
+        {
+          "destination": "matrix.to"
+        },
+        {
+          "destination": "media.codeweavers.com"
+        },
+        {
+          "destination": "media.steampowered.com"
+        },
+        {
+          "destination": "media.tenor.com"
+        },
+        {
+          "destination": "members.loria.fr"
+        },
+        {
+          "destination": "mingw.org"
+        },
+        {
+          "destination": "mirrors.gigenet.com"
+        },
+        {
+          "destination": "more-itertools.readthedocs.io"
+        },
+        {
+          "destination": "mozilla.org"
+        },
+        {
+          "destination": "mpc-hc.sourceforge.io"
+        },
+        {
+          "destination": "msdn.microsoft.com"
+        },
+        {
+          "destination": "multidict.aio-libs.org"
+        },
+        {
+          "destination": "my.fsf.org"
+        },
+        {
+          "destination": "mypy-lang.org"
+        },
+        {
+          "destination": "mypy.readthedocs.io"
+        },
+        {
+          "destination": "mypyc.readthedocs.io"
+        },
+        {
+          "destination": "notepad-plus-plus.org"
+        },
+        {
+          "destination": "nuget.org"
+        },
+        {
+          "destination": "numpy.org"
+        },
+        {
+          "destination": "oeis.org"
+        },
+        {
+          "destination": "ollydbg.de"
+        },
+        {
+          "destination": "opensource.org"
+        },
+        {
+          "destination": "packaging.pypa.io"
+        },
+        {
+          "destination": "packaging.python.org"
+        },
+        {
+          "destination": "pagure.io"
+        },
+        {
+          "destination": "path.readthedocs.io"
+        },
+        {
+          "destination": "people.ok.ubc.ca"
+        },
+        {
+          "destination": "peps.python.org"
+        },
+        {
+          "destination": "pepy.tech"
+        },
+        {
+          "destination": "petstore.swagger.io"
+        },
+        {
+          "destination": "pip.pypa.io"
+        },
+        {
+          "destination": "platformdirs.readthedocs.io"
+        },
+        {
+          "destination": "propcache.readthedocs.io"
+        },
+        {
+          "destination": "pubs.opengroup.org"
+        },
+        {
+          "destination": "py-filelock.readthedocs.io"
+        },
+        {
+          "destination": "pygments.org"
+        },
+        {
+          "destination": "pyos.github.io"
+        },
+        {
+          "destination": "pypi.org"
+        },
+        {
+          "destination": "pypi.python.org"
+        },
+        {
+          "destination": "pypistats.org"
+        },
+        {
+          "destination": "python-jsonschema.readthedocs.io"
+        },
+        {
+          "destination": "python-poetry.org"
+        },
+        {
+          "destination": "python.org"
+        },
+        {
+          "destination": "python.org:80"
+        },
+        {
+          "destination": "python.plainenglish.io"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "readthedocs.org"
+        },
+        {
+          "destination": "referencing.readthedocs.io"
+        },
+        {
+          "destination": "referencing.readthedocs.org"
+        },
+        {
+          "destination": "refspecs.linuxfoundation.org"
+        },
+        {
+          "destination": "releases.pagure.org"
+        },
+        {
+          "destination": "remote-config.gog.com"
+        },
+        {
+          "destination": "reproducible-builds.org"
+        },
+        {
+          "destination": "requests.readthedocs.io"
+        },
+        {
+          "destination": "results.pre-commit.ci"
+        },
+        {
+          "destination": "rpds.readthedocs.io"
+        },
+        {
+          "destination": "s3.amazonaws.com"
+        },
+        {
+          "destination": "sanic.dev"
+        },
+        {
+          "destination": "sdfox7.com"
+        },
+        {
+          "destination": "semver.org"
+        },
+        {
+          "destination": "setuptools.pypa.io"
+        },
+        {
+          "destination": "shared.steamstatic.com"
+        },
+        {
+          "destination": "simia.net"
+        },
+        {
+          "destination": "sites.google.com"
+        },
+        {
+          "destination": "slsa.dev"
+        },
+        {
+          "destination": "social.msdn.microsoft.com"
+        },
+        {
+          "destination": "some.com"
+        },
+        {
+          "destination": "sourceforge.net"
+        },
+        {
+          "destination": "sourceware.org"
+        },
+        {
+          "destination": "specifications.freedesktop.org"
+        },
+        {
+          "destination": "src.fedoraproject.org"
+        },
+        {
+          "destination": "ss64.com"
+        },
+        {
+          "destination": "stackoverflow.com"
+        },
+        {
+          "destination": "standards.freedesktop.org"
+        },
+        {
+          "destination": "star-history.com"
+        },
+        {
+          "destination": "static.docs.arm.com"
+        },
+        {
+          "destination": "static.pepy.tech"
+        },
+        {
+          "destination": "static3.cdn.ubi.com"
+        },
+        {
+          "destination": "steamcommunity.com"
+        },
+        {
+          "destination": "store.epicgames.com"
+        },
+        {
+          "destination": "store.steampowered.com"
+        },
+        {
+          "destination": "store.ubisoft.com"
+        },
+        {
+          "destination": "support.apple.com"
+        },
+        {
+          "destination": "support.britannica.com"
+        },
+        {
+          "destination": "support.gog.com"
+        },
+        {
+          "destination": "support.microsoft.com"
+        },
+        {
+          "destination": "support.xbox.com"
+        },
+        {
+          "destination": "supporters.eff.org"
+        },
+        {
+          "destination": "swagger.io"
+        },
+        {
+          "destination": "taskinoz.com"
+        },
+        {
+          "destination": "technet.microsoft.com"
+        },
+        {
+          "destination": "test.pypi.org"
+        },
+        {
+          "destination": "test.test.com"
+        },
+        {
+          "destination": "tidelift.com"
+        },
+        {
+          "destination": "toml.io"
+        },
+        {
+          "destination": "tools.ietf.org"
+        },
+        {
+          "destination": "twitter.com"
+        },
+        {
+          "destination": "typing-extensions.readthedocs.io"
+        },
+        {
+          "destination": "typing.readthedocs.io"
+        },
+        {
+          "destination": "ubistatic3-a.akamaihd.net"
+        },
+        {
+          "destination": "unicode.org"
+        },
+        {
+          "destination": "unifoundry.com"
+        },
+        {
+          "destination": "unlicense.org"
+        },
+        {
+          "destination": "upload.pypi.org"
+        },
+        {
+          "destination": "url.spec.whatwg.org"
+        },
+        {
+          "destination": "urllib3.readthedocs.io"
+        },
+        {
+          "destination": "us.battle.net"
+        },
+        {
+          "destination": "us.download.nvidia.com"
+        },
+        {
+          "destination": "user.auth.xboxlive.com"
+        },
+        {
+          "destination": "usestrwebaccess.blob.core.windows.net"
+        },
+        {
+          "destination": "validate-pyproject.readthedocs.io"
+        },
+        {
+          "destination": "visualstudio.microsoft.com"
+        },
+        {
+          "destination": "vorpus.org"
+        },
+        {
+          "destination": "w.wiki"
+        },
+        {
+          "destination": "w3c.github.io"
+        },
+        {
+          "destination": "warehouse.pypa.io"
+        },
+        {
+          "destination": "web.archive.org"
+        },
+        {
+          "destination": "websockets.readthedocs.io"
+        },
+        {
+          "destination": "websvn.xvid.org"
+        },
+        {
+          "destination": "wenq.org"
+        },
+        {
+          "destination": "werkzeug.palletsprojects.com"
+        },
+        {
+          "destination": "wheel.readthedocs.io"
+        },
+        {
+          "destination": "wiki.mozilla.org"
+        },
+        {
+          "destination": "wiki.winehq.org"
+        },
+        {
+          "destination": "winampplugins.co.uk"
+        },
+        {
+          "destination": "wow.gamepedia.com"
+        },
+        {
+          "destination": "www-cs-faculty.stanford.edu"
+        },
+        {
+          "destination": "www.7-zip.org"
+        },
+        {
+          "destination": "www.adobe.com"
+        },
+        {
+          "destination": "www.amazon.com"
+        },
+        {
+          "destination": "www.amazon.in"
+        },
+        {
+          "destination": "www.apache.org"
+        },
+        {
+          "destination": "www.attrs.org"
+        },
+        {
+          "destination": "www.barnesandnoble.com"
+        },
+        {
+          "destination": "www.bbayles.com"
+        },
+        {
+          "destination": "www.bestpractices.dev"
+        },
+        {
+          "destination": "www.bigdownload.com"
+        },
+        {
+          "destination": "www.borders.com"
+        },
+        {
+          "destination": "www.cmake.org"
+        },
+        {
+          "destination": "www.cnri.reston.va.us"
+        },
+        {
+          "destination": "www.codeweavers.com"
+        },
+        {
+          "destination": "www.cucusoft.com"
+        },
+        {
+          "destination": "www.cwi.nl"
+        },
+        {
+          "destination": "www.ddsystem.com.br"
+        },
+        {
+          "destination": "www.dependencywalker.com"
+        },
+        {
+          "destination": "www.dlldump.com"
+        },
+        {
+          "destination": "www.download.windowsupdate.com"
+        },
+        {
+          "destination": "www.dwheeler.com"
+        },
+        {
+          "destination": "www.emu8086.com"
+        },
+        {
+          "destination": "www.epicgames.com"
+        },
+        {
+          "destination": "www.example.com"
+        },
+        {
+          "destination": "www.fileplanet.com"
+        },
+        {
+          "destination": "www.filewatcher.com"
+        },
+        {
+          "destination": "www.fmsinc.com"
+        },
+        {
+          "destination": "www.foobar2000.org"
+        },
+        {
+          "destination": "www.freedesktop.org"
+        },
+        {
+          "destination": "www.futuremark.com"
+        },
+        {
+          "destination": "www.geocities.jp"
+        },
+        {
+          "destination": "www.getkeepsafe.com"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.gog.com"
+        },
+        {
+          "destination": "www.i18next.com"
+        },
+        {
+          "destination": "www.iana.org"
+        },
+        {
+          "destination": "www.ietf.org"
+        },
+        {
+          "destination": "www.in-ulm.de"
+        },
+        {
+          "destination": "www.irfanview.com"
+        },
+        {
+          "destination": "www.libsdl.org"
+        },
+        {
+          "destination": "www.meggamusic.co.uk"
+        },
+        {
+          "destination": "www.metacritic.com"
+        },
+        {
+          "destination": "www.microsoft.com"
+        },
+        {
+          "destination": "www.moonsoftware.com"
+        },
+        {
+          "destination": "www.moviecodec.com"
+        },
+        {
+          "destination": "www.next-gen.biz"
+        },
+        {
+          "destination": "www.njstar.com"
+        },
+        {
+          "destination": "www.novell.com"
+        },
+        {
+          "destination": "www.numberanalytics.com"
+        },
+        {
+          "destination": "www.ocinside.de"
+        },
+        {
+          "destination": "www.oldapps.com"
+        },
+        {
+          "destination": "www.ollydbg.de"
+        },
+        {
+          "destination": "www.openal.org"
+        },
+        {
+          "destination": "www.opensource.org"
+        },
+        {
+          "destination": "www.openwatcom.org"
+        },
+        {
+          "destination": "www.oreilly.com"
+        },
+        {
+          "destination": "www.origin.com"
+        },
+        {
+          "destination": "www.pcgamingwiki.com"
+        },
+        {
+          "destination": "www.probo.com"
+        },
+        {
+          "destination": "www.protondb.com"
+        },
+        {
+          "destination": "www.pyopenssl.org"
+        },
+        {
+          "destination": "www.python.org"
+        },
+        {
+          "destination": "www.pythonlabs.com"
+        },
+        {
+          "destination": "www.quaddicted.com"
+        },
+        {
+          "destination": "www.red-dove.com"
+        },
+        {
+          "destination": "www.rfc-editor.org"
+        },
+        {
+          "destination": "www.silentinstall.org"
+        },
+        {
+          "destination": "www.ssllabs.com"
+        },
+        {
+          "destination": "www.steamgriddb.com"
+        },
+        {
+          "destination": "www.textualize.io"
+        },
+        {
+          "destination": "www.ubisoft.com"
+        },
+        {
+          "destination": "www.unicode.org"
+        },
+        {
+          "destination": "www.uvicorn.org"
+        },
+        {
+          "destination": "www.variomedia.de"
+        },
+        {
+          "destination": "www.videolan.org"
+        },
+        {
+          "destination": "www.vogonsdrivers.com"
+        },
+        {
+          "destination": "www.w3.org"
+        },
+        {
+          "destination": "www.willmcgugan.com"
+        },
+        {
+          "destination": "www.win-rar.com"
+        },
+        {
+          "destination": "www.winamp.com"
+        },
+        {
+          "destination": "www.winehq.org"
+        },
+        {
+          "destination": "www.xbox.com"
+        },
+        {
+          "destination": "www.yourcloudlibrary.com"
+        },
+        {
+          "destination": "www.youtube.com"
+        },
+        {
+          "destination": "www.zope.com"
+        },
+        {
+          "destination": "www2.cs.uidaho.edu"
+        },
+        {
+          "destination": "x3270.bgp.nu"
+        },
+        {
+          "destination": "xbox.com"
+        },
+        {
+          "destination": "xboxlive.com"
+        },
+        {
+          "destination": "xgpuweb.gssv-play-prod.xboxlive.com"
+        },
+        {
+          "destination": "xiph.org"
+        },
+        {
+          "destination": "xsts.auth.xboxlive.com"
+        },
+        {
+          "destination": "yahoo.com"
+        },
+        {
+          "destination": "yarl.aio-libs.org"
+        },
+        {
+          "destination": "zenodo.org"
+        },
+        {
+          "destination": "zerosky.oldos.org"
+        },
+        {
+          "destination": "zipp.readthedocs.io"
+        },
+        {
+          "destination": "zopeinterface.readthedocs.io"
+        }
+      ],
       "plugin_name": "Unifideck",
       "policy_version": "1",
       "release": "Release-0.7.2",
@@ -3534,7 +5756,92 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "127.0.0.1:65123"
+        },
+        {
+          "destination": "127.0.0.1:65124"
+        },
+        {
+          "destination": "127.0.0.1:8080"
+        },
+        {
+          "destination": "127.0.0.1:9223"
+        },
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "avatars.steamstatic.com"
+        },
+        {
+          "destination": "cdn.cloudflare.steamstatic.com"
+        },
+        {
+          "destination": "cdn.discordapp.com"
+        },
+        {
+          "destination": "dbus.freedesktop.org"
+        },
+        {
+          "destination": "discord.com"
+        },
+        {
+          "destination": "en.wikipedia.org"
+        },
+        {
+          "destination": "flathub.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "gitlab.freedesktop.org"
+        },
+        {
+          "destination": "jinja.palletsprojects.com"
+        },
+        {
+          "destination": "man7.org"
+        },
+        {
+          "destination": "netpbm.sourceforge.net"
+        },
+        {
+          "destination": "pypi.org"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "remote-auth-gateway.discord.gg"
+        },
+        {
+          "destination": "research.swtch.com"
+        },
+        {
+          "destination": "steamloopback.host"
+        },
+        {
+          "destination": "strokescribe.com"
+        },
+        {
+          "destination": "tools.ietf.org"
+        },
+        {
+          "destination": "vencord.dev"
+        },
+        {
+          "destination": "www.djangoproject.com"
+        },
+        {
+          "destination": "www.freedesktop.org"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "Steamcord",
       "policy_version": "1",
       "release": "v1.21.0",
@@ -3741,7 +6048,20 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "codeberg.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "opengraph.githubassets.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "16:10 Fixes",
       "policy_version": "1",
       "release": "v0.1.16",
@@ -3880,7 +6200,38 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "api.steampowered.com"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "i.retroachievements.org"
+        },
+        {
+          "destination": "img.shields.io"
+        },
+        {
+          "destination": "media.steampowered.com"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "retroachievements.org"
+        },
+        {
+          "destination": "shared.akamai.steamstatic.com"
+        },
+        {
+          "destination": "steamcommunity.com"
+        },
+        {
+          "destination": "steamid.io"
+        }
+      ],
       "plugin_name": "Achievement Companion",
       "policy_version": "1",
       "release": "v0.3.2",
@@ -4030,7 +6381,17 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "asus-linux.org"
+        },
+        {
+          "destination": "discord.gg"
+        },
+        {
+          "destination": "github.com"
+        }
+      ],
       "plugin_name": "Ally Center",
       "policy_version": "1",
       "release": "v1.2.0",
@@ -4174,7 +6535,17 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "decky.xyz"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        }
+      ],
       "plugin_name": "Ally Vibe Control",
       "policy_version": "1",
       "release": "v1.0.5",
@@ -4311,7 +6682,17 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "Decky Vibrance HDR",
       "policy_version": "1",
       "release": "1.0.0",
@@ -4476,7 +6857,50 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "claude.ai"
+        },
+        {
+          "destination": "decky.xyz"
+        },
+        {
+          "destination": "freedesktop.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "packages.python.org"
+        },
+        {
+          "destination": "riverbankcomputing.co.uk"
+        },
+        {
+          "destination": "www.freedesktop.org"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.npmjs.com"
+        },
+        {
+          "destination": "www.pygtk.org"
+        },
+        {
+          "destination": "www.pyside.org"
+        },
+        {
+          "destination": "www.w3.org"
+        },
+        {
+          "destination": "wxpython.org"
+        }
+      ],
       "plugin_name": "LeGo Vibe Control",
       "policy_version": "1",
       "release": "1.5.0",
@@ -4613,7 +7037,44 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "claude.ai"
+        },
+        {
+          "destination": "decky.xyz"
+        },
+        {
+          "destination": "feross.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "gitlab.freedesktop.org"
+        },
+        {
+          "destination": "img.shields.io"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "registry.npmjs.org"
+        },
+        {
+          "destination": "www.npmjs.com"
+        },
+        {
+          "destination": "www.patreon.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "LeGo2 Brightness Fix",
       "policy_version": "1",
       "release": "2.0.0",
@@ -4768,7 +7229,29 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "claude.ai"
+        },
+        {
+          "destination": "decky.xyz"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.npmjs.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "LeGoTDP",
       "policy_version": "1",
       "release": "1.6.0",
@@ -4936,7 +7419,17 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "BootNext",
       "policy_version": "1",
       "release": "v1.0.0",
@@ -5079,7 +7572,53 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "api.steampowered.com"
+        },
+        {
+          "destination": "avatars.steamstatic.com"
+        },
+        {
+          "destination": "cdn.akamai.steamstatic.com"
+        },
+        {
+          "destination": "discord.gg"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "json-schema.org"
+        },
+        {
+          "destination": "ko-fi.com"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "react.i18next.com"
+        },
+        {
+          "destination": "shared.cloudflare.steamstatic.com"
+        },
+        {
+          "destination": "steamloopback.host"
+        },
+        {
+          "destination": "store.steampowered.com"
+        },
+        {
+          "destination": "www.reddit.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "Deck Shelves",
       "policy_version": "1",
       "release": "v3.1.0",
@@ -5218,7 +7757,32 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "PASS_WITH_WARNINGS",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "dotnet.microsoft.com"
+        },
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "img.shields.io"
+        },
+        {
+          "destination": "learn.microsoft.com"
+        },
+        {
+          "destination": "nightly.link"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "CheatDeck",
       "policy_version": "1",
       "release": "v2.0.0",
@@ -5366,7 +7930,188 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "127.0.0.1"
+        },
+        {
+          "destination": "192.168.1.0"
+        },
+        {
+          "destination": "192.168.1.1"
+        },
+        {
+          "destination": "192.168.100.0"
+        },
+        {
+          "destination": "api.securityscorecards.dev"
+        },
+        {
+          "destination": "bestpractices.coreinfrastructure.org"
+        },
+        {
+          "destination": "bugs.python.org"
+        },
+        {
+          "destination": "charset-normalizer.readthedocs.io"
+        },
+        {
+          "destination": "coveralls.io"
+        },
+        {
+          "destination": "cryptography.io"
+        },
+        {
+          "destination": "deps.dev"
+        },
+        {
+          "destination": "developer.valvesoftware.com"
+        },
+        {
+          "destination": "discord.gg"
+        },
+        {
+          "destination": "docs.python.org"
+        },
+        {
+          "destination": "domain.tld"
+        },
+        {
+          "destination": "erickt.github.io"
+        },
+        {
+          "destination": "example.com"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "google.com"
+        },
+        {
+          "destination": "hg.mozilla.org"
+        },
+        {
+          "destination": "hg.python.org"
+        },
+        {
+          "destination": "host.com:80"
+        },
+        {
+          "destination": "host.name"
+        },
+        {
+          "destination": "html.spec.whatwg.org"
+        },
+        {
+          "destination": "httpbin.org"
+        },
+        {
+          "destination": "httpwg.org"
+        },
+        {
+          "destination": "i.imgflip.com"
+        },
+        {
+          "destination": "img.shields.io"
+        },
+        {
+          "destination": "insignia.live"
+        },
+        {
+          "destination": "insigniastats.live"
+        },
+        {
+          "destination": "keepachangelog.com"
+        },
+        {
+          "destination": "kennethreitz.org"
+        },
+        {
+          "destination": "localhost:3128"
+        },
+        {
+          "destination": "media.tenor.com"
+        },
+        {
+          "destination": "mozilla.org"
+        },
+        {
+          "destination": "pepy.tech"
+        },
+        {
+          "destination": "pypi.org"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "readthedocs.org"
+        },
+        {
+          "destination": "requests.readthedocs.io"
+        },
+        {
+          "destination": "semver.org"
+        },
+        {
+          "destination": "simia.net"
+        },
+        {
+          "destination": "slsa.dev"
+        },
+        {
+          "destination": "sonarcloud.io"
+        },
+        {
+          "destination": "stackoverflow.com"
+        },
+        {
+          "destination": "static.pepy.tech"
+        },
+        {
+          "destination": "tidelift.com"
+        },
+        {
+          "destination": "tools.ietf.org"
+        },
+        {
+          "destination": "twitter.com"
+        },
+        {
+          "destination": "unicode.org"
+        },
+        {
+          "destination": "urllib3.readthedocs.io"
+        },
+        {
+          "destination": "www.apache.org"
+        },
+        {
+          "destination": "www.bestpractices.dev"
+        },
+        {
+          "destination": "www.ietf.org"
+        },
+        {
+          "destination": "www.pyopenssl.org"
+        },
+        {
+          "destination": "www.python.org"
+        },
+        {
+          "destination": "www.rfc-editor.org"
+        },
+        {
+          "destination": "www.unicode.org"
+        },
+        {
+          "destination": "www.w3.org"
+        },
+        {
+          "destination": "yahoo.com"
+        }
+      ],
       "plugin_name": "Insignia",
       "policy_version": "1",
       "release": "v0.1.2",
@@ -5533,7 +8278,26 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "magicpods.app"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "MagicBlack",
       "policy_version": "1",
       "release": "2.0.0",
@@ -5680,7 +8444,41 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "discord.com"
+        },
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "localhost:2020"
+        },
+        {
+          "destination": "magicpods.app"
+        },
+        {
+          "destination": "ns.adobe.com"
+        },
+        {
+          "destination": "purl.org"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "weblate.magicpods.app"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "MagicPods",
       "policy_version": "1",
       "release": "2.0.15",
@@ -5833,7 +8631,107 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "10.0.0.1"
+        },
+        {
+          "destination": "127.0.0.1:1337"
+        },
+        {
+          "destination": "a.com"
+        },
+        {
+          "destination": "anaconda.org"
+        },
+        {
+          "destination": "apps.fedoraproject.org"
+        },
+        {
+          "destination": "b.com"
+        },
+        {
+          "destination": "decky.xyz"
+        },
+        {
+          "destination": "defaultns.com"
+        },
+        {
+          "destination": "discogs.com"
+        },
+        {
+          "destination": "docs.python.org"
+        },
+        {
+          "destination": "dumps.wikimedia.org"
+        },
+        {
+          "destination": "example.com"
+        },
+        {
+          "destination": "foo.bar"
+        },
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "localhost"
+        },
+        {
+          "destination": "ns.adobe.com"
+        },
+        {
+          "destination": "purl.org"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "reactjs.org"
+        },
+        {
+          "destination": "retrodeck.readthedocs.io"
+        },
+        {
+          "destination": "sodipodi.sourceforge.net"
+        },
+        {
+          "destination": "software.opensuse.org"
+        },
+        {
+          "destination": "svnweb.freebsd.org"
+        },
+        {
+          "destination": "tracker.debian.org"
+        },
+        {
+          "destination": "www.apache.org"
+        },
+        {
+          "destination": "www.archlinux.org"
+        },
+        {
+          "destination": "www.gimp.org"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.inkscape.org"
+        },
+        {
+          "destination": "www.w3.org"
+        },
+        {
+          "destination": "www.xfa.org"
+        },
+        {
+          "destination": "www.xml.com"
+        }
+      ],
       "plugin_name": "RetroDECKY",
       "policy_version": "1",
       "release": "v1.1.0",
@@ -5990,7 +8888,29 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "bit.ly"
+        },
+        {
+          "destination": "docs.docker.com"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "pnpm.io"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "tanstack.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "Launch Options",
       "policy_version": "1",
       "release": "v1.14.0",
@@ -6145,7 +9065,98 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "bugs.chromium.org"
+        },
+        {
+          "destination": "bugs.webkit.org"
+        },
+        {
+          "destination": "css-tricks.com"
+        },
+        {
+          "destination": "developer.chrome.com"
+        },
+        {
+          "destination": "ecma-international.org"
+        },
+        {
+          "destination": "eev.ee"
+        },
+        {
+          "destination": "ejohn.org"
+        },
+        {
+          "destination": "en.wikipedia.org"
+        },
+        {
+          "destination": "es5.github.io"
+        },
+        {
+          "destination": "fsf.org"
+        },
+        {
+          "destination": "gaming.stackexchange.com"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "lodash.com"
+        },
+        {
+          "destination": "mathiasbynens.be"
+        },
+        {
+          "destination": "mdn.io"
+        },
+        {
+          "destination": "mths.be"
+        },
+        {
+          "destination": "npms.io"
+        },
+        {
+          "destination": "openjsf.org"
+        },
+        {
+          "destination": "peter.michaux.ca"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "requirejs.org"
+        },
+        {
+          "destination": "underscorejs.org"
+        },
+        {
+          "destination": "wonko.com"
+        },
+        {
+          "destination": "www.ecma-international.org"
+        },
+        {
+          "destination": "www.gnu.org"
+        },
+        {
+          "destination": "www.html5rocks.com"
+        },
+        {
+          "destination": "www.npmjs.com"
+        },
+        {
+          "destination": "www.reddit.com"
+        },
+        {
+          "destination": "www.w3.org"
+        },
+        {
+          "destination": "www.youtube.com"
+        }
+      ],
       "plugin_name": "Pause Games",
       "policy_version": "1",
       "release": "20260723060434",
@@ -6289,7 +9300,14 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "cec-mote",
       "policy_version": "1",
       "release": "v0.3.2",
@@ -6446,7 +9464,14 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        }
+      ],
       "plugin_name": "Decky Bionic FG",
       "policy_version": "1",
       "release": "v0.1.6",
@@ -6622,7 +9647,47 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "1.0.3.0"
+        },
+        {
+          "destination": "127.0.0.1:1337"
+        },
+        {
+          "destination": "docs.google.com"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "ko-fi.com"
+        },
+        {
+          "destination": "opensource.org"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "www.fsf.org"
+        },
+        {
+          "destination": "www.nexusmods.com"
+        },
+        {
+          "destination": "www.nvidia.com"
+        },
+        {
+          "destination": "www.spdx.org"
+        },
+        {
+          "destination": "www.w3.org"
+        },
+        {
+          "destination": "www.youtube.com"
+        }
+      ],
       "plugin_name": "Decky-Framegen",
       "policy_version": "1",
       "release": "v0.17",
@@ -6804,7 +9869,35 @@
           "sha256": ""
         }
       ],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "127.0.0.1:1337"
+        },
+        {
+          "destination": "discord.gg"
+        },
+        {
+          "destination": "flathub.org"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "ko-fi.com"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "store.steampowered.com"
+        },
+        {
+          "destination": "www.w3.org"
+        },
+        {
+          "destination": "www.youtube.com"
+        }
+      ],
       "plugin_name": "Decky LSFG-VK",
       "policy_version": "1",
       "release": "v0.12.8",
@@ -6951,7 +10044,35 @@
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
-      "network_destinations": [],
+      "network_destinations": [
+        {
+          "destination": "api.github.com"
+        },
+        {
+          "destination": "github.com"
+        },
+        {
+          "destination": "lutris.net"
+        },
+        {
+          "destination": "opengraph.githubassets.com"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
+          "destination": "reshade.me"
+        },
+        {
+          "destination": "www.cursor.com"
+        },
+        {
+          "destination": "www.pcgamingwiki.com"
+        },
+        {
+          "destination": "www.w3.org"
+        }
+      ],
       "plugin_name": "RSM-Decky",
       "policy_version": "1",
       "release": "v1.0.1",
