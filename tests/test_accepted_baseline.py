@@ -115,7 +115,9 @@ class AcceptedBaselineTests(unittest.TestCase):
         self.assertEqual(payload["entry_count"], 1)
         baseline = payload["reports"][0]
         self.assertEqual(baseline["artifact_sha256"], "a" * 64)
+        self.assertEqual(baseline["baseline_live_hash"], "a" * 64)
         self.assertEqual(baseline["baseline_live_version"], "1.0.0")
+        self.assertEqual(baseline["baseline_source"], ab.BASELINE_SOURCE)
         self.assertNotIn("findings", baseline)
         self.assertNotIn("scanner_statuses", baseline)
         self.assertNotIn("artifact_url", baseline)
@@ -174,6 +176,31 @@ class AcceptedBaselineTests(unittest.TestCase):
         self.assertEqual(stats["advanced"], 0)
         self.assertEqual(stats["preserved"], 1)
         self.assertEqual(second, first)
+
+    def test_historical_live_version_is_not_treated_as_currently_accepted(self):
+        live = [
+            {
+                "name": "Example Plugin",
+                "versions": [
+                    {
+                        "name": "2.0.0",
+                        "hash": "c" * 64,
+                        "artifact": "https://example.invalid/v2.zip",
+                    },
+                    {
+                        "name": "1.0.0",
+                        "hash": "a" * 64,
+                        "artifact": "https://example.invalid/v1.zip",
+                    },
+                ],
+            }
+        ]
+
+        payload, stats = self.build(report=self.report(), live=live)
+
+        self.assertEqual(stats["advanced"], 0)
+        self.assertEqual(stats["unavailable"], 1)
+        self.assertEqual(payload["reports"], [])
 
     def test_audit_errors_do_not_replace_last_good_baseline(self):
         first, _ = self.build()
@@ -236,6 +263,38 @@ class AcceptedBaselineTests(unittest.TestCase):
         secret["reports"][0]["plugin_name"] = "github_pat_" + ("A" * 30)
         with self.assertRaises(ValueError):
             ab.validate_baseline(secret)
+
+    def test_validation_rejects_unexpected_top_level_fields(self):
+        payload, _ = self.build()
+        payload["raw_scanner_payload"] = {"unexpected": True}
+
+        with self.assertRaises(ValueError):
+            ab.validate_baseline(payload)
+
+    def test_validation_rejects_entry_count_mismatch(self):
+        payload, _ = self.build()
+        payload["entry_count"] = 999
+
+        with self.assertRaises(ValueError):
+            ab.validate_baseline(payload)
+
+    def test_validation_rejects_tampered_acceptance_invariants(self):
+        payload, _ = self.build()
+
+        bad_source = copy.deepcopy(payload)
+        bad_source["reports"][0]["baseline_source"] = "last_audit"
+        with self.assertRaises(ValueError):
+            ab.validate_baseline(bad_source)
+
+        missing_version = copy.deepcopy(payload)
+        missing_version["reports"][0]["baseline_live_version"] = ""
+        with self.assertRaises(ValueError):
+            ab.validate_baseline(missing_version)
+
+        mismatched_hash = copy.deepcopy(payload)
+        mismatched_hash["reports"][0]["baseline_live_hash"] = "c" * 64
+        with self.assertRaises(ValueError):
+            ab.validate_baseline(mismatched_hash)
 
     def test_cli_build_and_validate_round_trip(self):
         with tempfile.TemporaryDirectory() as temp_dir:
