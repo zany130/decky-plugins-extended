@@ -11,7 +11,7 @@ For this store, **accepted means currently distributed by the live stable catalo
 
 The snapshot is intentionally immutable for a given artifact hash. Re-auditing the same bytes with changed scanners, rules, or policy does not rewrite history. A baseline advances only when a different artifact hash is actually distributed.
 
-The committed snapshot is a sanitized projection, not a raw audit report. It retains the capability states and the full comparison inventories needed by `decky-plugin-auditor --baseline-report`, while omitting raw findings, snippets, scanner payloads, artifact URLs, and detailed source-diff paths.
+The committed snapshot is a sanitized projection, not a raw audit report. It retains the capability states and the full comparison inventories needed by `decky-audit --baseline-report`, while omitting raw findings, snippets, scanner payloads, artifact URLs, and detailed source-diff paths.
 
 Normal audits automatically pass this snapshot to the pinned auditor. Pull-request audits do not trust a baseline from the proposed branch: they extract `accepted.json`, its validator, and the validator's release-selection dependency from the PR's base commit before comparison, so a submission cannot redefine its own accepted history. Scheduled audits compare against the committed baseline that existed when the run started and only consider advancing that baseline after the audit completes.
 
