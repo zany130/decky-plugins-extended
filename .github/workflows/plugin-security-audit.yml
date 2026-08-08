@@ -13,6 +13,8 @@ on:
     paths:
       - README.md
       - additional_plugins.txt
+      - accepted_baseline.py
+      - security-baselines/**
       - security-policy.yml
       - security-allowlist.yml
       - generate_json.py
@@ -190,6 +192,41 @@ jobs:
 
           echo "Release selection matches: $STORE_SELECTED"
 
+      - name: Verify persisted baseline is auditor-compatible
+        env:
+          AUDITOR_COMMAND: ${{ steps.auditor.outputs.command }}
+        run: |
+          set -euo pipefail
+          python accepted_baseline.py --validate-only security-baselines/accepted.json
+
+          AUDITOR_PYTHON="$(dirname "$AUDITOR_COMMAND")/python"
+          "$AUDITOR_PYTHON" - "$GITHUB_WORKSPACE/security-baselines/accepted.json" <<'PY'
+          import json
+          import sys
+
+          import audit_plugins
+
+          path = sys.argv[1]
+          with open(path, encoding="utf-8") as handle:
+              payload = json.load(handle)
+
+          baselines = audit_plugins.load_baseline_report(path)
+          if len(baselines) != payload.get("entry_count"):
+              raise SystemExit(
+                  f"baseline count mismatch: store={payload.get('entry_count')} auditor={len(baselines)}"
+              )
+
+          if baselines:
+              sample = next(iter(baselines.values()))
+              comparison = audit_plugins.compare_reviewer_capabilities(sample, sample)
+              if comparison.get("status") != "compared":
+                  raise SystemExit(f"baseline is not comparator-compatible: {comparison}")
+              if comparison.get("changed_count") != 0 or not comparison.get("same_artifact"):
+                  raise SystemExit(f"self-comparison is not stable: {comparison}")
+
+          print(f"Auditor accepted {len(baselines)} persisted baseline(s).")
+          PY
+
   audit:
     name: Security Audit
     runs-on: ubuntu-latest
@@ -216,6 +253,33 @@ jobs:
         uses: ./.github/actions/setup-decky-auditor
         with:
           auditor-ref: ${{ env.DECKY_AUDITOR_REF }}
+
+      - name: Prepare trusted accepted baseline
+        id: baseline
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          BASELINE="$RUNNER_TEMP/accepted-security-baseline.json"
+
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            if [[ -z "$PR_BASE_SHA" ]]; then
+              echo "::error::pull request base SHA is unavailable"
+              exit 1
+            fi
+            VALIDATOR="$RUNNER_TEMP/accepted-baseline-validator.py"
+            git show "${PR_BASE_SHA}:security-baselines/accepted.json" > "$BASELINE"
+            git show "${PR_BASE_SHA}:accepted_baseline.py" > "$VALIDATOR"
+            python "$VALIDATOR" --validate-only "$BASELINE"
+            echo "Using accepted baseline from PR base commit $PR_BASE_SHA."
+          else
+            cp "$GITHUB_WORKSPACE/security-baselines/accepted.json" "$BASELINE"
+            python "$GITHUB_WORKSPACE/accepted_baseline.py" --validate-only "$BASELINE"
+            echo "Using accepted baseline from checked-out commit $GITHUB_SHA."
+          fi
+
+          echo "path=$BASELINE" >> "$GITHUB_OUTPUT"
 
       - name: Install security scanners
         run: |
@@ -275,6 +339,7 @@ jobs:
           AUDITOR_COMMAND: ${{ steps.auditor.outputs.command }}
           AUDIT_MODE: ${{ steps.repos.outputs.audit_mode }}
           BASE_REF: ${{ steps.repos.outputs.base_ref }}
+          BASELINE_REPORT: ${{ steps.baseline.outputs.path }}
         run: |
           set -euo pipefail
           mkdir -p security-reports
@@ -284,6 +349,7 @@ jobs:
             --policy "$GITHUB_WORKSPACE/security-policy.yml"
             --allowlist "$GITHUB_WORKSPACE/security-allowlist.yml"
             --output-dir "$GITHUB_WORKSPACE/security-reports"
+            --baseline-report "$BASELINE_REPORT"
           )
 
           if [[ "$AUDIT_MODE" == "all" ]]; then
