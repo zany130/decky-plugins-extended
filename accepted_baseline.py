@@ -25,6 +25,7 @@ import plugin_release_utils
 BASELINE_SCHEMA_VERSION = "1"
 SUPPORTED_CAPABILITY_SCHEMA_VERSION = "1"
 BASELINE_SEMANTICS = "currently_distributed_live_stable_catalog"
+BASELINE_SOURCE = "live_catalog_hash_match"
 MAX_REPORTS = 10_000
 
 SOURCE_DIFF_CATEGORIES = (
@@ -46,6 +47,16 @@ _SECRET_PATTERNS = (
     re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH |DSA |PGP )?PRIVATE KEY-----"),
     re.compile(r"(?i)\bbearer\s+[A-Za-z0-9._-]{20,}\b"),
 )
+
+_TOP_LEVEL_KEYS = {
+    "schema_version",
+    "baseline_semantics",
+    "generated_at",
+    "auditor_ref",
+    "live_catalog_url",
+    "entry_count",
+    "reports",
+}
 
 _REPORT_KEYS = {
     "repository",
@@ -175,6 +186,12 @@ def _matching_live_version(
     report: dict[str, Any],
     live_index: dict[str, list[dict[str, Any]]],
 ) -> dict[str, Any] | None:
+    """Match only the catalog's currently selected stable version.
+
+    Decky reads ``versions[0]`` as the current store version. Historical entries
+    may remain in the array, but their presence is not evidence that an older
+    audited artifact is the release currently accepted/distributed by the store.
+    """
     plugin_name = str(report.get("plugin_name") or "").strip().casefold()
     digest = str(report.get("artifact_sha256") or "").strip().casefold()
     release = plugin_release_utils.normalize_version(
@@ -185,13 +202,16 @@ def _matching_live_version(
 
     matches: list[dict[str, Any]] = []
     for plugin in live_index.get(plugin_name, []):
-        for version in plugin.get("versions") or []:
-            if not isinstance(version, dict):
-                continue
-            version_name = str(version.get("name") or "").strip()
-            version_hash = str(version.get("hash") or "").strip().casefold()
-            if version_name == release and version_hash == digest:
-                matches.append(version)
+        versions = plugin.get("versions") or []
+        if not isinstance(versions, list) or not versions:
+            continue
+        version = versions[0]
+        if not isinstance(version, dict):
+            continue
+        version_name = str(version.get("name") or "").strip()
+        version_hash = str(version.get("hash") or "").strip().casefold()
+        if version_name == release and version_hash == digest:
+            matches.append(version)
     return matches[0] if len(matches) == 1 else None
 
 
@@ -264,7 +284,7 @@ def _project_source_diff(report: dict[str, Any]) -> dict[str, list[dict[str, boo
     for category in SOURCE_DIFF_CATEGORIES:
         values = source_diff.get(category)
         if isinstance(values, list) and values:
-            # PR #16 compares these categories by count.  Persist only the count,
+            # PR #16 compares these categories by count. Persist only the count,
             # not potentially sensitive paths/snippets from the raw diff record.
             projected[category] = [{"counted": True} for _ in values]
     return projected
@@ -279,6 +299,7 @@ def project_report(
     if source_commit and not _is_full_sha(source_commit):
         source_commit = ""
     digest = str(report.get("artifact_sha256") or "").casefold()
+    live_hash = _safe_text(live_version.get("hash")).casefold()
     return {
         "repository": _safe_text(report.get("repository")),
         "plugin_name": _safe_text(report.get("plugin_name")),
@@ -304,9 +325,9 @@ def project_report(
         "native_binaries": _project_native(report),
         "source_artifact_diff": _project_source_diff(report),
         "baseline_captured_at": _safe_text(captured_at),
-        "baseline_source": "live_catalog_hash_match",
+        "baseline_source": BASELINE_SOURCE,
         "baseline_live_version": _safe_text(live_version.get("name")),
-        "baseline_live_hash": _safe_text(live_version.get("hash")).casefold(),
+        "baseline_live_hash": live_hash,
     }
 
 
@@ -323,27 +344,46 @@ def _contains_secret(value: object) -> bool:
 def validate_baseline(payload: object) -> None:
     if not isinstance(payload, dict):
         raise ValueError("baseline must be a JSON object")
+    if set(payload) != _TOP_LEVEL_KEYS:
+        raise ValueError("accepted baseline top-level shape is invalid")
     if str(payload.get("schema_version") or "") != BASELINE_SCHEMA_VERSION:
         raise ValueError("unsupported accepted baseline schema")
     if payload.get("baseline_semantics") != BASELINE_SEMANTICS:
         raise ValueError("unexpected accepted baseline semantics")
+    if payload.get("auditor_ref") and not _is_full_sha(payload.get("auditor_ref")):
+        raise ValueError("accepted baseline has an invalid auditor reference")
+    if not isinstance(payload.get("entry_count"), int):
+        raise ValueError("accepted baseline entry_count must be an integer")
+
     reports = payload.get("reports")
     if not isinstance(reports, list) or len(reports) > MAX_REPORTS:
         raise ValueError("accepted baseline reports must be a bounded list")
+    if payload.get("entry_count") != len(reports):
+        raise ValueError("accepted baseline entry_count does not match reports")
 
     seen: set[str] = set()
     for report in reports:
         if not isinstance(report, dict):
             raise ValueError("accepted baseline contains a non-object report")
-        unexpected = set(report) - _REPORT_KEYS
-        if unexpected:
-            raise ValueError(f"accepted baseline report has unexpected fields: {sorted(unexpected)}")
+        if set(report) != _REPORT_KEYS:
+            raise ValueError("accepted baseline report shape is invalid")
         key = normalize_repository(report.get("repository"))
         if not key or key in seen:
             raise ValueError("accepted baseline repositories must be unique and non-empty")
         seen.add(key)
-        if not _is_sha256(report.get("artifact_sha256")):
+
+        artifact_hash = str(report.get("artifact_sha256") or "").casefold()
+        live_hash = str(report.get("baseline_live_hash") or "").casefold()
+        if not _is_sha256(artifact_hash):
             raise ValueError("accepted baseline has an invalid artifact SHA-256")
+        if not _is_sha256(live_hash):
+            raise ValueError("accepted baseline has an invalid live artifact SHA-256")
+        if live_hash != artifact_hash:
+            raise ValueError("accepted baseline live hash does not match audited artifact")
+        if report.get("baseline_source") != BASELINE_SOURCE:
+            raise ValueError("accepted baseline has an invalid acceptance source")
+        if not str(report.get("baseline_live_version") or "").strip():
+            raise ValueError("accepted baseline is missing the live version")
         if report.get("source_commit") and not _is_full_sha(report.get("source_commit")):
             raise ValueError("accepted baseline has an invalid source commit")
         if str(report.get("reviewer_capabilities_schema_version") or "") != SUPPORTED_CAPABILITY_SCHEMA_VERSION:
@@ -354,7 +394,7 @@ def validate_baseline(payload: object) -> None:
             raise ValueError("accepted baseline is missing reviewer capabilities")
         capability_ids: set[str] = set()
         for capability in capabilities:
-            if not isinstance(capability, dict) or set(capability) - _CAPABILITY_KEYS:
+            if not isinstance(capability, dict) or set(capability) != _CAPABILITY_KEYS:
                 raise ValueError("accepted baseline capability shape is invalid")
             capability_id = str(capability.get("id") or "")
             if not capability_id or capability_id in capability_ids:
