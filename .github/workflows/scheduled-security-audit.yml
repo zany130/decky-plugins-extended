@@ -142,6 +142,36 @@ jobs:
           path: .audit-cache
           key: ${{ steps.cache-key.outputs.save_key }}
 
+      - name: Build accepted baseline candidate
+        if: success()
+        env:
+          LIVE_CATALOG_URL: https://zany130-decky-plugins-extended.pages.dev/plugins.json
+          AUDITOR_REF: ${{ env.DECKY_AUDITOR_REF }}
+        run: |
+          set -euo pipefail
+          LIVE_CATALOG="$RUNNER_TEMP/live-plugins.json"
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            --location \
+            --retry 3 \
+            --retry-all-errors \
+            "$LIVE_CATALOG_URL" \
+            --output "$LIVE_CATALOG"
+
+          python accepted_baseline.py \
+            --audit-report "$GITHUB_WORKSPACE/security-reports/security-report.json" \
+            --live-catalog "$LIVE_CATALOG" \
+            --plugins-file "$GITHUB_WORKSPACE/additional_plugins.txt" \
+            --existing "$GITHUB_WORKSPACE/security-baselines/accepted.json" \
+            --output "$GITHUB_WORKSPACE/security-reports/accepted-baseline.json" \
+            --auditor-ref "$AUDITOR_REF" \
+            --live-catalog-url "$LIVE_CATALOG_URL"
+
+          python accepted_baseline.py \
+            --validate-only "$GITHUB_WORKSPACE/security-reports/accepted-baseline.json"
+
       - name: Add audit failure summary
         if: ${{ failure() }}
         run: |
@@ -158,5 +188,69 @@ jobs:
           path: |
             security-reports/security-report.json
             security-reports/security-report.md
+            security-reports/accepted-baseline.json
           retention-days: 90
           if-no-files-found: warn
+
+  persist-accepted-baseline:
+    name: Persist accepted baseline
+    needs: scheduled-audit
+    if: ${{ needs.scheduled-audit.result == 'success' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      actions: read
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+
+      - name: Download validated audit artifact
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: scheduled-security-audit-reports
+          path: downloaded-audit
+
+      - name: Validate candidate baseline
+        run: |
+          set -euo pipefail
+          test -f downloaded-audit/accepted-baseline.json
+          python accepted_baseline.py \
+            --validate-only downloaded-audit/accepted-baseline.json
+
+      - name: Reject stale baseline writes
+        run: |
+          set -euo pipefail
+          AUDIT_START_BASELINE="$RUNNER_TEMP/audit-start-accepted.json"
+          git show "${GITHUB_SHA}:security-baselines/accepted.json" > "$AUDIT_START_BASELINE"
+
+          if ! cmp --silent "$AUDIT_START_BASELINE" security-baselines/accepted.json; then
+            echo "::error::accepted baseline changed on main since this audit started; refusing stale write"
+            exit 1
+          fi
+
+      - name: Persist changed baseline
+        run: |
+          set -euo pipefail
+          mkdir -p security-baselines
+          cp downloaded-audit/accepted-baseline.json security-baselines/accepted.json
+
+          if git diff --quiet -- security-baselines/accepted.json; then
+            echo "Accepted security baseline is unchanged."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add security-baselines/accepted.json
+          git commit -m "chore: refresh accepted security baseline"
+          git push origin HEAD:main
