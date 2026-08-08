@@ -230,7 +230,7 @@ jobs:
   audit:
     name: Security Audit
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
 
     steps:
       - name: Checkout store
@@ -328,7 +328,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ "$EVENT_NAME" == "pull_request" ]]; then
-            echo "audit_mode=changed" >> "$GITHUB_OUTPUT"
+            echo "audit_mode=all" >> "$GITHUB_OUTPUT"
             echo "base_ref=origin/${GITHUB_BASE_REF_VALUE}" >> "$GITHUB_OUTPUT"
           else
             echo "audit_mode=${DISPATCH_MODE:-changed}" >> "$GITHUB_OUTPUT"
@@ -362,7 +362,7 @@ jobs:
               --base-ref "$BASE_REF" \
               "${common_args[@]}"
           fi
-        timeout-minutes: 20
+        timeout-minutes: 45
 
       - name: Add audit failure summary
         if: ${{ failure() }}
