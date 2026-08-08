@@ -253,11 +253,29 @@ def _project_capability(capability: dict[str, Any]) -> dict[str, Any]:
 
 
 def _project_network(report: dict[str, Any]) -> list[dict[str, str]]:
-    values = {
-        _safe_text(item.get("destination"))
-        for item in report.get("network_destinations") or []
-        if isinstance(item, dict) and item.get("destination")
-    }
+    """Persist the complete network inventory used by the comparator.
+
+    Fresh reports expose rich records in ``network_destinations``. Cached reports
+    created before that structured inventory was persisted can still contain the
+    complete legacy ``extracted_domains`` list while exposing an explicit empty
+    structured list. Prefer a non-empty structured inventory, then fall back to
+    that full legacy list. Never reconstruct the baseline from reviewer evidence,
+    which is intentionally capped for display.
+    """
+    structured = report.get("network_destinations")
+    if isinstance(structured, list) and structured:
+        values = {
+            _safe_text(item.get("destination"))
+            for item in structured
+            if isinstance(item, dict) and item.get("destination")
+        }
+    else:
+        legacy = report.get("extracted_domains")
+        values = (
+            {_safe_text(value) for value in legacy if value}
+            if isinstance(legacy, list)
+            else set()
+        )
     return [{"destination": value} for value in sorted(values)]
 
 
