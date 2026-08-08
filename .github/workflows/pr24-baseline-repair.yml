@@ -1,0 +1,134 @@
+name: PR24 Accepted Baseline Repair
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pr24-baseline-repair.yml
+      - accepted_baseline.py
+      - security-baselines/accepted.json
+
+permissions:
+  contents: read
+
+jobs:
+  repair:
+    if: ${{ github.head_ref == 'agent/wire-accepted-baseline-comparison' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+
+      - name: Download exact bootstrap audit artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/bootstrap"
+          gh run download 31271661474 \
+            --repo "$GITHUB_REPOSITORY" \
+            --name scheduled-security-audit-reports \
+            --dir "$RUNNER_TEMP/bootstrap"
+          test -f "$RUNNER_TEMP/bootstrap/security-report.json"
+
+      - name: Restore omitted network inventories
+        env:
+          BOOTSTRAP_REPORT: ${{ runner.temp }}/bootstrap/security-report.json
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          baseline_path = Path("security-baselines/accepted.json")
+          source_path = Path(os.environ["BOOTSTRAP_REPORT"])
+          baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+          source = json.loads(source_path.read_text(encoding="utf-8"))
+
+          def repo_key(value):
+              text = str(value or "").strip().rstrip("/").casefold()
+              if text.startswith("https://"):
+                  text = text[len("https://"):]
+              return text.removesuffix(".git")
+
+          source_reports = {
+              repo_key(report.get("repository")): report
+              for report in source.get("reports") or []
+              if isinstance(report, dict) and report.get("repository")
+          }
+
+          if baseline.get("entry_count") != 46 or len(baseline.get("reports") or []) != 46:
+              raise SystemExit("expected the 46-entry PR23 bootstrap baseline")
+          if source.get("generated_at") != baseline.get("generated_at"):
+              raise SystemExit("bootstrap report timestamp does not match accepted baseline")
+
+          repaired = 0
+          destination_count = 0
+          for accepted in baseline["reports"]:
+              key = repo_key(accepted.get("repository"))
+              report = source_reports.get(key)
+              if report is None:
+                  raise SystemExit(f"bootstrap report missing accepted repository {key}")
+              if str(report.get("artifact_sha256") or "").casefold() != str(accepted.get("artifact_sha256") or "").casefold():
+                  raise SystemExit(f"artifact SHA mismatch for {key}")
+              if accepted.get("network_destinations"):
+                  raise SystemExit(f"baseline network inventory was unexpectedly already populated for {key}")
+
+              structured = report.get("network_destinations")
+              if isinstance(structured, list) and structured:
+                  destinations = {
+                      str(item.get("destination"))
+                      for item in structured
+                      if isinstance(item, dict) and item.get("destination")
+                  }
+              else:
+                  legacy = report.get("extracted_domains")
+                  if not isinstance(legacy, list):
+                      raise SystemExit(f"bootstrap report has no full network inventory for {key}")
+                  destinations = {str(value) for value in legacy if value}
+
+              accepted["network_destinations"] = [
+                  {"destination": value} for value in sorted(destinations)
+              ]
+              repaired += 1
+              destination_count += len(destinations)
+
+          if repaired != 46 or destination_count != 1025:
+              raise SystemExit(
+                  f"unexpected repair totals: repositories={repaired}, destinations={destination_count}"
+              )
+
+          baseline_path.write_text(
+              json.dumps(baseline, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          print(f"Restored {destination_count} destinations across {repaired} accepted baselines.")
+          PY
+
+          python accepted_baseline.py --validate-only security-baselines/accepted.json
+
+      - name: Commit exact bootstrap repair
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- security-baselines/accepted.json; then
+            echo "::error::baseline repair produced no change"
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add security-baselines/accepted.json
+          git commit -m "fix: restore accepted network inventory"
+          git push origin HEAD:${{ github.head_ref }}
