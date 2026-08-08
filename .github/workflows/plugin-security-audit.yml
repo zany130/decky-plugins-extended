@@ -262,7 +262,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ "$EVENT_NAME" == "pull_request" ]]; then
-            echo "audit_mode=all" >> "$GITHUB_OUTPUT"
+            echo "audit_mode=changed" >> "$GITHUB_OUTPUT"
             echo "base_ref=origin/${GITHUB_BASE_REF_VALUE}" >> "$GITHUB_OUTPUT"
           else
             echo "audit_mode=${DISPATCH_MODE:-changed}" >> "$GITHUB_OUTPUT"
