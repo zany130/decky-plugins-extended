@@ -142,14 +142,12 @@ jobs:
           path: .audit-cache
           key: ${{ steps.cache-key.outputs.save_key }}
 
-      - name: Add audit summary
-        if: always()
+      - name: Add audit failure summary
+        if: ${{ failure() }}
         run: |
-          if [[ -f security-reports/security-report.md ]]; then
-            cat security-reports/security-report.md >> "$GITHUB_STEP_SUMMARY"
-          else
+          if [[ ! -f security-reports/security-report.md ]]; then
             echo "## Scheduled Security Audit" >> "$GITHUB_STEP_SUMMARY"
-            echo "⚠️ No report generated." >> "$GITHUB_STEP_SUMMARY"
+            echo "⚠️ Audit failed before a report could be generated. Check the job logs." >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Upload audit reports
