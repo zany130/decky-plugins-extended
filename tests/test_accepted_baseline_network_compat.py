@@ -34,7 +34,7 @@ class AcceptedBaselineNetworkCompatibilityTests(unittest.TestCase):
     def test_nonempty_structured_inventory_wins_over_legacy_inventory(self):
         report = {
             "network_destinations": [
-                {"destination": "structured.example.com", "source_path": "src/api.ts"},
+                {"destination": "  structured.example.com  ", "source_path": "src/api.ts"},
             ],
             "extracted_domains": ["legacy.example.com"],
         }
@@ -42,6 +42,22 @@ class AcceptedBaselineNetworkCompatibilityTests(unittest.TestCase):
         self.assertEqual(
             ab._project_network(report),
             [{"destination": "structured.example.com"}],
+        )
+
+    def test_semantically_empty_structured_inventory_falls_back_to_legacy(self):
+        report = {
+            "network_destinations": [
+                {},
+                {"destination": ""},
+                {"destination": "   "},
+                "not-an-object",
+            ],
+            "extracted_domains": ["  legacy.example.com  ", "   ", ""],
+        }
+
+        self.assertEqual(
+            ab._project_network(report),
+            [{"destination": "legacy.example.com"}],
         )
 
     def test_empty_structured_and_missing_legacy_inventory_stays_empty(self):
