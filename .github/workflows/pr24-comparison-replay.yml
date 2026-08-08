@@ -168,11 +168,12 @@ jobs:
                   raise SystemExit("selected GitHub summary exceeded configured safety limit")
               if selected == markdown_path.read_text(encoding="utf-8"):
                   raise SystemExit("oversized detailed report was not replaced by bounded summary")
-              if "api.legendary.gl" not in selected or "bford.info" not in selected:
-                  raise SystemExit("bounded summary omitted the real Unifideck network delta")
+              if "unifideck" not in selected.casefold() or "network destinations +1/-1" not in selected:
+                  raise SystemExit("bounded summary omitted the concise Unifideck network delta")
 
           print("Replay verified: 46 compared, 4 unavailable, 2 meaningful changes.")
-          print("Unifideck: +api.legendary.gl / -bford.info (different artifact).")
+          print("Unifideck detail: +api.legendary.gl / -bford.info (different artifact).")
+          print("Bounded summary: network destinations +1/-1; full report retains exact hosts.")
           print("Decky-Framegen: same-artifact coverage drift from ClamAV timeout.")
           print(f"Bounded summary size: {len(rich.encode('utf-8'))} bytes.")
           PY
