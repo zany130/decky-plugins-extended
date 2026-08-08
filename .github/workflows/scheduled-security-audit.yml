@@ -47,6 +47,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Validate accepted baseline
+        run: |
+          set -euo pipefail
+          python accepted_baseline.py --validate-only security-baselines/accepted.json
+
       - name: Install pinned standalone auditor
         id: auditor
         uses: ./.github/actions/setup-decky-auditor
@@ -57,6 +62,9 @@ jobs:
         id: cache-key
         run: |
           set -euo pipefail
+          # The accepted baseline is intentionally excluded. The standalone
+          # auditor attaches comparisons after cache retrieval, so a baseline
+          # update must change delta output without invalidating scan results.
           CONFIG_HASH=$(
             {
               printf '%s\n' "$DECKY_AUDITOR_REF"
@@ -132,6 +140,7 @@ jobs:
             --policy "$GITHUB_WORKSPACE/security-policy.yml" \
             --allowlist "$GITHUB_WORKSPACE/security-allowlist.yml" \
             --output-dir "$GITHUB_WORKSPACE/security-reports" \
+            --baseline-report "$GITHUB_WORKSPACE/security-baselines/accepted.json" \
             "${cache_args[@]}"
         timeout-minutes: 45
 
