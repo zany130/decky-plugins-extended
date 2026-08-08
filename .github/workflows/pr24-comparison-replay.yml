@@ -1,0 +1,173 @@
+name: PR24 Comparison Replay
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pr24-comparison-replay.yml
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  replay:
+    if: ${{ github.head_ref == 'agent/wire-accepted-baseline-comparison' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+
+      - name: Install final pinned auditor
+        id: auditor
+        uses: ./.github/actions/setup-decky-auditor
+        with:
+          auditor-ref: 4353bca353ffbee9b4b9c04c1dcadfca04e6a410
+
+      - name: Download captured 50-plugin smoke artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/smoke"
+          gh run download 31282103744 \
+            --repo "$GITHUB_REPOSITORY" \
+            --name security-audit-reports \
+            --dir "$RUNNER_TEMP/smoke"
+          test -f "$RUNNER_TEMP/smoke/security-report.json"
+          test -f "$RUNNER_TEMP/smoke/security-report.md"
+
+      - name: Replay repaired comparisons and bounded summary
+        env:
+          AUDITOR_COMMAND: ${{ steps.auditor.outputs.command }}
+          SMOKE_DIR: ${{ runner.temp }}/smoke
+        run: |
+          set -euo pipefail
+          AUDITOR_PYTHON="$(dirname "$AUDITOR_COMMAND")/python"
+          "$AUDITOR_PYTHON" - <<'PY'
+          import json
+          import os
+          import tempfile
+          from pathlib import Path
+          from urllib.parse import urlparse
+
+          import audit_plugins
+          import github_step_summary
+
+          workspace = Path(os.environ["GITHUB_WORKSPACE"])
+          smoke_dir = Path(os.environ["SMOKE_DIR"])
+          baseline_path = workspace / "security-baselines/accepted.json"
+          report_path = smoke_dir / "security-report.json"
+          markdown_path = smoke_dir / "security-report.md"
+
+          def repo_key(value):
+              raw = str(value or "").strip().rstrip("/")
+              parsed = urlparse(raw if "://" in raw else f"https://github.com/{raw}")
+              parts = [part for part in parsed.path.split("/") if part]
+              if parsed.hostname and parsed.hostname.casefold() == "github.com" and len(parts) >= 2:
+                  return f"github.com/{parts[0].casefold()}/{parts[1].casefold().removesuffix('.git')}"
+              return raw.casefold().removesuffix(".git")
+
+          baselines = audit_plugins.load_baseline_report(str(baseline_path))
+          payload = json.loads(report_path.read_text(encoding="utf-8"))
+          reports = payload["reports"]
+
+          counts = {"compared": 0, "baseline_not_found": 0}
+          changed = {}
+          missing = set()
+          replayed = []
+          for report in reports:
+              comparison = audit_plugins.compare_reviewer_capabilities(
+                  report,
+                  baselines.get(repo_key(report.get("repository"))),
+              )
+              status = comparison.get("status")
+              counts[status] = counts.get(status, 0) + 1
+              if status == "baseline_not_found":
+                  missing.add(repo_key(report.get("repository")))
+              if status == "compared" and comparison.get("changed_count"):
+                  changed[repo_key(report.get("repository"))] = comparison
+
+              current = dict(report)
+              current["reviewer_capability_comparison_schema_version"] = (
+                  audit_plugins.REVIEWER_CAPABILITY_COMPARISON_SCHEMA_VERSION
+              )
+              current["reviewer_capability_comparison"] = comparison
+              replayed.append(current)
+
+          expected_missing = {
+              "github.com/zany130/decky-notifications",
+              "github.com/chenx-dust/deckyclash",
+              "github.com/wtlnetwork/muon",
+              "github.com/frogthefrog/moondeck",
+          }
+          expected_changed = {
+              "github.com/mubaraknumann/unifideck",
+              "github.com/xxjsonderuloxx/decky-framegen",
+          }
+
+          if counts.get("compared") != 46 or counts.get("baseline_not_found") != 4:
+              raise SystemExit(f"unexpected comparison status counts: {counts}")
+          if missing != expected_missing:
+              raise SystemExit(f"unexpected missing baselines: {sorted(missing)}")
+          if set(changed) != expected_changed:
+              raise SystemExit(f"unexpected changed comparisons: {sorted(changed)}")
+
+          unifideck = changed["github.com/mubaraknumann/unifideck"]
+          if unifideck.get("same_artifact"):
+              raise SystemExit("Unifideck candidate should differ from accepted artifact")
+          network = next(
+              item for item in unifideck["capabilities"]
+              if item.get("id") == "network_communication"
+          )
+          if network.get("details", {}).get("added_destinations") != ["api.legendary.gl"]:
+              raise SystemExit(f"unexpected Unifideck destination additions: {network}")
+          if network.get("details", {}).get("removed_destinations") != ["bford.info"]:
+              raise SystemExit(f"unexpected Unifideck destination removals: {network}")
+
+          framegen = changed["github.com/xxjsonderuloxx/decky-framegen"]
+          if not framegen.get("same_artifact"):
+              raise SystemExit("Decky-Framegen timeout must be labeled same-artifact drift")
+          framegen_changes = {
+              item.get("status_change")
+              for item in framegen.get("capabilities") or []
+              if item.get("changed")
+          }
+          if framegen_changes != {"coverage_became_unknown"}:
+              raise SystemExit(f"unexpected Decky-Framegen change semantics: {framegen_changes}")
+
+          replay_payload = dict(payload)
+          replay_payload["reports"] = replayed
+          rich = github_step_summary.compact_summary(replay_payload)
+          if len(rich.encode("utf-8")) > github_step_summary.SUMMARY_SOFT_LIMIT_BYTES:
+              raise SystemExit("compact summary exceeded configured safety limit")
+
+          with tempfile.TemporaryDirectory() as temp_dir:
+              temp_dir = Path(temp_dir)
+              replay_json = temp_dir / "security-report.json"
+              actual_summary = temp_dir / "github-summary.md"
+              replay_json.write_text(json.dumps(replay_payload), encoding="utf-8")
+              github_step_summary._write_selected_summary(
+                  str(actual_summary),
+                  markdown_path,
+                  replay_json,
+              )
+              selected = actual_summary.read_text(encoding="utf-8")
+              if len(selected.encode("utf-8")) > github_step_summary.SUMMARY_SOFT_LIMIT_BYTES:
+                  raise SystemExit("selected GitHub summary exceeded configured safety limit")
+              if selected == markdown_path.read_text(encoding="utf-8"):
+                  raise SystemExit("oversized detailed report was not replaced by bounded summary")
+              if "api.legendary.gl" not in selected or "bford.info" not in selected:
+                  raise SystemExit("bounded summary omitted the real Unifideck network delta")
+
+          print("Replay verified: 46 compared, 4 unavailable, 2 meaningful changes.")
+          print("Unifideck: +api.legendary.gl / -bford.info (different artifact).")
+          print("Decky-Framegen: same-artifact coverage drift from ClamAV timeout.")
+          print(f"Bounded summary size: {len(rich.encode('utf-8'))} bytes.")
+          PY
