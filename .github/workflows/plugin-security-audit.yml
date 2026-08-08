@@ -268,10 +268,12 @@ jobs:
               echo "::error::pull request base SHA is unavailable"
               exit 1
             fi
-            VALIDATOR="$RUNNER_TEMP/accepted-baseline-validator.py"
+            BASE_BUNDLE="$RUNNER_TEMP/accepted-baseline-base"
+            mkdir -p "$BASE_BUNDLE"
             git show "${PR_BASE_SHA}:security-baselines/accepted.json" > "$BASELINE"
-            git show "${PR_BASE_SHA}:accepted_baseline.py" > "$VALIDATOR"
-            python "$VALIDATOR" --validate-only "$BASELINE"
+            git show "${PR_BASE_SHA}:accepted_baseline.py" > "$BASE_BUNDLE/accepted_baseline.py"
+            git show "${PR_BASE_SHA}:plugin_release_utils.py" > "$BASE_BUNDLE/plugin_release_utils.py"
+            python "$BASE_BUNDLE/accepted_baseline.py" --validate-only "$BASELINE"
             echo "Using accepted baseline from PR base commit $PR_BASE_SHA."
           else
             cp "$GITHUB_WORKSPACE/security-baselines/accepted.json" "$BASELINE"
