@@ -7,7 +7,7 @@
 name: Scheduled Security Audit
 
 env:
-  DECKY_AUDITOR_REF: d3e3a5f20f3d20f393b42174f0e65b0c643539a3
+  DECKY_AUDITOR_REF: 4353bca353ffbee9b4b9c04c1dcadfca04e6a410
 
 on:
   schedule:
