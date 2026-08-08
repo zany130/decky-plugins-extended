@@ -207,6 +207,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: main
+          fetch-depth: 0
 
       - name: Download validated audit artifact
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
@@ -220,6 +221,17 @@ jobs:
           test -f downloaded-audit/accepted-baseline.json
           python accepted_baseline.py \
             --validate-only downloaded-audit/accepted-baseline.json
+
+      - name: Reject stale baseline writes
+        run: |
+          set -euo pipefail
+          AUDIT_START_BASELINE="$RUNNER_TEMP/audit-start-accepted.json"
+          git show "${GITHUB_SHA}:security-baselines/accepted.json" > "$AUDIT_START_BASELINE"
+
+          if ! cmp --silent "$AUDIT_START_BASELINE" security-baselines/accepted.json; then
+            echo "::error::accepted baseline changed on main since this audit started; refusing stale write"
+            exit 1
+          fi
 
       - name: Persist changed baseline
         run: |
