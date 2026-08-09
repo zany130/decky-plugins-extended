@@ -1,0 +1,121 @@
+name: PR25 Review Queue Replay
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pr25-review-queue-replay.yml
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  replay:
+    if: ${{ github.head_ref == 'agent/security-review-queue' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+
+      - name: Download first post-PR24 scheduled audit artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/audit"
+          gh run download 31286922055 \
+            --repo "$GITHUB_REPOSITORY" \
+            --name scheduled-security-audit-reports \
+            --dir "$RUNNER_TEMP/audit"
+          test -f "$RUNNER_TEMP/audit/security-report.json"
+
+      - name: Replay queue builder against real 50-plugin report
+        env:
+          AUDIT_REPORT: ${{ runner.temp }}/audit/security-report.json
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/review"
+
+          python review_queue.py build \
+            --audit-report "$AUDIT_REPORT" \
+            --baseline security-baselines/accepted.json \
+            --decisions security-review/decisions.json \
+            --existing-queue security-review/queue.json \
+            --plugins-file additional_plugins.txt \
+            --output-json "$RUNNER_TEMP/review/queue.json" \
+            --output-markdown "$RUNNER_TEMP/review/queue.md" \
+            --source-run-url "https://github.com/$GITHUB_REPOSITORY/actions/runs/31286922055"
+
+          python review_queue.py validate \
+            --decisions security-review/decisions.json \
+            --queue "$RUNNER_TEMP/review/queue.json"
+
+          python - "$RUNNER_TEMP/review/queue.json" <<'PY'
+          import json
+          import sys
+
+          with open(sys.argv[1], encoding="utf-8") as handle:
+              queue = json.load(handle)
+
+          print(f"QUEUE_COUNT={queue['item_count']}")
+          counts = {"critical": 0, "high": 0, "normal": 0}
+          for item in queue["items"]:
+              counts[item["priority"]] += 1
+              print(
+                  "QUEUE_ITEM "
+                  f"priority={item['priority']} "
+                  f"repo={item['repository']} "
+                  f"release={item['release']} "
+                  f"sha={item['artifact_sha256'][:12] or 'unavailable'} "
+                  f"classification={item['final_classification']} "
+                  f"same_artifact={item['same_artifact']} "
+                  f"reasons={','.join(item['reasons'])} "
+                  f"attention={item['reviewer_attention_count']}"
+              )
+              for capability in item["changed_capabilities"]:
+                  print(
+                      "  CHANGE "
+                      f"{capability['id']} | {capability['summary']} | "
+                      f"attention={capability['reviewer_attention']}"
+                  )
+
+          print(
+              f"PRIORITIES critical={counts['critical']} high={counts['high']} normal={counts['normal']}"
+          )
+
+          repositories = {item["repository"].casefold(): item for item in queue["items"]}
+          required = {
+              "https://github.com/mubaraknumann/unifideck",
+              "https://github.com/xxjsonderuloxx/decky-framegen",
+              "https://github.com/wtlnetwork/muon",
+          }
+          missing = required - set(repositories)
+          if missing:
+              raise SystemExit(f"expected real review items missing: {sorted(missing)}")
+
+          unifideck = repositories["https://github.com/mubaraknumann/unifideck"]
+          if unifideck["artifact_sha256"] == unifideck["baseline_artifact_sha256"]:
+              raise SystemExit("Unifideck was not recognized as a new artifact")
+          if "security_delta" not in unifideck["reasons"]:
+              raise SystemExit("Unifideck real security delta was not prioritized")
+
+          framegen = repositories["https://github.com/xxjsonderuloxx/decky-framegen"]
+          if framegen["priority"] != "critical" or framegen["final_classification"] != "AUDIT_ERROR":
+              raise SystemExit("Decky-Framegen audit failure was not surfaced as critical")
+
+          muon = repositories["https://github.com/wtlnetwork/muon"]
+          if muon["priority"] != "critical" or muon["final_classification"] != "BLOCK":
+              raise SystemExit("Muon BLOCK was not surfaced as critical")
+
+          if queue["item_count"] >= 20:
+              raise SystemExit("queue is flooding reviewers with standing historical findings")
+          PY
+
+          cat "$RUNNER_TEMP/review/queue.md"
