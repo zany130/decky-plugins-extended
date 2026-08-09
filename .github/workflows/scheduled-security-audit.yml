@@ -1,8 +1,9 @@
 # Scheduled Plugin Security Audit
 #
-# The store owns the repository list, policy, allowlist, schedule, cache, and
-# report retention. The audit engine is installed from an immutable standalone
-# auditor commit so implementation changes cannot enter scheduled runs silently.
+# The store owns the repository list, policy, allowlist, schedule, cache,
+# accepted baseline, and reviewer state. The audit engine is installed from an
+# immutable standalone auditor commit so implementation changes cannot enter
+# scheduled runs silently.
 
 name: Scheduled Security Audit
 
@@ -47,10 +48,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Validate accepted baseline
+      - name: Validate store security state
         run: |
           set -euo pipefail
           python accepted_baseline.py --validate-only security-baselines/accepted.json
+          python review_queue.py validate \
+            --decisions security-review/decisions.json \
+            --queue security-review/queue.json
 
       - name: Install pinned standalone auditor
         id: auditor
@@ -62,9 +66,9 @@ jobs:
         id: cache-key
         run: |
           set -euo pipefail
-          # The accepted baseline is intentionally excluded. The standalone
-          # auditor attaches comparisons after cache retrieval, so a baseline
-          # update must change delta output without invalidating scan results.
+          # Accepted baseline and reviewer state are intentionally excluded.
+          # The standalone auditor attaches comparisons after cache retrieval,
+          # and queue construction is downstream of the serialized report.
           CONFIG_HASH=$(
             {
               printf '%s\n' "$DECKY_AUDITOR_REF"
@@ -201,6 +205,65 @@ jobs:
           retention-days: 90
           if-no-files-found: warn
 
+  build-review-queue:
+    name: Build security review queue
+    needs: scheduled-audit
+    if: ${{ always() && needs.scheduled-audit.result != 'cancelled' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+
+    steps:
+      - name: Checkout audit-start store state
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+
+      - name: Download scheduled audit report
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: scheduled-security-audit-reports
+          path: downloaded-audit
+
+      - name: Build review queue candidate
+        env:
+          SOURCE_RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          test -f downloaded-audit/security-report.json
+          mkdir -p review-queue-candidate
+
+          python review_queue.py build \
+            --audit-report downloaded-audit/security-report.json \
+            --baseline security-baselines/accepted.json \
+            --decisions security-review/decisions.json \
+            --existing-queue security-review/queue.json \
+            --plugins-file additional_plugins.txt \
+            --output-json review-queue-candidate/queue.json \
+            --output-markdown review-queue-candidate/queue.md \
+            --source-run-url "$SOURCE_RUN_URL"
+
+          python review_queue.py validate \
+            --decisions security-review/decisions.json \
+            --queue review-queue-candidate/queue.json
+
+          cat review-queue-candidate/queue.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload review queue candidate
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: security-review-queue-candidate
+          path: |
+            review-queue-candidate/queue.json
+            review-queue-candidate/queue.md
+          retention-days: 90
+          if-no-files-found: error
+
   persist-accepted-baseline:
     name: Persist accepted baseline
     needs: scheduled-audit
@@ -262,4 +325,91 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add security-baselines/accepted.json
           git commit -m "chore: refresh accepted security baseline"
+          git push origin HEAD:main
+
+  persist-review-queue:
+    name: Persist security review queue
+    needs:
+      - build-review-queue
+      - persist-accepted-baseline
+    if: ${{ always() && needs.build-review-queue.result == 'success' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      actions: read
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+
+      - name: Download validated queue candidate
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: security-review-queue-candidate
+          path: downloaded-review
+
+      - name: Reject stale reviewer-state writes
+        run: |
+          set -euo pipefail
+          for path in \
+            security-review/decisions.json \
+            security-review/queue.json \
+            security-review/queue.md
+          do
+            start_file="$RUNNER_TEMP/$(basename "$path").audit-start"
+            git show "${GITHUB_SHA}:${path}" > "$start_file"
+            if ! cmp --silent "$start_file" "$path"; then
+              echo "::error::$path changed on main since this audit started; refusing stale queue write"
+              exit 1
+            fi
+          done
+
+      - name: Validate candidate queue and rendering
+        run: |
+          set -euo pipefail
+          test -f downloaded-review/queue.json
+          test -f downloaded-review/queue.md
+
+          python review_queue.py validate \
+            --decisions security-review/decisions.json \
+            --queue downloaded-review/queue.json
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import review_queue
+
+          queue_path = Path("downloaded-review/queue.json")
+          markdown_path = Path("downloaded-review/queue.md")
+          queue = json.loads(queue_path.read_text(encoding="utf-8"))
+          expected = review_queue.render_markdown(queue)
+          actual = markdown_path.read_text(encoding="utf-8")
+          if actual != expected:
+              raise SystemExit("review queue Markdown does not match validated JSON")
+          PY
+
+      - name: Persist changed queue
+        run: |
+          set -euo pipefail
+          cp downloaded-review/queue.json security-review/queue.json
+          cp downloaded-review/queue.md security-review/queue.md
+
+          if git diff --quiet -- security-review/queue.json security-review/queue.md; then
+            echo "Security review queue is unchanged."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add security-review/queue.json security-review/queue.md
+          git commit -m "chore: refresh security review queue"
           git push origin HEAD:main
