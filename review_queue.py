@@ -598,6 +598,16 @@ def _md(value: object) -> str:
     return text
 
 
+def _code(value: object) -> str:
+    """Render safe inline Markdown code without leaking escape backslashes."""
+    text = _safe_text(value)
+    longest_run = max((len(run) for run in re.findall(r"`+", text)), default=0)
+    fence = "`" * (longest_run + 1)
+    if "`" in text:
+        return f"{fence} {text} {fence}"
+    return f"{fence}{text}{fence}"
+
+
 def _short_sha(value: object) -> str:
     text = str(value or "")
     return text[:12] if text else "unavailable"
@@ -615,7 +625,7 @@ def render_markdown(queue: dict[str, Any]) -> str:
         f"Pending artifacts: **{queue['item_count']}** — critical {counts['critical']}, high {counts['high']}, normal {counts['normal']}.",
     ]
     if queue.get("generated_at"):
-        lines.append(f"Generated: `{_md(queue['generated_at'])}`")
+        lines.append(f"Generated: {_code(queue['generated_at'])}")
     if queue.get("source_run_url"):
         lines.append(f"Source audit run: {_md(queue['source_run_url'])}")
     lines.append("")
@@ -631,9 +641,9 @@ def render_markdown(queue: dict[str, Any]) -> str:
         ]
     )
     for item in queue["items"]:
-        candidate = f"{_md(item['release'])} / `{_short_sha(item['artifact_sha256'])}`"
+        candidate = f"{_md(item['release'])} / {_code(_short_sha(item['artifact_sha256']))}"
         baseline = (
-            f"{_md(item['baseline_release'])} / `{_short_sha(item['baseline_artifact_sha256'])}`"
+            f"{_md(item['baseline_release'])} / {_code(_short_sha(item['baseline_artifact_sha256']))}"
             if item.get("baseline_artifact_sha256")
             else "unavailable"
         )
@@ -649,16 +659,16 @@ def render_markdown(queue: dict[str, Any]) -> str:
                 "",
                 f"## {_md(item['plugin_name'] or item['repository'])}",
                 "",
-                f"- Repository: `{_md(item['repository'])}`",
-                f"- Candidate: `{_md(item['release'])}` — `{_md(item['artifact_sha256'] or 'artifact SHA unavailable')}`",
+                f"- Repository: {_code(item['repository'])}",
+                f"- Candidate: {_code(item['release'])} — {_code(item['artifact_sha256'] or 'artifact SHA unavailable')}",
                 f"- Classification: **{_md(item['final_classification'])}** (risk {item['risk_score']})",
-                f"- Comparison: `{_md(item['comparison_status'])}`; reviewer-attention changes: {item['reviewer_attention_count']}",
-                f"- First seen: `{_md(item['first_seen_at'])}`",
+                f"- Comparison: {_code(item['comparison_status'])}; reviewer-attention changes: {item['reviewer_attention_count']}",
+                f"- First seen: {_code(item['first_seen_at'])}",
             ]
         )
         if item.get("baseline_artifact_sha256"):
             lines.append(
-                f"- Accepted baseline: `{_md(item['baseline_release'])}` — `{_md(item['baseline_artifact_sha256'])}`"
+                f"- Accepted baseline: {_code(item['baseline_release'])} — {_code(item['baseline_artifact_sha256'])}"
             )
         else:
             lines.append("- Accepted baseline: unavailable")
@@ -666,7 +676,7 @@ def render_markdown(queue: dict[str, Any]) -> str:
             lines.append("- Artifact bytes are unchanged; differences may reflect scanner/rule/coverage drift.")
         if item["scanner_failures"]:
             scanner_text = ", ".join(
-                f"{_md(scanner['name'])}: `{_md(scanner['status'])}`"
+                f"{_md(scanner['name'])}: {_code(scanner['status'])}"
                 for scanner in item["scanner_failures"]
             )
             lines.append(f"- Scanner coverage issues: {scanner_text}")

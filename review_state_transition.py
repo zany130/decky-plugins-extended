@@ -3,7 +3,7 @@
 Scheduled queue refreshes are produced by a constrained bot job directly on
 ``main``. Human review decisions, however, are expected to go through pull
 requests. This module makes those PR transitions tamper-evident: old decisions
-must remain byte-for-byte present, every new decision must target an exact
+must remain record-for-record unchanged after JSON decoding, every new decision must target an exact
 artifact that was pending in the base queue, and the queue change must be the
 same deterministic removal performed by ``review_queue.py decide``.
 """

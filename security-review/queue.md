@@ -18,7 +18,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Repository: `https://github.com/wtlnetwork/muon`
 - Candidate: `0.5.0.1` — `3ed4c4629013d94fc1486943a47e5044fbda7f2488d0e5c75976b9c29068de81`
 - Classification: **BLOCK** (risk 1362)
-- Comparison: `baseline\_not\_found`; reviewer-attention changes: 0
+- Comparison: `baseline_not_found`; reviewer-attention changes: 0
 - First seen: `2026-08-09T01:07:41.070060Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
@@ -44,7 +44,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Repository: `https://github.com/chenx-dust/DeckyClash`
 - Candidate: `v0.1.2` — `7ebadc4bfd0eeec84b9d4d39dfcae39f893fe05e80521caf431a8f4fafde54de`
 - Classification: **MANUAL\_REVIEW** (risk 162)
-- Comparison: `baseline\_not\_found`; reviewer-attention changes: 0
+- Comparison: `baseline_not_found`; reviewer-attention changes: 0
 - First seen: `2026-08-09T01:07:41.070060Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
@@ -54,7 +54,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Repository: `https://github.com/FrogTheFrog/moondeck`
 - Candidate: `nightly` — `e37fe1f709be38ad1247402faee5ea1a9770eae28250570119bb64a2502da03a`
 - Classification: **MANUAL\_REVIEW** (risk 7799)
-- Comparison: `baseline\_not\_found`; reviewer-attention changes: 0
+- Comparison: `baseline_not_found`; reviewer-attention changes: 0
 - First seen: `2026-08-09T01:07:41.070060Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
@@ -76,7 +76,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Repository: `https://github.com/zany130/decky-notifications`
 - Candidate: `1.0` — `c48de9ce7a8b8d5fedf97c9b8d1062b77d1868a798e5e307f6092c9097006b93`
 - Classification: **PASS\_WITH\_WARNINGS** (risk 4)
-- Comparison: `baseline\_not\_found`; reviewer-attention changes: 0
+- Comparison: `baseline_not_found`; reviewer-attention changes: 0
 - First seen: `2026-08-09T01:07:41.070060Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.

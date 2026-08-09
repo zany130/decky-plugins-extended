@@ -46,7 +46,7 @@ A decision for one artifact never applies to a later artifact from the same repo
 
 Decision history is not an allowlist. `security-allowlist.yml` narrowly permits specific audit rules for specific artifacts. A review approval records the human outcome for the whole candidate artifact and does not alter scanner findings or classification.
 
-Pull-request CI protects this state as an append-only ledger. Existing decisions must remain byte-for-byte unchanged, every newly appended decision must target an exact artifact that was pending in the PR base queue, and the queue change must be exactly the deterministic removal produced by the decision helper. A PR cannot silently delete/rewrite old decisions, invent an approval for an unqueued SHA, or modify an unrelated pending item while recording a decision.
+Pull-request CI protects this state as an append-only ledger. Existing decision records must remain semantically unchanged after JSON decoding (whitespace and key-order-only formatting are not part of the ledger guarantee), every newly appended decision must target an exact artifact that was pending in the PR base queue, and the queue change must be exactly the deterministic removal produced by the decision helper. A PR cannot silently delete/rewrite old decisions, invent an approval for an unqueued SHA, or modify an unrelated pending item while recording a decision.
 
 ## Recording a decision
 
