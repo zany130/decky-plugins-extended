@@ -28,7 +28,7 @@ A configured repository is queued when the current audit report represents any o
 
 An unchanged accepted artifact is not queued merely because its standing audit classification is `MANUAL_REVIEW`. Existing accepted plugins can legitimately have privileged, command-execution, native-code, or network capabilities; the queue is about unresolved **artifact review**, not replaying every historical finding forever.
 
-The queue copies only compact reviewer metadata and comparison summaries. It does not persist raw findings, snippets, scanner payloads, or full evidence arrays.
+The queue copies only compact reviewer metadata and comparison summaries. For scanner coverage problems it retains only the scanner name and non-success status (for example `clamav: failed`) so the queue is actionable without copying raw scanner detail. It does not persist raw findings, snippets, scanner payloads, scanner detail/log text, or full evidence arrays.
 
 ## Decision semantics
 
