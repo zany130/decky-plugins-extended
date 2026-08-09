@@ -32,6 +32,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - First seen: `2026-08-09T01:07:41.070060Z`
 - Accepted baseline: `v0.17` — `3300b617e3d979b483d03f995c75c829d6d54beaa4ac8dfae300c2560e4fc60f`
 - Artifact bytes are unchanged; differences may reflect scanner/rule/coverage drift.
+- Scanner coverage issues: clamav: `failed`
 - Capability changes:
   - **Malware detection:** not\_observed -\> unknown — **review**
   - **Persistence and automatic startup:** not\_observed -\> unknown — **review**

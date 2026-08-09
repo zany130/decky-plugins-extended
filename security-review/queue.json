@@ -22,6 +22,7 @@
       "reviewer_attention_count": 0,
       "risk_score": 1362,
       "same_artifact": false,
+      "scanner_failures": [],
       "source_commit": "39a9d32dded6e334ca7ce756ff2b8a92110608b4"
     },
     {
@@ -74,6 +75,12 @@
       "reviewer_attention_count": 4,
       "risk_score": 0,
       "same_artifact": true,
+      "scanner_failures": [
+        {
+          "name": "clamav",
+          "status": "failed"
+        }
+      ],
       "source_commit": "96eb17b0a9f2cfd2b00ad082bef893f4efc229f7"
     },
     {
@@ -95,6 +102,7 @@
       "reviewer_attention_count": 0,
       "risk_score": 162,
       "same_artifact": false,
+      "scanner_failures": [],
       "source_commit": "81948d323a6a95251dab4d656b47ab57fabacc5b"
     },
     {
@@ -116,6 +124,7 @@
       "reviewer_attention_count": 0,
       "risk_score": 7799,
       "same_artifact": false,
+      "scanner_failures": [],
       "source_commit": "7d699546710e3ff717767170e87d6edb6f7b1f64"
     },
     {
@@ -153,6 +162,7 @@
       "reviewer_attention_count": 2,
       "risk_score": 2396,
       "same_artifact": false,
+      "scanner_failures": [],
       "source_commit": "567da088e4c4ec878ed18f0beda163b6a7e0418f"
     },
     {
@@ -174,6 +184,7 @@
       "reviewer_attention_count": 0,
       "risk_score": 4,
       "same_artifact": false,
+      "scanner_failures": [],
       "source_commit": "2a6184cde761971b190511f86b2f9f14fa43ee81"
     }
   ],
