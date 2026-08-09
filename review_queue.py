@@ -379,7 +379,31 @@ def _build_item(
     same_artifact_drift = comparison_same_artifact and changed_count > 0
     critical = classification in {"AUDIT_ERROR", "BLOCK"}
 
-    queue_worthy = bool(existing) or critical or baseline_missing or new_artifact or same_artifact_drift
+    # A pending exact artifact is a stable review snapshot. In particular, if
+    # the live/accepted baseline later advances to these same bytes, a boring
+    # self-comparison must not erase the original baseline or the delta that put
+    # the artifact in the queue. Only a later critical audit result is allowed
+    # to promote the pending item automatically; the human decision closes it.
+    if existing is not None:
+        if not critical or existing.get("priority") == "critical":
+            return existing
+        promoted = json.loads(json.dumps(existing))
+        promoted["priority"] = "critical"
+        promoted["final_classification"] = classification
+        promoted["risk_score"] = max(
+            int(existing.get("risk_score") or 0),
+            max(0, int(report.get("risk_score") or 0)),
+        )
+        promoted["error_count"] = max(
+            int(existing.get("error_count") or 0),
+            _error_count(report),
+        )
+        critical_reason = "audit_error" if classification == "AUDIT_ERROR" else "blocked_by_policy"
+        if critical_reason not in promoted["reasons"]:
+            promoted["reasons"].append(critical_reason)
+        return promoted
+
+    queue_worthy = critical or baseline_missing or new_artifact or same_artifact_drift
     if not queue_worthy:
         return None
     if not has_identity and classification != "AUDIT_ERROR":
@@ -401,8 +425,6 @@ def _build_item(
         reasons.append("security_delta")
     if same_artifact_drift:
         reasons.append("same_artifact_analysis_drift")
-    if existing and not reasons:
-        reasons.append("pending_review")
 
     if critical:
         priority = "critical"
@@ -411,7 +433,6 @@ def _build_item(
     else:
         priority = "normal"
 
-    first_seen = _safe_text((existing or {}).get("first_seen_at")) or observed_at
     source_commit = _safe_text(report.get("source_commit"))
     if source_commit and not _SHA40.fullmatch(source_commit):
         source_commit = ""
@@ -426,7 +447,7 @@ def _build_item(
         "risk_score": max(0, int(report.get("risk_score") or 0)),
         "priority": priority,
         "reasons": reasons,
-        "first_seen_at": first_seen,
+        "first_seen_at": observed_at,
         "baseline_release": baseline_release,
         "baseline_artifact_sha256": baseline_digest if _is_sha256(baseline_digest) else "",
         "comparison_status": comparison_status,
