@@ -1,0 +1,193 @@
+{
+  "generated_at": "2026-08-09T01:07:41.070060Z",
+  "item_count": 6,
+  "items": [
+    {
+      "artifact_sha256": "3ed4c4629013d94fc1486943a47e5044fbda7f2488d0e5c75976b9c29068de81",
+      "baseline_artifact_sha256": "",
+      "baseline_release": "",
+      "changed_capabilities": [],
+      "comparison_status": "baseline_not_found",
+      "error_count": 0,
+      "final_classification": "BLOCK",
+      "first_seen_at": "2026-08-09T01:07:41.070060Z",
+      "plugin_name": "Muon",
+      "priority": "critical",
+      "reasons": [
+        "blocked_by_policy",
+        "baseline_unavailable"
+      ],
+      "release": "0.5.0.1",
+      "repository": "https://github.com/wtlnetwork/muon",
+      "reviewer_attention_count": 0,
+      "risk_score": 1362,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "39a9d32dded6e334ca7ce756ff2b8a92110608b4"
+    },
+    {
+      "artifact_sha256": "3300b617e3d979b483d03f995c75c829d6d54beaa4ac8dfae300c2560e4fc60f",
+      "baseline_artifact_sha256": "3300b617e3d979b483d03f995c75c829d6d54beaa4ac8dfae300c2560e4fc60f",
+      "baseline_release": "v0.17",
+      "changed_capabilities": [
+        {
+          "id": "malware",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Malware detection"
+        },
+        {
+          "id": "persistence",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Persistence and automatic startup"
+        },
+        {
+          "id": "privileged_system_access",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Privileged and system-level access"
+        },
+        {
+          "id": "sensitive_data_access",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Credentials and sensitive data"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "AUDIT_ERROR",
+      "first_seen_at": "2026-08-09T01:07:41.070060Z",
+      "plugin_name": "Decky-Framegen",
+      "priority": "critical",
+      "reasons": [
+        "audit_error",
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.17",
+      "repository": "https://github.com/xXJSONDeruloXx/Decky-Framegen",
+      "reviewer_attention_count": 4,
+      "risk_score": 0,
+      "same_artifact": true,
+      "scanner_failures": [
+        {
+          "name": "clamav",
+          "status": "failed"
+        }
+      ],
+      "source_commit": "96eb17b0a9f2cfd2b00ad082bef893f4efc229f7"
+    },
+    {
+      "artifact_sha256": "7ebadc4bfd0eeec84b9d4d39dfcae39f893fe05e80521caf431a8f4fafde54de",
+      "baseline_artifact_sha256": "",
+      "baseline_release": "",
+      "changed_capabilities": [],
+      "comparison_status": "baseline_not_found",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-09T01:07:41.070060Z",
+      "plugin_name": "DeckyClash",
+      "priority": "high",
+      "reasons": [
+        "baseline_unavailable"
+      ],
+      "release": "v0.1.2",
+      "repository": "https://github.com/chenx-dust/DeckyClash",
+      "reviewer_attention_count": 0,
+      "risk_score": 162,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "81948d323a6a95251dab4d656b47ab57fabacc5b"
+    },
+    {
+      "artifact_sha256": "e37fe1f709be38ad1247402faee5ea1a9770eae28250570119bb64a2502da03a",
+      "baseline_artifact_sha256": "",
+      "baseline_release": "",
+      "changed_capabilities": [],
+      "comparison_status": "baseline_not_found",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-09T01:07:41.070060Z",
+      "plugin_name": "MoonDeck",
+      "priority": "high",
+      "reasons": [
+        "baseline_unavailable"
+      ],
+      "release": "nightly",
+      "repository": "https://github.com/FrogTheFrog/moondeck",
+      "reviewer_attention_count": 0,
+      "risk_score": 7799,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "7d699546710e3ff717767170e87d6edb6f7b1f64"
+    },
+    {
+      "artifact_sha256": "dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7",
+      "baseline_artifact_sha256": "a313be924cabe15255d222742a402cd98cb510a35dfe4b2d06cf1e59366936de",
+      "baseline_release": "Release-0.7.2",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +1/-1",
+          "title": "Network communication"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed",
+          "title": "Published release versus source"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-09T01:07:41.070060Z",
+      "plugin_name": "Unifideck",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "Release-0.7.3",
+      "repository": "https://github.com/mubaraknumann/unifideck",
+      "reviewer_attention_count": 2,
+      "risk_score": 2396,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "567da088e4c4ec878ed18f0beda163b6a7e0418f"
+    },
+    {
+      "artifact_sha256": "c48de9ce7a8b8d5fedf97c9b8d1062b77d1868a798e5e307f6092c9097006b93",
+      "baseline_artifact_sha256": "",
+      "baseline_release": "",
+      "changed_capabilities": [],
+      "comparison_status": "baseline_not_found",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-08-09T01:07:41.070060Z",
+      "plugin_name": "Decky Notifications",
+      "priority": "high",
+      "reasons": [
+        "baseline_unavailable"
+      ],
+      "release": "1.0",
+      "repository": "https://github.com/zany130/decky-notifications",
+      "reviewer_attention_count": 0,
+      "risk_score": 4,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "2a6184cde761971b190511f86b2f9f14fa43ee81"
+    }
+  ],
+  "schema_version": "1",
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31286922055"
+}

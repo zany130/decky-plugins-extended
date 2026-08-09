@@ -1,0 +1,95 @@
+name: Security Review State
+
+on:
+  pull_request:
+    paths:
+      - review_queue.py
+      - review_state_transition.py
+      - accepted_baseline.py
+      - plugin_release_utils.py
+      - security-review/**
+      - tests/test_review_queue.py
+      - tests/test_review_state_transition.py
+      - .github/workflows/security-review-state.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-review-state-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate reviewer state
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout store with history
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+
+      - name: Sync frozen store environment
+        run: uv sync --frozen --no-dev
+
+      - name: Run reviewer-state unit tests
+        run: |
+          set -euo pipefail
+          uv run --frozen python -m unittest \
+            tests.test_review_queue \
+            tests.test_review_state_transition \
+            -v
+
+      - name: Validate committed reviewer state and Markdown
+        run: |
+          set -euo pipefail
+          uv run --frozen python review_queue.py validate \
+            --decisions security-review/decisions.json \
+            --queue security-review/queue.json
+
+          uv run --frozen python - <<'PY'
+          import json
+          from pathlib import Path
+          import review_queue
+
+          queue = json.loads(Path("security-review/queue.json").read_text(encoding="utf-8"))
+          expected = review_queue.render_markdown(queue)
+          actual = Path("security-review/queue.md").read_text(encoding="utf-8")
+          if actual != expected:
+              raise SystemExit("security-review/queue.md is not the deterministic rendering of queue.json")
+          PY
+
+      - name: Validate append-only pull-request transition
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          BASE_DECISIONS="$RUNNER_TEMP/base-decisions.json"
+          BASE_QUEUE="$RUNNER_TEMP/base-queue.json"
+
+          if git cat-file -e "${PR_BASE_SHA}:security-review/decisions.json" 2>/dev/null; then
+            git show "${PR_BASE_SHA}:security-review/decisions.json" > "$BASE_DECISIONS"
+            git show "${PR_BASE_SHA}:security-review/queue.json" > "$BASE_QUEUE"
+
+            uv run --frozen python review_state_transition.py \
+              --previous-decisions "$BASE_DECISIONS" \
+              --previous-queue "$BASE_QUEUE" \
+              --decisions security-review/decisions.json \
+              --queue security-review/queue.json
+          else
+            echo "Initializing security review state; no base-state files exist yet."
+          fi

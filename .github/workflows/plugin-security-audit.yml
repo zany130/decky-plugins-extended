@@ -14,7 +14,9 @@ on:
       - README.md
       - additional_plugins.txt
       - accepted_baseline.py
+      - review_queue.py
       - security-baselines/**
+      - security-review/**
       - security-policy.yml
       - security-allowlist.yml
       - generate_json.py
@@ -226,6 +228,13 @@ jobs:
 
           print(f"Auditor accepted {len(baselines)} persisted baseline(s).")
           PY
+
+      - name: Validate committed security review state
+        run: |
+          set -euo pipefail
+          python review_queue.py validate \
+            --decisions security-review/decisions.json \
+            --queue security-review/queue.json
 
   audit:
     name: Security Audit
