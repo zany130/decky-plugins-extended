@@ -104,6 +104,7 @@ class ReviewQueueTests(unittest.TestCase):
         classification="MANUAL_REVIEW",
         comparison=None,
         errors=None,
+        scanner_statuses=None,
     ):
         return {
             "repository": REPO,
@@ -114,6 +115,7 @@ class ReviewQueueTests(unittest.TestCase):
             "final_classification": classification,
             "risk_score": 25,
             "errors": errors or [],
+            "scanner_statuses": scanner_statuses or [],
             "reviewer_capability_comparison": comparison
             if comparison is not None
             else self.comparison(),
@@ -151,6 +153,7 @@ class ReviewQueueTests(unittest.TestCase):
         self.assertEqual(item["reviewer_attention_count"], 1)
         self.assertEqual(item["changed_capabilities"][0]["summary"], "network destinations +1/-1")
         self.assertNotIn("details", item["changed_capabilities"][0])
+        self.assertEqual(item["scanner_failures"], [])
         self.assertEqual(stats["high"], 1)
 
     def test_new_artifact_without_attention_remains_visible_at_normal_priority(self):
@@ -195,6 +198,14 @@ class ReviewQueueTests(unittest.TestCase):
                 classification="AUDIT_ERROR",
                 comparison={"status": "comparison_unavailable"},
                 errors=["scanner timed out"],
+                scanner_statuses=[
+                    {
+                        "name": "clamav",
+                        "status": "failed",
+                        "version": "1.4.3",
+                        "detail": "secret raw timeout detail must not be persisted",
+                    }
+                ],
             )
         )
         item = errored["items"][0]
@@ -202,6 +213,21 @@ class ReviewQueueTests(unittest.TestCase):
         self.assertEqual(item["artifact_sha256"], "")
         self.assertIn("artifact_identity_unavailable", item["reasons"])
         self.assertEqual(item["error_count"], 1)
+        self.assertEqual(item["scanner_failures"], [{"name": "clamav", "status": "failed"}])
+        self.assertNotIn("detail", item["scanner_failures"][0])
+
+    def test_successful_or_issue_found_scanners_are_not_queue_failures(self):
+        queue, _ = self.build(
+            self.audit_report(
+                scanner_statuses=[
+                    {"name": "clamav", "status": "passed"},
+                    {"name": "trivy", "status": "found_issue"},
+                    {"name": "disabled", "status": "skipped"},
+                ]
+            )
+        )
+
+        self.assertEqual(queue["items"][0]["scanner_failures"], [])
 
     def test_same_artifact_analysis_drift_is_queued_without_claiming_release_change(self):
         report = self.audit_report(
@@ -209,7 +235,7 @@ class ReviewQueueTests(unittest.TestCase):
             release="v1.0.0",
             classification="AUDIT_ERROR",
             comparison=self.comparison(same_artifact=True, changed=True, attention=True),
-            errors=["ClamAV timed out"],
+            scanner_statuses=[{"name": "clamav", "status": "failed", "detail": "timeout"}],
         )
 
         queue, _ = self.build(report)
@@ -218,6 +244,7 @@ class ReviewQueueTests(unittest.TestCase):
         self.assertTrue(item["same_artifact"])
         self.assertIn("same_artifact_analysis_drift", item["reasons"])
         self.assertNotIn("new_artifact", item["reasons"])
+        self.assertEqual(item["scanner_failures"], [{"name": "clamav", "status": "failed"}])
 
     def test_pending_item_preserves_original_context_after_baseline_advances(self):
         initial, _ = self.build(
@@ -254,6 +281,7 @@ class ReviewQueueTests(unittest.TestCase):
             classification="AUDIT_ERROR",
             comparison=self.comparison(same_artifact=True, changed=True, attention=True),
             errors=["scanner timed out"],
+            scanner_statuses=[{"name": "clamav", "status": "failed"}],
         )
         queue, _ = self.build(errored, queue=initial)
 
@@ -265,6 +293,7 @@ class ReviewQueueTests(unittest.TestCase):
         self.assertEqual(item["changed_capabilities"], original["changed_capabilities"])
         self.assertEqual(item["first_seen_at"], original["first_seen_at"])
         self.assertEqual(item["error_count"], 1)
+        self.assertEqual(item["scanner_failures"], [{"name": "clamav", "status": "failed"}])
 
     def test_exact_artifact_decision_resolves_item_but_old_decision_does_not_hide_new_artifact(self):
         queue, _ = self.build(self.audit_report())
@@ -399,16 +428,27 @@ class ReviewQueueTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "SHA-256"):
             rq.validate_decisions(payload)
 
-    def test_markdown_is_compact_and_does_not_include_comparison_details(self):
+    def test_markdown_is_compact_and_does_not_include_comparison_or_scanner_details(self):
         queue, _ = self.build(
-            self.audit_report(comparison=self.comparison(changed=True, attention=True))
+            self.audit_report(
+                comparison=self.comparison(changed=True, attention=True),
+                scanner_statuses=[
+                    {
+                        "name": "clamav",
+                        "status": "failed",
+                        "detail": "raw internal scanner detail",
+                    }
+                ],
+            )
         )
 
         markdown = rq.render_markdown(queue)
 
         self.assertIn("network destinations +1/-1", markdown)
+        self.assertIn("clamav: `failed`", markdown)
         self.assertNotIn("new.example", markdown)
         self.assertNotIn("old.example", markdown)
+        self.assertNotIn("raw internal scanner detail", markdown)
 
 
 if __name__ == "__main__":
