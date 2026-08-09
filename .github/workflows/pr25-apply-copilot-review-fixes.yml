@@ -27,7 +27,7 @@ jobs:
       - name: Sync frozen store environment
         run: uv sync --frozen --no-dev
 
-      - name: Apply review fixes
+      - name: Apply non-workflow review fixes
         run: |
           set -euo pipefail
           python - <<'PY'
@@ -88,31 +88,7 @@ jobs:
               raise SystemExit("README wording not found")
           readme.write_text(text.replace(old, new, 1), encoding="utf-8")
 
-          workflow = Path(".github/workflows/scheduled-security-audit.yml")
-          text = workflow.read_text(encoding="utf-8")
-          old = "          path: downloaded-audit\n\n      - name: Build review queue candidate"
-          new = "          path: downloaded-audit/security-reports\n\n      - name: Build review queue candidate"
-          if old not in text:
-              raise SystemExit("download extraction path not found")
-          text = text.replace(old, new, 1)
-          if "test -f downloaded-audit/security-report.json" not in text:
-              raise SystemExit("audit report existence check not found")
-          text = text.replace(
-              "test -f downloaded-audit/security-report.json",
-              "test -f downloaded-audit/security-reports/security-report.json",
-              1,
-          )
-          if "--audit-report downloaded-audit/security-report.json" not in text:
-              raise SystemExit("audit report CLI path not found")
-          text = text.replace(
-              "--audit-report downloaded-audit/security-report.json",
-              "--audit-report downloaded-audit/security-reports/security-report.json",
-              1,
-          )
-          workflow.write_text(text, encoding="utf-8")
-
-          test_path = Path("tests/test_review_queue_review_fixes.py")
-          test_path.write_text('''import json\nimport unittest\nfrom pathlib import Path\n\nimport review_queue\n\n\nclass ReviewQueueReviewFixTests(unittest.TestCase):\n    def test_inline_code_keeps_underscores_readable(self):\n        self.assertEqual(review_queue._code("baseline_not_found"), "`baseline_not_found`")\n\n    def test_inline_code_uses_longer_fence_for_embedded_backtick(self):\n        self.assertEqual(review_queue._code("value`with_tick"), "`` value`with_tick ``")\n\n    def test_committed_queue_renders_code_values_without_literal_escape_backslashes(self):\n        queue = json.loads(Path("security-review/queue.json").read_text(encoding="utf-8"))\n        markdown = review_queue.render_markdown(queue)\n        self.assertIn("`baseline_not_found`", markdown)\n        self.assertNotIn("`baseline\\\\_not\\\\_found`", markdown)\n\n\nif __name__ == "__main__":\n    unittest.main()\n''', encoding="utf-8")
+          Path("tests/test_review_queue_review_fixes.py").write_text('''import json\nimport unittest\nfrom pathlib import Path\n\nimport review_queue\n\n\nclass ReviewQueueReviewFixTests(unittest.TestCase):\n    def test_inline_code_keeps_underscores_readable(self):\n        self.assertEqual(review_queue._code("baseline_not_found"), "`baseline_not_found`")\n\n    def test_inline_code_uses_longer_fence_for_embedded_backtick(self):\n        self.assertEqual(review_queue._code("value`with_tick"), "`` value`with_tick ``")\n\n    def test_committed_queue_renders_code_values_without_literal_escape_backslashes(self):\n        queue = json.loads(Path("security-review/queue.json").read_text(encoding="utf-8"))\n        markdown = review_queue.render_markdown(queue)\n        self.assertIn("`baseline_not_found`", markdown)\n        self.assertNotIn("`baseline\\\\_not\\\\_found`", markdown)\n\n\nif __name__ == "__main__":\n    unittest.main()\n''', encoding="utf-8")
           PY
 
       - name: Regenerate and test reviewer Markdown
@@ -123,8 +99,7 @@ jobs:
           from pathlib import Path
           import review_queue
 
-          queue_path = Path("security-review/queue.json")
-          queue = json.loads(queue_path.read_text(encoding="utf-8"))
+          queue = json.loads(Path("security-review/queue.json").read_text(encoding="utf-8"))
           Path("security-review/queue.md").write_text(
               review_queue.render_markdown(queue),
               encoding="utf-8",
@@ -133,9 +108,8 @@ jobs:
           uv run --frozen python -m unittest discover -s tests -p 'test_review_queue_review_fixes.py' -v
           grep -F '`baseline_not_found`' security-review/queue.md
           ! grep -F '`baseline\_not\_found`' security-review/queue.md
-          grep -F 'downloaded-audit/security-reports/security-report.json' .github/workflows/scheduled-security-audit.yml
 
-      - name: Commit review fixes
+      - name: Commit non-workflow review fixes
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -145,7 +119,6 @@ jobs:
             review_state_transition.py \
             security-review/README.md \
             security-review/queue.md \
-            tests/test_review_queue_review_fixes.py \
-            .github/workflows/scheduled-security-audit.yml
-          git commit -m "fix: address PR25 review feedback"
+            tests/test_review_queue_review_fixes.py
+          git commit -m "fix: address PR25 reviewer-state feedback"
           git push origin HEAD:${{ github.head_ref }}
