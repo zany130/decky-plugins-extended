@@ -75,6 +75,7 @@ _QUEUE_ITEM_KEYS = {
     "reviewer_attention_count",
     "changed_capabilities",
     "error_count",
+    "scanner_failures",
 }
 _CHANGED_CAPABILITY_KEYS = {
     "id",
@@ -83,6 +84,7 @@ _CHANGED_CAPABILITY_KEYS = {
     "summary",
     "reviewer_attention",
 }
+_SCANNER_FAILURE_KEYS = {"name", "status"}
 
 _SECRET_PATTERNS = (
     re.compile(r"\bgh[pousr]_[A-Za-z0-9_]{20,}\b"),
@@ -260,6 +262,22 @@ def validate_queue(payload: object) -> None:
             if not isinstance(capability.get("reviewer_attention"), bool):
                 raise ValueError("review queue reviewer_attention must be boolean")
 
+        scanner_failures = item.get("scanner_failures")
+        if not isinstance(scanner_failures, list) or len(scanner_failures) > 64:
+            raise ValueError("review queue scanner failures are invalid")
+        seen_scanners: set[tuple[str, str]] = set()
+        for scanner in scanner_failures:
+            if not isinstance(scanner, dict) or set(scanner) != _SCANNER_FAILURE_KEYS:
+                raise ValueError("review queue scanner failure shape is invalid")
+            name = str(scanner.get("name") or "")
+            status = str(scanner.get("status") or "")
+            if not name or not status:
+                raise ValueError("review queue scanner failure values must not be empty")
+            scanner_key = (name, status)
+            if scanner_key in seen_scanners:
+                raise ValueError("review queue scanner failures must be unique")
+            seen_scanners.add(scanner_key)
+
         identity = (repository, digest if digest else f"release:{release}")
         if identity in seen:
             raise ValueError("review queue contains duplicate artifact identity")
@@ -349,6 +367,22 @@ def _changed_capabilities(comparison: dict[str, Any]) -> list[dict[str, Any]]:
     return projected
 
 
+def _scanner_failures(report: dict[str, Any]) -> list[dict[str, str]]:
+    projected: set[tuple[str, str]] = set()
+    statuses = report.get("scanner_statuses")
+    if not isinstance(statuses, list):
+        return []
+    for item in statuses:
+        if not isinstance(item, dict):
+            continue
+        name = _safe_text(item.get("name"))
+        status = _safe_text(item.get("status")).casefold()
+        if not name or not status or status in {"passed", "found_issue", "skipped"}:
+            continue
+        projected.add((name, status))
+    return [{"name": name, "status": status} for name, status in sorted(projected)]
+
+
 def _error_count(report: dict[str, Any]) -> int:
     errors = report.get("errors")
     return len(errors) if isinstance(errors, list) else (1 if errors else 0)
@@ -367,6 +401,7 @@ def _build_item(
     comparison = _comparison(report)
     comparison_status = _safe_text(comparison.get("status")) or "not_available"
     changed = _changed_capabilities(comparison)
+    scanner_failures = _scanner_failures(report)
     attention_count = int(comparison.get("attention_count") or 0)
     changed_count = int(comparison.get("changed_count") or 0)
     comparison_same_artifact = bool(comparison.get("same_artifact"))
@@ -398,6 +433,17 @@ def _build_item(
             int(existing.get("error_count") or 0),
             _error_count(report),
         )
+        existing_failures = {
+            (str(item.get("name") or ""), str(item.get("status") or ""))
+            for item in promoted.get("scanner_failures") or []
+            if isinstance(item, dict)
+        }
+        for scanner in scanner_failures:
+            key = (scanner["name"], scanner["status"])
+            if key not in existing_failures:
+                promoted["scanner_failures"].append(scanner)
+                existing_failures.add(key)
+        promoted["scanner_failures"].sort(key=lambda item: (item["name"], item["status"]))
         critical_reason = "audit_error" if classification == "AUDIT_ERROR" else "blocked_by_policy"
         if critical_reason not in promoted["reasons"]:
             promoted["reasons"].append(critical_reason)
@@ -455,6 +501,7 @@ def _build_item(
         "reviewer_attention_count": max(0, attention_count),
         "changed_capabilities": changed,
         "error_count": _error_count(report),
+        "scanner_failures": scanner_failures,
     }
 
 
@@ -617,8 +664,14 @@ def render_markdown(queue: dict[str, Any]) -> str:
             lines.append("- Accepted baseline: unavailable")
         if item["same_artifact"] and item["changed_capabilities"]:
             lines.append("- Artifact bytes are unchanged; differences may reflect scanner/rule/coverage drift.")
+        if item["scanner_failures"]:
+            scanner_text = ", ".join(
+                f"{_md(scanner['name'])}: `{_md(scanner['status'])}`"
+                for scanner in item["scanner_failures"]
+            )
+            lines.append(f"- Scanner coverage issues: {scanner_text}")
         if item["error_count"]:
-            lines.append(f"- Audit errors: {item['error_count']} (see the full audit artifact/logs for details)")
+            lines.append(f"- Report errors: {item['error_count']} (see the full audit artifact/logs for details)")
         if item["changed_capabilities"]:
             lines.append("- Capability changes:")
             for capability in item["changed_capabilities"]:
