@@ -1,8 +1,8 @@
 {
-  "auditor_ref": "d3e3a5f20f3d20f393b42174f0e65b0c643539a3",
+  "auditor_ref": "4353bca353ffbee9b4b9c04c1dcadfca04e6a410",
   "baseline_semantics": "currently_distributed_live_stable_catalog",
   "entry_count": 46,
-  "generated_at": "2026-08-08T18:22:47.643014Z",
+  "generated_at": "2026-08-09T06:40:32.382853Z",
   "live_catalog_url": "https://zany130-decky-plugins-extended.pages.dev/plugins.json",
   "reports": [
     {
@@ -4105,10 +4105,10 @@
       "source_commit": "b1c1ab0c5ed8334ae61f8565ac8aa786caf9dc85"
     },
     {
-      "artifact_sha256": "a313be924cabe15255d222742a402cd98cb510a35dfe4b2d06cf1e59366936de",
-      "baseline_captured_at": "2026-08-08T18:22:47.643014Z",
-      "baseline_live_hash": "a313be924cabe15255d222742a402cd98cb510a35dfe4b2d06cf1e59366936de",
-      "baseline_live_version": "0.7.2",
+      "artifact_sha256": "dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7",
+      "baseline_captured_at": "2026-08-09T06:40:32.382853Z",
+      "baseline_live_hash": "dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7",
+      "baseline_live_version": "0.7.3",
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [
@@ -4308,6 +4308,9 @@
           "destination": "api.gog.com"
         },
         {
+          "destination": "api.legendary.gl"
+        },
+        {
           "destination": "api.securityscorecards.dev"
         },
         {
@@ -4357,9 +4360,6 @@
         },
         {
           "destination": "betterexplained.com"
-        },
-        {
-          "destination": "bford.info"
         },
         {
           "destination": "bgstack15.ddns.net"
@@ -5567,7 +5567,7 @@
       ],
       "plugin_name": "Unifideck",
       "policy_version": "1",
-      "release": "Release-0.7.2",
+      "release": "Release-0.7.3",
       "repository": "https://github.com/mubaraknumann/unifideck",
       "reviewer_capabilities": [
         {
@@ -5692,9 +5692,9 @@
           "title": "Credentials and sensitive data"
         },
         {
-          "distinct_evidence_count": 7,
+          "distinct_evidence_count": 6,
           "evidence_collapsed": 0,
-          "evidence_count": 7,
+          "evidence_count": 6,
           "evidence_truncated": false,
           "finding_count": 3,
           "id": "source_release_integrity",
@@ -5722,11 +5722,6 @@
             "counted": true
           }
         ],
-        "other_same_path_differences": [
-          {
-            "counted": true
-          }
-        ],
         "zip_only_executables": [
           {
             "counted": true
@@ -5741,7 +5736,7 @@
           }
         ]
       },
-      "source_commit": "0133d2f0e140e5f6f4abf259bfe89dba0096c1f4"
+      "source_commit": "567da088e4c4ec878ed18f0beda163b6a7e0418f"
     },
     {
       "artifact_sha256": "554f9cfb88303d2417af9a9013a87d8054df4cbef623f5bdf5c6d5dd2dce0286",
