@@ -38,6 +38,7 @@ class ReviewStateTransitionTests(unittest.TestCase):
                 }
             ],
             "error_count": 0,
+            "scanner_failures": [],
         }
 
     def queue(self, *items):
