@@ -2,7 +2,7 @@
   "auditor_ref": "4353bca353ffbee9b4b9c04c1dcadfca04e6a410",
   "baseline_semantics": "currently_distributed_live_stable_catalog",
   "entry_count": 46,
-  "generated_at": "2026-08-09T06:40:32.382853Z",
+  "generated_at": "2026-08-09T18:25:25.794500Z",
   "live_catalog_url": "https://zany130-decky-plugins-extended.pages.dev/plugins.json",
   "reports": [
     {
@@ -5739,10 +5739,10 @@
       "source_commit": "567da088e4c4ec878ed18f0beda163b6a7e0418f"
     },
     {
-      "artifact_sha256": "554f9cfb88303d2417af9a9013a87d8054df4cbef623f5bdf5c6d5dd2dce0286",
-      "baseline_captured_at": "2026-08-08T18:22:47.643014Z",
-      "baseline_live_hash": "554f9cfb88303d2417af9a9013a87d8054df4cbef623f5bdf5c6d5dd2dce0286",
-      "baseline_live_version": "1.21.0",
+      "artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
+      "baseline_captured_at": "2026-08-09T18:25:25.794500Z",
+      "baseline_live_hash": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
+      "baseline_live_version": "1.21.1",
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [
@@ -5839,7 +5839,7 @@
       ],
       "plugin_name": "Steamcord",
       "policy_version": "1",
-      "release": "v1.21.0",
+      "release": "v1.21.1",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_capabilities": [
         {
@@ -6033,7 +6033,7 @@
           }
         ]
       },
-      "source_commit": "271de9cf282c363733c5d029b95f5562fa0d6730"
+      "source_commit": "141f32c597c01dfb0ecba14d4e4e72bc43104d80"
     },
     {
       "artifact_sha256": "a8924e945dcfd57372c11a8ac8d5fa3681c3beb0171cd3991d90fccc53e161b6",
