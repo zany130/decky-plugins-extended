@@ -219,11 +219,11 @@ class ReviewQueueTests(unittest.TestCase):
         self.assertIn("same_artifact_analysis_drift", item["reasons"])
         self.assertNotIn("new_artifact", item["reasons"])
 
-    def test_pending_item_survives_baseline_advancement_to_same_artifact(self):
+    def test_pending_item_preserves_original_context_after_baseline_advances(self):
         initial, _ = self.build(
             self.audit_report(comparison=self.comparison(changed=True, attention=True))
         )
-        first_seen = initial["items"][0]["first_seen_at"]
+        original_item = copy.deepcopy(initial["items"][0])
 
         advanced_baseline = self.baseline(self.baseline_report(SHA_B, "v1.1.0"))
         current = self.audit_report(
@@ -233,10 +233,38 @@ class ReviewQueueTests(unittest.TestCase):
         )
         queue, _ = self.build(current, baseline=advanced_baseline, queue=initial)
 
-        self.assertEqual(queue["item_count"], 1)
-        self.assertEqual(queue["items"][0]["artifact_sha256"], SHA_B)
-        self.assertEqual(queue["items"][0]["first_seen_at"], first_seen)
-        self.assertEqual(queue["items"][0]["reasons"], ["pending_review"])
+        self.assertEqual(queue, initial)
+        self.assertEqual(queue["items"][0], original_item)
+        self.assertEqual(queue["items"][0]["baseline_artifact_sha256"], SHA_A)
+        self.assertEqual(queue["items"][0]["reasons"], ["new_artifact", "security_delta"])
+        self.assertEqual(
+            queue["items"][0]["changed_capabilities"][0]["summary"],
+            "network destinations +1/-1",
+        )
+
+    def test_pending_item_can_escalate_to_critical_without_losing_review_context(self):
+        initial, _ = self.build(
+            self.audit_report(comparison=self.comparison(changed=True, attention=True))
+        )
+        original = copy.deepcopy(initial["items"][0])
+
+        errored = self.audit_report(
+            digest=SHA_B,
+            release="v1.1.0",
+            classification="AUDIT_ERROR",
+            comparison=self.comparison(same_artifact=True, changed=True, attention=True),
+            errors=["scanner timed out"],
+        )
+        queue, _ = self.build(errored, queue=initial)
+
+        item = queue["items"][0]
+        self.assertEqual(item["priority"], "critical")
+        self.assertEqual(item["final_classification"], "AUDIT_ERROR")
+        self.assertIn("audit_error", item["reasons"])
+        self.assertEqual(item["baseline_artifact_sha256"], original["baseline_artifact_sha256"])
+        self.assertEqual(item["changed_capabilities"], original["changed_capabilities"])
+        self.assertEqual(item["first_seen_at"], original["first_seen_at"])
+        self.assertEqual(item["error_count"], 1)
 
     def test_exact_artifact_decision_resolves_item_but_old_decision_does_not_hide_new_artifact(self):
         queue, _ = self.build(self.audit_report())
