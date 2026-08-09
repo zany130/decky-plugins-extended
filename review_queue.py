@@ -446,7 +446,12 @@ def build_queue(
     *,
     source_run_url: str = "",
 ) -> tuple[dict[str, Any], dict[str, int]]:
-    validate_state(decisions_payload, existing_queue)
+    # A reviewer decision can land between scheduled scans while queue.json still
+    # contains the now-decided artifact. The builder's job is to reconcile that
+    # transient input state. Validate each document independently first; the
+    # rebuilt combined state is required to pass strict cross-state validation.
+    validate_decisions(decisions_payload)
+    validate_queue(existing_queue)
     reports = _report_index(audit_payload)
     baselines = _baseline_index(baseline_payload)
     latest_decisions = _latest_decisions(decisions_payload)
