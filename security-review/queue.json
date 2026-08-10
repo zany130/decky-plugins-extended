@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-09T01:07:41.070060Z",
-  "item_count": 6,
+  "generated_at": "2026-08-10T00:51:45.065594Z",
+  "item_count": 50,
   "items": [
     {
       "artifact_sha256": "3ed4c4629013d94fc1486943a47e5044fbda7f2488d0e5c75976b9c29068de81",
@@ -84,6 +84,347 @@
       "source_commit": "96eb17b0a9f2cfd2b00ad082bef893f4efc229f7"
     },
     {
+      "artifact_sha256": "1d8a520b499bb365dfb9ca87b03aaa0ba1afb4f57a6b1fc3b7b6183b5b53399e",
+      "baseline_artifact_sha256": "1d8a520b499bb365dfb9ca87b03aaa0ba1afb4f57a6b1fc3b7b6183b5b53399e",
+      "baseline_release": "v3.3.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-20",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "PlayTime",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v3.3.0",
+      "repository": "https://github.com/0u73r-h34v3n/SDH-PlayTime",
+      "reviewer_attention_count": 1,
+      "risk_score": 37,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "8b3a4fd1a3caf80172a942cc237c730c52e4b659"
+    },
+    {
+      "artifact_sha256": "4a698f9f7bf08e8f4e78c341009ac7003830ad43e071aaef770c1af61ee443e0",
+      "baseline_artifact_sha256": "4a698f9f7bf08e8f4e78c341009ac7003830ad43e071aaef770c1af61ee443e0",
+      "baseline_release": "v1.2.3",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-4",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "steam-achievements",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.2.3",
+      "repository": "https://github.com/AG69075/steamOS_plugin_achievements",
+      "reviewer_attention_count": 1,
+      "risk_score": 2,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "a656d1feb863cd3576984b212176d27b264a16ac"
+    },
+    {
+      "artifact_sha256": "f5a6fd3600165ec6791b0c47d8eb8cbb657bb2de6d891a0e57490a4cf5794844",
+      "baseline_artifact_sha256": "f5a6fd3600165ec6791b0c47d8eb8cbb657bb2de6d891a0e57490a4cf5794844",
+      "baseline_release": "20260530153903",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-9",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Game Sync",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "20260530153903",
+      "repository": "https://github.com/AkazaRenn/SDH-GameSync",
+      "reviewer_attention_count": 1,
+      "risk_score": 12,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "f1c7dd39e3bb6176bcadd5819bf7bc8e0b8b2e7c"
+    },
+    {
+      "artifact_sha256": "e5239caa11c25c68bc5d3e053391ebc417e24e831ab687d521e6b768a2a73aaf",
+      "baseline_artifact_sha256": "e5239caa11c25c68bc5d3e053391ebc417e24e831ab687d521e6b768a2a73aaf",
+      "baseline_release": "v1.6.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-4",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Discord Status",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.6.0",
+      "repository": "https://github.com/andrewburgess/steamdeck-discord-status",
+      "reviewer_attention_count": 1,
+      "risk_score": 2,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "c136df8e39a3dcaf6100985bf6c526c533a0c65a"
+    },
+    {
+      "artifact_sha256": "38b268f5c0c590365be8c5d7f5d6659c0628b89e577af83bf0f85f07a04cff76",
+      "baseline_artifact_sha256": "38b268f5c0c590365be8c5d7f5d6659c0628b89e577af83bf0f85f07a04cff76",
+      "baseline_release": "v1.0.9",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-10",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Deckcord",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.0.9",
+      "repository": "https://github.com/andriuspetravicius/Deckcord",
+      "reviewer_attention_count": 1,
+      "risk_score": 2,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "72fd3b34e1bce1562a704564d8b08207085677f7"
+    },
+    {
+      "artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
+      "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
+      "baseline_release": "v0.3.6",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-15",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Decky Metadata",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.3.6",
+      "repository": "https://github.com/beallio/Decky-Metadata",
+      "reviewer_attention_count": 1,
+      "risk_score": 0,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "5b119b68d7f31e89f57bf06a0b3a9e30bca317d6"
+    },
+    {
+      "artifact_sha256": "0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a",
+      "baseline_artifact_sha256": "0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a",
+      "baseline_release": "v0.2.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-5",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Achievements Restored",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.2.0",
+      "repository": "https://github.com/beallio/Decky-SteamAchievements",
+      "reviewer_attention_count": 1,
+      "risk_score": 4,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "4199383a33d691ad99d7f996284623df108d2e4d"
+    },
+    {
+      "artifact_sha256": "28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355",
+      "baseline_artifact_sha256": "28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355",
+      "baseline_release": "v0.4.3",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-13",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "SDH-Ludusavi",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.4.3",
+      "repository": "https://github.com/beallio/SDH-Ludusavi",
+      "reviewer_attention_count": 1,
+      "risk_score": 32,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "96f79d8065b8685a67ab352b8cb1b6c75048999c"
+    },
+    {
+      "artifact_sha256": "92610937d8fd91392aecf1a1a7613d9208fdb838dd934c7d262de759c10d7585",
+      "baseline_artifact_sha256": "92610937d8fd91392aecf1a1a7613d9208fdb838dd934c7d262de759c10d7585",
+      "baseline_release": "v3.0.1",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-12",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "ThemeDeck",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v3.0.1",
+      "repository": "https://github.com/BrenticusMaximus/ThemeDeck",
+      "reviewer_attention_count": 1,
+      "risk_score": 82,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "b52b0a648ecf5464c9553b207e9e65fa7a396be7"
+    },
+    {
+      "artifact_sha256": "0cbf5948ca5a6f384181d0982db8874c88fad6a0d85bc3396bdfde564d322ffa",
+      "baseline_artifact_sha256": "0cbf5948ca5a6f384181d0982db8874c88fad6a0d85bc3396bdfde564d322ffa",
+      "baseline_release": "v1.3.3",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-15",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "ProtonDB Badges",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.3.3",
+      "repository": "https://github.com/bschelst/protondb-decky",
+      "reviewer_attention_count": 1,
+      "risk_score": 2,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "15de63ffa5f295886d42fc6c0ad789504d02e873"
+    },
+    {
+      "artifact_sha256": "f0bb88e7f688afa7bbb887bc3cec0bbfb58a96b0c99b4a0fea3b252df73bb4dd",
+      "baseline_artifact_sha256": "f0bb88e7f688afa7bbb887bc3cec0bbfb58a96b0c99b4a0fea3b252df73bb4dd",
+      "baseline_release": "0.9.1",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-34",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Decky Translator",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "0.9.1",
+      "repository": "https://github.com/cat-in-a-box/Decky-Translator",
+      "reviewer_attention_count": 1,
+      "risk_score": 447,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "4358712ac2f0fb211462a573f554396d572e2095"
+    },
+    {
       "artifact_sha256": "7ebadc4bfd0eeec84b9d4d39dfcae39f893fe05e80521caf431a8f4fafde54de",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
@@ -106,6 +447,99 @@
       "source_commit": "81948d323a6a95251dab4d656b47ab57fabacc5b"
     },
     {
+      "artifact_sha256": "00794e4fbf39883adcd4a6a391529e5e4a14f3b780773290532eca29ade73dd1",
+      "baseline_artifact_sha256": "00794e4fbf39883adcd4a6a391529e5e4a14f3b780773290532eca29ade73dd1",
+      "baseline_release": "v1.1.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-3",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "NordVPN",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.1.0",
+      "repository": "https://github.com/cwtechshiz/nordvpn-decky",
+      "reviewer_attention_count": 1,
+      "risk_score": 17,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "f869f38f63894aaed87afd6a2ef6cc52790a922f"
+    },
+    {
+      "artifact_sha256": "acbccb7585a0c77d9b7ed535e509a18fca06596fce3e918fed932ae1a9d31079",
+      "baseline_artifact_sha256": "acbccb7585a0c77d9b7ed535e509a18fca06596fce3e918fed932ae1a9d31079",
+      "baseline_release": "decky-romm-sync-v0.30.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-7",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "RomM Sync",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "decky-romm-sync-v0.30.0",
+      "repository": "https://github.com/danielcopper/decky-romm-sync",
+      "reviewer_attention_count": 1,
+      "risk_score": 147,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "04f5b5ae20e146bdc3938d172884644dde4df8b3"
+    },
+    {
+      "artifact_sha256": "6fa09e2dbfa76af695b74e4eb918a62ef94573c5b131a304dc5fec58fe5d56b3",
+      "baseline_artifact_sha256": "6fa09e2dbfa76af695b74e4eb918a62ef94573c5b131a304dc5fec58fe5d56b3",
+      "baseline_release": "v1.4.8",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-7",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Docky",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.4.8",
+      "repository": "https://github.com/datbird/docky",
+      "reviewer_attention_count": 1,
+      "risk_score": 227,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "0342fa7e42f23bb0e8ab96b972bc45ec228fe490"
+    },
+    {
       "artifact_sha256": "e37fe1f709be38ad1247402faee5ea1a9770eae28250570119bb64a2502da03a",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
@@ -126,6 +560,254 @@
       "same_artifact": false,
       "scanner_failures": [],
       "source_commit": "7d699546710e3ff717767170e87d6edb6f7b1f64"
+    },
+    {
+      "artifact_sha256": "5da7c4ff7c0455754611f2c632401ca1954a09d3b61310c784050718e0d109ec",
+      "baseline_artifact_sha256": "a14c59930089c9d50c9bba124b91784db9d361958c28103b7a97ef9a1dbd061b",
+      "baseline_release": "panel-de-control-v0.34.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-20",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Panel de Control",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "panel-de-control-v0.37.0",
+      "repository": "https://github.com/Hooandee/panel-de-control",
+      "reviewer_attention_count": 1,
+      "risk_score": 327,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "23f4d92635718bc73f60e5578e46175b3b6fe30e"
+    },
+    {
+      "artifact_sha256": "516ada5cf2b9a6463eba8defbba0d1a1213b7a7a5e5dc63f0013a1429adf88eb",
+      "baseline_artifact_sha256": "516ada5cf2b9a6463eba8defbba0d1a1213b7a7a5e5dc63f0013a1429adf88eb",
+      "baseline_release": "v0.2.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-12",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Prysm",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.2.0",
+      "repository": "https://github.com/hostsrc/decky-prysm",
+      "reviewer_attention_count": 1,
+      "risk_score": 117,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "d2714f781a1b37bf59a5e1fc74a38a0df50bc390"
+    },
+    {
+      "artifact_sha256": "eafaac2e380fa3d60092c1aa1604fda74f86466e642e407bcdf9b245c4915409",
+      "baseline_artifact_sha256": "eafaac2e380fa3d60092c1aa1604fda74f86466e642e407bcdf9b245c4915409",
+      "baseline_release": "v1.1.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-10",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "DeckBridge",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.1.0",
+      "repository": "https://github.com/Janleyx/DeckBridge",
+      "reviewer_attention_count": 1,
+      "risk_score": 140,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "08997d1b689f323ba873f4780394d50fd8324e2f"
+    },
+    {
+      "artifact_sha256": "f73c54f0c20740020d6805684dc81ed22f854c1eed0567767db4931f6c62c3b0",
+      "baseline_artifact_sha256": "f73c54f0c20740020d6805684dc81ed22f854c1eed0567767db4931f6c62c3b0",
+      "baseline_release": "v1.0.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-6",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Spotify Connect",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.0.0",
+      "repository": "https://github.com/Janleyx/decky-spotify-connect",
+      "reviewer_attention_count": 1,
+      "risk_score": 27,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "5a61d2182f4c7ba8692b9cde8cae8da24cc16eba"
+    },
+    {
+      "artifact_sha256": "06b353b09d24b75cd70c4fb8b2cb5c7a94a47c62278a370ffd3c7ef02ead61de",
+      "baseline_artifact_sha256": "06b353b09d24b75cd70c4fb8b2cb5c7a94a47c62278a370ffd3c7ef02ead61de",
+      "baseline_release": "v3.1.2",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-11",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "DeckaTV",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v3.1.2",
+      "repository": "https://github.com/jeanbottein/DeckaTV",
+      "reviewer_attention_count": 1,
+      "risk_score": 29,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "755d6ba470048352e5def7882ef140b448f559d5"
+    },
+    {
+      "artifact_sha256": "8f9e6ba262fd1a246e938718349b0dc49110a739530de4f235d38ef078e210d1",
+      "baseline_artifact_sha256": "8f9e6ba262fd1a246e938718349b0dc49110a739530de4f235d38ef078e210d1",
+      "baseline_release": "v0.6.1",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-67",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "MQTT Status",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.6.1",
+      "repository": "https://github.com/jjuuzzii/decky-ha-mqtt-plugin",
+      "reviewer_attention_count": 1,
+      "risk_score": 209,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "f19c9f22cfe8a4e8ca3ace435a741f1c41876d21"
+    },
+    {
+      "artifact_sha256": "92d584377815bfca6109b48905babb6e8537ac9f77b0f1ad51cea3d8027aff48",
+      "baseline_artifact_sha256": "92d584377815bfca6109b48905babb6e8537ac9f77b0f1ad51cea3d8027aff48",
+      "baseline_release": "v0.2.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-3",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "DS5 Bridge",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.2.0",
+      "repository": "https://github.com/kungaa/DS5-Linux-Decky",
+      "reviewer_attention_count": 1,
+      "risk_score": 2,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "3806d8ac8768046c9464697ffd3e64409c1ead50"
+    },
+    {
+      "artifact_sha256": "27936a0a822873f8653607fb90ec4b2d14d418343b22dc17acb92568eb6cb604",
+      "baseline_artifact_sha256": "27936a0a822873f8653607fb90ec4b2d14d418343b22dc17acb92568eb6cb604",
+      "baseline_release": "v2.3.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-8",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "vpn-deck",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v2.3.0",
+      "repository": "https://github.com/MrWaip/vpn-deck",
+      "reviewer_attention_count": 1,
+      "risk_score": 112,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "b1c1ab0c5ed8334ae61f8565ac8aa786caf9dc85"
     },
     {
       "artifact_sha256": "dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7",
@@ -166,6 +848,671 @@
       "source_commit": "567da088e4c4ec878ed18f0beda163b6a7e0418f"
     },
     {
+      "artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
+      "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
+      "baseline_release": "v1.21.1",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-28",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Steamcord",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.21.1",
+      "repository": "https://github.com/Necrosiak/Steamcord",
+      "reviewer_attention_count": 1,
+      "risk_score": 742,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "141f32c597c01dfb0ecba14d4e4e72bc43104d80"
+    },
+    {
+      "artifact_sha256": "a8924e945dcfd57372c11a8ac8d5fa3681c3beb0171cd3991d90fccc53e161b6",
+      "baseline_artifact_sha256": "a8924e945dcfd57372c11a8ac8d5fa3681c3beb0171cd3991d90fccc53e161b6",
+      "baseline_release": "v0.1.16",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-4",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "16:10 Fixes",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.1.16",
+      "repository": "https://github.com/nucat176/decky-16x10-fixes",
+      "reviewer_attention_count": 1,
+      "risk_score": 47,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "13e69163ec4f7173400318902d6e85dd8bd9a6b4"
+    },
+    {
+      "artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
+      "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
+      "baseline_release": "v0.3.2",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-10",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Achievement Companion",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.3.2",
+      "repository": "https://github.com/parvagans/achievement-companion",
+      "reviewer_attention_count": 1,
+      "risk_score": 17,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "7f76be4bb094a95e31821a3fc7e1d58774fbdef5"
+    },
+    {
+      "artifact_sha256": "a1059534de2a0e9556669adff3d933bcde802101faae7558f9b33db3a8e51bc7",
+      "baseline_artifact_sha256": "a1059534de2a0e9556669adff3d933bcde802101faae7558f9b33db3a8e51bc7",
+      "baseline_release": "v1.2.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-3",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Ally Center",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.2.0",
+      "repository": "https://github.com/PixelAddictUnlocked/allycenter",
+      "reviewer_attention_count": 1,
+      "risk_score": 41,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "2a530f79a58403b6b05bf4d25332d8dee6e885d7"
+    },
+    {
+      "artifact_sha256": "fd08937fc6d1d3df081486dcbf1ca321380536e784ae6622b50827c5f601aefc",
+      "baseline_artifact_sha256": "fd08937fc6d1d3df081486dcbf1ca321380536e784ae6622b50827c5f601aefc",
+      "baseline_release": "v1.0.5",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-3",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Ally Vibe Control",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.0.5",
+      "repository": "https://github.com/piyush-tyagi-13/ally-vibe-control",
+      "reviewer_attention_count": 1,
+      "risk_score": 17,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "96c8fb09c4cab4bc22824f2af16b6f166bcc0082"
+    },
+    {
+      "artifact_sha256": "8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de",
+      "baseline_artifact_sha256": "c5fbde7be36a9212b85b8db87e495217b174b617a433385bd43ffec5a9aef159",
+      "baseline_release": "1.0.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-3",
+          "title": "Network communication"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed (2 count change(s))",
+          "title": "Published release versus source"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Decky Vibrance HDR",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "1.0.1",
+      "repository": "https://github.com/Rayekkk/DeckyVibranceHDR",
+      "reviewer_attention_count": 2,
+      "risk_score": 92,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "eafab001aa3aca0ce8d447459944d09c1b5fb4d0"
+    },
+    {
+      "artifact_sha256": "adda3be351c14d1c8899fb0997565aa67e7439b988112340fad707cfe6be28b7",
+      "baseline_artifact_sha256": "adda3be351c14d1c8899fb0997565aa67e7439b988112340fad707cfe6be28b7",
+      "baseline_release": "1.5.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-14",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "LeGo Vibe Control",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "1.5.0",
+      "repository": "https://github.com/Rayekkk/LeGo-Vibe-Control",
+      "reviewer_attention_count": 1,
+      "risk_score": 19,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "584bc2bf22475879a9e6c103b128ce606cbb7f58"
+    },
+    {
+      "artifact_sha256": "596dde0f581145293d6957f25e47df8be15d0cb0d4560dc6712938447b06e241",
+      "baseline_artifact_sha256": "596dde0f581145293d6957f25e47df8be15d0cb0d4560dc6712938447b06e241",
+      "baseline_release": "2.0.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-12",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "LeGo2 Brightness Fix",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "2.0.0",
+      "repository": "https://github.com/Rayekkk/LeGo2BrightnessFix",
+      "reviewer_attention_count": 1,
+      "risk_score": 109,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "2243e552e7eb90010362aef16889043837ec88b1"
+    },
+    {
+      "artifact_sha256": "2bccb912292b5d6caffcce17b2009b463fd7828aede88ce0f1af51adae4042b8",
+      "baseline_artifact_sha256": "4b04b2e1bb980b312eb482f7a6da8af3c5cbcb7124b4d3c4322ba7cea9b8a805",
+      "baseline_release": "1.6.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-7",
+          "title": "Network communication"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed (1 count change(s))",
+          "title": "Published release versus source"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "LeGoTDP",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "1.6.1",
+      "repository": "https://github.com/Rayekkk/LeGoTDP",
+      "reviewer_attention_count": 2,
+      "risk_score": 52,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "a1591b61550d51f7e8c4dfb51a5fd6503f02d9ac"
+    },
+    {
+      "artifact_sha256": "dfb128f1ed15252f58b204f1a798662357c83c06c10eef1f16127362eeeed8fa",
+      "baseline_artifact_sha256": "dfb128f1ed15252f58b204f1a798662357c83c06c10eef1f16127362eeeed8fa",
+      "baseline_release": "v1.0.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-3",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "BootNext",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.0.0",
+      "repository": "https://github.com/rsore/decky-bootnext",
+      "reviewer_attention_count": 1,
+      "risk_score": 97,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "8f008ae024ebeeb50cfe96f9278b9da2487116ed"
+    },
+    {
+      "artifact_sha256": "71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9",
+      "baseline_artifact_sha256": "71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9",
+      "baseline_release": "v3.1.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-15",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Deck Shelves",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v3.1.0",
+      "repository": "https://github.com/santojon/Deck-Shelves",
+      "reviewer_attention_count": 1,
+      "risk_score": 82,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "e5eab866e8087795ebb910ead186c8f085cd8333"
+    },
+    {
+      "artifact_sha256": "32e2931f9ca8083c1605f04b4ed089b0bf210f79db236a7fd34f02c519e902d9",
+      "baseline_artifact_sha256": "32e2931f9ca8083c1605f04b4ed089b0bf210f79db236a7fd34f02c519e902d9",
+      "baseline_release": "v2.0.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-8",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "CheatDeck",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v2.0.0",
+      "repository": "https://github.com/SheffeyG/CheatDeck",
+      "reviewer_attention_count": 1,
+      "risk_score": 2,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "075b8e0165c1c6b4a32e3c149a5c1fccfecb366e"
+    },
+    {
+      "artifact_sha256": "b951968f1e89a92333c7ded9563997adaa41e30457b3f4ea7ed717880b80a65b",
+      "baseline_artifact_sha256": "b951968f1e89a92333c7ded9563997adaa41e30457b3f4ea7ed717880b80a65b",
+      "baseline_release": "v0.1.2",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-60",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Insignia",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.1.2",
+      "repository": "https://github.com/snoein/decky-insignia",
+      "reviewer_attention_count": 1,
+      "risk_score": 124,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "d6985bb852e57f825da4f8aa5bb620cabd4e48d3"
+    },
+    {
+      "artifact_sha256": "7d8257c26a06da2aa4b44a154fc2ea505cf69b09478044a7dd6f8ac3f642274e",
+      "baseline_artifact_sha256": "7d8257c26a06da2aa4b44a154fc2ea505cf69b09478044a7dd6f8ac3f642274e",
+      "baseline_release": "2.0.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-6",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "MagicBlack",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "2.0.0",
+      "repository": "https://github.com/steam3d/MagicBlackDecky",
+      "reviewer_attention_count": 1,
+      "risk_score": 47,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "6f61a516f64b65d88e5b30248821a5a3b80fcb28"
+    },
+    {
+      "artifact_sha256": "bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e",
+      "baseline_artifact_sha256": "bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e",
+      "baseline_release": "2.0.15",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-11",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "MagicPods",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "2.0.15",
+      "repository": "https://github.com/steam3d/MagicPodsDecky",
+      "reviewer_attention_count": 1,
+      "risk_score": 192,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "de5b4039837ec41ad5435d4723a2b9b39fb9803e"
+    },
+    {
+      "artifact_sha256": "344fb7a082022f492ff2fe8db243e5363e8a2be3757c5ea9fb99e55264d9b25d",
+      "baseline_artifact_sha256": "344fb7a082022f492ff2fe8db243e5363e8a2be3757c5ea9fb99e55264d9b25d",
+      "baseline_release": "v1.1.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-33",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "RetroDECKY",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.1.0",
+      "repository": "https://github.com/Teppichseite/RetroDECKY",
+      "reviewer_attention_count": 1,
+      "risk_score": 399,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "b2c8e29316757e6999b1698ea57d4582efd6f87b"
+    },
+    {
+      "artifact_sha256": "377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668",
+      "baseline_artifact_sha256": "377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668",
+      "baseline_release": "v1.14.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-7",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Launch Options",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.14.0",
+      "repository": "https://github.com/Wurielle/decky-launch-options",
+      "reviewer_attention_count": 1,
+      "risk_score": 102,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "bd3e9b4f0acee7d2ae55befe67db035ea321af7f"
+    },
+    {
+      "artifact_sha256": "18b90ac0125350715170dae88e8235c6a70d63833a8d4015410f8c8ea82b996b",
+      "baseline_artifact_sha256": "18b90ac0125350715170dae88e8235c6a70d63833a8d4015410f8c8ea82b996b",
+      "baseline_release": "20260723060434",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-30",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Pause Games",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "20260723060434",
+      "repository": "https://github.com/wynn1212/SDH-PauseGames",
+      "reviewer_attention_count": 1,
+      "risk_score": 102,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "4bf4b4e84ae37be3689825869b24ac9d3095f804"
+    },
+    {
+      "artifact_sha256": "91237d61d8ed8725057038f4d5dfeeb6f601aa0ff51fe12714606dc249c25738",
+      "baseline_artifact_sha256": "91237d61d8ed8725057038f4d5dfeeb6f601aa0ff51fe12714606dc249c25738",
+      "baseline_release": "v0.3.2",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-2",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "cec-mote",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.3.2",
+      "repository": "https://github.com/xXJSONDeruloXx/cec-mote",
+      "reviewer_attention_count": 1,
+      "risk_score": 337,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "adbb0cc231c9eede969174bd9cb2c43b4fb25e76"
+    },
+    {
+      "artifact_sha256": "d3758997fc9ba41b1441e82d3b7c2a67d283d247a09b9796065113f0525b335a",
+      "baseline_artifact_sha256": "d3758997fc9ba41b1441e82d3b7c2a67d283d247a09b9796065113f0525b335a",
+      "baseline_release": "v0.1.6",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-2",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Decky Bionic FG",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.1.6",
+      "repository": "https://github.com/xXJSONDeruloXx/Decky-bionic-fg",
+      "reviewer_attention_count": 1,
+      "risk_score": 62,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "359eec39c37a51a530ce282c72f4a584f15909da"
+    },
+    {
+      "artifact_sha256": "322f6eec21a489ef9f12938ea2ec4e43c234093876f95b7245fbd260f882ce9c",
+      "baseline_artifact_sha256": "322f6eec21a489ef9f12938ea2ec4e43c234093876f95b7245fbd260f882ce9c",
+      "baseline_release": "v0.12.8",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-9",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "Decky LSFG-VK",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v0.12.8",
+      "repository": "https://github.com/xXJSONDeruloXx/decky-lsfg-vk",
+      "reviewer_attention_count": 1,
+      "risk_score": 32,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "a52a7ba0ea7366f6f035594582c9bc1876ae65bd"
+    },
+    {
       "artifact_sha256": "c48de9ce7a8b8d5fedf97c9b8d1062b77d1868a798e5e307f6092c9097006b93",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
@@ -186,8 +1533,39 @@
       "same_artifact": false,
       "scanner_failures": [],
       "source_commit": "2a6184cde761971b190511f86b2f9f14fa43ee81"
+    },
+    {
+      "artifact_sha256": "039a603b75ef5d7d5b8aac0b8172069e15e607e563256932ac36f8ed5c368a61",
+      "baseline_artifact_sha256": "039a603b75ef5d7d5b8aac0b8172069e15e607e563256932ac36f8ed5c368a61",
+      "baseline_release": "v1.0.1",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +0/-9",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "plugin_name": "RSM-Decky",
+      "priority": "high",
+      "reasons": [
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
+      "release": "v1.0.1",
+      "repository": "https://github.com/zany130/RSM-Decky",
+      "reviewer_attention_count": 1,
+      "risk_score": 157,
+      "same_artifact": true,
+      "scanner_failures": [],
+      "source_commit": "2c58f0734b447c92f0dba31865ec0c724be8e594"
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31286922055"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31345491546"
 }
