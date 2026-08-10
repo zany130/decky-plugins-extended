@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **50** — critical 2, high 48, normal 0.
-Generated: `2026-08-10T00:51:45.065594Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31345491546
+Pending artifacts: **50** — critical 2, high 47, normal 1.
+Generated: `2026-08-10T18:42:54.225436Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31420205552
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -24,7 +24,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | RomM Sync | decky-romm-sync-v0.30.0 / `acbccb7585a0` | decky-romm-sync-v0.30.0 / `acbccb7585a0` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | Docky | v1.4.8 / `6fa09e2dbfa7` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | MoonDeck | nightly / `e37fe1f709be` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.37.0 / `5da7c4ff7c04` | panel-de-control-v0.34.0 / `a14c59930089` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Prysm | v0.2.0 / `516ada5cf2b9` | v0.2.0 / `516ada5cf2b9` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | DeckBridge | v1.1.0 / `eafaac2e380f` | v1.1.0 / `eafaac2e380f` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | Spotify Connect | v1.0.0 / `f73c54f0c207` | v1.0.0 / `f73c54f0c207` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
@@ -56,6 +55,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Decky LSFG-VK | v0.12.8 / `322f6eec21a4` | v0.12.8 / `322f6eec21a4` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **HIGH** | RSM-Decky | v1.0.1 / `039a603b75ef` | v1.0.1 / `039a603b75ef` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
+| **NORMAL** | Panel de Control | panel-de-control-v0.37.1 / `e20cce88c57d` | panel-de-control-v0.37.0 / `5da7c4ff7c04` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
 
@@ -270,17 +270,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - First seen: `2026-08-09T01:07:41.070060Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
-
-## Panel de Control
-
-- Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.37.0` — `5da7c4ff7c0455754611f2c632401ca1954a09d3b61310c784050718e0d109ec`
-- Classification: **MANUAL\_REVIEW** (risk 327)
-- Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-08-10T00:51:45.065594Z`
-- Accepted baseline: `panel-de-control-v0.34.0` — `a14c59930089c9d50c9bba124b91784db9d361958c28103b7a97ef9a1dbd061b`
-- Capability changes:
-  - **Network communication:** network destinations +0/-20 — **review**
 
 ## Prysm
 
@@ -651,3 +640,13 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Artifact bytes are unchanged; differences may reflect scanner/rule/coverage drift.
 - Capability changes:
   - **Network communication:** network destinations +0/-9 — **review**
+
+## Panel de Control
+
+- Repository: `https://github.com/Hooandee/panel-de-control`
+- Candidate: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
+- Classification: **MANUAL\_REVIEW** (risk 327)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-08-10T18:42:54.225436Z`
+- Accepted baseline: `panel-de-control-v0.37.0` — `5da7c4ff7c0455754611f2c632401ca1954a09d3b61310c784050718e0d109ec`
+- Capability changes: none observed in the comparison model.
