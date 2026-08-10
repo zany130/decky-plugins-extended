@@ -2,7 +2,7 @@
   "auditor_ref": "4353bca353ffbee9b4b9c04c1dcadfca04e6a410",
   "baseline_semantics": "currently_distributed_live_stable_catalog",
   "entry_count": 46,
-  "generated_at": "2026-08-09T18:25:25.794500Z",
+  "generated_at": "2026-08-10T00:51:45.065594Z",
   "live_catalog_url": "https://zany130-decky-plugins-extended.pages.dev/plugins.json",
   "reports": [
     {
@@ -2480,10 +2480,10 @@
       "source_commit": "0342fa7e42f23bb0e8ab96b972bc45ec228fe490"
     },
     {
-      "artifact_sha256": "a14c59930089c9d50c9bba124b91784db9d361958c28103b7a97ef9a1dbd061b",
-      "baseline_captured_at": "2026-08-08T18:22:47.643014Z",
-      "baseline_live_hash": "a14c59930089c9d50c9bba124b91784db9d361958c28103b7a97ef9a1dbd061b",
-      "baseline_live_version": "0.34.0",
+      "artifact_sha256": "5da7c4ff7c0455754611f2c632401ca1954a09d3b61310c784050718e0d109ec",
+      "baseline_captured_at": "2026-08-10T00:51:45.065594Z",
+      "baseline_live_hash": "5da7c4ff7c0455754611f2c632401ca1954a09d3b61310c784050718e0d109ec",
+      "baseline_live_version": "0.37.0",
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [
@@ -2556,7 +2556,7 @@
       ],
       "plugin_name": "Panel de Control",
       "policy_version": "1",
-      "release": "panel-de-control-v0.34.0",
+      "release": "panel-de-control-v0.37.0",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_capabilities": [
         {
@@ -2697,7 +2697,7 @@
           }
         ]
       },
-      "source_commit": "11c71cf3614bfe1ff8babe001b619efb9188bc40"
+      "source_commit": "23f4d92635718bc73f60e5578e46175b3b6fe30e"
     },
     {
       "artifact_sha256": "516ada5cf2b9a6463eba8defbba0d1a1213b7a7a5e5dc63f0013a1429adf88eb",
@@ -6670,10 +6670,10 @@
       "source_commit": "96c8fb09c4cab4bc22824f2af16b6f166bcc0082"
     },
     {
-      "artifact_sha256": "c5fbde7be36a9212b85b8db87e495217b174b617a433385bd43ffec5a9aef159",
-      "baseline_captured_at": "2026-08-08T18:22:47.643014Z",
-      "baseline_live_hash": "c5fbde7be36a9212b85b8db87e495217b174b617a433385bd43ffec5a9aef159",
-      "baseline_live_version": "1.0.0",
+      "artifact_sha256": "8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de",
+      "baseline_captured_at": "2026-08-10T00:51:45.065594Z",
+      "baseline_live_hash": "8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de",
+      "baseline_live_version": "1.0.1",
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
@@ -6682,7 +6682,19 @@
           "destination": "api.github.com"
         },
         {
+          "destination": "claude.ai"
+        },
+        {
+          "destination": "decky.xyz"
+        },
+        {
           "destination": "github.com"
+        },
+        {
+          "destination": "img.shields.io"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
         },
         {
           "destination": "www.w3.org"
@@ -6690,7 +6702,7 @@
       ],
       "plugin_name": "Decky Vibrance HDR",
       "policy_version": "1",
-      "release": "1.0.0",
+      "release": "1.0.1",
       "repository": "https://github.com/Rayekkk/DeckyVibranceHDR",
       "reviewer_capabilities": [
         {
@@ -6744,9 +6756,9 @@
           "title": "Native executable code"
         },
         {
-          "distinct_evidence_count": 3,
+          "distinct_evidence_count": 7,
           "evidence_collapsed": 0,
-          "evidence_count": 3,
+          "evidence_count": 7,
           "evidence_truncated": false,
           "finding_count": 0,
           "id": "network_communication",
@@ -6794,11 +6806,11 @@
           "title": "Credentials and sensitive data"
         },
         {
-          "distinct_evidence_count": 6,
+          "distinct_evidence_count": 4,
           "evidence_collapsed": 0,
-          "evidence_count": 6,
+          "evidence_count": 4,
           "evidence_truncated": false,
-          "finding_count": 2,
+          "finding_count": 1,
           "id": "source_release_integrity",
           "question": "Does the published release materially differ from the exact source used for review?",
           "rule_ids": [
@@ -6809,17 +6821,9 @@
         }
       ],
       "reviewer_capabilities_schema_version": "1",
-      "risk_score": 107,
+      "risk_score": 92,
       "schema_version": "1",
       "source_artifact_diff": {
-        "expected_build_stamp_differences": [
-          {
-            "counted": true
-          },
-          {
-            "counted": true
-          }
-        ],
         "grouped_packaged_outputs": [
           {
             "counted": true
@@ -6828,21 +6832,15 @@
         "other_same_path_differences": [
           {
             "counted": true
-          },
-          {
-            "counted": true
           }
         ],
         "same_path_modified": [
           {
             "counted": true
-          },
-          {
-            "counted": true
           }
         ]
       },
-      "source_commit": "28418d5caef81d52b4d730b63c3fd4b4749c52d7"
+      "source_commit": "eafab001aa3aca0ce8d447459944d09c1b5fb4d0"
     },
     {
       "artifact_sha256": "adda3be351c14d1c8899fb0997565aa67e7439b988112340fad707cfe6be28b7",
@@ -7217,10 +7215,10 @@
       "source_commit": "2243e552e7eb90010362aef16889043837ec88b1"
     },
     {
-      "artifact_sha256": "4b04b2e1bb980b312eb482f7a6da8af3c5cbcb7124b4d3c4322ba7cea9b8a805",
-      "baseline_captured_at": "2026-08-08T18:22:47.643014Z",
-      "baseline_live_hash": "4b04b2e1bb980b312eb482f7a6da8af3c5cbcb7124b4d3c4322ba7cea9b8a805",
-      "baseline_live_version": "1.6.0",
+      "artifact_sha256": "2bccb912292b5d6caffcce17b2009b463fd7828aede88ce0f1af51adae4042b8",
+      "baseline_captured_at": "2026-08-10T00:51:45.065594Z",
+      "baseline_live_hash": "2bccb912292b5d6caffcce17b2009b463fd7828aede88ce0f1af51adae4042b8",
+      "baseline_live_version": "1.6.1",
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [],
@@ -7238,6 +7236,12 @@
           "destination": "github.com"
         },
         {
+          "destination": "img.shields.io"
+        },
+        {
+          "destination": "raw.githubusercontent.com"
+        },
+        {
           "destination": "www.gnu.org"
         },
         {
@@ -7249,7 +7253,7 @@
       ],
       "plugin_name": "LeGoTDP",
       "policy_version": "1",
-      "release": "1.6.0",
+      "release": "1.6.1",
       "repository": "https://github.com/Rayekkk/LeGoTDP",
       "reviewer_capabilities": [
         {
@@ -7303,9 +7307,9 @@
           "title": "Native executable code"
         },
         {
-          "distinct_evidence_count": 7,
+          "distinct_evidence_count": 9,
           "evidence_collapsed": 0,
-          "evidence_count": 7,
+          "evidence_count": 9,
           "evidence_truncated": false,
           "finding_count": 0,
           "id": "network_communication",
@@ -7387,12 +7391,6 @@
         "other_same_path_differences": [
           {
             "counted": true
-          },
-          {
-            "counted": true
-          },
-          {
-            "counted": true
           }
         ],
         "same_path_modified": [
@@ -7404,7 +7402,7 @@
           }
         ]
       },
-      "source_commit": "dbcea36eb547e2773ac97a6a0655c1bd4bf10ec2"
+      "source_commit": "a1591b61550d51f7e8c4dfb51a5fd6503f02d9ac"
     },
     {
       "artifact_sha256": "dfb128f1ed15252f58b204f1a798662357c83c06c10eef1f16127362eeeed8fa",
