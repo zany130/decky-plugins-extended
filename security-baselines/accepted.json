@@ -2,7 +2,7 @@
   "auditor_ref": "4353bca353ffbee9b4b9c04c1dcadfca04e6a410",
   "baseline_semantics": "currently_distributed_live_stable_catalog",
   "entry_count": 46,
-  "generated_at": "2026-08-10T00:51:45.065594Z",
+  "generated_at": "2026-08-11T00:51:49.169537Z",
   "live_catalog_url": "https://zany130-decky-plugins-extended.pages.dev/plugins.json",
   "reports": [
     {
@@ -2480,10 +2480,10 @@
       "source_commit": "0342fa7e42f23bb0e8ab96b972bc45ec228fe490"
     },
     {
-      "artifact_sha256": "5da7c4ff7c0455754611f2c632401ca1954a09d3b61310c784050718e0d109ec",
-      "baseline_captured_at": "2026-08-10T00:51:45.065594Z",
-      "baseline_live_hash": "5da7c4ff7c0455754611f2c632401ca1954a09d3b61310c784050718e0d109ec",
-      "baseline_live_version": "0.37.0",
+      "artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
+      "baseline_captured_at": "2026-08-11T00:51:49.169537Z",
+      "baseline_live_hash": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
+      "baseline_live_version": "0.37.1",
       "baseline_source": "live_catalog_hash_match",
       "final_classification": "MANUAL_REVIEW",
       "native_binaries": [
@@ -2556,7 +2556,7 @@
       ],
       "plugin_name": "Panel de Control",
       "policy_version": "1",
-      "release": "panel-de-control-v0.37.0",
+      "release": "panel-de-control-v0.37.1",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_capabilities": [
         {
@@ -2697,7 +2697,7 @@
           }
         ]
       },
-      "source_commit": "23f4d92635718bc73f60e5578e46175b3b6fe30e"
+      "source_commit": "38826ad84d5ab29a9a4c73f60cde3aea807d05c2"
     },
     {
       "artifact_sha256": "516ada5cf2b9a6463eba8defbba0d1a1213b7a7a5e5dc63f0013a1429adf88eb",
