@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **50** — critical 2, high 47, normal 1.
-Generated: `2026-08-10T18:42:54.225436Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31420205552
+Pending artifacts: **50** — critical 2, high 46, normal 2.
+Generated: `2026-08-11T00:51:49.169537Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31447331622
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -21,7 +21,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Decky Translator | 0.9.1 / `f0bb88e7f688` | 0.9.1 / `f0bb88e7f688` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | NordVPN | v1.1.0 / `00794e4fbf39` | v1.1.0 / `00794e4fbf39` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
-| **HIGH** | RomM Sync | decky-romm-sync-v0.30.0 / `acbccb7585a0` | decky-romm-sync-v0.30.0 / `acbccb7585a0` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | Docky | v1.4.8 / `6fa09e2dbfa7` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | MoonDeck | nightly / `e37fe1f709be` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Prysm | v0.2.0 / `516ada5cf2b9` | v0.2.0 / `516ada5cf2b9` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
@@ -55,6 +54,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Decky LSFG-VK | v0.12.8 / `322f6eec21a4` | v0.12.8 / `322f6eec21a4` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **HIGH** | RSM-Decky | v1.0.1 / `039a603b75ef` | v1.0.1 / `039a603b75ef` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
+| **NORMAL** | RomM Sync | decky-romm-sync-v0.30.1 / `254a911f01e6` | decky-romm-sync-v0.30.0 / `acbccb7585a0` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Panel de Control | panel-de-control-v0.37.1 / `e20cce88c57d` | panel-de-control-v0.37.0 / `5da7c4ff7c04` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
@@ -236,18 +236,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Artifact bytes are unchanged; differences may reflect scanner/rule/coverage drift.
 - Capability changes:
   - **Network communication:** network destinations +0/-3 — **review**
-
-## RomM Sync
-
-- Repository: `https://github.com/danielcopper/decky-romm-sync`
-- Candidate: `decky-romm-sync-v0.30.0` — `acbccb7585a0c77d9b7ed535e509a18fca06596fce3e918fed932ae1a9d31079`
-- Classification: **MANUAL\_REVIEW** (risk 147)
-- Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-08-10T00:51:45.065594Z`
-- Accepted baseline: `decky-romm-sync-v0.30.0` — `acbccb7585a0c77d9b7ed535e509a18fca06596fce3e918fed932ae1a9d31079`
-- Artifact bytes are unchanged; differences may reflect scanner/rule/coverage drift.
-- Capability changes:
-  - **Network communication:** network destinations +0/-7 — **review**
 
 ## Docky
 
@@ -640,6 +628,16 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Artifact bytes are unchanged; differences may reflect scanner/rule/coverage drift.
 - Capability changes:
   - **Network communication:** network destinations +0/-9 — **review**
+
+## RomM Sync
+
+- Repository: `https://github.com/danielcopper/decky-romm-sync`
+- Candidate: `decky-romm-sync-v0.30.1` — `254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db`
+- Classification: **MANUAL\_REVIEW** (risk 147)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-08-11T00:51:49.169537Z`
+- Accepted baseline: `decky-romm-sync-v0.30.0` — `acbccb7585a0c77d9b7ed535e509a18fca06596fce3e918fed932ae1a9d31079`
+- Capability changes: none observed in the comparison model.
 
 ## Panel de Control
 
