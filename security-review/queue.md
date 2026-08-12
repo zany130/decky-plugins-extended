@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **11** — critical 3, high 6, normal 2.
-Generated: `2026-08-12T01:19:15Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31551933847
+Pending artifacts: **12** — critical 3, high 7, normal 2.
+Generated: `2026-08-12T12:45:55.406552Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31597546420
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -12,6 +12,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | MoonDeck | nightly / `05225f387478` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Unifideck | Release-0.7.3 / `dd9943ce6b0c` | Release-0.7.2 / `a313be924cab` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.22.0 / `7fb27ec9829e` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.6.1 / `2bccb912292b` | 1.6.0 / `4b04b2e1bb98` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
@@ -95,6 +96,17 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Capability changes:
   - **Network communication:** network destinations +1/-1 — **review**
   - **Published release versus source:** source/release difference profile changed — **review**
+
+## Steamcord
+
+- Repository: `https://github.com/Necrosiak/Steamcord`
+- Candidate: `v1.22.0` — `7fb27ec9829ed74715d80bdc36d8fe0bb70a1e36fcdd65d4f4c4df2a0c9ae67a`
+- Classification: **MANUAL\_REVIEW** (risk 757)
+- Comparison: `compared`; reviewer-attention changes: 1
+- First seen: `2026-08-12T12:45:55.406552Z`
+- Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
+- Capability changes:
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
 
 ## Decky Vibrance HDR
 
