@@ -27,26 +27,28 @@ jobs:
 
           path = Path('.github/workflows/scheduled-security-audit.yml')
           text = path.read_text(encoding='utf-8')
-          needle = '''      - name: Persist changed queue
-        run: |
-          set -euo pipefail
-'''
-          replacement = '''      - name: Guard automatic queue persistence
-        run: |
-          set -euo pipefail
-          if ! python review_queue_guard.py \\
-            --current security-review/queue.json \\
-            --candidate downloaded-review/queue.json
-          then
-            echo "## Security review queue persistence blocked" >> "$GITHUB_STEP_SUMMARY"
-            echo "The validated candidate queue remains available in the security-review-queue-candidate artifact for inspection." >> "$GITHUB_STEP_SUMMARY"
-            exit 1
-          fi
-
-      - name: Persist changed queue
-        run: |
-          set -euo pipefail
-'''
+          needle = (
+              "      - name: Persist changed queue\n"
+              "        run: |\n"
+              "          set -euo pipefail\n"
+          )
+          replacement = (
+              "      - name: Guard automatic queue persistence\n"
+              "        run: |\n"
+              "          set -euo pipefail\n"
+              "          if ! python review_queue_guard.py \\\\n"
+              "            --current security-review/queue.json \\\\n"
+              "            --candidate downloaded-review/queue.json\n"
+              "          then\n"
+              "            echo \"## Security review queue persistence blocked\" >> \"$GITHUB_STEP_SUMMARY\"\n"
+              "            echo \"The validated candidate queue remains available in the security-review-queue-candidate artifact for inspection.\" >> \"$GITHUB_STEP_SUMMARY\"\n"
+              "            exit 1\n"
+              "          fi\n"
+              "\n"
+              "      - name: Persist changed queue\n"
+              "        run: |\n"
+              "          set -euo pipefail\n"
+          )
           if text.count(needle) != 1:
               raise SystemExit(f'expected exactly one persistence insertion point, found {text.count(needle)}')
           path.write_text(text.replace(needle, replacement), encoding='utf-8')
