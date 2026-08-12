@@ -1,0 +1,61 @@
+name: PR27 Wire Queue Flood Guard
+
+on:
+  push:
+    branches:
+      - agent/review-queue-flood-guard
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: agent/review-queue-flood-guard
+          fetch-depth: 0
+
+      - name: Wire persistence guard and remove helper workflow
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('.github/workflows/scheduled-security-audit.yml')
+          text = path.read_text(encoding='utf-8')
+          needle = '''      - name: Persist changed queue
+        run: |
+          set -euo pipefail
+'''
+          replacement = '''      - name: Guard automatic queue persistence
+        run: |
+          set -euo pipefail
+          if ! python review_queue_guard.py \\
+            --current security-review/queue.json \\
+            --candidate downloaded-review/queue.json
+          then
+            echo "## Security review queue persistence blocked" >> "$GITHUB_STEP_SUMMARY"
+            echo "The validated candidate queue remains available in the security-review-queue-candidate artifact for inspection." >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+      - name: Persist changed queue
+        run: |
+          set -euo pipefail
+'''
+          if text.count(needle) != 1:
+              raise SystemExit(f'expected exactly one persistence insertion point, found {text.count(needle)}')
+          path.write_text(text.replace(needle, replacement), encoding='utf-8')
+          PY
+
+          git rm .github/workflows/pr27-wire-queue-flood-guard.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/scheduled-security-audit.yml
+          git commit -m "feat: guard automatic review queue persistence"
+          git push origin HEAD:agent/review-queue-flood-guard
