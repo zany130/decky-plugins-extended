@@ -60,6 +60,11 @@ jobs:
             --decisions security-review/decisions.json \
             --queue security-review/queue.json
 
+          if [[ -f security-review/repairs.json ]]; then
+            uv run --frozen python review_state_transition.py \
+              --validate-repairs security-review/repairs.json
+          fi
+
           uv run --frozen python - <<'PY'
           import json
           from pathlib import Path
@@ -80,16 +85,32 @@ jobs:
           set -euo pipefail
           BASE_DECISIONS="$RUNNER_TEMP/base-decisions.json"
           BASE_QUEUE="$RUNNER_TEMP/base-queue.json"
+          BASE_REPAIRS="$RUNNER_TEMP/base-repairs.json"
+          CURRENT_REPAIRS="$RUNNER_TEMP/current-repairs.json"
 
           if git cat-file -e "${PR_BASE_SHA}:security-review/decisions.json" 2>/dev/null; then
             git show "${PR_BASE_SHA}:security-review/decisions.json" > "$BASE_DECISIONS"
             git show "${PR_BASE_SHA}:security-review/queue.json" > "$BASE_QUEUE"
 
+            if git cat-file -e "${PR_BASE_SHA}:security-review/repairs.json" 2>/dev/null; then
+              git show "${PR_BASE_SHA}:security-review/repairs.json" > "$BASE_REPAIRS"
+            else
+              printf '%s\n' '{"schema_version":"1","repairs":[]}' > "$BASE_REPAIRS"
+            fi
+
+            if [[ -f security-review/repairs.json ]]; then
+              cp security-review/repairs.json "$CURRENT_REPAIRS"
+            else
+              printf '%s\n' '{"schema_version":"1","repairs":[]}' > "$CURRENT_REPAIRS"
+            fi
+
             uv run --frozen python review_state_transition.py \
               --previous-decisions "$BASE_DECISIONS" \
               --previous-queue "$BASE_QUEUE" \
               --decisions security-review/decisions.json \
-              --queue security-review/queue.json
+              --queue security-review/queue.json \
+              --previous-repairs "$BASE_REPAIRS" \
+              --repairs "$CURRENT_REPAIRS"
           else
             echo "Initializing security review state; no base-state files exist yet."
           fi
