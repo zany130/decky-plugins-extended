@@ -6,7 +6,7 @@
 name: Plugin Security Audit
 
 env:
-  DECKY_AUDITOR_REF: 4353bca353ffbee9b4b9c04c1dcadfca04e6a410
+  DECKY_AUDITOR_REF: 963eac10d3c0e02d8278ed8a3709b188fe12286d
 
 on:
   pull_request:
