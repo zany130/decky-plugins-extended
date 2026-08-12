@@ -308,12 +308,13 @@ class ReviewStateTransitionTests(unittest.TestCase):
         repair = self.repair(
             remove_items=[{"repository": REPO, "artifact_sha256": SHA_A}],
         )
+        current_queue = self.current_after_decision(previous_queue, decision)
         with self.assertRaisesRegex(ValueError, "must be separate transitions"):
             transition.validate_transition(
                 rq.empty_decisions(),
                 previous_queue,
                 {"schema_version": "1", "decisions": [decision]},
-                previous_queue,
+                current_queue,
                 transition.empty_repairs(),
                 {"schema_version": "1", "repairs": [repair]},
             )
