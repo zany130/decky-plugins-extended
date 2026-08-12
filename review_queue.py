@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -818,6 +819,25 @@ def main(argv: list[str] | None = None) -> int:
         decisions = _read_json(args.decisions)
         queue = _read_json(args.queue)
         validate_state(decisions, queue)
+        if os.environ.get("GITHUB_JOB") == "persist-review-queue":
+            current_path = Path("security-review/queue.json")
+            candidate_path = Path(args.queue)
+            if current_path.exists() and candidate_path.resolve() != current_path.resolve():
+                import review_queue_guard
+
+                try:
+                    guard_result = review_queue_guard.require_safe_persistence(
+                        _read_json(current_path), queue
+                    )
+                except ValueError as exc:
+                    print(f"QUEUE_FLOOD_GUARD_BLOCKED: {exc}")
+                    return 2
+                print(
+                    "Queue persistence guard passed: "
+                    f"current={guard_result['current_count']} "
+                    f"candidate={guard_result['candidate_count']} "
+                    f"drift_additions={guard_result['same_artifact_drift_additions']}"
+                )
         print(f"Review state is valid: decisions={len(decisions['decisions'])} pending={queue['item_count']}")
         return 0
 
