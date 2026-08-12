@@ -5,6 +5,7 @@ This directory is the store-owned reviewer workflow layered on top of the standa
 - `queue.json` is the durable list of **currently unresolved artifacts** that need a human review decision.
 - `queue.md` is the human-readable rendering of that queue.
 - `decisions.json` is append-only review history keyed to an exact repository + artifact SHA-256.
+- `repairs.json` is append-only history for exceptional, deterministic corrections to invalid queue data. Repairs are not reviewer decisions.
 
 The queue and decisions are deliberately separate from `security-baselines/accepted.json`:
 
@@ -47,6 +48,22 @@ A decision for one artifact never applies to a later artifact from the same repo
 Decision history is not an allowlist. `security-allowlist.yml` narrowly permits specific audit rules for specific artifacts. A review approval records the human outcome for the whole candidate artifact and does not alter scanner findings or classification.
 
 Pull-request CI protects this state as an append-only ledger. Existing decision records must remain semantically unchanged after JSON decoding (whitespace and key-order-only formatting are not part of the ledger guarantee), every newly appended decision must target an exact artifact that was pending in the PR base queue, and the queue change must be exactly the deterministic removal produced by the decision helper. A PR cannot silently delete/rewrite old decisions, invent an approval for an unqueued SHA, or modify an unrelated pending item while recording a decision.
+
+## Exceptional queue-data repairs
+
+`repairs.json` exists for the rare case where a defect in the audit/review pipeline has already persisted invalid reviewer state. It is deliberately separate from `decisions.json`: correcting bad machine-generated queue evidence must never create a fake human approval or rejection.
+
+Repair history is append-only and each record is tied to an exact reviewed auditor commit plus the audit run IDs used to establish the correction. The transition validator independently applies every newly appended repair to the pull request's base queue and requires the committed result to match exactly.
+
+The currently supported legacy-network repair is intentionally narrow:
+
+- an entire pending item may be removed only when it matches the strict known poison signature: same artifact, only a reviewer-attention `network destinations +0/-N` delta, no scanner failure, no `BLOCK`/`AUDIT_ERROR`, and no unrelated review reason;
+- a capability may be removed from a genuine new-artifact review only when the repair names the exact repository, artifact SHA-256, capability ID, and recorded poisoned summary;
+- unrelated capability changes, priorities, scanner failures, new artifacts, missing-baseline reviews, and critical items are preserved;
+- human decision history must be unchanged during a repair transition;
+- a pull request cannot append a repair and a human decision in the same state transition.
+
+Repairs are therefore an audit trail for correcting invalid recorded reviewer state, not an alternate way to resolve legitimate review work. Normal queue items still require an explicit reviewer decision or are superseded by a genuinely newer artifact.
 
 ## Recording a decision
 
