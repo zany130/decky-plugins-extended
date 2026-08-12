@@ -13,7 +13,10 @@
       "first_seen_at": "2026-08-09T01:07:41.070060Z",
       "plugin_name": "Muon",
       "priority": "critical",
-      "reasons": ["blocked_by_policy", "baseline_unavailable"],
+      "reasons": [
+        "blocked_by_policy",
+        "baseline_unavailable"
+      ],
       "release": "0.5.0.1",
       "repository": "https://github.com/wtlnetwork/muon",
       "reviewer_attention_count": 0,
@@ -27,15 +30,69 @@
       "baseline_artifact_sha256": "d3758997fc9ba41b1441e82d3b7c2a67d283d247a09b9796065113f0525b335a",
       "baseline_release": "v0.1.6",
       "changed_capabilities": [
-        {"id": "command_execution", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "not_observed -> unknown", "title": "Command and process execution"},
-        {"id": "known_vulnerabilities", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "not_observed -> unknown", "title": "Known vulnerabilities"},
-        {"id": "malware", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "not_observed -> unknown", "title": "Malware detection"},
-        {"id": "native_code", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "observed -> unknown; native binaries +0/-3; rule profile +0/-2", "title": "Native executable code"},
-        {"id": "network_communication", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "observed -> unknown; network destinations +0/-2", "title": "Network communication"},
-        {"id": "persistence", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "not_observed -> unknown", "title": "Persistence and automatic startup"},
-        {"id": "privileged_system_access", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "not_observed -> unknown", "title": "Privileged and system-level access"},
-        {"id": "sensitive_data_access", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "not_observed -> unknown", "title": "Credentials and sensitive data"},
-        {"id": "source_release_integrity", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "observed -> unknown; source/release difference profile changed; rule profile +0/-1", "title": "Published release versus source"}
+        {
+          "id": "command_execution",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Command and process execution"
+        },
+        {
+          "id": "known_vulnerabilities",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Known vulnerabilities"
+        },
+        {
+          "id": "malware",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Malware detection"
+        },
+        {
+          "id": "native_code",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "observed -> unknown; native binaries +0/-3; rule profile +0/-2",
+          "title": "Native executable code"
+        },
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "observed -> unknown; network destinations +0/-2",
+          "title": "Network communication"
+        },
+        {
+          "id": "persistence",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Persistence and automatic startup"
+        },
+        {
+          "id": "privileged_system_access",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Privileged and system-level access"
+        },
+        {
+          "id": "sensitive_data_access",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Credentials and sensitive data"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "observed -> unknown; source/release difference profile changed; rule profile +0/-1",
+          "title": "Published release versus source"
+        }
       ],
       "comparison_status": "compared",
       "error_count": 1,
@@ -43,7 +100,11 @@
       "first_seen_at": "2026-08-12T00:59:11.100677Z",
       "plugin_name": "",
       "priority": "critical",
-      "reasons": ["audit_error", "artifact_identity_unavailable", "security_delta"],
+      "reasons": [
+        "audit_error",
+        "artifact_identity_unavailable",
+        "security_delta"
+      ],
       "release": "",
       "repository": "https://github.com/xXJSONDeruloXx/Decky-bionic-fg",
       "reviewer_attention_count": 9,
@@ -57,10 +118,34 @@
       "baseline_artifact_sha256": "3300b617e3d979b483d03f995c75c829d6d54beaa4ac8dfae300c2560e4fc60f",
       "baseline_release": "v0.17",
       "changed_capabilities": [
-        {"id": "malware", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "not_observed -> unknown", "title": "Malware detection"},
-        {"id": "persistence", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "not_observed -> unknown", "title": "Persistence and automatic startup"},
-        {"id": "privileged_system_access", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "not_observed -> unknown", "title": "Privileged and system-level access"},
-        {"id": "sensitive_data_access", "reviewer_attention": true, "status_change": "coverage_became_unknown", "summary": "not_observed -> unknown", "title": "Credentials and sensitive data"}
+        {
+          "id": "malware",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Malware detection"
+        },
+        {
+          "id": "persistence",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Persistence and automatic startup"
+        },
+        {
+          "id": "privileged_system_access",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Privileged and system-level access"
+        },
+        {
+          "id": "sensitive_data_access",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Credentials and sensitive data"
+        }
       ],
       "comparison_status": "compared",
       "error_count": 0,
@@ -68,13 +153,22 @@
       "first_seen_at": "2026-08-09T01:07:41.070060Z",
       "plugin_name": "Decky-Framegen",
       "priority": "critical",
-      "reasons": ["audit_error", "security_delta", "same_artifact_analysis_drift"],
+      "reasons": [
+        "audit_error",
+        "security_delta",
+        "same_artifact_analysis_drift"
+      ],
       "release": "v0.17",
       "repository": "https://github.com/xXJSONDeruloXx/Decky-Framegen",
       "reviewer_attention_count": 4,
       "risk_score": 0,
       "same_artifact": true,
-      "scanner_failures": [{"name": "clamav", "status": "failed"}],
+      "scanner_failures": [
+        {
+          "name": "clamav",
+          "status": "failed"
+        }
+      ],
       "source_commit": "96eb17b0a9f2cfd2b00ad082bef893f4efc229f7"
     },
     {
@@ -88,7 +182,9 @@
       "first_seen_at": "2026-08-09T01:07:41.070060Z",
       "plugin_name": "DeckyClash",
       "priority": "high",
-      "reasons": ["baseline_unavailable"],
+      "reasons": [
+        "baseline_unavailable"
+      ],
       "release": "v0.1.2",
       "repository": "https://github.com/chenx-dust/DeckyClash",
       "reviewer_attention_count": 0,
@@ -108,7 +204,9 @@
       "first_seen_at": "2026-08-12T00:59:11.100677Z",
       "plugin_name": "MoonDeck",
       "priority": "high",
-      "reasons": ["baseline_unavailable"],
+      "reasons": [
+        "baseline_unavailable"
+      ],
       "release": "nightly",
       "repository": "https://github.com/FrogTheFrog/moondeck",
       "reviewer_attention_count": 0,
@@ -122,8 +220,20 @@
       "baseline_artifact_sha256": "a313be924cabe15255d222742a402cd98cb510a35dfe4b2d06cf1e59366936de",
       "baseline_release": "Release-0.7.2",
       "changed_capabilities": [
-        {"id": "network_communication", "reviewer_attention": true, "status_change": "unchanged", "summary": "network destinations +1/-1", "title": "Network communication"},
-        {"id": "source_release_integrity", "reviewer_attention": true, "status_change": "unchanged", "summary": "source/release difference profile changed", "title": "Published release versus source"}
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +1/-1",
+          "title": "Network communication"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed",
+          "title": "Published release versus source"
+        }
       ],
       "comparison_status": "compared",
       "error_count": 0,
@@ -131,7 +241,10 @@
       "first_seen_at": "2026-08-09T01:07:41.070060Z",
       "plugin_name": "Unifideck",
       "priority": "high",
-      "reasons": ["new_artifact", "security_delta"],
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
       "release": "Release-0.7.3",
       "repository": "https://github.com/mubaraknumann/unifideck",
       "reviewer_attention_count": 2,
@@ -145,7 +258,13 @@
       "baseline_artifact_sha256": "c5fbde7be36a9212b85b8db87e495217b174b617a433385bd43ffec5a9aef159",
       "baseline_release": "1.0.0",
       "changed_capabilities": [
-        {"id": "source_release_integrity", "reviewer_attention": true, "status_change": "unchanged", "summary": "source/release difference profile changed (2 count change(s))", "title": "Published release versus source"}
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed (2 count change(s))",
+          "title": "Published release versus source"
+        }
       ],
       "comparison_status": "compared",
       "error_count": 0,
@@ -153,7 +272,10 @@
       "first_seen_at": "2026-08-10T00:51:45.065594Z",
       "plugin_name": "Decky Vibrance HDR",
       "priority": "high",
-      "reasons": ["new_artifact", "security_delta"],
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
       "release": "1.0.1",
       "repository": "https://github.com/Rayekkk/DeckyVibranceHDR",
       "reviewer_attention_count": 1,
@@ -167,7 +289,13 @@
       "baseline_artifact_sha256": "4b04b2e1bb980b312eb482f7a6da8af3c5cbcb7124b4d3c4322ba7cea9b8a805",
       "baseline_release": "1.6.0",
       "changed_capabilities": [
-        {"id": "source_release_integrity", "reviewer_attention": true, "status_change": "unchanged", "summary": "source/release difference profile changed (1 count change(s))", "title": "Published release versus source"}
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed (1 count change(s))",
+          "title": "Published release versus source"
+        }
       ],
       "comparison_status": "compared",
       "error_count": 0,
@@ -175,7 +303,10 @@
       "first_seen_at": "2026-08-10T00:51:45.065594Z",
       "plugin_name": "LeGoTDP",
       "priority": "high",
-      "reasons": ["new_artifact", "security_delta"],
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
       "release": "1.6.1",
       "repository": "https://github.com/Rayekkk/LeGoTDP",
       "reviewer_attention_count": 1,
@@ -195,7 +326,9 @@
       "first_seen_at": "2026-08-09T01:07:41.070060Z",
       "plugin_name": "Decky Notifications",
       "priority": "high",
-      "reasons": ["baseline_unavailable"],
+      "reasons": [
+        "baseline_unavailable"
+      ],
       "release": "1.0",
       "repository": "https://github.com/zany130/decky-notifications",
       "reviewer_attention_count": 0,
@@ -215,7 +348,9 @@
       "first_seen_at": "2026-08-11T00:51:49.169537Z",
       "plugin_name": "RomM Sync",
       "priority": "normal",
-      "reasons": ["new_artifact"],
+      "reasons": [
+        "new_artifact"
+      ],
       "release": "decky-romm-sync-v0.30.1",
       "repository": "https://github.com/danielcopper/decky-romm-sync",
       "reviewer_attention_count": 0,
@@ -235,7 +370,9 @@
       "first_seen_at": "2026-08-10T18:42:54.225436Z",
       "plugin_name": "Panel de Control",
       "priority": "normal",
-      "reasons": ["new_artifact"],
+      "reasons": [
+        "new_artifact"
+      ],
       "release": "panel-de-control-v0.37.1",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 0,
