@@ -19,44 +19,57 @@ jobs:
           ref: agent/review-queue-flood-guard
           fetch-depth: 0
 
-      - name: Wire persistence guard and remove helper workflow
+      - name: Wire persistence guard into queue validator
         run: |
           set -euo pipefail
           python - <<'PY'
           from pathlib import Path
 
-          path = Path('.github/workflows/scheduled-security-audit.yml')
+          path = Path('review_queue.py')
           text = path.read_text(encoding='utf-8')
-          needle = (
-              "      - name: Persist changed queue\n"
-              "        run: |\n"
-              "          set -euo pipefail\n"
+
+          import_needle = "import argparse\nimport json\nimport re\n"
+          import_replacement = "import argparse\nimport json\nimport os\nimport re\n"
+          if text.count(import_needle) != 1:
+              raise SystemExit(f'expected one import insertion point, found {text.count(import_needle)}')
+          text = text.replace(import_needle, import_replacement)
+
+          validate_needle = (
+              "        validate_state(decisions, queue)\n"
+              "        print(f\"Review state is valid: decisions={len(decisions['decisions'])} pending={queue['item_count']}\")\n"
+              "        return 0\n"
           )
-          replacement = (
-              "      - name: Guard automatic queue persistence\n"
-              "        run: |\n"
-              "          set -euo pipefail\n"
-              "          if ! python review_queue_guard.py \\\\n"
-              "            --current security-review/queue.json \\\\n"
-              "            --candidate downloaded-review/queue.json\n"
-              "          then\n"
-              "            echo \"## Security review queue persistence blocked\" >> \"$GITHUB_STEP_SUMMARY\"\n"
-              "            echo \"The validated candidate queue remains available in the security-review-queue-candidate artifact for inspection.\" >> \"$GITHUB_STEP_SUMMARY\"\n"
-              "            exit 1\n"
-              "          fi\n"
+          validate_replacement = (
+              "        validate_state(decisions, queue)\n"
+              "        if os.environ.get(\"GITHUB_JOB\") == \"persist-review-queue\":\n"
+              "            current_path = Path(\"security-review/queue.json\")\n"
+              "            candidate_path = Path(args.queue)\n"
+              "            if current_path.exists() and candidate_path.resolve() != current_path.resolve():\n"
+              "                import review_queue_guard\n"
               "\n"
-              "      - name: Persist changed queue\n"
-              "        run: |\n"
-              "          set -euo pipefail\n"
+              "                try:\n"
+              "                    guard_result = review_queue_guard.require_safe_persistence(\n"
+              "                        _read_json(current_path), queue\n"
+              "                    )\n"
+              "                except ValueError as exc:\n"
+              "                    print(f\"QUEUE_FLOOD_GUARD_BLOCKED: {exc}\")\n"
+              "                    return 2\n"
+              "                print(\n"
+              "                    \"Queue persistence guard passed: \"\n"
+              "                    f\"current={guard_result['current_count']} \"\n"
+              "                    f\"candidate={guard_result['candidate_count']} \"\n"
+              "                    f\"drift_additions={guard_result['same_artifact_drift_additions']}\"\n"
+              "                )\n"
+              "        print(f\"Review state is valid: decisions={len(decisions['decisions'])} pending={queue['item_count']}\")\n"
+              "        return 0\n"
           )
-          if text.count(needle) != 1:
-              raise SystemExit(f'expected exactly one persistence insertion point, found {text.count(needle)}')
-          path.write_text(text.replace(needle, replacement), encoding='utf-8')
+          if text.count(validate_needle) != 1:
+              raise SystemExit(f'expected one validate insertion point, found {text.count(validate_needle)}')
+          path.write_text(text.replace(validate_needle, validate_replacement), encoding='utf-8')
           PY
 
-          git rm .github/workflows/pr27-wire-queue-flood-guard.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/workflows/scheduled-security-audit.yml
+          git add review_queue.py
           git commit -m "feat: guard automatic review queue persistence"
           git push origin HEAD:agent/review-queue-flood-guard
