@@ -1,4 +1,9 @@
+import json
+import os
+import tempfile
 import unittest
+from pathlib import Path
+from unittest import mock
 
 import review_queue as rq
 import review_queue_guard as guard
@@ -96,6 +101,11 @@ class ReviewQueueGuardTests(unittest.TestCase):
         rq.validate_queue(payload)
         return payload
 
+    def write_json(self, path, payload):
+        destination = Path(path)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(json.dumps(payload), encoding="utf-8")
+
     def test_single_real_release_growth_passes(self):
         current_items = [self.item(index) for index in range(11)]
         candidate_items = current_items + [self.item(100, new_artifact=True)]
@@ -111,7 +121,9 @@ class ReviewQueueGuardTests(unittest.TestCase):
 
     def test_legacy_style_11_to_50_drift_flood_is_blocked(self):
         current_items = [self.item(index) for index in range(11)]
-        candidate_items = current_items + [self.item(100 + index, drift=True) for index in range(39)]
+        candidate_items = current_items + [
+            self.item(100 + index, drift=True) for index in range(39)
+        ]
 
         result = guard.analyze_persistence(
             self.queue(current_items),
@@ -158,7 +170,9 @@ class ReviewQueueGuardTests(unittest.TestCase):
 
     def test_small_same_artifact_drift_batch_passes(self):
         current_items = [self.item(index) for index in range(11)]
-        candidate_items = current_items + [self.item(100 + index, drift=True) for index in range(9)]
+        candidate_items = current_items + [
+            self.item(100 + index, drift=True) for index in range(9)
+        ]
 
         result = guard.require_safe_persistence(
             self.queue(current_items),
@@ -182,6 +196,70 @@ class ReviewQueueGuardTests(unittest.TestCase):
         self.assertEqual(result["net_growth"], 21)
         self.assertEqual(result["same_artifact_drift_additions"], 10)
         self.assertFalse(result["drift_dominates_additions"])
+
+    def test_validate_cli_blocks_only_the_persistence_job(self):
+        current_items = [self.item(index) for index in range(11)]
+        candidate_items = current_items + [
+            self.item(100 + index, drift=True) for index in range(39)
+        ]
+        decisions = rq.empty_decisions()
+
+        with tempfile.TemporaryDirectory() as temporary:
+            original_cwd = os.getcwd()
+            try:
+                os.chdir(temporary)
+                self.write_json("security-review/queue.json", self.queue(current_items))
+                self.write_json("security-review/decisions.json", decisions)
+                self.write_json(
+                    "downloaded-review/queue.json",
+                    self.queue(candidate_items, generated_at="2026-08-12T13:00:00Z"),
+                )
+
+                argv = [
+                    "validate",
+                    "--decisions",
+                    "security-review/decisions.json",
+                    "--queue",
+                    "downloaded-review/queue.json",
+                ]
+                with mock.patch.dict(os.environ, {"GITHUB_JOB": "build-review-queue"}):
+                    self.assertEqual(rq.main(argv), 0)
+                with mock.patch.dict(os.environ, {"GITHUB_JOB": "persist-review-queue"}):
+                    self.assertEqual(rq.main(argv), 2)
+            finally:
+                os.chdir(original_cwd)
+
+    def test_validate_cli_allows_normal_persistence_growth(self):
+        current_items = [self.item(index) for index in range(11)]
+        candidate_items = current_items + [self.item(100, new_artifact=True)]
+        decisions = rq.empty_decisions()
+
+        with tempfile.TemporaryDirectory() as temporary:
+            original_cwd = os.getcwd()
+            try:
+                os.chdir(temporary)
+                self.write_json("security-review/queue.json", self.queue(current_items))
+                self.write_json("security-review/decisions.json", decisions)
+                self.write_json(
+                    "downloaded-review/queue.json",
+                    self.queue(candidate_items, generated_at="2026-08-12T13:00:00Z"),
+                )
+
+                with mock.patch.dict(os.environ, {"GITHUB_JOB": "persist-review-queue"}):
+                    self.assertEqual(
+                        rq.main(
+                            [
+                                "validate",
+                                "--decisions",
+                                "security-review/decisions.json",
+                                "--queue",
+                                "downloaded-review/queue.json",
+                            ]
+                        ),
+                        0,
+                    )
+            finally:
+                os.chdir(original_cwd)
 
 
 if __name__ == "__main__":
