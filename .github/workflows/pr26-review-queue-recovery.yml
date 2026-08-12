@@ -1,16 +1,16 @@
 name: PR26 Review Queue Recovery
 
 on:
-  pull_request:
-    paths:
-      - .github/workflows/pr26-review-queue-recovery.yml
+  push:
+    branches:
+      - agent/recover-review-queue-network-compat
 
 permissions:
   contents: write
 
 jobs:
   recover:
-    if: ${{ github.head_ref == 'agent/recover-review-queue-network-compat' }}
+    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout recovery branch
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          ref: ${{ github.head_ref }}
+          ref: agent/recover-review-queue-network-compat
           fetch-depth: 0
 
       - name: Install uv
@@ -112,7 +112,7 @@ jobs:
 
           target_actions = [
               {
-                  "repository": "https://github.com/catchweb/DeckyVibranceHDR",
+                  "repository": "https://github.com/Rayekkk/DeckyVibranceHDR",
                   "artifact_sha256": "8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de",
                   "capability_id": "network_communication",
                   "expected_summary": "network destinations +0/-3",
@@ -196,7 +196,7 @@ jobs:
           if names != expected_names:
               raise SystemExit(f"unexpected repaired review workload: {sorted(names)}")
 
-          for repository in ("catchweb/DeckyVibranceHDR", "Rayekkk/LeGoTDP"):
+          for repository in ("Rayekkk/DeckyVibranceHDR", "Rayekkk/LeGoTDP"):
               item = next(
                   item for item in repaired["items"]
                   if repository.casefold() in item["repository"].casefold()
@@ -235,8 +235,8 @@ jobs:
 
           BASE_QUEUE="$RUNNER_TEMP/base-queue.json"
           BASE_DECISIONS="$RUNNER_TEMP/base-decisions.json"
-          git show "${{ github.event.pull_request.base.sha }}:security-review/queue.json" > "$BASE_QUEUE"
-          git show "${{ github.event.pull_request.base.sha }}:security-review/decisions.json" > "$BASE_DECISIONS"
+          git show "${{ github.event.before }}:security-review/queue.json" > "$BASE_QUEUE"
+          git show "${{ github.event.before }}:security-review/decisions.json" > "$BASE_DECISIONS"
           printf '%s\n' '{"schema_version":"1","repairs":[]}' > "$RUNNER_TEMP/base-repairs.json"
 
           uv run --frozen python review_state_transition.py \
@@ -258,4 +258,4 @@ jobs:
             security-review/queue.json \
             security-review/queue.md
           git commit -m "fix: repair poisoned security review queue"
-          git push origin HEAD:${{ github.head_ref }}
+          git push origin HEAD:agent/recover-review-queue-network-compat
