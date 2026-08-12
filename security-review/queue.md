@@ -1,12 +1,13 @@
 # Security Review Queue
 
-Pending artifacts: **50** — critical 2, high 46, normal 2.
-Generated: `2026-08-11T00:51:49.169537Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31447331622
+Pending artifacts: **50** — critical 3, high 45, normal 2.
+Generated: `2026-08-12T00:59:11.100677Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31551933847
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
 | **CRITICAL** | Muon | 0.5.0.1 / `3ed4c4629013` | unavailable | BLOCK | blocked by policy, baseline unavailable |
+| **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | Decky-Framegen | v0.17 / `3300b617e3d9` | v0.17 / `3300b617e3d9` | AUDIT\_ERROR | audit error, security delta, same artifact analysis drift |
 | **HIGH** | PlayTime | v3.3.0 / `1d8a520b499b` | v3.3.0 / `1d8a520b499b` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | steam-achievements | v1.2.3 / `4a698f9f7bf0` | v1.2.3 / `4a698f9f7bf0` | PASS\_WITH\_WARNINGS | security delta, same artifact analysis drift |
@@ -22,7 +23,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | NordVPN | v1.1.0 / `00794e4fbf39` | v1.1.0 / `00794e4fbf39` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | Docky | v1.4.8 / `6fa09e2dbfa7` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
-| **HIGH** | MoonDeck | nightly / `e37fe1f709be` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | MoonDeck | nightly / `05225f387478` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Prysm | v0.2.0 / `516ada5cf2b9` | v0.2.0 / `516ada5cf2b9` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | DeckBridge | v1.1.0 / `eafaac2e380f` | v1.1.0 / `eafaac2e380f` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | Spotify Connect | v1.0.0 / `f73c54f0c207` | v1.0.0 / `f73c54f0c207` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
@@ -50,7 +51,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Launch Options | v1.14.0 / `377c1625de95` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | Pause Games | 20260723060434 / `18b90ac01253` | 20260723060434 / `18b90ac01253` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | cec-mote | v0.3.2 / `91237d61d8ed` | v0.3.2 / `91237d61d8ed` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
-| **HIGH** | Decky Bionic FG | v0.1.6 / `d3758997fc9b` | v0.1.6 / `d3758997fc9b` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | Decky LSFG-VK | v0.12.8 / `322f6eec21a4` | v0.12.8 / `322f6eec21a4` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **HIGH** | RSM-Decky | v1.0.1 / `039a603b75ef` | v1.0.1 / `039a603b75ef` | MANUAL\_REVIEW | security delta, same artifact analysis drift |
@@ -66,6 +66,26 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - First seen: `2026-08-09T01:07:41.070060Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
+
+## https://github.com/xXJSONDeruloXx/Decky-bionic-fg
+
+- Repository: `https://github.com/xXJSONDeruloXx/Decky-bionic-fg`
+- Candidate: `` — `artifact SHA unavailable`
+- Classification: **AUDIT\_ERROR** (risk 0)
+- Comparison: `compared`; reviewer-attention changes: 9
+- First seen: `2026-08-12T00:59:11.100677Z`
+- Accepted baseline: `v0.1.6` — `d3758997fc9ba41b1441e82d3b7c2a67d283d247a09b9796065113f0525b335a`
+- Report errors: 1 (see the full audit artifact/logs for details)
+- Capability changes:
+  - **Command and process execution:** not\_observed -\> unknown — **review**
+  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
+  - **Malware detection:** not\_observed -\> unknown — **review**
+  - **Native executable code:** observed -\> unknown; native binaries +0/-3; rule profile +0/-2 — **review**
+  - **Network communication:** observed -\> unknown; network destinations +0/-2 — **review**
+  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
+  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
+  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
+  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
 
 ## Decky-Framegen
 
@@ -252,10 +272,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## MoonDeck
 
 - Repository: `https://github.com/FrogTheFrog/moondeck`
-- Candidate: `nightly` — `e37fe1f709be38ad1247402faee5ea1a9770eae28250570119bb64a2502da03a`
+- Candidate: `nightly` — `05225f387478d5684c5c1b10bcd607c199c96528b671ffd2e55ad3a974f9d8d1`
 - Classification: **MANUAL\_REVIEW** (risk 7799)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-08-09T01:07:41.070060Z`
+- First seen: `2026-08-12T00:59:11.100677Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
@@ -579,18 +599,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 1
 - First seen: `2026-08-10T00:51:45.065594Z`
 - Accepted baseline: `v0.3.2` — `91237d61d8ed8725057038f4d5dfeeb6f601aa0ff51fe12714606dc249c25738`
-- Artifact bytes are unchanged; differences may reflect scanner/rule/coverage drift.
-- Capability changes:
-  - **Network communication:** network destinations +0/-2 — **review**
-
-## Decky Bionic FG
-
-- Repository: `https://github.com/xXJSONDeruloXx/Decky-bionic-fg`
-- Candidate: `v0.1.6` — `d3758997fc9ba41b1441e82d3b7c2a67d283d247a09b9796065113f0525b335a`
-- Classification: **MANUAL\_REVIEW** (risk 62)
-- Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-08-10T00:51:45.065594Z`
-- Accepted baseline: `v0.1.6` — `d3758997fc9ba41b1441e82d3b7c2a67d283d247a09b9796065113f0525b335a`
 - Artifact bytes are unchanged; differences may reflect scanner/rule/coverage drift.
 - Capability changes:
   - **Network communication:** network destinations +0/-2 — **review**
