@@ -1,0 +1,68 @@
+{
+  "repairs": [
+    {
+      "auditor_ref": "963eac10d3c0e02d8278ed8a3709b188fe12286d",
+      "id": "legacy-network-cache-2026-08-12",
+      "kind": "legacy_cached_network_inventory",
+      "reason": "Recover reviewer state poisoned when legacy cached reports exposed an empty structured network inventory while retaining the complete extracted_domains inventory.",
+      "remove_capabilities": [
+        {
+          "artifact_sha256": "8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de",
+          "capability_id": "network_communication",
+          "expected_summary": "network destinations +0/-3",
+          "repository": "https://github.com/Rayekkk/DeckyVibranceHDR"
+        },
+        {
+          "artifact_sha256": "2bccb912292b5d6caffcce17b2009b463fd7828aede88ce0f1af51adae4042b8",
+          "capability_id": "network_communication",
+          "expected_summary": "network destinations +0/-7",
+          "repository": "https://github.com/Rayekkk/LeGoTDP"
+        }
+      ],
+      "remove_items": [
+        {"artifact_sha256": "1d8a520b499bb365dfb9ca87b03aaa0ba1afb4f57a6b1fc3b7b6183b5b53399e", "repository": "https://github.com/0u73r-h34v3n/SDH-PlayTime"},
+        {"artifact_sha256": "4a698f9f7bf08e8f4e78c341009ac7003830ad43e071aaef770c1af61ee443e0", "repository": "https://github.com/AG69075/steamOS_plugin_achievements"},
+        {"artifact_sha256": "f5a6fd3600165ec6791b0c47d8eb8cbb657bb2de6d891a0e57490a4cf5794844", "repository": "https://github.com/AkazaRenn/SDH-GameSync"},
+        {"artifact_sha256": "e5239caa11c25c68bc5d3e053391ebc417e24e831ab687d521e6b768a2a73aaf", "repository": "https://github.com/andrewburgess/steamdeck-discord-status"},
+        {"artifact_sha256": "38b268f5c0c590365be8c5d7f5d6659c0628b89e577af83bf0f85f07a04cff76", "repository": "https://github.com/andriuspetravicius/Deckcord"},
+        {"artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5", "repository": "https://github.com/beallio/Decky-Metadata"},
+        {"artifact_sha256": "0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a", "repository": "https://github.com/beallio/Decky-SteamAchievements"},
+        {"artifact_sha256": "28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355", "repository": "https://github.com/beallio/SDH-Ludusavi"},
+        {"artifact_sha256": "92610937d8fd91392aecf1a1a7613d9208fdb838dd934c7d262de759c10d7585", "repository": "https://github.com/BrenticusMaximus/ThemeDeck"},
+        {"artifact_sha256": "0cbf5948ca5a6f384181d0982db8874c88fad6a0d85bc3396bdfde564d322ffa", "repository": "https://github.com/bschelst/protondb-decky"},
+        {"artifact_sha256": "f0bb88e7f688afa7bbb887bc3cec0bbfb58a96b0c99b4a0fea3b252df73bb4dd", "repository": "https://github.com/cat-in-a-box/Decky-Translator"},
+        {"artifact_sha256": "00794e4fbf39883adcd4a6a391529e5e4a14f3b780773290532eca29ade73dd1", "repository": "https://github.com/cwtechshiz/nordvpn-decky"},
+        {"artifact_sha256": "6fa09e2dbfa76af695b74e4eb918a62ef94573c5b131a304dc5fec58fe5d56b3", "repository": "https://github.com/datbird/docky"},
+        {"artifact_sha256": "516ada5cf2b9a6463eba8defbba0d1a1213b7a7a5e5dc63f0013a1429adf88eb", "repository": "https://github.com/hostsrc/decky-prysm"},
+        {"artifact_sha256": "eafaac2e380fa3d60092c1aa1604fda74f86466e642e407bcdf9b245c4915409", "repository": "https://github.com/Janleyx/DeckBridge"},
+        {"artifact_sha256": "f73c54f0c20740020d6805684dc81ed22f854c1eed0567767db4931f6c62c3b0", "repository": "https://github.com/Janleyx/decky-spotify-connect"},
+        {"artifact_sha256": "06b353b09d24b75cd70c4fb8b2cb5c7a94a47c62278a370ffd3c7ef02ead61de", "repository": "https://github.com/jeanbottein/DeckaTV"},
+        {"artifact_sha256": "8f9e6ba262fd1a246e938718349b0dc49110a739530de4f235d38ef078e210d1", "repository": "https://github.com/jjuuzzii/decky-ha-mqtt-plugin"},
+        {"artifact_sha256": "92d584377815bfca6109b48905babb6e8537ac9f77b0f1ad51cea3d8027aff48", "repository": "https://github.com/kungaa/DS5-Linux-Decky"},
+        {"artifact_sha256": "27936a0a822873f8653607fb90ec4b2d14d418343b22dc17acb92568eb6cb604", "repository": "https://github.com/MrWaip/vpn-deck"},
+        {"artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38", "repository": "https://github.com/Necrosiak/Steamcord"},
+        {"artifact_sha256": "a8924e945dcfd57372c11a8ac8d5fa3681c3beb0171cd3991d90fccc53e161b6", "repository": "https://github.com/nucat176/decky-16x10-fixes"},
+        {"artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed", "repository": "https://github.com/parvagans/achievement-companion"},
+        {"artifact_sha256": "a1059534de2a0e9556669adff3d933bcde802101faae7558f9b33db3a8e51bc7", "repository": "https://github.com/PixelAddictUnlocked/allycenter"},
+        {"artifact_sha256": "fd08937fc6d1d3df081486dcbf1ca321380536e784ae6622b50827c5f601aefc", "repository": "https://github.com/piyush-tyagi-13/ally-vibe-control"},
+        {"artifact_sha256": "adda3be351c14d1c8899fb0997565aa67e7439b988112340fad707cfe6be28b7", "repository": "https://github.com/Rayekkk/LeGo-Vibe-Control"},
+        {"artifact_sha256": "596dde0f581145293d6957f25e47df8be15d0cb0d4560dc6712938447b06e241", "repository": "https://github.com/Rayekkk/LeGo2BrightnessFix"},
+        {"artifact_sha256": "dfb128f1ed15252f58b204f1a798662357c83c06c10eef1f16127362eeeed8fa", "repository": "https://github.com/rsore/decky-bootnext"},
+        {"artifact_sha256": "71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9", "repository": "https://github.com/santojon/Deck-Shelves"},
+        {"artifact_sha256": "32e2931f9ca8083c1605f04b4ed089b0bf210f79db236a7fd34f02c519e902d9", "repository": "https://github.com/SheffeyG/CheatDeck"},
+        {"artifact_sha256": "b951968f1e89a92333c7ded9563997adaa41e30457b3f4ea7ed717880b80a65b", "repository": "https://github.com/snoein/decky-insignia"},
+        {"artifact_sha256": "7d8257c26a06da2aa4b44a154fc2ea505cf69b09478044a7dd6f8ac3f642274e", "repository": "https://github.com/steam3d/MagicBlackDecky"},
+        {"artifact_sha256": "bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e", "repository": "https://github.com/steam3d/MagicPodsDecky"},
+        {"artifact_sha256": "344fb7a082022f492ff2fe8db243e5363e8a2be3757c5ea9fb99e55264d9b25d", "repository": "https://github.com/Teppichseite/RetroDECKY"},
+        {"artifact_sha256": "377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668", "repository": "https://github.com/Wurielle/decky-launch-options"},
+        {"artifact_sha256": "18b90ac0125350715170dae88e8235c6a70d63833a8d4015410f8c8ea82b996b", "repository": "https://github.com/wynn1212/SDH-PauseGames"},
+        {"artifact_sha256": "91237d61d8ed8725057038f4d5dfeeb6f601aa0ff51fe12714606dc249c25738", "repository": "https://github.com/xXJSONDeruloXx/cec-mote"},
+        {"artifact_sha256": "322f6eec21a489ef9f12938ea2ec4e43c234093876f95b7245fbd260f882ce9c", "repository": "https://github.com/xXJSONDeruloXx/decky-lsfg-vk"},
+        {"artifact_sha256": "039a603b75ef5d7d5b8aac0b8172069e15e607e563256932ac36f8ed5c368a61", "repository": "https://github.com/zany130/RSM-Decky"}
+      ],
+      "repaired_at": "2026-08-12T01:19:15Z",
+      "source_run_ids": [31345491546, 31447331622, 31551933847]
+    }
+  ],
+  "schema_version": "1"
+}
