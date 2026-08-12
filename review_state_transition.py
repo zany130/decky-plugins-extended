@@ -103,6 +103,8 @@ def validate_repairs(payload: object) -> None:
             raise ValueError("review repair actions must be lists")
         if not remove_items and not remove_capabilities:
             raise ValueError("review repair must contain at least one action")
+        if len(remove_items) + len(remove_capabilities) > review_queue.MAX_ITEMS:
+            raise ValueError("review repair contains too many actions")
 
         removed: set[tuple[str, str]] = set()
         for item in remove_items:
@@ -134,9 +136,14 @@ def _is_strict_legacy_network_poison(item: dict[str, Any]) -> bool:
     if len(changed) != 1 or not isinstance(changed[0], dict):
         return False
     capability = changed[0]
+    artifact_sha = str(item.get("artifact_sha256") or "").casefold()
+    baseline_sha = str(item.get("baseline_artifact_sha256") or "").casefold()
     return (
         item.get("priority") == "high"
         and item.get("same_artifact") is True
+        and item.get("baseline_release") == item.get("release")
+        and bool(artifact_sha)
+        and baseline_sha == artifact_sha
         and item.get("final_classification") not in {"AUDIT_ERROR", "BLOCK"}
         and set(item.get("reasons") or [])
         == {"security_delta", "same_artifact_analysis_drift"}
