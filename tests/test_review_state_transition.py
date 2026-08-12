@@ -257,6 +257,37 @@ class ReviewStateTransitionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "strict poison signature"):
             transition.apply_repair(previous_queue, repair)
 
+    def test_repair_cannot_remove_when_same_artifact_flag_mismatches_baseline_identity(self):
+        repair = self.repair(
+            remove_items=[{"repository": REPO, "artifact_sha256": SHA_A}],
+        )
+
+        for field, value in (
+            ("baseline_artifact_sha256", "d" * 64),
+            ("baseline_release", "v0.9.0"),
+        ):
+            with self.subTest(field=field):
+                poison = self.poison_item()
+                poison[field] = value
+                previous_queue = self.queue(poison)
+                with self.assertRaisesRegex(ValueError, "strict poison signature"):
+                    transition.apply_repair(previous_queue, repair)
+
+    def test_repair_action_count_is_bounded(self):
+        repair = self.repair(
+            remove_items=[
+                {
+                    "repository": f"https://github.com/example/plugin-{index}",
+                    "artifact_sha256": f"{index:064x}",
+                }
+                for index in range(rq.MAX_ITEMS + 1)
+            ]
+        )
+        with self.assertRaisesRegex(ValueError, "too many actions"):
+            transition.validate_repairs(
+                {"schema_version": "1", "repairs": [repair]}
+            )
+
     def test_repair_cannot_edit_unlisted_or_mismatched_capability(self):
         previous_queue = self.queue(self.item())
         repair = self.repair(
