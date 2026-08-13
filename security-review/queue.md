@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **12** — critical 3, high 7, normal 2.
-Generated: `2026-08-12T12:45:55.406552Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31597546420
+Pending artifacts: **13** — critical 3, high 7, normal 3.
+Generated: `2026-08-13T00:59:58.219898Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31656153955
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -16,6 +16,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.6.1 / `2bccb912292b` | 1.6.0 / `4b04b2e1bb98` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
+| **NORMAL** | SDH-Ludusavi | v0.4.4 / `71b609181c55` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | RomM Sync | decky-romm-sync-v0.30.1 / `254a911f01e6` | decky-romm-sync-v0.30.0 / `acbccb7585a0` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Panel de Control | panel-de-control-v0.37.1 / `e20cce88c57d` | panel-de-control-v0.37.0 / `5da7c4ff7c04` | MANUAL\_REVIEW | new artifact |
 
@@ -138,6 +139,16 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
 - First seen: `2026-08-09T01:07:41.070060Z`
 - Accepted baseline: unavailable
+- Capability changes: none observed in the comparison model.
+
+## SDH-Ludusavi
+
+- Repository: `https://github.com/beallio/SDH-Ludusavi`
+- Candidate: `v0.4.4` — `71b609181c55a2c7fc6002ccefb93b25c55dabae3bfd9cc83f245a740399457e`
+- Classification: **MANUAL\_REVIEW** (risk 32)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-08-13T00:59:58.219898Z`
+- Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
 - Capability changes: none observed in the comparison model.
 
 ## RomM Sync

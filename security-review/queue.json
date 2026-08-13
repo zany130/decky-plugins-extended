@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-12T12:45:55.406552Z",
-  "item_count": 12,
+  "generated_at": "2026-08-13T00:59:58.219898Z",
+  "item_count": 13,
   "items": [
     {
       "artifact_sha256": "3ed4c4629013d94fc1486943a47e5044fbda7f2488d0e5c75976b9c29068de81",
@@ -369,6 +369,28 @@
       "source_commit": "2a6184cde761971b190511f86b2f9f14fa43ee81"
     },
     {
+      "artifact_sha256": "71b609181c55a2c7fc6002ccefb93b25c55dabae3bfd9cc83f245a740399457e",
+      "baseline_artifact_sha256": "28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355",
+      "baseline_release": "v0.4.3",
+      "changed_capabilities": [],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-13T00:59:58.219898Z",
+      "plugin_name": "SDH-Ludusavi",
+      "priority": "normal",
+      "reasons": [
+        "new_artifact"
+      ],
+      "release": "v0.4.4",
+      "repository": "https://github.com/beallio/SDH-Ludusavi",
+      "reviewer_attention_count": 0,
+      "risk_score": 32,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "d35430f28d7af6497b724f890c6c68850e64472e"
+    },
+    {
       "artifact_sha256": "254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db",
       "baseline_artifact_sha256": "acbccb7585a0c77d9b7ed535e509a18fca06596fce3e918fed932ae1a9d31079",
       "baseline_release": "decky-romm-sync-v0.30.0",
@@ -414,5 +436,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31597546420"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31656153955"
 }
