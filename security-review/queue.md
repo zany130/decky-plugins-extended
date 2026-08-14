@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **13** — critical 3, high 7, normal 3.
-Generated: `2026-08-13T00:59:58.219898Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31656153955
+Pending artifacts: **14** — critical 3, high 7, normal 4.
+Generated: `2026-08-14T18:41:17.058332Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31829611302
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -19,6 +19,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | SDH-Ludusavi | v0.4.4 / `71b609181c55` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | RomM Sync | decky-romm-sync-v0.30.1 / `254a911f01e6` | decky-romm-sync-v0.30.0 / `acbccb7585a0` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Panel de Control | panel-de-control-v0.37.1 / `e20cce88c57d` | panel-de-control-v0.37.0 / `5da7c4ff7c04` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Deck Shelves | v3.2.0 / `7597b3da3857` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
 
@@ -169,4 +170,14 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-08-10T18:42:54.225436Z`
 - Accepted baseline: `panel-de-control-v0.37.0` — `5da7c4ff7c0455754611f2c632401ca1954a09d3b61310c784050718e0d109ec`
+- Capability changes: none observed in the comparison model.
+
+## Deck Shelves
+
+- Repository: `https://github.com/santojon/Deck-Shelves`
+- Candidate: `v3.2.0` — `7597b3da3857b1e2b2c62c930fe848c02551c464232f56d0ac5b5d6995020de6`
+- Classification: **MANUAL\_REVIEW** (risk 87)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-08-14T18:41:17.058332Z`
+- Accepted baseline: `v3.1.0` — `71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9`
 - Capability changes: none observed in the comparison model.
