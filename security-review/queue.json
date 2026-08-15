@@ -1,23 +1,23 @@
 {
-  "generated_at": "2026-08-15T12:16:35.411907Z",
+  "generated_at": "2026-08-15T18:14:21.149471Z",
   "item_count": 15,
   "items": [
     {
-      "artifact_sha256": "3ed4c4629013d94fc1486943a47e5044fbda7f2488d0e5c75976b9c29068de81",
+      "artifact_sha256": "229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
       "changed_capabilities": [],
       "comparison_status": "baseline_not_found",
       "error_count": 0,
       "final_classification": "BLOCK",
-      "first_seen_at": "2026-08-09T01:07:41.070060Z",
+      "first_seen_at": "2026-08-15T18:14:21.149471Z",
       "plugin_name": "Muon",
       "priority": "critical",
       "reasons": [
         "blocked_by_policy",
         "baseline_unavailable"
       ],
-      "release": "0.5.0.1",
+      "release": "0.5.0.2",
       "repository": "https://github.com/wtlnetwork/muon",
       "reviewer_attention_count": 0,
       "risk_score": 1362,
@@ -466,28 +466,28 @@
       "source_commit": "38826ad84d5ab29a9a4c73f60cde3aea807d05c2"
     },
     {
-      "artifact_sha256": "7597b3da3857b1e2b2c62c930fe848c02551c464232f56d0ac5b5d6995020de6",
+      "artifact_sha256": "0f14447ea6930103fff7235d3e45c7892f70afe38d95b84a07c90ca372eb95c5",
       "baseline_artifact_sha256": "71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9",
       "baseline_release": "v3.1.0",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-14T18:41:17.058332Z",
+      "first_seen_at": "2026-08-15T18:14:21.149471Z",
       "plugin_name": "Deck Shelves",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v3.2.0",
+      "release": "v3.2.1",
       "repository": "https://github.com/santojon/Deck-Shelves",
       "reviewer_attention_count": 0,
       "risk_score": 87,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "c2bc0dc5cc951d5af284acf78850917943381e1e"
+      "source_commit": "4f72043f46a9ab79c42e9bdd9ef1538ed9f820c0"
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31884089379"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31900449313"
 }

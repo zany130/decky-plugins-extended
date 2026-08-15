@@ -1,12 +1,12 @@
 # Security Review Queue
 
 Pending artifacts: **15** — critical 3, high 8, normal 4.
-Generated: `2026-08-15T12:16:35.411907Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31884089379
+Generated: `2026-08-15T18:14:21.149471Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31900449313
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
-| **CRITICAL** | Muon | 0.5.0.1 / `3ed4c4629013` | unavailable | BLOCK | blocked by policy, baseline unavailable |
+| **CRITICAL** | Muon | 0.5.0.2 / `229ae50f12c4` | unavailable | BLOCK | blocked by policy, baseline unavailable |
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | Decky-Framegen | v0.17 / `3300b617e3d9` | v0.17 / `3300b617e3d9` | AUDIT\_ERROR | audit error, security delta, same artifact analysis drift |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
@@ -20,15 +20,15 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | SDH-Ludusavi | v0.4.4 / `71b609181c55` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | RomM Sync | decky-romm-sync-v0.30.1 / `254a911f01e6` | decky-romm-sync-v0.30.0 / `acbccb7585a0` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Panel de Control | panel-de-control-v0.37.1 / `e20cce88c57d` | panel-de-control-v0.37.0 / `5da7c4ff7c04` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Deck Shelves | v3.2.0 / `7597b3da3857` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
 
 - Repository: `https://github.com/wtlnetwork/muon`
-- Candidate: `0.5.0.1` — `3ed4c4629013d94fc1486943a47e5044fbda7f2488d0e5c75976b9c29068de81`
+- Candidate: `0.5.0.2` — `229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a`
 - Classification: **BLOCK** (risk 1362)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-08-09T01:07:41.070060Z`
+- First seen: `2026-08-15T18:14:21.149471Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
@@ -187,9 +187,9 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Deck Shelves
 
 - Repository: `https://github.com/santojon/Deck-Shelves`
-- Candidate: `v3.2.0` — `7597b3da3857b1e2b2c62c930fe848c02551c464232f56d0ac5b5d6995020de6`
+- Candidate: `v3.2.1` — `0f14447ea6930103fff7235d3e45c7892f70afe38d95b84a07c90ca372eb95c5`
 - Classification: **MANUAL\_REVIEW** (risk 87)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-08-14T18:41:17.058332Z`
+- First seen: `2026-08-15T18:14:21.149471Z`
 - Accepted baseline: `v3.1.0` — `71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9`
 - Capability changes: none observed in the comparison model.
