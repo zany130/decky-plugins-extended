@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-14T18:41:17.058332Z",
-  "item_count": 14,
+  "generated_at": "2026-08-15T12:16:35.411907Z",
+  "item_count": 15,
   "items": [
     {
       "artifact_sha256": "3ed4c4629013d94fc1486943a47e5044fbda7f2488d0e5c75976b9c29068de81",
@@ -285,6 +285,37 @@
       "source_commit": "646f7e188e2436b648005b27d5899246c4a98141"
     },
     {
+      "artifact_sha256": "8aa1bb619bad34badb7e8dc2a45a583e3080f2d05253c677c44482d90991a0b3",
+      "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
+      "baseline_release": "v0.3.2",
+      "changed_capabilities": [
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed (1 count change(s)); rule profile +1/-0",
+          "title": "Published release versus source"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-15T12:16:35.411907Z",
+      "plugin_name": "Achievement Companion",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "v0.3.3",
+      "repository": "https://github.com/parvagans/achievement-companion",
+      "reviewer_attention_count": 1,
+      "risk_score": 34,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "d0ba2d1295ac8a6c723c015c71f5d7929a07873d"
+    },
+    {
       "artifact_sha256": "8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de",
       "baseline_artifact_sha256": "c5fbde7be36a9212b85b8db87e495217b174b617a433385bd43ffec5a9aef159",
       "baseline_release": "1.0.0",
@@ -458,5 +489,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31829611302"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31884089379"
 }

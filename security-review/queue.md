@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **14** — critical 3, high 7, normal 4.
-Generated: `2026-08-14T18:41:17.058332Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31829611302
+Pending artifacts: **15** — critical 3, high 8, normal 4.
+Generated: `2026-08-15T12:16:35.411907Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31884089379
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,6 +13,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | MoonDeck | nightly / `05225f387478` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Unifideck | Release-0.7.3 / `dd9943ce6b0c` | Release-0.7.2 / `a313be924cab` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.22.0 / `7fb27ec9829e` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Achievement Companion | v0.3.3 / `8aa1bb619bad` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.6.1 / `2bccb912292b` | 1.6.0 / `4b04b2e1bb98` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
@@ -109,6 +110,17 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
+
+## Achievement Companion
+
+- Repository: `https://github.com/parvagans/achievement-companion`
+- Candidate: `v0.3.3` — `8aa1bb619bad34badb7e8dc2a45a583e3080f2d05253c677c44482d90991a0b3`
+- Classification: **MANUAL\_REVIEW** (risk 34)
+- Comparison: `compared`; reviewer-attention changes: 1
+- First seen: `2026-08-15T12:16:35.411907Z`
+- Accepted baseline: `v0.3.2` — `3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed`
+- Capability changes:
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)); rule profile +1/-0 — **review**
 
 ## Decky Vibrance HDR
 
