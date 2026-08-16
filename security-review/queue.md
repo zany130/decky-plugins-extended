@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **15** — critical 3, high 8, normal 4.
-Generated: `2026-08-15T18:14:21.149471Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31900449313
+Pending artifacts: **16** — critical 3, high 9, normal 4.
+Generated: `2026-08-16T00:36:25.880142Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31917532409
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -16,6 +16,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Achievement Companion | v0.3.3 / `8aa1bb619bad` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.6.1 / `2bccb912292b` | 1.6.0 / `4b04b2e1bb98` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **NORMAL** | SDH-Ludusavi | v0.4.4 / `71b609181c55` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | RomM Sync | decky-romm-sync-v0.30.1 / `254a911f01e6` | decky-romm-sync-v0.30.0 / `acbccb7585a0` | MANUAL\_REVIEW | new artifact |
@@ -143,6 +144,17 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Accepted baseline: `1.6.0` — `4b04b2e1bb980b312eb482f7a6da8af3c5cbcb7124b4d3c4322ba7cea9b8a805`
 - Capability changes:
   - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
+
+## RetroDECKY
+
+- Repository: `https://github.com/Teppichseite/RetroDECKY`
+- Candidate: `v1.2.0` — `070d8850fcacd98db20cf45c09810f9d43898b00fa464673db5664530877daed`
+- Classification: **MANUAL\_REVIEW** (risk 404)
+- Comparison: `compared`; reviewer-attention changes: 1
+- First seen: `2026-08-16T00:36:25.880142Z`
+- Accepted baseline: `v1.1.0` — `344fb7a082022f492ff2fe8db243e5363e8a2be3757c5ea9fb99e55264d9b25d`
+- Capability changes:
+  - **Network communication:** network destinations +3/-0 — **review**
 
 ## Decky Notifications
 

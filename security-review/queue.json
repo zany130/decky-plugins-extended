@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-15T18:14:21.149471Z",
-  "item_count": 15,
+  "generated_at": "2026-08-16T00:36:25.880142Z",
+  "item_count": 16,
   "items": [
     {
       "artifact_sha256": "229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a",
@@ -378,6 +378,37 @@
       "source_commit": "a1591b61550d51f7e8c4dfb51a5fd6503f02d9ac"
     },
     {
+      "artifact_sha256": "070d8850fcacd98db20cf45c09810f9d43898b00fa464673db5664530877daed",
+      "baseline_artifact_sha256": "344fb7a082022f492ff2fe8db243e5363e8a2be3757c5ea9fb99e55264d9b25d",
+      "baseline_release": "v1.1.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +3/-0",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-16T00:36:25.880142Z",
+      "plugin_name": "RetroDECKY",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "v1.2.0",
+      "repository": "https://github.com/Teppichseite/RetroDECKY",
+      "reviewer_attention_count": 1,
+      "risk_score": 404,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "cae92029e587a3d948493dc298312f844e9eb49f"
+    },
+    {
       "artifact_sha256": "c48de9ce7a8b8d5fedf97c9b8d1062b77d1868a798e5e307f6092c9097006b93",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
@@ -489,5 +520,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31900449313"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31917532409"
 }
