@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **16** — critical 3, high 9, normal 4.
-Generated: `2026-08-16T00:36:25.880142Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31917532409
+Pending artifacts: **16** — critical 3, high 10, normal 3.
+Generated: `2026-08-17T00:36:14.187561Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31982337875
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -10,6 +10,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | Decky-Framegen | v0.17 / `3300b617e3d9` | v0.17 / `3300b617e3d9` | AUDIT\_ERROR | audit error, security delta, same artifact analysis drift |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | Tender | tender-v0.31.0 / `74ba2fe0775e` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `05225f387478` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Unifideck | Release-0.7.3 / `dd9943ce6b0c` | Release-0.7.2 / `a313be924cab` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.22.0 / `7fb27ec9829e` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
@@ -19,8 +20,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **NORMAL** | SDH-Ludusavi | v0.4.4 / `71b609181c55` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | RomM Sync | decky-romm-sync-v0.30.1 / `254a911f01e6` | decky-romm-sync-v0.30.0 / `acbccb7585a0` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Panel de Control | panel-de-control-v0.37.1 / `e20cce88c57d` | panel-de-control-v0.37.0 / `5da7c4ff7c04` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Panel de Control | panel-de-control-v0.37.3 / `ffe20d76e869` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
@@ -78,6 +78,17 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - First seen: `2026-08-09T01:07:41.070060Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
+
+## Tender
+
+- Repository: `https://github.com/danielcopper/decky-romm-sync`
+- Candidate: `tender-v0.31.0` — `74ba2fe0775e39495db180bb7303390ebf7123ccd1de08b55c11386c75e847f2`
+- Classification: **MANUAL\_REVIEW** (risk 147)
+- Comparison: `compared`; reviewer-attention changes: 1
+- First seen: `2026-08-17T00:36:14.187561Z`
+- Accepted baseline: `decky-romm-sync-v0.30.1` — `254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db`
+- Capability changes:
+  - **Native executable code:** native binaries +1/-1 — **review**
 
 ## MoonDeck
 
@@ -176,24 +187,14 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
 - Capability changes: none observed in the comparison model.
 
-## RomM Sync
-
-- Repository: `https://github.com/danielcopper/decky-romm-sync`
-- Candidate: `decky-romm-sync-v0.30.1` — `254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db`
-- Classification: **MANUAL\_REVIEW** (risk 147)
-- Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-08-11T00:51:49.169537Z`
-- Accepted baseline: `decky-romm-sync-v0.30.0` — `acbccb7585a0c77d9b7ed535e509a18fca06596fce3e918fed932ae1a9d31079`
-- Capability changes: none observed in the comparison model.
-
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
+- Candidate: `panel-de-control-v0.37.3` — `ffe20d76e8691ee401034c5583b745e7bf6468ba5a90ccd49f05c4d8b1fcf8a6`
 - Classification: **MANUAL\_REVIEW** (risk 327)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-08-10T18:42:54.225436Z`
-- Accepted baseline: `panel-de-control-v0.37.0` — `5da7c4ff7c0455754611f2c632401ca1954a09d3b61310c784050718e0d109ec`
+- First seen: `2026-08-17T00:36:14.187561Z`
+- Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes: none observed in the comparison model.
 
 ## Deck Shelves

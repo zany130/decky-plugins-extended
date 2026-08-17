@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T00:36:25.880142Z",
+  "generated_at": "2026-08-17T00:36:14.187561Z",
   "item_count": 16,
   "items": [
     {
@@ -192,6 +192,37 @@
       "same_artifact": false,
       "scanner_failures": [],
       "source_commit": "81948d323a6a95251dab4d656b47ab57fabacc5b"
+    },
+    {
+      "artifact_sha256": "74ba2fe0775e39495db180bb7303390ebf7123ccd1de08b55c11386c75e847f2",
+      "baseline_artifact_sha256": "254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db",
+      "baseline_release": "decky-romm-sync-v0.30.1",
+      "changed_capabilities": [
+        {
+          "id": "native_code",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "native binaries +1/-1",
+          "title": "Native executable code"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-08-17T00:36:14.187561Z",
+      "plugin_name": "Tender",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "tender-v0.31.0",
+      "repository": "https://github.com/danielcopper/decky-romm-sync",
+      "reviewer_attention_count": 1,
+      "risk_score": 147,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "fd7917401666ca1403a700f4f3536ac26724bf18"
     },
     {
       "artifact_sha256": "05225f387478d5684c5c1b10bcd607c199c96528b671ffd2e55ad3a974f9d8d1",
@@ -453,48 +484,26 @@
       "source_commit": "d35430f28d7af6497b724f890c6c68850e64472e"
     },
     {
-      "artifact_sha256": "254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db",
-      "baseline_artifact_sha256": "acbccb7585a0c77d9b7ed535e509a18fca06596fce3e918fed932ae1a9d31079",
-      "baseline_release": "decky-romm-sync-v0.30.0",
+      "artifact_sha256": "ffe20d76e8691ee401034c5583b745e7bf6468ba5a90ccd49f05c4d8b1fcf8a6",
+      "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
+      "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-11T00:51:49.169537Z",
-      "plugin_name": "RomM Sync",
-      "priority": "normal",
-      "reasons": [
-        "new_artifact"
-      ],
-      "release": "decky-romm-sync-v0.30.1",
-      "repository": "https://github.com/danielcopper/decky-romm-sync",
-      "reviewer_attention_count": 0,
-      "risk_score": 147,
-      "same_artifact": false,
-      "scanner_failures": [],
-      "source_commit": "f5c2465f0a9470236a7b93723cfc8bac75b9a04b"
-    },
-    {
-      "artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
-      "baseline_artifact_sha256": "5da7c4ff7c0455754611f2c632401ca1954a09d3b61310c784050718e0d109ec",
-      "baseline_release": "panel-de-control-v0.37.0",
-      "changed_capabilities": [],
-      "comparison_status": "compared",
-      "error_count": 0,
-      "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-10T18:42:54.225436Z",
+      "first_seen_at": "2026-08-17T00:36:14.187561Z",
       "plugin_name": "Panel de Control",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "panel-de-control-v0.37.1",
+      "release": "panel-de-control-v0.37.3",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 0,
       "risk_score": 327,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "38826ad84d5ab29a9a4c73f60cde3aea807d05c2"
+      "source_commit": "c3df83f7bfdf8456bd51b8c2df3891b046ca110e"
     },
     {
       "artifact_sha256": "0f14447ea6930103fff7235d3e45c7892f70afe38d95b84a07c90ca372eb95c5",
@@ -520,5 +529,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31917532409"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/31982337875"
 }
