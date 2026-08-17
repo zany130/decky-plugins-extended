@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **16** — critical 3, high 10, normal 3.
-Generated: `2026-08-17T00:36:14.187561Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/31982337875
+Generated: `2026-08-17T12:21:34.103744Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/32029220843
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -20,7 +20,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **NORMAL** | SDH-Ludusavi | v0.4.4 / `71b609181c55` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Panel de Control | panel-de-control-v0.37.3 / `ffe20d76e869` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Panel de Control | panel-de-control-v0.37.4 / `6ff6350f519e` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
@@ -190,10 +190,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.37.3` — `ffe20d76e8691ee401034c5583b745e7bf6468ba5a90ccd49f05c4d8b1fcf8a6`
+- Candidate: `panel-de-control-v0.37.4` — `6ff6350f519ed52887d1aeab1974bf4add941c629dc3ef3441e012a85db841ce`
 - Classification: **MANUAL\_REVIEW** (risk 327)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-08-17T00:36:14.187561Z`
+- First seen: `2026-08-17T12:21:34.103744Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes: none observed in the comparison model.
 
