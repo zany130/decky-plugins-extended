@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T18:23:49.665868Z",
+  "generated_at": "2026-08-20T00:35:21.392261Z",
   "item_count": 16,
   "items": [
     {
@@ -462,48 +462,48 @@
       "source_commit": "2a6184cde761971b190511f86b2f9f14fa43ee81"
     },
     {
-      "artifact_sha256": "1f8bfb7e32951514b00d328a837ffd1aadcb19c4018ff10faebfe2b84bca05a2",
+      "artifact_sha256": "4693a82738091da094977dc88638afe5bbcfae3c68f2ebe6dea6d9d7fedd3b23",
       "baseline_artifact_sha256": "28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355",
       "baseline_release": "v0.4.3",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-18T06:25:21.654715Z",
+      "first_seen_at": "2026-08-20T00:35:21.392261Z",
       "plugin_name": "SDH-Ludusavi",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v0.4.5",
+      "release": "v0.4.6",
       "repository": "https://github.com/beallio/SDH-Ludusavi",
       "reviewer_attention_count": 0,
-      "risk_score": 32,
+      "risk_score": 42,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "8c6fccef9e0286b8fa19065e48f12fb9632c227c"
+      "source_commit": "fa3aba845fd24a12e5411de870047ae78512f492"
     },
     {
-      "artifact_sha256": "9ade999da61c25465bd76c2275d8ac3ce53a5e36ce39301d65862edbd449be35",
+      "artifact_sha256": "422ba39c82d8199cd561391ccc0845197b50915ec9e8766319851b66740fbaa8",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-19T18:23:49.665868Z",
+      "first_seen_at": "2026-08-20T00:35:21.392261Z",
       "plugin_name": "Panel de Control",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "panel-de-control-v0.37.10",
+      "release": "panel-de-control-v0.37.11",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 0,
       "risk_score": 327,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "c8009830cb60e076e28e13e7db159de4245dc11d"
+      "source_commit": "0ecdd3ae690a5b0774b75875120fe92a0d32c04a"
     },
     {
       "artifact_sha256": "0f14447ea6930103fff7235d3e45c7892f70afe38d95b84a07c90ca372eb95c5",
@@ -529,5 +529,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/32286387643"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/32317706398"
 }

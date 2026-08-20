@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **16** — critical 3, high 10, normal 3.
-Generated: `2026-08-19T18:23:49.665868Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/32286387643
+Generated: `2026-08-20T00:35:21.392261Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/32317706398
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -19,8 +19,8 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | LeGoTDP | 1.6.1 / `2bccb912292b` | 1.6.0 / `4b04b2e1bb98` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
-| **NORMAL** | SDH-Ludusavi | v0.4.5 / `1f8bfb7e3295` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Panel de Control | panel-de-control-v0.37.10 / `9ade999da61c` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | SDH-Ludusavi | v0.4.6 / `4693a8273809` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Panel de Control | panel-de-control-v0.37.11 / `422ba39c82d8` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
@@ -180,20 +180,20 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## SDH-Ludusavi
 
 - Repository: `https://github.com/beallio/SDH-Ludusavi`
-- Candidate: `v0.4.5` — `1f8bfb7e32951514b00d328a837ffd1aadcb19c4018ff10faebfe2b84bca05a2`
-- Classification: **MANUAL\_REVIEW** (risk 32)
+- Candidate: `v0.4.6` — `4693a82738091da094977dc88638afe5bbcfae3c68f2ebe6dea6d9d7fedd3b23`
+- Classification: **MANUAL\_REVIEW** (risk 42)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-08-18T06:25:21.654715Z`
+- First seen: `2026-08-20T00:35:21.392261Z`
 - Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
 - Capability changes: none observed in the comparison model.
 
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.37.10` — `9ade999da61c25465bd76c2275d8ac3ce53a5e36ce39301d65862edbd449be35`
+- Candidate: `panel-de-control-v0.37.11` — `422ba39c82d8199cd561391ccc0845197b50915ec9e8766319851b66740fbaa8`
 - Classification: **MANUAL\_REVIEW** (risk 327)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-08-19T18:23:49.665868Z`
+- First seen: `2026-08-20T00:35:21.392261Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes: none observed in the comparison model.
 
