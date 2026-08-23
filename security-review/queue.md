@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **16** — critical 3, high 10, normal 3.
-Generated: `2026-08-23T00:38:26.656868Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/32608256071
+Generated: `2026-08-23T12:19:52.936768Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/32638896060
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -12,8 +12,8 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.31.0 / `74ba2fe0775e` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `8ceb60a12e02` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Unifideck | Release-0.7.3 / `dd9943ce6b0c` | Release-0.7.2 / `a313be924cab` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.23.0 / `5eb51d4b2e7c` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Unifideck | Release-0.7.4 / `86b264f4e143` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.25.0 / `d6c3cba2a91b` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.3 / `8aa1bb619bad` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.6.1 / `2bccb912292b` | 1.6.0 / `4b04b2e1bb98` | MANUAL\_REVIEW | new artifact, security delta |
@@ -103,22 +103,22 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Unifideck
 
 - Repository: `https://github.com/mubaraknumann/unifideck`
-- Candidate: `Release-0.7.3` — `dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7`
+- Candidate: `Release-0.7.4` — `86b264f4e143b5e13499fb8812fde93801320a082af3106d515acfdfb1cf6ba9`
 - Classification: **MANUAL\_REVIEW** (risk 2396)
 - Comparison: `compared`; reviewer-attention changes: 2
-- First seen: `2026-08-09T01:07:41.070060Z`
-- Accepted baseline: `Release-0.7.2` — `a313be924cabe15255d222742a402cd98cb510a35dfe4b2d06cf1e59366936de`
+- First seen: `2026-08-23T12:19:52.936768Z`
+- Accepted baseline: `Release-0.7.3` — `dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7`
 - Capability changes:
-  - **Network communication:** network destinations +1/-1 — **review**
-  - **Published release versus source:** source/release difference profile changed — **review**
+  - **Network communication:** network destinations +3/-0 — **review**
+  - **Published release versus source:** source/release difference profile changed; rule profile +1/-0 — **review**
 
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.23.0` — `5eb51d4b2e7cbc8c36b97c9d41a0a8a8ebf98d7208635e0aca549e0432f53599`
+- Candidate: `v1.25.0` — `d6c3cba2a91bc285c76581428b295436c0c25b6bd0b5616712bd4c788e566610`
 - Classification: **MANUAL\_REVIEW** (risk 757)
 - Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-08-18T12:24:01.689193Z`
+- First seen: `2026-08-23T12:19:52.936768Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
