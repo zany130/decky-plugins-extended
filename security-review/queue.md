@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **16** — critical 3, high 10, normal 3.
-Generated: `2026-08-24T12:25:07.308171Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/32726761402
+Generated: `2026-08-24T18:24:27.461499Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/32762000228
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,7 +13,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Tender | tender-v0.31.0 / `74ba2fe0775e` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `8ceb60a12e02` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Unifideck | Release-0.7.4 / `86b264f4e143` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.26.0 / `00ec97175502` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.26.1 / `3e7689455c31` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.3 / `8aa1bb619bad` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.6.1 / `2bccb912292b` | 1.6.0 / `4b04b2e1bb98` | MANUAL\_REVIEW | new artifact, security delta |
@@ -115,10 +115,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.26.0` — `00ec9717550297efd2096d1490d14eb00306cec4140ad67f85e16ac2dc0b069d`
+- Candidate: `v1.26.1` — `3e7689455c3142337ef4463fd6b49da1bb194eb6466ca9b89b3125fab31be073`
 - Classification: **MANUAL\_REVIEW** (risk 757)
 - Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-08-24T12:25:07.308171Z`
+- First seen: `2026-08-24T18:24:27.461499Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
