@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-25T18:23:39.925307Z",
-  "item_count": 16,
+  "generated_at": "2026-08-26T12:27:53.973839Z",
+  "item_count": 17,
   "items": [
     {
       "artifact_sha256": "229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a",
@@ -170,6 +170,37 @@
         }
       ],
       "source_commit": "96eb17b0a9f2cfd2b00ad082bef893f4efc229f7"
+    },
+    {
+      "artifact_sha256": "522346503007e6bb6243d8bdde072c46ec45f19eb7a3a8011e7edc33e704fee1",
+      "baseline_artifact_sha256": "4a698f9f7bf08e8f4e78c341009ac7003830ad43e071aaef770c1af61ee443e0",
+      "baseline_release": "v1.2.3",
+      "changed_capabilities": [
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed; rule profile +0/-1",
+          "title": "Published release versus source"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-08-26T12:27:53.973839Z",
+      "plugin_name": "steam-achievements",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "v1.2.5",
+      "repository": "https://github.com/AG69075/steamOS_plugin_achievements",
+      "reviewer_attention_count": 1,
+      "risk_score": 2,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "feffd088b462e1e9ed77fc2c5d82b627cd44d32d"
     },
     {
       "artifact_sha256": "7ebadc4bfd0eeec84b9d4d39dfcae39f893fe05e80521caf431a8f4fafde54de",
@@ -529,5 +560,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/32883257415"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/32968481336"
 }
