@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **18** — critical 3, high 11, normal 4.
-Generated: `2026-08-28T01:53:21.819686Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/33134108489
+Generated: `2026-08-28T17:52:02.591246Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/33196406626
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -20,7 +20,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | LeGoTDP | 1.6.1 / `2bccb912292b` | 1.6.0 / `4b04b2e1bb98` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
-| **NORMAL** | Decky Metadata | v0.3.7 / `77463d80eaff` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
+| **NORMAL** | Decky Metadata | v0.3.8 / `83722b98c770` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.6 / `4693a8273809` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Panel de Control | panel-de-control-v0.37.12 / `134fe9d9ce5b` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
@@ -193,10 +193,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Metadata
 
 - Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `v0.3.7` — `77463d80eaffb28f1079efd3b48367226c16646669aae05581d9b0f25a0e8af4`
+- Candidate: `v0.3.8` — `83722b98c7700abafba277cd7991746cdfd280cc22c0fdb445b026e0f95ac61a`
 - Classification: **PASS** (risk 0)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-08-28T01:53:21.819686Z`
+- First seen: `2026-08-28T17:52:02.591246Z`
 - Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes: none observed in the comparison model.
 
