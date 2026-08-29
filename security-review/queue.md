@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **19** — critical 3, high 11, normal 5.
-Generated: `2026-08-29T01:17:55.794439Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/33225886654
+Generated: `2026-08-29T11:56:21.889107Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/33251167599
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -20,8 +20,8 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | LeGoTDP | 1.6.1 / `2bccb912292b` | 1.6.0 / `4b04b2e1bb98` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
-| **NORMAL** | Decky Metadata | v0.3.8 / `83722b98c770` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
-| **NORMAL** | Decky UI Restored | v0.2.1 / `87730a23cdba` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
+| **NORMAL** | Decky Metadata | v0.3.9 / `4cec4ff4e097` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
+| **NORMAL** | Decky UI Restored | v0.2.2 / `6659e74977e5` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.6 / `4693a8273809` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Panel de Control | panel-de-control-v0.37.12 / `134fe9d9ce5b` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
@@ -194,20 +194,20 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Metadata
 
 - Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `v0.3.8` — `83722b98c7700abafba277cd7991746cdfd280cc22c0fdb445b026e0f95ac61a`
+- Candidate: `v0.3.9` — `4cec4ff4e097a5229a1db47432b967414750c8464984c2684aa02e8d063b9747`
 - Classification: **PASS** (risk 0)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-08-28T17:52:02.591246Z`
+- First seen: `2026-08-29T11:56:21.889107Z`
 - Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes: none observed in the comparison model.
 
 ## Decky UI Restored
 
 - Repository: `https://github.com/beallio/Decky-SteamAchievements`
-- Candidate: `v0.2.1` — `87730a23cdbadb261266df73283e04d3b75bf1cdd9c565c6318efbe47c6a2f0b`
+- Candidate: `v0.2.2` — `6659e74977e55ba027feab4c3d332acc2894a621156952baeefc3a45b1be407c`
 - Classification: **PASS\_WITH\_WARNINGS** (risk 4)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-08-29T01:17:55.794439Z`
+- First seen: `2026-08-29T11:56:21.889107Z`
 - Accepted baseline: `v0.2.0` — `0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a`
 - Capability changes: none observed in the comparison model.
 
