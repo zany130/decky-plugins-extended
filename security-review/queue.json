@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T15:40:55.598786Z",
+  "generated_at": "2026-08-31T12:03:43.433318Z",
   "item_count": 19,
   "items": [
     {
@@ -316,7 +316,7 @@
       "source_commit": "260b9985559e041ce1c49148ddaa889733958beb"
     },
     {
-      "artifact_sha256": "aeaf4eb6e4588d9a55363c14e48fcf239bdd29221b8fc6cf6fd71808c86172fd",
+      "artifact_sha256": "4d1d5800249422f846db4a3c9bad88644bea4f6c9466ccec98550b488569046e",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [
@@ -331,20 +331,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-30T15:40:55.598786Z",
+      "first_seen_at": "2026-08-31T12:03:43.433318Z",
       "plugin_name": "Steamcord",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v1.29.0",
+      "release": "v1.29.1",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_attention_count": 1,
       "risk_score": 757,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "e79ed69f3790d995297f076230461f27a968d7cf"
+      "source_commit": "060d6b11cd83c4f5e01bf3bb6850cfd5500da7b7"
     },
     {
       "artifact_sha256": "8aa1bb619bad34badb7e8dc2a45a583e3080f2d05253c677c44482d90991a0b3",
@@ -493,26 +493,26 @@
       "source_commit": "2a6184cde761971b190511f86b2f9f14fa43ee81"
     },
     {
-      "artifact_sha256": "4cec4ff4e097a5229a1db47432b967414750c8464984c2684aa02e8d063b9747",
+      "artifact_sha256": "7abcd60830fe2e039f8854888713fcfe87d13ab2da4215a2e95fc18443d0f1ce",
       "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
       "baseline_release": "v0.3.6",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "PASS",
-      "first_seen_at": "2026-08-29T11:56:21.889107Z",
+      "first_seen_at": "2026-08-31T12:03:43.433318Z",
       "plugin_name": "Decky Metadata",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v0.3.9",
+      "release": "v0.3.10",
       "repository": "https://github.com/beallio/Decky-Metadata",
       "reviewer_attention_count": 0,
       "risk_score": 0,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "eb601fd306bdfb92e5405dbbcff792d2c873ab31"
+      "source_commit": "eb24b7cc8ec2ca9b50c1f865e39f58446fd650ae"
     },
     {
       "artifact_sha256": "6659e74977e55ba027feab4c3d332acc2894a621156952baeefc3a45b1be407c",
@@ -604,5 +604,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/33320179377"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/33389654801"
 }
