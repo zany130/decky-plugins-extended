@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T12:03:43.433318Z",
+  "generated_at": "2026-09-01T10:42:16.601755Z",
   "item_count": 19,
   "items": [
     {
@@ -316,37 +316,6 @@
       "source_commit": "260b9985559e041ce1c49148ddaa889733958beb"
     },
     {
-      "artifact_sha256": "4d1d5800249422f846db4a3c9bad88644bea4f6c9466ccec98550b488569046e",
-      "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
-      "baseline_release": "v1.21.1",
-      "changed_capabilities": [
-        {
-          "id": "source_release_integrity",
-          "reviewer_attention": true,
-          "status_change": "unchanged",
-          "summary": "source/release difference profile changed (1 count change(s))",
-          "title": "Published release versus source"
-        }
-      ],
-      "comparison_status": "compared",
-      "error_count": 0,
-      "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-31T12:03:43.433318Z",
-      "plugin_name": "Steamcord",
-      "priority": "high",
-      "reasons": [
-        "new_artifact",
-        "security_delta"
-      ],
-      "release": "v1.29.1",
-      "repository": "https://github.com/Necrosiak/Steamcord",
-      "reviewer_attention_count": 1,
-      "risk_score": 757,
-      "same_artifact": false,
-      "scanner_failures": [],
-      "source_commit": "060d6b11cd83c4f5e01bf3bb6850cfd5500da7b7"
-    },
-    {
       "artifact_sha256": "8aa1bb619bad34badb7e8dc2a45a583e3080f2d05253c677c44482d90991a0b3",
       "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
       "baseline_release": "v0.3.2",
@@ -581,6 +550,28 @@
       "source_commit": "2ca3fab2419d5cee16395763f576658e8dcb413c"
     },
     {
+      "artifact_sha256": "7c7f2baf1f3f9072d74ba7a475a75b9fcd4f7dfa34e800f6bc2a2952fca7ac99",
+      "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
+      "baseline_release": "v1.21.1",
+      "changed_capabilities": [],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-09-01T10:42:16.601755Z",
+      "plugin_name": "Steamcord",
+      "priority": "normal",
+      "reasons": [
+        "new_artifact"
+      ],
+      "release": "v1.30.0",
+      "repository": "https://github.com/Necrosiak/Steamcord",
+      "reviewer_attention_count": 0,
+      "risk_score": 742,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "962e7af76a3a68371d9c8813c02e4e7950bdf725"
+    },
+    {
       "artifact_sha256": "0f14447ea6930103fff7235d3e45c7892f70afe38d95b84a07c90ca372eb95c5",
       "baseline_artifact_sha256": "71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9",
       "baseline_release": "v3.1.0",
@@ -604,5 +595,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/33389654801"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/33498557304"
 }

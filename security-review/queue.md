@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **19** — critical 3, high 11, normal 5.
-Generated: `2026-08-31T12:03:43.433318Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/33389654801
+Pending artifacts: **19** — critical 3, high 10, normal 6.
+Generated: `2026-09-01T10:42:16.601755Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/33498557304
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -14,7 +14,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Tender | tender-v0.31.0 / `74ba2fe0775e` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `8ceb60a12e02` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Unifideck | Release-0.7.4 / `86b264f4e143` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.29.1 / `4d1d58002494` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.3 / `8aa1bb619bad` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.6.1 / `2bccb912292b` | 1.6.0 / `4b04b2e1bb98` | MANUAL\_REVIEW | new artifact, security delta |
@@ -24,6 +23,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | Decky UI Restored | v0.2.2 / `6659e74977e5` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.6 / `4693a8273809` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Panel de Control | panel-de-control-v0.37.12 / `134fe9d9ce5b` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Steamcord | v1.30.0 / `7c7f2baf1f3f` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
@@ -126,17 +126,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
   - **Network communication:** network destinations +3/-0 — **review**
   - **Published release versus source:** source/release difference profile changed; rule profile +1/-0 — **review**
 
-## Steamcord
-
-- Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.29.1` — `4d1d5800249422f846db4a3c9bad88644bea4f6c9466ccec98550b488569046e`
-- Classification: **MANUAL\_REVIEW** (risk 757)
-- Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-08-31T12:03:43.433318Z`
-- Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
-- Capability changes:
-  - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
-
 ## Achievement Companion
 
 - Repository: `https://github.com/parvagans/achievement-companion`
@@ -229,6 +218,16 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-08-25T00:36:57.790571Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
+- Capability changes: none observed in the comparison model.
+
+## Steamcord
+
+- Repository: `https://github.com/Necrosiak/Steamcord`
+- Candidate: `v1.30.0` — `7c7f2baf1f3f9072d74ba7a475a75b9fcd4f7dfa34e800f6bc2a2952fca7ac99`
+- Classification: **MANUAL\_REVIEW** (risk 742)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-09-01T10:42:16.601755Z`
+- Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes: none observed in the comparison model.
 
 ## Deck Shelves
