@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **19** — critical 3, high 10, normal 6.
-Generated: `2026-09-02T10:09:04.218165Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/33617644494
+Pending artifacts: **19** — critical 3, high 11, normal 5.
+Generated: `2026-09-02T20:16:27.729655Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/33677953759
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,16 +13,16 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.31.0 / `74ba2fe0775e` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `8ceb60a12e02` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | Panel de Control | panel-de-control-v0.38.0 / `ee7028d8da07` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.4 / `86b264f4e143` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.3 / `8aa1bb619bad` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | LeGoTDP | 1.6.1 / `2bccb912292b` | 1.6.0 / `4b04b2e1bb98` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **NORMAL** | Decky Metadata | v0.3.11 / `ba7d636bf005` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.2 / `6659e74977e5` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
-| **NORMAL** | SDH-Ludusavi | v0.4.6 / `4693a8273809` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Panel de Control | panel-de-control-v0.37.12 / `134fe9d9ce5b` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | SDH-Ludusavi | v0.4.7 / `439fe36d33c9` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Steamcord | v1.30.0 / `7c7f2baf1f3f` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
 
@@ -114,6 +114,18 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
+## Panel de Control
+
+- Repository: `https://github.com/Hooandee/panel-de-control`
+- Candidate: `panel-de-control-v0.38.0` — `ee7028d8da07b8416303bbc1d31dcb4752a2ca10742b3b2b5138bdac9a6ce73a`
+- Classification: **MANUAL\_REVIEW** (risk 362)
+- Comparison: `compared`; reviewer-attention changes: 2
+- First seen: `2026-09-02T20:16:27.729655Z`
+- Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
+- Capability changes:
+  - **Command and process execution:** rule profile +3/-0 — **review**
+  - **Network communication:** network destinations +2/-0 — **review**
+
 ## Unifideck
 
 - Repository: `https://github.com/mubaraknumann/unifideck`
@@ -151,11 +163,11 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## LeGoTDP
 
 - Repository: `https://github.com/Rayekkk/LeGoTDP`
-- Candidate: `1.6.1` — `2bccb912292b5d6caffcce17b2009b463fd7828aede88ce0f1af51adae4042b8`
+- Candidate: `1.7.0` — `05ec1d51456b7719286349b570d6679a53ba6482828a0ba67388df280f054ba7`
 - Classification: **MANUAL\_REVIEW** (risk 52)
 - Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-08-10T00:51:45.065594Z`
-- Accepted baseline: `1.6.0` — `4b04b2e1bb980b312eb482f7a6da8af3c5cbcb7124b4d3c4322ba7cea9b8a805`
+- First seen: `2026-09-02T20:16:27.729655Z`
+- Accepted baseline: `1.6.1` — `2bccb912292b5d6caffcce17b2009b463fd7828aede88ce0f1af51adae4042b8`
 - Capability changes:
   - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
 
@@ -203,21 +215,11 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## SDH-Ludusavi
 
 - Repository: `https://github.com/beallio/SDH-Ludusavi`
-- Candidate: `v0.4.6` — `4693a82738091da094977dc88638afe5bbcfae3c68f2ebe6dea6d9d7fedd3b23`
+- Candidate: `v0.4.7` — `439fe36d33c949b265242f2a984ea2b2700db36246a483495c2dfcb26ab91f69`
 - Classification: **MANUAL\_REVIEW** (risk 42)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-08-20T00:35:21.392261Z`
+- First seen: `2026-09-02T20:16:27.729655Z`
 - Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
-- Capability changes: none observed in the comparison model.
-
-## Panel de Control
-
-- Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.37.12` — `134fe9d9ce5b9f9102c0697dcbea4835b2db64b98575ecb19832ad6da930682f`
-- Classification: **MANUAL\_REVIEW** (risk 327)
-- Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-08-25T00:36:57.790571Z`
-- Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes: none observed in the comparison model.
 
 ## Steamcord

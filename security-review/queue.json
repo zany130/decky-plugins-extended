@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T10:09:04.218165Z",
+  "generated_at": "2026-09-02T20:16:27.729655Z",
   "item_count": 19,
   "items": [
     {
@@ -278,6 +278,44 @@
       "source_commit": "4d1021b4f7afe930e8025e25471af40aab1d73a1"
     },
     {
+      "artifact_sha256": "ee7028d8da07b8416303bbc1d31dcb4752a2ca10742b3b2b5138bdac9a6ce73a",
+      "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
+      "baseline_release": "panel-de-control-v0.37.1",
+      "changed_capabilities": [
+        {
+          "id": "command_execution",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "rule profile +3/-0",
+          "title": "Command and process execution"
+        },
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +2/-0",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-09-02T20:16:27.729655Z",
+      "plugin_name": "Panel de Control",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "panel-de-control-v0.38.0",
+      "repository": "https://github.com/Hooandee/panel-de-control",
+      "reviewer_attention_count": 2,
+      "risk_score": 362,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "57a9734c2d7c2a3035ca5c4b861ec8b7f3676b63"
+    },
+    {
       "artifact_sha256": "86b264f4e143b5e13499fb8812fde93801320a082af3106d515acfdfb1cf6ba9",
       "baseline_artifact_sha256": "dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7",
       "baseline_release": "Release-0.7.3",
@@ -378,9 +416,9 @@
       "source_commit": "eafab001aa3aca0ce8d447459944d09c1b5fb4d0"
     },
     {
-      "artifact_sha256": "2bccb912292b5d6caffcce17b2009b463fd7828aede88ce0f1af51adae4042b8",
-      "baseline_artifact_sha256": "4b04b2e1bb980b312eb482f7a6da8af3c5cbcb7124b4d3c4322ba7cea9b8a805",
-      "baseline_release": "1.6.0",
+      "artifact_sha256": "05ec1d51456b7719286349b570d6679a53ba6482828a0ba67388df280f054ba7",
+      "baseline_artifact_sha256": "2bccb912292b5d6caffcce17b2009b463fd7828aede88ce0f1af51adae4042b8",
+      "baseline_release": "1.6.1",
       "changed_capabilities": [
         {
           "id": "source_release_integrity",
@@ -393,20 +431,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "first_seen_at": "2026-09-02T20:16:27.729655Z",
       "plugin_name": "LeGoTDP",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "1.6.1",
+      "release": "1.7.0",
       "repository": "https://github.com/Rayekkk/LeGoTDP",
       "reviewer_attention_count": 1,
       "risk_score": 52,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "a1591b61550d51f7e8c4dfb51a5fd6503f02d9ac"
+      "source_commit": "3355b00a8560abf1da9110fd780889242caa6378"
     },
     {
       "artifact_sha256": "070d8850fcacd98db20cf45c09810f9d43898b00fa464673db5664530877daed",
@@ -506,48 +544,26 @@
       "source_commit": "fe7c0633c023f5bf7cdb20b2424127b9d949a5da"
     },
     {
-      "artifact_sha256": "4693a82738091da094977dc88638afe5bbcfae3c68f2ebe6dea6d9d7fedd3b23",
+      "artifact_sha256": "439fe36d33c949b265242f2a984ea2b2700db36246a483495c2dfcb26ab91f69",
       "baseline_artifact_sha256": "28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355",
       "baseline_release": "v0.4.3",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-20T00:35:21.392261Z",
+      "first_seen_at": "2026-09-02T20:16:27.729655Z",
       "plugin_name": "SDH-Ludusavi",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v0.4.6",
+      "release": "v0.4.7",
       "repository": "https://github.com/beallio/SDH-Ludusavi",
       "reviewer_attention_count": 0,
       "risk_score": 42,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "fa3aba845fd24a12e5411de870047ae78512f492"
-    },
-    {
-      "artifact_sha256": "134fe9d9ce5b9f9102c0697dcbea4835b2db64b98575ecb19832ad6da930682f",
-      "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
-      "baseline_release": "panel-de-control-v0.37.1",
-      "changed_capabilities": [],
-      "comparison_status": "compared",
-      "error_count": 0,
-      "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-25T00:36:57.790571Z",
-      "plugin_name": "Panel de Control",
-      "priority": "normal",
-      "reasons": [
-        "new_artifact"
-      ],
-      "release": "panel-de-control-v0.37.12",
-      "repository": "https://github.com/Hooandee/panel-de-control",
-      "reviewer_attention_count": 0,
-      "risk_score": 327,
-      "same_artifact": false,
-      "scanner_failures": [],
-      "source_commit": "2ca3fab2419d5cee16395763f576658e8dcb413c"
+      "source_commit": "7904d137ecda90925ff39b68f433f0af84df9619"
     },
     {
       "artifact_sha256": "7c7f2baf1f3f9072d74ba7a475a75b9fcd4f7dfa34e800f6bc2a2952fca7ac99",
@@ -595,5 +611,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/33617644494"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/33677953759"
 }
