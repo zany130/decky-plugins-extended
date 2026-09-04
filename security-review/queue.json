@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T20:16:27.729655Z",
+  "generated_at": "2026-09-04T20:02:19.703989Z",
   "item_count": 19,
   "items": [
     {
@@ -500,48 +500,48 @@
       "source_commit": "2a6184cde761971b190511f86b2f9f14fa43ee81"
     },
     {
-      "artifact_sha256": "ba7d636bf0056b7f9a93ccdb1a6f74599acf0e0f89b350bb1294c6611922081a",
+      "artifact_sha256": "0a9555f9dd87781b43083ce2e860674f0d76bfb0bdde8b19174d88b64a34accb",
       "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
       "baseline_release": "v0.3.6",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "PASS",
-      "first_seen_at": "2026-09-02T10:09:04.218165Z",
+      "first_seen_at": "2026-09-04T20:02:19.703989Z",
       "plugin_name": "Decky Metadata",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v0.3.11",
+      "release": "v0.3.12",
       "repository": "https://github.com/beallio/Decky-Metadata",
       "reviewer_attention_count": 0,
       "risk_score": 0,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "8a4f5a0db87a913297df6962e4b47b4f07c646d9"
+      "source_commit": "88045ee8cacc4e012c76e603732de24294f10bb2"
     },
     {
-      "artifact_sha256": "6659e74977e55ba027feab4c3d332acc2894a621156952baeefc3a45b1be407c",
+      "artifact_sha256": "e06302ed068e0d2a5a5805beca8cb9ef5c48a019f0b79f5f147e9108b1fd1d13",
       "baseline_artifact_sha256": "0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a",
       "baseline_release": "v0.2.0",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "PASS_WITH_WARNINGS",
-      "first_seen_at": "2026-08-29T11:56:21.889107Z",
+      "first_seen_at": "2026-09-04T20:02:19.703989Z",
       "plugin_name": "Decky UI Restored",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v0.2.2",
+      "release": "v0.2.3",
       "repository": "https://github.com/beallio/Decky-SteamAchievements",
       "reviewer_attention_count": 0,
       "risk_score": 4,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "fe7c0633c023f5bf7cdb20b2424127b9d949a5da"
+      "source_commit": "1ecd5d439d747a3fe9fe2551fe509fb1cafac652"
     },
     {
       "artifact_sha256": "439fe36d33c949b265242f2a984ea2b2700db36246a483495c2dfcb26ab91f69",
@@ -611,5 +611,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/33677953759"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/33913924158"
 }
