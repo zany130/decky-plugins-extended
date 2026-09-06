@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **19** — critical 3, high 11, normal 5.
-Generated: `2026-09-04T20:02:19.703989Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/33913924158
+Generated: `2026-09-06T14:34:09.813693Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34039431697
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,7 +13,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.31.0 / `74ba2fe0775e` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `8ceb60a12e02` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.38.0 / `ee7028d8da07` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.40.0 / `e496b7cd7e3e` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.4 / `86b264f4e143` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.3 / `8aa1bb619bad` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
@@ -23,7 +23,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | Decky Metadata | v0.3.12 / `0a9555f9dd87` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.7 / `439fe36d33c9` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Steamcord | v1.30.0 / `7c7f2baf1f3f` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Steamcord | v1.31.1 / `6ab8c11cbff5` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
@@ -117,10 +117,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.38.0` — `ee7028d8da07b8416303bbc1d31dcb4752a2ca10742b3b2b5138bdac9a6ce73a`
+- Candidate: `panel-de-control-v0.40.0` — `e496b7cd7e3ede555443083580e24205637c9952425124f280a7fffde76892ad`
 - Classification: **MANUAL\_REVIEW** (risk 362)
 - Comparison: `compared`; reviewer-attention changes: 2
-- First seen: `2026-09-02T20:16:27.729655Z`
+- First seen: `2026-09-06T14:34:09.813693Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
@@ -225,10 +225,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.30.0` — `7c7f2baf1f3f9072d74ba7a475a75b9fcd4f7dfa34e800f6bc2a2952fca7ac99`
-- Classification: **MANUAL\_REVIEW** (risk 742)
+- Candidate: `v1.31.1` — `6ab8c11cbff5b39a9aae8cdf5c20b7546f8940ee8e4c98b6bee80416aa6d5d39`
+- Classification: **MANUAL\_REVIEW** (risk 747)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-01T10:42:16.601755Z`
+- First seen: `2026-09-06T14:34:09.813693Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes: none observed in the comparison model.
 
