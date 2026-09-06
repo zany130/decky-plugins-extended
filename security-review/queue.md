@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **19** — critical 3, high 11, normal 5.
-Generated: `2026-09-06T14:34:09.813693Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34039431697
+Pending artifacts: **20** — critical 3, high 11, normal 6.
+Generated: `2026-09-06T19:44:22.730946Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34055703505
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -23,7 +23,8 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | Decky Metadata | v0.3.12 / `0a9555f9dd87` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.7 / `439fe36d33c9` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Steamcord | v1.31.1 / `6ab8c11cbff5` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Steamcord | v1.31.2 / `7bd9ef141e4c` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
@@ -222,13 +223,23 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
 - Capability changes: none observed in the comparison model.
 
+## ThemeDeck
+
+- Repository: `https://github.com/BrenticusMaximus/ThemeDeck`
+- Candidate: `v3.0.2` — `0c79b119e00b3ec361ce5fac337e4ac4daa12820b8795055be15c57b5eb10a8a`
+- Classification: **MANUAL\_REVIEW** (risk 82)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-09-06T19:44:22.730946Z`
+- Accepted baseline: `v3.0.1` — `92610937d8fd91392aecf1a1a7613d9208fdb838dd934c7d262de759c10d7585`
+- Capability changes: none observed in the comparison model.
+
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.31.1` — `6ab8c11cbff5b39a9aae8cdf5c20b7546f8940ee8e4c98b6bee80416aa6d5d39`
+- Candidate: `v1.31.2` — `7bd9ef141e4ca0c145fe248ac4e573f56802fd6905b2e791ae252741b5dd9a8d`
 - Classification: **MANUAL\_REVIEW** (risk 747)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-06T14:34:09.813693Z`
+- First seen: `2026-09-06T19:44:22.730946Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes: none observed in the comparison model.
 
