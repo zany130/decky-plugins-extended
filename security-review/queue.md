@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **20** — critical 3, high 11, normal 6.
-Generated: `2026-09-07T10:58:01.564175Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34113907959
+Generated: `2026-09-07T20:55:36.225280Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34161020694
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,14 +13,14 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.31.0 / `74ba2fe0775e` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `8ceb60a12e02` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.41.0 / `513bd6caef43` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.42.0 / `35e60e5c24e1` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.4 / `86b264f4e143` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.3 / `8aa1bb619bad` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
-| **NORMAL** | Decky Metadata | v0.3.12 / `0a9555f9dd87` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
+| **NORMAL** | Decky Metadata | v0.3.13 / `d173c50440e0` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.7 / `439fe36d33c9` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
@@ -118,10 +118,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.41.0` — `513bd6caef43e83fb4cc489a9f4e3f5eb4399807c19c1c640d3633d9abcd1e97`
+- Candidate: `panel-de-control-v0.42.0` — `35e60e5c24e14eba5385c4a67df8b2a00dd4b4bd2c2f23bd561e8b23546b907f`
 - Classification: **MANUAL\_REVIEW** (risk 362)
 - Comparison: `compared`; reviewer-attention changes: 2
-- First seen: `2026-09-07T10:58:01.564175Z`
+- First seen: `2026-09-07T20:55:36.225280Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
@@ -196,10 +196,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Metadata
 
 - Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `v0.3.12` — `0a9555f9dd87781b43083ce2e860674f0d76bfb0bdde8b19174d88b64a34accb`
+- Candidate: `v0.3.13` — `d173c50440e08eb670589bbc2d818fced60c09e7bb6ed1748e6fc05fe0147633`
 - Classification: **PASS** (risk 0)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-04T20:02:19.703989Z`
+- First seen: `2026-09-07T20:55:36.225280Z`
 - Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes: none observed in the comparison model.
 
