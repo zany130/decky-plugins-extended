@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **20** — critical 3, high 11, normal 6.
-Generated: `2026-09-08T10:15:39.465703Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34214195472
+Pending artifacts: **21** — critical 3, high 11, normal 7.
+Generated: `2026-09-08T20:29:09.655131Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34274654903
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -11,9 +11,9 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | Decky-Framegen | v0.17 / `3300b617e3d9` | v0.17 / `3300b617e3d9` | AUDIT\_ERROR | audit error, security delta, same artifact analysis drift |
 | **HIGH** | steam-achievements | v1.2.5 / `522346503007` | v1.2.3 / `4a698f9f7bf0` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Tender | tender-v0.31.0 / `74ba2fe0775e` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | MoonDeck | nightly / `8ceb60a12e02` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.43.0 / `2eb63395185e` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Tender | tender-v0.32.0 / `ab33081f14dc` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | MoonDeck | nightly / `d55377a4008a` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | Panel de Control | panel-de-control-v0.44.0 / `7295d2a0c479` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.4 / `86b264f4e143` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.3 / `8aa1bb619bad` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
@@ -26,6 +26,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Steamcord | v1.31.2 / `7bd9ef141e4c` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Launch Options | v1.15.0 / `7d6d31cfc5ff` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
 
@@ -97,31 +98,33 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Tender
 
 - Repository: `https://github.com/danielcopper/decky-romm-sync`
-- Candidate: `tender-v0.31.0` — `74ba2fe0775e39495db180bb7303390ebf7123ccd1de08b55c11386c75e847f2`
-- Classification: **MANUAL\_REVIEW** (risk 147)
-- Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-08-17T00:36:14.187561Z`
+- Candidate: `tender-v0.32.0` — `ab33081f14dc7c215b5a667ce91c449766b6a6962d67e003c075fcc0e12ea485`
+- Classification: **MANUAL\_REVIEW** (risk 184)
+- Comparison: `compared`; reviewer-attention changes: 3
+- First seen: `2026-09-08T20:29:09.655131Z`
 - Accepted baseline: `decky-romm-sync-v0.30.1` — `254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db`
 - Capability changes:
+  - **Command and process execution:** rule profile +1/-0 — **review**
   - **Native executable code:** native binaries +1/-1 — **review**
+  - **Network communication:** network destinations +1/-1; rule profile +1/-0 — **review**
 
 ## MoonDeck
 
 - Repository: `https://github.com/FrogTheFrog/moondeck`
-- Candidate: `nightly` — `8ceb60a12e02a281fe37d1f80e8d456108842e626b229d656590207f2415a2b4`
+- Candidate: `nightly` — `d55377a4008acf9a44756475518cb16f54ca2000f4109d3f765d4b2302e05081`
 - Classification: **MANUAL\_REVIEW** (risk 7799)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-08-23T00:38:26.656868Z`
+- First seen: `2026-09-08T20:29:09.655131Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.43.0` — `2eb63395185e0708823b712cb23ac6ebdb282c2ea30d7e23f7c151c146838412`
+- Candidate: `panel-de-control-v0.44.0` — `7295d2a0c479380731ba924f2a026c0aebdcad568f8a29440109ed0872c2ba23`
 - Classification: **MANUAL\_REVIEW** (risk 362)
 - Comparison: `compared`; reviewer-attention changes: 2
-- First seen: `2026-09-08T10:15:39.465703Z`
+- First seen: `2026-09-08T20:29:09.655131Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
@@ -251,4 +254,14 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-08-15T18:14:21.149471Z`
 - Accepted baseline: `v3.1.0` — `71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9`
+- Capability changes: none observed in the comparison model.
+
+## Launch Options
+
+- Repository: `https://github.com/Wurielle/decky-launch-options`
+- Candidate: `v1.15.0` — `7d6d31cfc5ff235c46f5a1865ba7e67018126afed902b81d37c66e65413d22f2`
+- Classification: **MANUAL\_REVIEW** (risk 102)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-09-08T20:29:09.655131Z`
+- Accepted baseline: `v1.14.0` — `377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668`
 - Capability changes: none observed in the comparison model.

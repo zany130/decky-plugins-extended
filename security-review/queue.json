@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-08T10:15:39.465703Z",
-  "item_count": 20,
+  "generated_at": "2026-09-08T20:29:09.655131Z",
+  "item_count": 21,
   "items": [
     {
       "artifact_sha256": "229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a",
@@ -225,45 +225,59 @@
       "source_commit": "81948d323a6a95251dab4d656b47ab57fabacc5b"
     },
     {
-      "artifact_sha256": "74ba2fe0775e39495db180bb7303390ebf7123ccd1de08b55c11386c75e847f2",
+      "artifact_sha256": "ab33081f14dc7c215b5a667ce91c449766b6a6962d67e003c075fcc0e12ea485",
       "baseline_artifact_sha256": "254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db",
       "baseline_release": "decky-romm-sync-v0.30.1",
       "changed_capabilities": [
+        {
+          "id": "command_execution",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "rule profile +1/-0",
+          "title": "Command and process execution"
+        },
         {
           "id": "native_code",
           "reviewer_attention": true,
           "status_change": "unchanged",
           "summary": "native binaries +1/-1",
           "title": "Native executable code"
+        },
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +1/-1; rule profile +1/-0",
+          "title": "Network communication"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-17T00:36:14.187561Z",
+      "first_seen_at": "2026-09-08T20:29:09.655131Z",
       "plugin_name": "Tender",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "tender-v0.31.0",
+      "release": "tender-v0.32.0",
       "repository": "https://github.com/danielcopper/decky-romm-sync",
-      "reviewer_attention_count": 1,
-      "risk_score": 147,
+      "reviewer_attention_count": 3,
+      "risk_score": 184,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "fd7917401666ca1403a700f4f3536ac26724bf18"
+      "source_commit": "709382d3bd23018e0d0b62f01b837910134e56ab"
     },
     {
-      "artifact_sha256": "8ceb60a12e02a281fe37d1f80e8d456108842e626b229d656590207f2415a2b4",
+      "artifact_sha256": "d55377a4008acf9a44756475518cb16f54ca2000f4109d3f765d4b2302e05081",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
       "changed_capabilities": [],
       "comparison_status": "baseline_not_found",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-23T00:38:26.656868Z",
+      "first_seen_at": "2026-09-08T20:29:09.655131Z",
       "plugin_name": "MoonDeck",
       "priority": "high",
       "reasons": [
@@ -275,10 +289,10 @@
       "risk_score": 7799,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "4d1021b4f7afe930e8025e25471af40aab1d73a1"
+      "source_commit": "4574bb1a7745f44f00d5b5f180179eaf66ba467e"
     },
     {
-      "artifact_sha256": "2eb63395185e0708823b712cb23ac6ebdb282c2ea30d7e23f7c151c146838412",
+      "artifact_sha256": "7295d2a0c479380731ba924f2a026c0aebdcad568f8a29440109ed0872c2ba23",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -300,20 +314,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-08T10:15:39.465703Z",
+      "first_seen_at": "2026-09-08T20:29:09.655131Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.43.0",
+      "release": "panel-de-control-v0.44.0",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 2,
       "risk_score": 362,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "64882075995f923d044182c915adbbc825e0a2c8"
+      "source_commit": "68c45e21a6fc134322b17a7f58532ffedd271fb3"
     },
     {
       "artifact_sha256": "86b264f4e143b5e13499fb8812fde93801320a082af3106d515acfdfb1cf6ba9",
@@ -630,8 +644,30 @@
       "same_artifact": false,
       "scanner_failures": [],
       "source_commit": "4f72043f46a9ab79c42e9bdd9ef1538ed9f820c0"
+    },
+    {
+      "artifact_sha256": "7d6d31cfc5ff235c46f5a1865ba7e67018126afed902b81d37c66e65413d22f2",
+      "baseline_artifact_sha256": "377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668",
+      "baseline_release": "v1.14.0",
+      "changed_capabilities": [],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-09-08T20:29:09.655131Z",
+      "plugin_name": "Launch Options",
+      "priority": "normal",
+      "reasons": [
+        "new_artifact"
+      ],
+      "release": "v1.15.0",
+      "repository": "https://github.com/Wurielle/decky-launch-options",
+      "reviewer_attention_count": 0,
+      "risk_score": 102,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "fb8ce85d56101e61184feb34054c1de215b8a364"
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34214195472"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34274654903"
 }
