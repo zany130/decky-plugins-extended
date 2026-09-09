@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-09T01:57:46.419817Z",
+  "generated_at": "2026-09-09T15:30:54.889950Z",
   "item_count": 21,
   "items": [
     {
@@ -292,7 +292,7 @@
       "source_commit": "4574bb1a7745f44f00d5b5f180179eaf66ba467e"
     },
     {
-      "artifact_sha256": "ec29ada1497dfe3b2a8886d20f53b8b1e18fb1755c8a8f8302c861d87815e9a4",
+      "artifact_sha256": "ea76ec54c4cd814ce0aa2fc569e50cd81f50024594c4b73d7a6e89aca686b3eb",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -314,20 +314,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-09T01:57:46.419817Z",
+      "first_seen_at": "2026-09-09T15:30:54.889950Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.44.1",
+      "release": "panel-de-control-v0.45.0",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 2,
       "risk_score": 362,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "2b052587926c75bea1c3e6123a1d0a6e1762b1cb"
+      "source_commit": "c8b8d1eb363ce42317e0bcfb4c39b8cf8a22c1cc"
     },
     {
       "artifact_sha256": "86b264f4e143b5e13499fb8812fde93801320a082af3106d515acfdfb1cf6ba9",
@@ -669,5 +669,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34301078568"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34370370167"
 }
