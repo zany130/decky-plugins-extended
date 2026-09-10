@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-09T15:30:54.889950Z",
+  "generated_at": "2026-09-10T01:55:43.555485Z",
   "item_count": 21,
   "items": [
     {
@@ -330,7 +330,7 @@
       "source_commit": "c8b8d1eb363ce42317e0bcfb4c39b8cf8a22c1cc"
     },
     {
-      "artifact_sha256": "86b264f4e143b5e13499fb8812fde93801320a082af3106d515acfdfb1cf6ba9",
+      "artifact_sha256": "fd2fc0be948b1df3662a379a8e93feb4636912631288ee504df164c771a5c738",
       "baseline_artifact_sha256": "dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7",
       "baseline_release": "Release-0.7.3",
       "changed_capabilities": [
@@ -338,7 +338,7 @@
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +3/-0",
+          "summary": "network destinations +5/-0",
           "title": "Network communication"
         },
         {
@@ -352,20 +352,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-23T12:19:52.936768Z",
+      "first_seen_at": "2026-09-10T01:55:43.555485Z",
       "plugin_name": "Unifideck",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "Release-0.7.4",
+      "release": "Release-0.7.5",
       "repository": "https://github.com/mubaraknumann/unifideck",
       "reviewer_attention_count": 2,
-      "risk_score": 2396,
+      "risk_score": 2366,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "260b9985559e041ce1c49148ddaa889733958beb"
+      "source_commit": "2423d32a8a22909cd3da39960eed55ad28384858"
     },
     {
       "artifact_sha256": "8aa1bb619bad34badb7e8dc2a45a583e3080f2d05253c677c44482d90991a0b3",
@@ -646,28 +646,28 @@
       "source_commit": "4f72043f46a9ab79c42e9bdd9ef1538ed9f820c0"
     },
     {
-      "artifact_sha256": "7d6d31cfc5ff235c46f5a1865ba7e67018126afed902b81d37c66e65413d22f2",
+      "artifact_sha256": "e0379852dda3925e250d351b42dde372d86a02d4e5b59d861715d2ceb3771260",
       "baseline_artifact_sha256": "377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668",
       "baseline_release": "v1.14.0",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-08T20:29:09.655131Z",
+      "first_seen_at": "2026-09-10T01:55:43.555485Z",
       "plugin_name": "Launch Options",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v1.15.0",
+      "release": "v1.16.0",
       "repository": "https://github.com/Wurielle/decky-launch-options",
       "reviewer_attention_count": 0,
       "risk_score": 102,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "fb8ce85d56101e61184feb34054c1de215b8a364"
+      "source_commit": "5734b4bc00370ca60085830d3319b39beae193f0"
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34370370167"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34427083210"
 }

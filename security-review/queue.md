@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **21** — critical 3, high 11, normal 7.
-Generated: `2026-09-09T15:30:54.889950Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34370370167
+Generated: `2026-09-10T01:55:43.555485Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34427083210
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -14,7 +14,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Tender | tender-v0.32.0 / `ab33081f14dc` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `d55377a4008a` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.45.0 / `ea76ec54c4cd` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Unifideck | Release-0.7.4 / `86b264f4e143` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Unifideck | Release-0.7.5 / `fd2fc0be948b` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.3 / `8aa1bb619bad` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
@@ -26,7 +26,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Steamcord | v1.31.2 / `7bd9ef141e4c` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Launch Options | v1.15.0 / `7d6d31cfc5ff` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Launch Options | v1.16.0 / `e0379852dda3` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
 
@@ -133,13 +133,13 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Unifideck
 
 - Repository: `https://github.com/mubaraknumann/unifideck`
-- Candidate: `Release-0.7.4` — `86b264f4e143b5e13499fb8812fde93801320a082af3106d515acfdfb1cf6ba9`
-- Classification: **MANUAL\_REVIEW** (risk 2396)
+- Candidate: `Release-0.7.5` — `fd2fc0be948b1df3662a379a8e93feb4636912631288ee504df164c771a5c738`
+- Classification: **MANUAL\_REVIEW** (risk 2366)
 - Comparison: `compared`; reviewer-attention changes: 2
-- First seen: `2026-08-23T12:19:52.936768Z`
+- First seen: `2026-09-10T01:55:43.555485Z`
 - Accepted baseline: `Release-0.7.3` — `dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7`
 - Capability changes:
-  - **Network communication:** network destinations +3/-0 — **review**
+  - **Network communication:** network destinations +5/-0 — **review**
   - **Published release versus source:** source/release difference profile changed; rule profile +1/-0 — **review**
 
 ## Achievement Companion
@@ -259,9 +259,9 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Launch Options
 
 - Repository: `https://github.com/Wurielle/decky-launch-options`
-- Candidate: `v1.15.0` — `7d6d31cfc5ff235c46f5a1865ba7e67018126afed902b81d37c66e65413d22f2`
+- Candidate: `v1.16.0` — `e0379852dda3925e250d351b42dde372d86a02d4e5b59d861715d2ceb3771260`
 - Classification: **MANUAL\_REVIEW** (risk 102)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-08T20:29:09.655131Z`
+- First seen: `2026-09-10T01:55:43.555485Z`
 - Accepted baseline: `v1.14.0` — `377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668`
 - Capability changes: none observed in the comparison model.
