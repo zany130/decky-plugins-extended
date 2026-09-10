@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **21** — critical 3, high 11, normal 7.
-Generated: `2026-09-10T01:55:43.555485Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34427083210
+Generated: `2026-09-10T15:25:07.396620Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34495230638
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -26,7 +26,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Steamcord | v1.31.2 / `7bd9ef141e4c` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Launch Options | v1.16.0 / `e0379852dda3` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Launch Options | v1.16.1 / `685a6cd500e7` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
 
@@ -259,9 +259,9 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Launch Options
 
 - Repository: `https://github.com/Wurielle/decky-launch-options`
-- Candidate: `v1.16.0` — `e0379852dda3925e250d351b42dde372d86a02d4e5b59d861715d2ceb3771260`
+- Candidate: `v1.16.1` — `685a6cd500e7ff297e03684fd6776db9546ef3c2658e5cd686596d7f2e5edc9b`
 - Classification: **MANUAL\_REVIEW** (risk 102)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-10T01:55:43.555485Z`
+- First seen: `2026-09-10T15:25:07.396620Z`
 - Accepted baseline: `v1.14.0` — `377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668`
 - Capability changes: none observed in the comparison model.

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T01:55:43.555485Z",
+  "generated_at": "2026-09-10T15:25:07.396620Z",
   "item_count": 21,
   "items": [
     {
@@ -646,28 +646,28 @@
       "source_commit": "4f72043f46a9ab79c42e9bdd9ef1538ed9f820c0"
     },
     {
-      "artifact_sha256": "e0379852dda3925e250d351b42dde372d86a02d4e5b59d861715d2ceb3771260",
+      "artifact_sha256": "685a6cd500e7ff297e03684fd6776db9546ef3c2658e5cd686596d7f2e5edc9b",
       "baseline_artifact_sha256": "377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668",
       "baseline_release": "v1.14.0",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-10T01:55:43.555485Z",
+      "first_seen_at": "2026-09-10T15:25:07.396620Z",
       "plugin_name": "Launch Options",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v1.16.0",
+      "release": "v1.16.1",
       "repository": "https://github.com/Wurielle/decky-launch-options",
       "reviewer_attention_count": 0,
       "risk_score": 102,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "5734b4bc00370ca60085830d3319b39beae193f0"
+      "source_commit": "f3784bc299fc41e12ad7a970206c5ee2257c8c9c"
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34427083210"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34495230638"
 }
