@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T14:34:58.036232Z",
+  "generated_at": "2026-09-12T19:50:51.906361Z",
   "item_count": 21,
   "items": [
     {
@@ -270,14 +270,14 @@
       "source_commit": "709382d3bd23018e0d0b62f01b837910134e56ab"
     },
     {
-      "artifact_sha256": "3961324e1c9aea73f652d5a98951d27c01c020717f294523dc35faf2a7ac486e",
+      "artifact_sha256": "1b0991217e18d670c0cb2a00302813d4c1c61aa558f9b337153fdb9c20d45a44",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
       "changed_capabilities": [],
       "comparison_status": "baseline_not_found",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-12T01:58:24.407716Z",
+      "first_seen_at": "2026-09-12T19:50:51.906361Z",
       "plugin_name": "MoonDeck",
       "priority": "high",
       "reasons": [
@@ -289,7 +289,7 @@
       "risk_score": 7799,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "664bc2d2c9db30d9efc5229bbed6aea6d417da65"
+      "source_commit": "6ac78bf2af580432a48dca9d65d73d1694c19feb"
     },
     {
       "artifact_sha256": "a2fadf5fbae0b6913450216ad04e5eebf88697c03a4467e81300f1217fd614c1",
@@ -669,5 +669,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34699587628"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34715191566"
 }
