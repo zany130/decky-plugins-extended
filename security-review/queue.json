@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-13T10:46:38.900262Z",
-  "item_count": 22,
+  "generated_at": "2026-09-13T15:15:31.730120Z",
+  "item_count": 23,
   "items": [
     {
       "artifact_sha256": "229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a",
@@ -492,7 +492,7 @@
       "source_commit": "cae92029e587a3d948493dc298312f844e9eb49f"
     },
     {
-      "artifact_sha256": "600f628f265168f1c22e9246fe7b57c29552e049d382a4775243dae949f0f459",
+      "artifact_sha256": "1c506f5c0572516cc26f6f9b0c1800f39d22310a7b31a6fe3da827cb3a3d2210",
       "baseline_artifact_sha256": "322f6eec21a489ef9f12938ea2ec4e43c234093876f95b7245fbd260f882ce9c",
       "baseline_release": "v0.12.8",
       "changed_capabilities": [
@@ -514,14 +514,14 @@
           "id": "source_release_integrity",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "source/release difference profile changed; rule profile +0/-1",
+          "summary": "source/release difference profile changed; rule profile +1/-1",
           "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "PASS_WITH_WARNINGS",
-      "first_seen_at": "2026-09-13T01:49:55.818768Z",
+      "first_seen_at": "2026-09-13T15:15:31.730120Z",
       "plugin_name": "Decky LSFG-VK",
       "priority": "high",
       "reasons": [
@@ -531,7 +531,7 @@
       "release": "v0.14.0",
       "repository": "https://github.com/xXJSONDeruloXx/decky-lsfg-vk",
       "reviewer_attention_count": 3,
-      "risk_score": 12,
+      "risk_score": 14,
       "same_artifact": false,
       "scanner_failures": [],
       "source_commit": "81feb03288166755545401b9df2ff2c9bc3ae7d7"
@@ -647,26 +647,48 @@
       "source_commit": "9cf99e206275be3a0b860e6f04677c17e56c7504"
     },
     {
-      "artifact_sha256": "7bd9ef141e4ca0c145fe248ac4e573f56802fd6905b2e791ae252741b5dd9a8d",
+      "artifact_sha256": "7e8bccb9f51e4358c73a1de07143bfa9f45e3af04b0d6113066edd4e5da94b43",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-06T19:44:22.730946Z",
+      "first_seen_at": "2026-09-13T15:15:31.730120Z",
       "plugin_name": "Steamcord",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v1.31.2",
+      "release": "v1.32.0",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_attention_count": 0,
       "risk_score": 747,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "70c2b29601fe0e921b59002055ff00cb5aba8e55"
+      "source_commit": "868ac75db4212a47b9daf147389ff4d82ce9761f"
+    },
+    {
+      "artifact_sha256": "83b9fd61d7c058e8def34416cb08d36960b47cba25201001d0d7b3d05cd6f107",
+      "baseline_artifact_sha256": "a8924e945dcfd57372c11a8ac8d5fa3681c3beb0171cd3991d90fccc53e161b6",
+      "baseline_release": "v0.1.16",
+      "changed_capabilities": [],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-09-13T15:15:31.730120Z",
+      "plugin_name": "16:10 Fixes",
+      "priority": "normal",
+      "reasons": [
+        "new_artifact"
+      ],
+      "release": "v0.1.17",
+      "repository": "https://github.com/nucat176/decky-16x10-fixes",
+      "reviewer_attention_count": 0,
+      "risk_score": 47,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "444c72e4927747461db76d50a5871112479061ab"
     },
     {
       "artifact_sha256": "0f14447ea6930103fff7235d3e45c7892f70afe38d95b84a07c90ca372eb95c5",
@@ -714,5 +736,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34752612657"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34764896299"
 }

@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **22** — critical 3, high 12, normal 7.
-Generated: `2026-09-13T10:46:38.900262Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34752612657
+Pending artifacts: **23** — critical 3, high 12, normal 8.
+Generated: `2026-09-13T15:15:31.730120Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34764896299
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -19,13 +19,14 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Decky LSFG-VK | v0.14.0 / `600f628f2651` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
+| **HIGH** | Decky LSFG-VK | v0.14.0 / `1c506f5c0572` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **NORMAL** | Decky Metadata | v0.3.13 / `d173c50440e0` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.7 / `439fe36d33c9` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Steamcord | v1.31.2 / `7bd9ef141e4c` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Steamcord | v1.32.0 / `7e8bccb9f51e` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | 16:10 Fixes | v0.1.17 / `83b9fd61d7c0` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Launch Options | v1.16.1 / `685a6cd500e7` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
 
@@ -190,15 +191,15 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky LSFG-VK
 
 - Repository: `https://github.com/xXJSONDeruloXx/decky-lsfg-vk`
-- Candidate: `v0.14.0` — `600f628f265168f1c22e9246fe7b57c29552e049d382a4775243dae949f0f459`
-- Classification: **PASS\_WITH\_WARNINGS** (risk 12)
+- Candidate: `v0.14.0` — `1c506f5c0572516cc26f6f9b0c1800f39d22310a7b31a6fe3da827cb3a3d2210`
+- Classification: **PASS\_WITH\_WARNINGS** (risk 14)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-09-13T01:49:55.818768Z`
+- First seen: `2026-09-13T15:15:31.730120Z`
 - Accepted baseline: `v0.12.8` — `322f6eec21a489ef9f12938ea2ec4e43c234093876f95b7245fbd260f882ce9c`
 - Capability changes:
   - **Native executable code:** observed -\> not\_observed; native binaries +0/-1; rule profile +0/-2 — **review**
   - **Network communication:** network destinations +2/-2 — **review**
-  - **Published release versus source:** source/release difference profile changed; rule profile +0/-1 — **review**
+  - **Published release versus source:** source/release difference profile changed; rule profile +1/-1 — **review**
 
 ## Decky Notifications
 
@@ -253,11 +254,21 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.31.2` — `7bd9ef141e4ca0c145fe248ac4e573f56802fd6905b2e791ae252741b5dd9a8d`
+- Candidate: `v1.32.0` — `7e8bccb9f51e4358c73a1de07143bfa9f45e3af04b0d6113066edd4e5da94b43`
 - Classification: **MANUAL\_REVIEW** (risk 747)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-06T19:44:22.730946Z`
+- First seen: `2026-09-13T15:15:31.730120Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
+- Capability changes: none observed in the comparison model.
+
+## 16:10 Fixes
+
+- Repository: `https://github.com/nucat176/decky-16x10-fixes`
+- Candidate: `v0.1.17` — `83b9fd61d7c058e8def34416cb08d36960b47cba25201001d0d7b3d05cd6f107`
+- Classification: **MANUAL\_REVIEW** (risk 47)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-09-13T15:15:31.730120Z`
+- Accepted baseline: `v0.1.16` — `a8924e945dcfd57372c11a8ac8d5fa3681c3beb0171cd3991d90fccc53e161b6`
 - Capability changes: none observed in the comparison model.
 
 ## Deck Shelves
