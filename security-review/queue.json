@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-12T19:50:51.906361Z",
-  "item_count": 21,
+  "generated_at": "2026-09-13T01:49:55.818768Z",
+  "item_count": 22,
   "items": [
     {
       "artifact_sha256": "229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a",
@@ -492,6 +492,51 @@
       "source_commit": "cae92029e587a3d948493dc298312f844e9eb49f"
     },
     {
+      "artifact_sha256": "600f628f265168f1c22e9246fe7b57c29552e049d382a4775243dae949f0f459",
+      "baseline_artifact_sha256": "322f6eec21a489ef9f12938ea2ec4e43c234093876f95b7245fbd260f882ce9c",
+      "baseline_release": "v0.12.8",
+      "changed_capabilities": [
+        {
+          "id": "native_code",
+          "reviewer_attention": true,
+          "status_change": "no_longer_observed",
+          "summary": "observed -> not_observed; native binaries +0/-1; rule profile +0/-2",
+          "title": "Native executable code"
+        },
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +2/-2",
+          "title": "Network communication"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed; rule profile +0/-1",
+          "title": "Published release versus source"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-09-13T01:49:55.818768Z",
+      "plugin_name": "Decky LSFG-VK",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "v0.14.0",
+      "repository": "https://github.com/xXJSONDeruloXx/decky-lsfg-vk",
+      "reviewer_attention_count": 3,
+      "risk_score": 12,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "81feb03288166755545401b9df2ff2c9bc3ae7d7"
+    },
+    {
       "artifact_sha256": "c48de9ce7a8b8d5fedf97c9b8d1062b77d1868a798e5e307f6092c9097006b93",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
@@ -669,5 +714,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34715191566"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34731410872"
 }

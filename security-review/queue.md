@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **21** — critical 3, high 11, normal 7.
-Generated: `2026-09-12T19:50:51.906361Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34715191566
+Pending artifacts: **22** — critical 3, high 12, normal 7.
+Generated: `2026-09-13T01:49:55.818768Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34731410872
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -19,6 +19,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky LSFG-VK | v0.14.0 / `600f628f2651` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **NORMAL** | Decky Metadata | v0.3.13 / `d173c50440e0` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
@@ -185,6 +186,19 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Accepted baseline: `v1.1.0` — `344fb7a082022f492ff2fe8db243e5363e8a2be3757c5ea9fb99e55264d9b25d`
 - Capability changes:
   - **Network communication:** network destinations +3/-0 — **review**
+
+## Decky LSFG-VK
+
+- Repository: `https://github.com/xXJSONDeruloXx/decky-lsfg-vk`
+- Candidate: `v0.14.0` — `600f628f265168f1c22e9246fe7b57c29552e049d382a4775243dae949f0f459`
+- Classification: **PASS\_WITH\_WARNINGS** (risk 12)
+- Comparison: `compared`; reviewer-attention changes: 3
+- First seen: `2026-09-13T01:49:55.818768Z`
+- Accepted baseline: `v0.12.8` — `322f6eec21a489ef9f12938ea2ec4e43c234093876f95b7245fbd260f882ce9c`
+- Capability changes:
+  - **Native executable code:** observed -\> not\_observed; native binaries +0/-1; rule profile +0/-2 — **review**
+  - **Network communication:** network destinations +2/-2 — **review**
+  - **Published release versus source:** source/release difference profile changed; rule profile +0/-1 — **review**
 
 ## Decky Notifications
 
