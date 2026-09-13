@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **23** — critical 3, high 12, normal 8.
-Generated: `2026-09-13T15:15:31.730120Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34764896299
+Generated: `2026-09-13T20:00:31.818406Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34779237114
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -12,20 +12,20 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | steam-achievements | v1.2.5 / `522346503007` | v1.2.3 / `4a698f9f7bf0` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.32.0 / `ab33081f14dc` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | MoonDeck | nightly / `1b0991217e18` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | MoonDeck | nightly / `e4479d8623f4` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.48.0 / `b080aeacde10` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.5 / `fd2fc0be948b` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.3 / `8aa1bb619bad` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Decky LSFG-VK | v0.14.0 / `1c506f5c0572` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
+| **HIGH** | Decky LSFG-VK | v0.14.0 / `2a8aacca418d` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **NORMAL** | Decky Metadata | v0.3.13 / `d173c50440e0` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.7 / `439fe36d33c9` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Steamcord | v1.32.0 / `7e8bccb9f51e` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Steamcord | v1.33.0 / `465bca035667` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | 16:10 Fixes | v0.1.17 / `83b9fd61d7c0` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Launch Options | v1.16.1 / `685a6cd500e7` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
@@ -113,10 +113,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## MoonDeck
 
 - Repository: `https://github.com/FrogTheFrog/moondeck`
-- Candidate: `nightly` — `1b0991217e18d670c0cb2a00302813d4c1c61aa558f9b337153fdb9c20d45a44`
+- Candidate: `nightly` — `e4479d8623f4d5ba431d872620e5ed5cd052773bb27b1190ba5742134dcbca45`
 - Classification: **MANUAL\_REVIEW** (risk 7799)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-09-12T19:50:51.906361Z`
+- First seen: `2026-09-13T20:00:31.818406Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
@@ -191,10 +191,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky LSFG-VK
 
 - Repository: `https://github.com/xXJSONDeruloXx/decky-lsfg-vk`
-- Candidate: `v0.14.0` — `1c506f5c0572516cc26f6f9b0c1800f39d22310a7b31a6fe3da827cb3a3d2210`
+- Candidate: `v0.14.0` — `2a8aacca418d420d21efb46f65a56b748a3dcb45e1a35c98d224b1b5a4ed7037`
 - Classification: **PASS\_WITH\_WARNINGS** (risk 14)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-09-13T15:15:31.730120Z`
+- First seen: `2026-09-13T20:00:31.818406Z`
 - Accepted baseline: `v0.12.8` — `322f6eec21a489ef9f12938ea2ec4e43c234093876f95b7245fbd260f882ce9c`
 - Capability changes:
   - **Native executable code:** observed -\> not\_observed; native binaries +0/-1; rule profile +0/-2 — **review**
@@ -254,10 +254,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.32.0` — `7e8bccb9f51e4358c73a1de07143bfa9f45e3af04b0d6113066edd4e5da94b43`
+- Candidate: `v1.33.0` — `465bca0356677385f1e95aecec26229b45f3745dc37cc2ac4f0e66534c7b893c`
 - Classification: **MANUAL\_REVIEW** (risk 747)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-13T15:15:31.730120Z`
+- First seen: `2026-09-13T20:00:31.818406Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes: none observed in the comparison model.
 

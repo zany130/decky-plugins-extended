@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T15:15:31.730120Z",
+  "generated_at": "2026-09-13T20:00:31.818406Z",
   "item_count": 23,
   "items": [
     {
@@ -270,14 +270,14 @@
       "source_commit": "709382d3bd23018e0d0b62f01b837910134e56ab"
     },
     {
-      "artifact_sha256": "1b0991217e18d670c0cb2a00302813d4c1c61aa558f9b337153fdb9c20d45a44",
+      "artifact_sha256": "e4479d8623f4d5ba431d872620e5ed5cd052773bb27b1190ba5742134dcbca45",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
       "changed_capabilities": [],
       "comparison_status": "baseline_not_found",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-12T19:50:51.906361Z",
+      "first_seen_at": "2026-09-13T20:00:31.818406Z",
       "plugin_name": "MoonDeck",
       "priority": "high",
       "reasons": [
@@ -289,7 +289,7 @@
       "risk_score": 7799,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "6ac78bf2af580432a48dca9d65d73d1694c19feb"
+      "source_commit": "e7c888e044bb9c8c62ed6301d8ce01ce3ff51ae6"
     },
     {
       "artifact_sha256": "b080aeacde10258357b867274c0a50b1f296fc62d4b274457f4798cd82c4f447",
@@ -492,7 +492,7 @@
       "source_commit": "cae92029e587a3d948493dc298312f844e9eb49f"
     },
     {
-      "artifact_sha256": "1c506f5c0572516cc26f6f9b0c1800f39d22310a7b31a6fe3da827cb3a3d2210",
+      "artifact_sha256": "2a8aacca418d420d21efb46f65a56b748a3dcb45e1a35c98d224b1b5a4ed7037",
       "baseline_artifact_sha256": "322f6eec21a489ef9f12938ea2ec4e43c234093876f95b7245fbd260f882ce9c",
       "baseline_release": "v0.12.8",
       "changed_capabilities": [
@@ -521,7 +521,7 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "PASS_WITH_WARNINGS",
-      "first_seen_at": "2026-09-13T15:15:31.730120Z",
+      "first_seen_at": "2026-09-13T20:00:31.818406Z",
       "plugin_name": "Decky LSFG-VK",
       "priority": "high",
       "reasons": [
@@ -647,26 +647,26 @@
       "source_commit": "9cf99e206275be3a0b860e6f04677c17e56c7504"
     },
     {
-      "artifact_sha256": "7e8bccb9f51e4358c73a1de07143bfa9f45e3af04b0d6113066edd4e5da94b43",
+      "artifact_sha256": "465bca0356677385f1e95aecec26229b45f3745dc37cc2ac4f0e66534c7b893c",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-13T15:15:31.730120Z",
+      "first_seen_at": "2026-09-13T20:00:31.818406Z",
       "plugin_name": "Steamcord",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v1.32.0",
+      "release": "v1.33.0",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_attention_count": 0,
       "risk_score": 747,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "868ac75db4212a47b9daf147389ff4d82ce9761f"
+      "source_commit": "386e107a80f2009e93e7ca19e81ff57709bb0059"
     },
     {
       "artifact_sha256": "83b9fd61d7c058e8def34416cb08d36960b47cba25201001d0d7b3d05cd6f107",
@@ -736,5 +736,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34764896299"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34779237114"
 }
