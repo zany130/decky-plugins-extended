@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T11:11:03.176918Z",
+  "generated_at": "2026-09-14T17:13:09.419167Z",
   "item_count": 24,
   "items": [
     {
@@ -225,7 +225,7 @@
       "source_commit": "81948d323a6a95251dab4d656b47ab57fabacc5b"
     },
     {
-      "artifact_sha256": "ab33081f14dc7c215b5a667ce91c449766b6a6962d67e003c075fcc0e12ea485",
+      "artifact_sha256": "7af9ec603ae713f96bb22cf0096fcb3ae241d92c9bd5266b17f0d784dce9a9bf",
       "baseline_artifact_sha256": "254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db",
       "baseline_release": "decky-romm-sync-v0.30.1",
       "changed_capabilities": [
@@ -254,20 +254,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-08T20:29:09.655131Z",
+      "first_seen_at": "2026-09-14T17:13:09.419167Z",
       "plugin_name": "Tender",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "tender-v0.32.0",
+      "release": "tender-v0.33.0",
       "repository": "https://github.com/danielcopper/decky-romm-sync",
       "reviewer_attention_count": 3,
       "risk_score": 184,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "709382d3bd23018e0d0b62f01b837910134e56ab"
+      "source_commit": "7999748cbe912ec283d6fc57bf9b11259e0be57c"
     },
     {
       "artifact_sha256": "e4479d8623f4d5ba431d872620e5ed5cd052773bb27b1190ba5742134dcbca45",
@@ -399,35 +399,35 @@
       "source_commit": "0d3134ddd0cf18d9c83126259a3b8bad00299973"
     },
     {
-      "artifact_sha256": "8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de",
-      "baseline_artifact_sha256": "c5fbde7be36a9212b85b8db87e495217b174b617a433385bd43ffec5a9aef159",
-      "baseline_release": "1.0.0",
+      "artifact_sha256": "55ed340fb6dac45bc8d192611ce2ca33150e0cbce902eef7e9001438843f61e0",
+      "baseline_artifact_sha256": "8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de",
+      "baseline_release": "1.0.1",
       "changed_capabilities": [
         {
           "id": "source_release_integrity",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "source/release difference profile changed (2 count change(s))",
+          "summary": "source/release difference profile changed (1 count change(s))",
           "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-10T00:51:45.065594Z",
+      "first_seen_at": "2026-09-14T17:13:09.419167Z",
       "plugin_name": "Decky Vibrance HDR",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "1.0.1",
+      "release": "1.0.2",
       "repository": "https://github.com/Rayekkk/DeckyVibranceHDR",
       "reviewer_attention_count": 1,
-      "risk_score": 92,
+      "risk_score": 107,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "eafab001aa3aca0ce8d447459944d09c1b5fb4d0"
+      "source_commit": "41690d79a9c17c555427631e2b3e47aa6963aae7"
     },
     {
       "artifact_sha256": "05ec1d51456b7719286349b570d6679a53ba6482828a0ba67388df280f054ba7",
@@ -758,5 +758,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34836579757"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34873053307"
 }

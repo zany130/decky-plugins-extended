@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **24** — critical 3, high 12, normal 9.
-Generated: `2026-09-14T11:11:03.176918Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34836579757
+Generated: `2026-09-14T17:13:09.419167Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34873053307
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -11,12 +11,12 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | Decky-Framegen | v0.17 / `3300b617e3d9` | v0.17 / `3300b617e3d9` | AUDIT\_ERROR | audit error, security delta, same artifact analysis drift |
 | **HIGH** | steam-achievements | v1.2.5 / `522346503007` | v1.2.3 / `4a698f9f7bf0` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Tender | tender-v0.32.0 / `ab33081f14dc` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `e4479d8623f4` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.48.1 / `3b09dd3d3bf0` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.5 / `fd2fc0be948b` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.4 / `03d7cd44b789` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Decky Vibrance HDR | 1.0.1 / `8bbf5601ea5b` | 1.0.0 / `c5fbde7be36a` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Vibrance HDR | 1.0.2 / `55ed340fb6da` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky LSFG-VK | v0.14.0 / `2a8aacca418d` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
@@ -101,10 +101,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Tender
 
 - Repository: `https://github.com/danielcopper/decky-romm-sync`
-- Candidate: `tender-v0.32.0` — `ab33081f14dc7c215b5a667ce91c449766b6a6962d67e003c075fcc0e12ea485`
+- Candidate: `tender-v0.33.0` — `7af9ec603ae713f96bb22cf0096fcb3ae241d92c9bd5266b17f0d784dce9a9bf`
 - Classification: **MANUAL\_REVIEW** (risk 184)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-09-08T20:29:09.655131Z`
+- First seen: `2026-09-14T17:13:09.419167Z`
 - Accepted baseline: `decky-romm-sync-v0.30.1` — `254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db`
 - Capability changes:
   - **Command and process execution:** rule profile +1/-0 — **review**
@@ -159,13 +159,13 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Vibrance HDR
 
 - Repository: `https://github.com/Rayekkk/DeckyVibranceHDR`
-- Candidate: `1.0.1` — `8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de`
-- Classification: **MANUAL\_REVIEW** (risk 92)
+- Candidate: `1.0.2` — `55ed340fb6dac45bc8d192611ce2ca33150e0cbce902eef7e9001438843f61e0`
+- Classification: **MANUAL\_REVIEW** (risk 107)
 - Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-08-10T00:51:45.065594Z`
-- Accepted baseline: `1.0.0` — `c5fbde7be36a9212b85b8db87e495217b174b617a433385bd43ffec5a9aef159`
+- First seen: `2026-09-14T17:13:09.419167Z`
+- Accepted baseline: `1.0.1` — `8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de`
 - Capability changes:
-  - **Published release versus source:** source/release difference profile changed (2 count change(s)) — **review**
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
 
 ## LeGoTDP
 
