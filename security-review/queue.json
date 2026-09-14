@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-13T20:00:31.818406Z",
-  "item_count": 23,
+  "generated_at": "2026-09-14T11:11:03.176918Z",
+  "item_count": 24,
   "items": [
     {
       "artifact_sha256": "229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a",
@@ -292,7 +292,7 @@
       "source_commit": "e7c888e044bb9c8c62ed6301d8ce01ce3ff51ae6"
     },
     {
-      "artifact_sha256": "b080aeacde10258357b867274c0a50b1f296fc62d4b274457f4798cd82c4f447",
+      "artifact_sha256": "3b09dd3d3bf0a933bd228ae4cfe31f49748e17fdc4ab112bc221a0f446d0c817",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -314,20 +314,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-13T10:46:38.900262Z",
+      "first_seen_at": "2026-09-14T11:11:03.176918Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.48.0",
+      "release": "panel-de-control-v0.48.1",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 2,
       "risk_score": 362,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "95accbadd406222141c8fb2ac615717893cfe266"
+      "source_commit": "c74c6f1882d6be3ac208d02f5204e5fef14cb00e"
     },
     {
       "artifact_sha256": "fd2fc0be948b1df3662a379a8e93feb4636912631288ee504df164c771a5c738",
@@ -368,7 +368,7 @@
       "source_commit": "2423d32a8a22909cd3da39960eed55ad28384858"
     },
     {
-      "artifact_sha256": "8aa1bb619bad34badb7e8dc2a45a583e3080f2d05253c677c44482d90991a0b3",
+      "artifact_sha256": "03d7cd44b789a2ab506c8de6613f961abf5cef8dc002d7d4ebda19769f7ffeec",
       "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
       "baseline_release": "v0.3.2",
       "changed_capabilities": [
@@ -383,20 +383,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-15T12:16:35.411907Z",
+      "first_seen_at": "2026-09-14T11:11:03.176918Z",
       "plugin_name": "Achievement Companion",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.3.3",
+      "release": "v0.3.4",
       "repository": "https://github.com/parvagans/achievement-companion",
       "reviewer_attention_count": 1,
       "risk_score": 34,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "d0ba2d1295ac8a6c723c015c71f5d7929a07873d"
+      "source_commit": "0d3134ddd0cf18d9c83126259a3b8bad00299973"
     },
     {
       "artifact_sha256": "8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de",
@@ -713,6 +713,28 @@
       "source_commit": "4f72043f46a9ab79c42e9bdd9ef1538ed9f820c0"
     },
     {
+      "artifact_sha256": "1e4bf0d3e77d935325d40ccbeffeca717f1ff768b924fbea75ae4354a45e19b1",
+      "baseline_artifact_sha256": "bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e",
+      "baseline_release": "2.0.15",
+      "changed_capabilities": [],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-09-14T11:11:03.176918Z",
+      "plugin_name": "MagicPods",
+      "priority": "normal",
+      "reasons": [
+        "new_artifact"
+      ],
+      "release": "2.0.17",
+      "repository": "https://github.com/steam3d/MagicPodsDecky",
+      "reviewer_attention_count": 0,
+      "risk_score": 192,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "ae8011923b701fe1285f92c44a7ce4241633e6f6"
+    },
+    {
       "artifact_sha256": "685a6cd500e7ff297e03684fd6776db9546ef3c2658e5cd686596d7f2e5edc9b",
       "baseline_artifact_sha256": "377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668",
       "baseline_release": "v1.14.0",
@@ -736,5 +758,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34779237114"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34836579757"
 }
