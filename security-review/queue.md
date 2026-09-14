@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **24** — critical 3, high 12, normal 9.
-Generated: `2026-09-14T17:13:09.419167Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34873053307
+Pending artifacts: **25** — critical 3, high 12, normal 10.
+Generated: `2026-09-14T21:10:05.637246Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34896947986
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -25,6 +25,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.7 / `439fe36d33c9` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | ProtonDB Badges | v1.3.4 / `763b8398ea43` | v1.3.3 / `0cbf5948ca5a` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Steamcord | v1.33.0 / `465bca035667` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | 16:10 Fixes | v0.1.17 / `83b9fd61d7c0` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
@@ -250,6 +251,16 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-09-06T19:44:22.730946Z`
 - Accepted baseline: `v3.0.1` — `92610937d8fd91392aecf1a1a7613d9208fdb838dd934c7d262de759c10d7585`
+- Capability changes: none observed in the comparison model.
+
+## ProtonDB Badges
+
+- Repository: `https://github.com/bschelst/protondb-decky`
+- Candidate: `v1.3.4` — `763b8398ea43e975d3e992e31301626ff4319ae4f5a167c0df9f0b58482de274`
+- Classification: **PASS\_WITH\_WARNINGS** (risk 2)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-09-14T21:10:05.637246Z`
+- Accepted baseline: `v1.3.3` — `0cbf5948ca5a6f384181d0982db8874c88fad6a0d85bc3396bdfde564d322ffa`
 - Capability changes: none observed in the comparison model.
 
 ## Steamcord
