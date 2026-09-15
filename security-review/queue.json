@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T10:39:09.927028Z",
+  "generated_at": "2026-09-15T20:37:29.887684Z",
   "item_count": 26,
   "items": [
     {
@@ -270,14 +270,14 @@
       "source_commit": "7999748cbe912ec283d6fc57bf9b11259e0be57c"
     },
     {
-      "artifact_sha256": "e4479d8623f4d5ba431d872620e5ed5cd052773bb27b1190ba5742134dcbca45",
+      "artifact_sha256": "aa1c57ab454a86b7a95984e4b8a109aa05ebd22a7c858317001542f28de9f5fc",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
       "changed_capabilities": [],
       "comparison_status": "baseline_not_found",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-13T20:00:31.818406Z",
+      "first_seen_at": "2026-09-15T20:37:29.887684Z",
       "plugin_name": "MoonDeck",
       "priority": "high",
       "reasons": [
@@ -286,13 +286,13 @@
       "release": "nightly",
       "repository": "https://github.com/FrogTheFrog/moondeck",
       "reviewer_attention_count": 0,
-      "risk_score": 7799,
+      "risk_score": 7824,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "e7c888e044bb9c8c62ed6301d8ce01ce3ff51ae6"
+      "source_commit": "aebfbd6a283cc7c9a7ba58737bee935789ecaa0c"
     },
     {
-      "artifact_sha256": "221fd836e8aab592967260d040465654d88c37f935a5582234e30b44195f7cf8",
+      "artifact_sha256": "7e81acccfbd6294114203448a4350df8ca1792f6eb9d622a98f19756eaed9fee",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -321,20 +321,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-15T10:39:09.927028Z",
+      "first_seen_at": "2026-09-15T20:37:29.887684Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.49.0",
+      "release": "panel-de-control-v0.49.1",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 3,
       "risk_score": 392,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "07911dbf0a4967ee40b53a91e43213df47e21f21"
+      "source_commit": "8899b97dde65e236c96e4e8872bf80d140e08b2c"
     },
     {
       "artifact_sha256": "fd2fc0be948b1df3662a379a8e93feb4636912631288ee504df164c771a5c738",
@@ -698,26 +698,26 @@
       "source_commit": "be333c346fa34648adb28e0437187e0743469889"
     },
     {
-      "artifact_sha256": "465bca0356677385f1e95aecec26229b45f3745dc37cc2ac4f0e66534c7b893c",
+      "artifact_sha256": "caa9f533c0f60db447b86e199fcb9e9df6d7cc70c948db7703d1b9390cb92e2f",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-13T20:00:31.818406Z",
+      "first_seen_at": "2026-09-15T20:37:29.887684Z",
       "plugin_name": "Steamcord",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v1.33.0",
+      "release": "v1.34.0",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_attention_count": 0,
       "risk_score": 747,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "386e107a80f2009e93e7ca19e81ff57709bb0059"
+      "source_commit": "48f17c8b5b77dedd60b9c835c8050623cb355aea"
     },
     {
       "artifact_sha256": "83b9fd61d7c058e8def34416cb08d36960b47cba25201001d0d7b3d05cd6f107",
@@ -809,5 +809,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/34958861395"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/35020398026"
 }
