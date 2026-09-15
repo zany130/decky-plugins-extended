@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **25** — critical 3, high 12, normal 10.
-Generated: `2026-09-14T21:10:05.637246Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34896947986
+Pending artifacts: **26** — critical 3, high 12, normal 11.
+Generated: `2026-09-15T10:39:09.927028Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/34958861395
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,7 +13,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `e4479d8623f4` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.48.1 / `3b09dd3d3bf0` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.49.0 / `221fd836e8aa` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.5 / `fd2fc0be948b` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.4 / `03d7cd44b789` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.2 / `55ed340fb6da` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
@@ -26,6 +26,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | SDH-Ludusavi | v0.4.7 / `439fe36d33c9` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ProtonDB Badges | v1.3.4 / `763b8398ea43` | v1.3.3 / `0cbf5948ca5a` | PASS\_WITH\_WARNINGS | new artifact |
+| **NORMAL** | Docky | v1.4.10 / `456e358f017d` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Steamcord | v1.33.0 / `465bca035667` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | 16:10 Fixes | v0.1.17 / `83b9fd61d7c0` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Deck Shelves | v3.2.1 / `0f14447ea693` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact |
@@ -125,14 +126,15 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.48.1` — `3b09dd3d3bf0a933bd228ae4cfe31f49748e17fdc4ab112bc221a0f446d0c817`
-- Classification: **MANUAL\_REVIEW** (risk 362)
-- Comparison: `compared`; reviewer-attention changes: 2
-- First seen: `2026-09-14T11:11:03.176918Z`
+- Candidate: `panel-de-control-v0.49.0` — `221fd836e8aab592967260d040465654d88c37f935a5582234e30b44195f7cf8`
+- Classification: **MANUAL\_REVIEW** (risk 392)
+- Comparison: `compared`; reviewer-attention changes: 3
+- First seen: `2026-09-15T10:39:09.927028Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
   - **Network communication:** network destinations +2/-0 — **review**
+  - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**
 
 ## Unifideck
 
@@ -261,6 +263,16 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-09-14T21:10:05.637246Z`
 - Accepted baseline: `v1.3.3` — `0cbf5948ca5a6f384181d0982db8874c88fad6a0d85bc3396bdfde564d322ffa`
+- Capability changes: none observed in the comparison model.
+
+## Docky
+
+- Repository: `https://github.com/datbird/docky`
+- Candidate: `v1.4.10` — `456e358f017dfe1636cbfe33a15bf22ae3078d81b97c59ce54c12d0411ac5422`
+- Classification: **MANUAL\_REVIEW** (risk 227)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-09-15T10:39:09.927028Z`
+- Accepted baseline: `v1.4.8` — `6fa09e2dbfa76af695b74e4eb918a62ef94573c5b131a304dc5fec58fe5d56b3`
 - Capability changes: none observed in the comparison model.
 
 ## Steamcord
