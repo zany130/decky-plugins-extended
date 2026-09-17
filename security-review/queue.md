@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **26** — critical 3, high 13, normal 10.
-Generated: `2026-09-17T15:50:26.909355Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/35242510153
+Generated: `2026-09-17T20:43:58.925385Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/35272218872
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -20,7 +20,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.3.0 / `c88f328c32fb` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Decky LSFG-VK | v0.14.0 / `2a8aacca418d` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
+| **HIGH** | Decky LSFG-VK | v0.14.4 / `a2187926dfb5` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **NORMAL** | Decky Metadata | v0.3.13 / `d173c50440e0` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
@@ -206,15 +206,15 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky LSFG-VK
 
 - Repository: `https://github.com/xXJSONDeruloXx/decky-lsfg-vk`
-- Candidate: `v0.14.0` — `2a8aacca418d420d21efb46f65a56b748a3dcb45e1a35c98d224b1b5a4ed7037`
-- Classification: **PASS\_WITH\_WARNINGS** (risk 14)
+- Candidate: `v0.14.4` — `a2187926dfb53e1813fa786d6e12a1d078638aa27153061389b755806e97338f`
+- Classification: **PASS\_WITH\_WARNINGS** (risk 12)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-09-13T20:00:31.818406Z`
+- First seen: `2026-09-17T20:43:58.925385Z`
 - Accepted baseline: `v0.12.8` — `322f6eec21a489ef9f12938ea2ec4e43c234093876f95b7245fbd260f882ce9c`
 - Capability changes:
   - **Native executable code:** observed -\> not\_observed; native binaries +0/-1; rule profile +0/-2 — **review**
-  - **Network communication:** network destinations +2/-2 — **review**
-  - **Published release versus source:** source/release difference profile changed; rule profile +1/-1 — **review**
+  - **Network communication:** network destinations +2/-1 — **review**
+  - **Published release versus source:** source/release difference profile changed; rule profile +0/-1 — **review**
 
 ## Decky Notifications
 
