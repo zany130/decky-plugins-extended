@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T15:44:11.441669Z",
+  "generated_at": "2026-09-17T02:12:14.621012Z",
   "item_count": 26,
   "items": [
     {
@@ -292,7 +292,7 @@
       "source_commit": "aebfbd6a283cc7c9a7ba58737bee935789ecaa0c"
     },
     {
-      "artifact_sha256": "90ba34bc266495b5d72b5c73c22655e74d941d4725c97103598f66cc34d04a6d",
+      "artifact_sha256": "0c0898bb62e168e59bb95c8dfb4010a51c5c5b1cf5304c53d21d25c4414be8d6",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -321,20 +321,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-16T15:44:11.441669Z",
+      "first_seen_at": "2026-09-17T02:12:14.621012Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.51.0",
+      "release": "panel-de-control-v0.52.0",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 3,
       "risk_score": 392,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "7fdad15ca5a04ab86f9c4a5c1069ecdea79b5490"
+      "source_commit": "885bebd9f3101886d31681d6b9ec99378867584e"
     },
     {
       "artifact_sha256": "fd2fc0be948b1df3662a379a8e93feb4636912631288ee504df164c771a5c738",
@@ -466,6 +466,37 @@
       "same_artifact": false,
       "scanner_failures": [],
       "source_commit": "3355b00a8560abf1da9110fd780889242caa6378"
+    },
+    {
+      "artifact_sha256": "c88f328c32fb95af490cb065f25ebe9da6e34fc7d2922b4f58de9d6342d9b506",
+      "baseline_artifact_sha256": "71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9",
+      "baseline_release": "v3.1.0",
+      "changed_capabilities": [
+        {
+          "id": "sensitive_data_access",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; rule profile +1/-0",
+          "title": "Credentials and sensitive data"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-09-17T02:12:14.621012Z",
+      "plugin_name": "Deck Shelves",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "v3.3.0",
+      "repository": "https://github.com/santojon/Deck-Shelves",
+      "reviewer_attention_count": 1,
+      "risk_score": 102,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "6e68bed4138944c8a81effc4c0200907e4798dca"
     },
     {
       "artifact_sha256": "070d8850fcacd98db20cf45c09810f9d43898b00fa464673db5664530877daed",
@@ -742,28 +773,6 @@
       "source_commit": "444c72e4927747461db76d50a5871112479061ab"
     },
     {
-      "artifact_sha256": "0f14447ea6930103fff7235d3e45c7892f70afe38d95b84a07c90ca372eb95c5",
-      "baseline_artifact_sha256": "71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9",
-      "baseline_release": "v3.1.0",
-      "changed_capabilities": [],
-      "comparison_status": "compared",
-      "error_count": 0,
-      "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-08-15T18:14:21.149471Z",
-      "plugin_name": "Deck Shelves",
-      "priority": "normal",
-      "reasons": [
-        "new_artifact"
-      ],
-      "release": "v3.2.1",
-      "repository": "https://github.com/santojon/Deck-Shelves",
-      "reviewer_attention_count": 0,
-      "risk_score": 87,
-      "same_artifact": false,
-      "scanner_failures": [],
-      "source_commit": "4f72043f46a9ab79c42e9bdd9ef1538ed9f820c0"
-    },
-    {
       "artifact_sha256": "1e4bf0d3e77d935325d40ccbeffeca717f1ff768b924fbea75ae4354a45e19b1",
       "baseline_artifact_sha256": "bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e",
       "baseline_release": "2.0.15",
@@ -809,5 +818,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/35117025163"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/35173286769"
 }
