@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **26** — critical 3, high 13, normal 10.
-Generated: `2026-09-19T14:59:47.017904Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/35450302243
+Generated: `2026-09-20T10:16:38.233489Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/35504442014
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -12,7 +12,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | steam-achievements | v1.2.5 / `522346503007` | v1.2.3 / `4a698f9f7bf0` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | MoonDeck | nightly / `aa1c57ab454a` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | MoonDeck | nightly / `99c28c221492` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.53.0 / `b70133a016b8` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.5 / `fd2fc0be948b` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.4 / `03d7cd44b789` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
@@ -28,7 +28,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ProtonDB Badges | v1.3.4 / `763b8398ea43` | v1.3.3 / `0cbf5948ca5a` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Docky | v1.4.11 / `465dd1ebc3fd` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Steamcord | v1.34.0 / `caa9f533c0f6` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Steamcord | v1.35.0 / `70e16badf103` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | 16:10 Fixes | v0.1.17 / `83b9fd61d7c0` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | MagicPods | 2.0.17 / `1e4bf0d3e77d` | 2.0.15 / `bbd64bc92b14` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Launch Options | v1.16.1 / `685a6cd500e7` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
@@ -116,10 +116,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## MoonDeck
 
 - Repository: `https://github.com/FrogTheFrog/moondeck`
-- Candidate: `nightly` — `aa1c57ab454a86b7a95984e4b8a109aa05ebd22a7c858317001542f28de9f5fc`
-- Classification: **MANUAL\_REVIEW** (risk 7824)
+- Candidate: `nightly` — `99c28c22149201b9c92313416f076f6f60bc0fe7ed266db4404020962e5144d1`
+- Classification: **MANUAL\_REVIEW** (risk 7839)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-09-15T20:37:29.887684Z`
+- First seen: `2026-09-20T10:16:38.233489Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
@@ -289,10 +289,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.34.0` — `caa9f533c0f60db447b86e199fcb9e9df6d7cc70c948db7703d1b9390cb92e2f`
+- Candidate: `v1.35.0` — `70e16badf1034d1d1b4f5db4ee229da6f32814d4696f8f771c5f6d2234631588`
 - Classification: **MANUAL\_REVIEW** (risk 747)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-15T20:37:29.887684Z`
+- First seen: `2026-09-20T10:16:38.233489Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes: none observed in the comparison model.
 
