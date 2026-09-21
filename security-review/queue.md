@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **26** — critical 3, high 13, normal 10.
-Generated: `2026-09-20T19:57:16.403940Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/35533819435
+Generated: `2026-09-21T02:08:26.265222Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/35552991685
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,7 +13,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `73f3010fd22c` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.54.1 / `f97877be377e` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.54.2 / `d7c32bdde58e` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.5 / `fd2fc0be948b` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.4 / `03d7cd44b789` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.2 / `55ed340fb6da` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
@@ -22,9 +22,9 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky LSFG-VK | v0.14.4 / `a2187926dfb5` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
-| **NORMAL** | Decky Metadata | v0.3.13 / `d173c50440e0` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
+| **NORMAL** | Decky Metadata | v0.3.14 / `6642c511f520` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
-| **NORMAL** | SDH-Ludusavi | v0.4.7 / `439fe36d33c9` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | SDH-Ludusavi | v0.4.8 / `537b238cb599` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ProtonDB Badges | v1.3.4 / `763b8398ea43` | v1.3.3 / `0cbf5948ca5a` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Docky | v1.4.11 / `465dd1ebc3fd` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | new artifact |
@@ -126,10 +126,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.54.1` — `f97877be377e662074bc9e778aa337eec63c4f7cf9632862d281bc01dfa809cd`
+- Candidate: `panel-de-control-v0.54.2` — `d7c32bdde58eef0adc42fb44b39d371cb7be6ac3d619c759d8e19590d5161405`
 - Classification: **MANUAL\_REVIEW** (risk 392)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-09-20T19:57:16.403940Z`
+- First seen: `2026-09-21T02:08:26.265222Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
@@ -229,10 +229,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Metadata
 
 - Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `v0.3.13` — `d173c50440e08eb670589bbc2d818fced60c09e7bb6ed1748e6fc05fe0147633`
+- Candidate: `v0.3.14` — `6642c511f52064eed68ca72cdb2782c59bf382b6f0db4f41b46c04304f0b9922`
 - Classification: **PASS** (risk 0)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-07T20:55:36.225280Z`
+- First seen: `2026-09-21T02:08:26.265222Z`
 - Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes: none observed in the comparison model.
 
@@ -249,10 +249,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## SDH-Ludusavi
 
 - Repository: `https://github.com/beallio/SDH-Ludusavi`
-- Candidate: `v0.4.7` — `439fe36d33c949b265242f2a984ea2b2700db36246a483495c2dfcb26ab91f69`
+- Candidate: `v0.4.8` — `537b238cb5995ff5ad4de6f7431d76cb5825ef648fe546b19ed66ac44466ac2b`
 - Classification: **MANUAL\_REVIEW** (risk 42)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-02T20:16:27.729655Z`
+- First seen: `2026-09-21T02:08:26.265222Z`
 - Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
 - Capability changes: none observed in the comparison model.
 

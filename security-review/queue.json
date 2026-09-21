@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T19:57:16.403940Z",
+  "generated_at": "2026-09-21T02:08:26.265222Z",
   "item_count": 26,
   "items": [
     {
@@ -292,7 +292,7 @@
       "source_commit": "7c256cf1e40995615c21b57618e90d7e8b760ce0"
     },
     {
-      "artifact_sha256": "f97877be377e662074bc9e778aa337eec63c4f7cf9632862d281bc01dfa809cd",
+      "artifact_sha256": "d7c32bdde58eef0adc42fb44b39d371cb7be6ac3d619c759d8e19590d5161405",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -321,20 +321,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-20T19:57:16.403940Z",
+      "first_seen_at": "2026-09-21T02:08:26.265222Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.54.1",
+      "release": "panel-de-control-v0.54.2",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 3,
       "risk_score": 392,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "13d6810cb95631b4f4894e38a262a6df672ec719"
+      "source_commit": "053d8327341339b7b861214e3917b8668159bce3"
     },
     {
       "artifact_sha256": "fd2fc0be948b1df3662a379a8e93feb4636912631288ee504df164c771a5c738",
@@ -597,26 +597,26 @@
       "source_commit": "2a6184cde761971b190511f86b2f9f14fa43ee81"
     },
     {
-      "artifact_sha256": "d173c50440e08eb670589bbc2d818fced60c09e7bb6ed1748e6fc05fe0147633",
+      "artifact_sha256": "6642c511f52064eed68ca72cdb2782c59bf382b6f0db4f41b46c04304f0b9922",
       "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
       "baseline_release": "v0.3.6",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "PASS",
-      "first_seen_at": "2026-09-07T20:55:36.225280Z",
+      "first_seen_at": "2026-09-21T02:08:26.265222Z",
       "plugin_name": "Decky Metadata",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v0.3.13",
+      "release": "v0.3.14",
       "repository": "https://github.com/beallio/Decky-Metadata",
       "reviewer_attention_count": 0,
       "risk_score": 0,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "0588beb4810c8b0046bf9f023278cb24e29cf3b6"
+      "source_commit": "e67bf200de914c23343cbba3b21a89804c9d1288"
     },
     {
       "artifact_sha256": "e06302ed068e0d2a5a5805beca8cb9ef5c48a019f0b79f5f147e9108b1fd1d13",
@@ -641,26 +641,26 @@
       "source_commit": "1ecd5d439d747a3fe9fe2551fe509fb1cafac652"
     },
     {
-      "artifact_sha256": "439fe36d33c949b265242f2a984ea2b2700db36246a483495c2dfcb26ab91f69",
+      "artifact_sha256": "537b238cb5995ff5ad4de6f7431d76cb5825ef648fe546b19ed66ac44466ac2b",
       "baseline_artifact_sha256": "28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355",
       "baseline_release": "v0.4.3",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-02T20:16:27.729655Z",
+      "first_seen_at": "2026-09-21T02:08:26.265222Z",
       "plugin_name": "SDH-Ludusavi",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v0.4.7",
+      "release": "v0.4.8",
       "repository": "https://github.com/beallio/SDH-Ludusavi",
       "reviewer_attention_count": 0,
       "risk_score": 42,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "7904d137ecda90925ff39b68f433f0af84df9619"
+      "source_commit": "6fa7d6fb404081721cfdae7fac750a9da25b67da"
     },
     {
       "artifact_sha256": "0c79b119e00b3ec361ce5fac337e4ac4daa12820b8795055be15c57b5eb10a8a",
@@ -818,5 +818,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/35533819435"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/35552991685"
 }
