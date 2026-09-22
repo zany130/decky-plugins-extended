@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **26** — critical 3, high 13, normal 10.
-Generated: `2026-09-21T02:08:26.265222Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/35552991685
+Pending artifacts: **26** — critical 3, high 14, normal 9.
+Generated: `2026-09-22T10:30:55.337499Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/35716161710
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -15,6 +15,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | MoonDeck | nightly / `73f3010fd22c` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.54.2 / `d7c32bdde58e` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.5 / `fd2fc0be948b` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.36.0 / `d8ff8a350524` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.4 / `03d7cd44b789` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.2 / `55ed340fb6da` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
@@ -28,7 +29,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ProtonDB Badges | v1.3.4 / `763b8398ea43` | v1.3.3 / `0cbf5948ca5a` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Docky | v1.4.11 / `465dd1ebc3fd` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Steamcord | v1.35.1 / `fd85aea43130` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | 16:10 Fixes | v0.1.17 / `83b9fd61d7c0` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | MagicPods | 2.0.17 / `1e4bf0d3e77d` | 2.0.15 / `bbd64bc92b14` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Launch Options | v1.16.1 / `685a6cd500e7` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
@@ -147,6 +147,17 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Capability changes:
   - **Network communication:** network destinations +5/-0 — **review**
   - **Published release versus source:** source/release difference profile changed; rule profile +1/-0 — **review**
+
+## Steamcord
+
+- Repository: `https://github.com/Necrosiak/Steamcord`
+- Candidate: `v1.36.0` — `d8ff8a3505249ae3026b610448bec54e61cefb08eff5e4c5f4feb8f7fd84f8e1`
+- Classification: **MANUAL\_REVIEW** (risk 747)
+- Comparison: `compared`; reviewer-attention changes: 1
+- First seen: `2026-09-22T10:30:55.337499Z`
+- Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
+- Capability changes:
+  - **Network communication:** network destinations +1/-0 — **review**
 
 ## Achievement Companion
 
@@ -284,16 +295,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-09-16T02:08:09.514976Z`
 - Accepted baseline: `v1.4.8` — `6fa09e2dbfa76af695b74e4eb918a62ef94573c5b131a304dc5fec58fe5d56b3`
-- Capability changes: none observed in the comparison model.
-
-## Steamcord
-
-- Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.35.1` — `fd85aea431302b093276b41ee975f9cbcad3cae4294684dcfee809da86e96173`
-- Classification: **MANUAL\_REVIEW** (risk 747)
-- Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-20T15:03:55.444138Z`
-- Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes: none observed in the comparison model.
 
 ## 16:10 Fixes
