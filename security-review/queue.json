@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-22T20:39:21.657893Z",
+  "generated_at": "2026-09-23T02:13:58.341771Z",
   "item_count": 26,
   "items": [
     {
@@ -752,26 +752,26 @@
       "source_commit": "d3c4433a45c9687dabcb95faafc150644f0a71c7"
     },
     {
-      "artifact_sha256": "465dd1ebc3fd6319d79537a6ff3115efc235cc0d34ed19f0a4c7b756e53d6081",
+      "artifact_sha256": "297a7078a1ef956d20373c999bd92b7e98555b497516af47532f5f7c71d66733",
       "baseline_artifact_sha256": "6fa09e2dbfa76af695b74e4eb918a62ef94573c5b131a304dc5fec58fe5d56b3",
       "baseline_release": "v1.4.8",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-16T02:08:09.514976Z",
+      "first_seen_at": "2026-09-23T02:13:58.341771Z",
       "plugin_name": "Docky",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v1.4.11",
+      "release": "v1.4.13",
       "repository": "https://github.com/datbird/docky",
       "reviewer_attention_count": 0,
       "risk_score": 227,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "c2431e8d227a1fbd7458ae95a0fb973808795c0a"
+      "source_commit": "5044f6da5230fc9cb09fb6cdadc694772f5f991e"
     },
     {
       "artifact_sha256": "83b9fd61d7c058e8def34416cb08d36960b47cba25201001d0d7b3d05cd6f107",
@@ -841,5 +841,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/35781322079"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/35809338707"
 }
