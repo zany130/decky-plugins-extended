@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **26** — critical 3, high 14, normal 9.
-Generated: `2026-09-24T10:42:55.603025Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/35988543862
+Generated: `2026-09-25T02:18:07.375846Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/36085427426
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,13 +13,13 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `73f3010fd22c` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.55.0 / `387ecf90bafb` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.55.1 / `317ee0f07d06` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.5 / `fd2fc0be948b` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.37.3 / `00dcb8fec14d` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.4 / `03d7cd44b789` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.2 / `55ed340fb6da` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Deck Shelves | v3.3.0 / `c88f328c32fb` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Deck Shelves | v3.3.1 / `4d112cfde1a9` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky LSFG-VK | v0.14.4 / `a2187926dfb5` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
@@ -126,10 +126,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.55.0` — `387ecf90bafb7eeca3e7f5866326292ae3820655656e5bf61d9865ea6ef9b1b7`
+- Candidate: `panel-de-control-v0.55.1` — `317ee0f07d0658dad9e93bb7ce4c09132decb03db578eeca0a7f07a7c55cde02`
 - Classification: **MANUAL\_REVIEW** (risk 392)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-09-24T02:00:18.307868Z`
+- First seen: `2026-09-25T02:18:07.375846Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
@@ -197,10 +197,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Deck Shelves
 
 - Repository: `https://github.com/santojon/Deck-Shelves`
-- Candidate: `v3.3.0` — `c88f328c32fb95af490cb065f25ebe9da6e34fc7d2922b4f58de9d6342d9b506`
+- Candidate: `v3.3.1` — `4d112cfde1a904fc6673eea789ad08bb1c04903f2f207cf155ddc1cc0eb54b1d`
 - Classification: **MANUAL\_REVIEW** (risk 102)
 - Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-09-17T02:12:14.621012Z`
+- First seen: `2026-09-25T02:18:07.375846Z`
 - Accepted baseline: `v3.1.0` — `71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9`
 - Capability changes:
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**

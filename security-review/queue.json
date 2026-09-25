@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-24T10:42:55.603025Z",
+  "generated_at": "2026-09-25T02:18:07.375846Z",
   "item_count": 26,
   "items": [
     {
@@ -292,7 +292,7 @@
       "source_commit": "7c256cf1e40995615c21b57618e90d7e8b760ce0"
     },
     {
-      "artifact_sha256": "387ecf90bafb7eeca3e7f5866326292ae3820655656e5bf61d9865ea6ef9b1b7",
+      "artifact_sha256": "317ee0f07d0658dad9e93bb7ce4c09132decb03db578eeca0a7f07a7c55cde02",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -321,20 +321,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-24T02:00:18.307868Z",
+      "first_seen_at": "2026-09-25T02:18:07.375846Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.55.0",
+      "release": "panel-de-control-v0.55.1",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 3,
       "risk_score": 392,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "3168e5863fc248c31fc8df0d05f06ca6987d2068"
+      "source_commit": "35900f5b22c57555fb9e3a4d929113a562b4829b"
     },
     {
       "artifact_sha256": "fd2fc0be948b1df3662a379a8e93feb4636912631288ee504df164c771a5c738",
@@ -513,7 +513,7 @@
       "source_commit": "3355b00a8560abf1da9110fd780889242caa6378"
     },
     {
-      "artifact_sha256": "c88f328c32fb95af490cb065f25ebe9da6e34fc7d2922b4f58de9d6342d9b506",
+      "artifact_sha256": "4d112cfde1a904fc6673eea789ad08bb1c04903f2f207cf155ddc1cc0eb54b1d",
       "baseline_artifact_sha256": "71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9",
       "baseline_release": "v3.1.0",
       "changed_capabilities": [
@@ -528,20 +528,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-17T02:12:14.621012Z",
+      "first_seen_at": "2026-09-25T02:18:07.375846Z",
       "plugin_name": "Deck Shelves",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v3.3.0",
+      "release": "v3.3.1",
       "repository": "https://github.com/santojon/Deck-Shelves",
       "reviewer_attention_count": 1,
       "risk_score": 102,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "6e68bed4138944c8a81effc4c0200907e4798dca"
+      "source_commit": "c038e228f3b490b1776eb39055db0e6f4c7ea842"
     },
     {
       "artifact_sha256": "070d8850fcacd98db20cf45c09810f9d43898b00fa464673db5664530877daed",
@@ -841,5 +841,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/35988543862"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/36085427426"
 }
