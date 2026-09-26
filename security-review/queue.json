@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-25T10:46:59.045949Z",
-  "item_count": 26,
+  "generated_at": "2026-09-26T10:28:17.154250Z",
+  "item_count": 27,
   "items": [
     {
       "artifact_sha256": "229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a",
@@ -774,6 +774,28 @@
       "source_commit": "5044f6da5230fc9cb09fb6cdadc694772f5f991e"
     },
     {
+      "artifact_sha256": "58614ab76694cc8f66a9b6570329e03a283ff29e089cb78fe29e6d2ef6c209e3",
+      "baseline_artifact_sha256": "27936a0a822873f8653607fb90ec4b2d14d418343b22dc17acb92568eb6cb604",
+      "baseline_release": "v2.3.0",
+      "changed_capabilities": [],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-09-26T10:28:17.154250Z",
+      "plugin_name": "vpn-deck",
+      "priority": "normal",
+      "reasons": [
+        "new_artifact"
+      ],
+      "release": "v3.0.0",
+      "repository": "https://github.com/MrWaip/vpn-deck",
+      "reviewer_attention_count": 0,
+      "risk_score": 112,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "0d3df1f70c5f937256138b103a25206df5989b02"
+    },
+    {
       "artifact_sha256": "83b9fd61d7c058e8def34416cb08d36960b47cba25201001d0d7b3d05cd6f107",
       "baseline_artifact_sha256": "a8924e945dcfd57372c11a8ac8d5fa3681c3beb0171cd3991d90fccc53e161b6",
       "baseline_release": "v0.1.16",
@@ -841,5 +863,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/36125533494"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/36235774719"
 }

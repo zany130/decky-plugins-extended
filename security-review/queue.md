@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **26** — critical 3, high 14, normal 9.
-Generated: `2026-09-25T10:46:59.045949Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/36125533494
+Pending artifacts: **27** — critical 3, high 14, normal 10.
+Generated: `2026-09-26T10:28:17.154250Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/36235774719
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -29,6 +29,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ProtonDB Badges | v1.3.4 / `763b8398ea43` | v1.3.3 / `0cbf5948ca5a` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Docky | v1.4.13 / `297a7078a1ef` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | vpn-deck | v3.0.0 / `58614ab76694` | v2.3.0 / `27936a0a8228` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | 16:10 Fixes | v0.1.17 / `83b9fd61d7c0` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | MagicPods | 2.0.17 / `1e4bf0d3e77d` | 2.0.15 / `bbd64bc92b14` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Launch Options | v1.16.1 / `685a6cd500e7` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
@@ -297,6 +298,16 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-09-23T02:13:58.341771Z`
 - Accepted baseline: `v1.4.8` — `6fa09e2dbfa76af695b74e4eb918a62ef94573c5b131a304dc5fec58fe5d56b3`
+- Capability changes: none observed in the comparison model.
+
+## vpn-deck
+
+- Repository: `https://github.com/MrWaip/vpn-deck`
+- Candidate: `v3.0.0` — `58614ab76694cc8f66a9b6570329e03a283ff29e089cb78fe29e6d2ef6c209e3`
+- Classification: **MANUAL\_REVIEW** (risk 112)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-09-26T10:28:17.154250Z`
+- Accepted baseline: `v2.3.0` — `27936a0a822873f8653607fb90ec4b2d14d418343b22dc17acb92568eb6cb604`
 - Capability changes: none observed in the comparison model.
 
 ## 16:10 Fixes
