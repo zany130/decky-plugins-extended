@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **27** — critical 3, high 14, normal 10.
-Generated: `2026-09-26T10:28:17.154250Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/36235774719
+Generated: `2026-09-26T15:19:21.038702Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/36251341856
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -19,7 +19,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Achievement Companion | v0.3.4 / `03d7cd44b789` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.2 / `55ed340fb6da` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Deck Shelves | v3.3.1 / `4d112cfde1a9` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Deck Shelves | v3.3.2 / `4d22e37ad45c` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky LSFG-VK | v0.14.4 / `a2187926dfb5` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
@@ -198,10 +198,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Deck Shelves
 
 - Repository: `https://github.com/santojon/Deck-Shelves`
-- Candidate: `v3.3.1` — `4d112cfde1a904fc6673eea789ad08bb1c04903f2f207cf155ddc1cc0eb54b1d`
+- Candidate: `v3.3.2` — `4d22e37ad45cca68612daaecf0e43243dc400d62ebd4152e8f81e8e17ab06bb2`
 - Classification: **MANUAL\_REVIEW** (risk 102)
 - Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-09-25T02:18:07.375846Z`
+- First seen: `2026-09-26T15:19:21.038702Z`
 - Accepted baseline: `v3.1.0` — `71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9`
 - Capability changes:
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**
