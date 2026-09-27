@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-27T15:57:43.813939Z",
+  "generated_at": "2026-09-27T20:34:55.919332Z",
   "item_count": 28,
   "items": [
     {
@@ -292,7 +292,7 @@
       "source_commit": "7c256cf1e40995615c21b57618e90d7e8b760ce0"
     },
     {
-      "artifact_sha256": "b3ee20e54a4c35b9dd78ad651bbe80e678b0a3b29bef417a8b849f6d40b7290c",
+      "artifact_sha256": "20f5f4a83e32d84dbdb7302abe1000ab40ed1ef764dc691634281fb991119fac",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -321,20 +321,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-27T02:17:47.947543Z",
+      "first_seen_at": "2026-09-27T20:34:55.919332Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.56.1",
+      "release": "panel-de-control-v0.57.0",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 3,
       "risk_score": 392,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "147289a5aa21d9b56e121519da551b65721ec55a"
+      "source_commit": "a51c09a90c3bad1246066eeca7975a26ba17f9f5"
     },
     {
       "artifact_sha256": "fd2fc0be948b1df3662a379a8e93feb4636912631288ee504df164c771a5c738",
@@ -375,7 +375,7 @@
       "source_commit": "2423d32a8a22909cd3da39960eed55ad28384858"
     },
     {
-      "artifact_sha256": "3502035af29f69fe3ed166bbf85c02be900ce542f0c20f7358bb6a76ed1c7b5f",
+      "artifact_sha256": "89b13a172059a270e2a9bb8f98d10480d179706e70c3264a2373b886d49b2e5c",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [
@@ -404,20 +404,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-27T10:59:52.480292Z",
+      "first_seen_at": "2026-09-27T20:34:55.919332Z",
       "plugin_name": "Steamcord",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v1.39.0",
+      "release": "v1.39.1",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_attention_count": 3,
       "risk_score": 742,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "fb95678c2f05f4f438ab2be73ccce47ea3bda622"
+      "source_commit": "eb06e9350c3d0048e7c96c73bb667b961b8716fd"
     },
     {
       "artifact_sha256": "03d7cd44b789a2ab506c8de6613f961abf5cef8dc002d7d4ebda19769f7ffeec",
@@ -885,5 +885,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/36331310104"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/36348395963"
 }
