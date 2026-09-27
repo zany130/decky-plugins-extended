@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-27T10:59:52.480292Z",
-  "item_count": 27,
+  "generated_at": "2026-09-27T15:57:43.813939Z",
+  "item_count": 28,
   "items": [
     {
       "artifact_sha256": "229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a",
@@ -642,6 +642,28 @@
       "source_commit": "2a6184cde761971b190511f86b2f9f14fa43ee81"
     },
     {
+      "artifact_sha256": "f264720906b680e43c1cb0eaf1d5062003d86784912042f4b19eb0ce126b55c9",
+      "baseline_artifact_sha256": "1d8a520b499bb365dfb9ca87b03aaa0ba1afb4f57a6b1fc3b7b6183b5b53399e",
+      "baseline_release": "v3.3.0",
+      "changed_capabilities": [],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-09-27T15:57:43.813939Z",
+      "plugin_name": "PlayTime",
+      "priority": "normal",
+      "reasons": [
+        "new_artifact"
+      ],
+      "release": "v3.3.1",
+      "repository": "https://github.com/0u73r-h34v3n/SDH-PlayTime",
+      "reviewer_attention_count": 0,
+      "risk_score": 37,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "64d5faf8127f7e8588c8d26fae4567d58dc3f4f0"
+    },
+    {
       "artifact_sha256": "6642c511f52064eed68ca72cdb2782c59bf382b6f0db4f41b46c04304f0b9922",
       "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
       "baseline_release": "v0.3.6",
@@ -863,5 +885,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/36314165436"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/36331310104"
 }

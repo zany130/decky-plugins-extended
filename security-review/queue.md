@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **27** — critical 3, high 14, normal 10.
-Generated: `2026-09-27T10:59:52.480292Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/36314165436
+Pending artifacts: **28** — critical 3, high 14, normal 11.
+Generated: `2026-09-27T15:57:43.813939Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/36331310104
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -23,6 +23,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky LSFG-VK | v0.14.4 / `a2187926dfb5` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
+| **NORMAL** | PlayTime | v3.3.1 / `f264720906b6` | v3.3.0 / `1d8a520b499b` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Decky Metadata | v0.3.14 / `6642c511f520` | v0.3.6 / `0d856632d8a4` | PASS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.8 / `537b238cb599` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
@@ -238,6 +239,16 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
 - First seen: `2026-08-09T01:07:41.070060Z`
 - Accepted baseline: unavailable
+- Capability changes: none observed in the comparison model.
+
+## PlayTime
+
+- Repository: `https://github.com/0u73r-h34v3n/SDH-PlayTime`
+- Candidate: `v3.3.1` — `f264720906b680e43c1cb0eaf1d5062003d86784912042f4b19eb0ce126b55c9`
+- Classification: **MANUAL\_REVIEW** (risk 37)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-09-27T15:57:43.813939Z`
+- Accepted baseline: `v3.3.0` — `1d8a520b499bb365dfb9ca87b03aaa0ba1afb4f57a6b1fc3b7b6183b5b53399e`
 - Capability changes: none observed in the comparison model.
 
 ## Decky Metadata
