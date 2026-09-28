@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-28T12:16:27.739165Z",
+  "generated_at": "2026-09-28T22:45:47.489357Z",
   "item_count": 28,
   "items": [
     {
@@ -203,6 +203,37 @@
       "source_commit": "feffd088b462e1e9ed77fc2c5d82b627cd44d32d"
     },
     {
+      "artifact_sha256": "6d20214b39370a1d0087ee31e5a571be39d35bc6d85804d47f1bafdd605370f4",
+      "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
+      "baseline_release": "v0.3.6",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +2/-0",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS",
+      "first_seen_at": "2026-09-28T22:45:47.489357Z",
+      "plugin_name": "Decky Metadata",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "v0.4.0",
+      "repository": "https://github.com/beallio/Decky-Metadata",
+      "reviewer_attention_count": 1,
+      "risk_score": 0,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "4b4d04ef3df97e3e78c5e14efe925b046f2dfc56"
+    },
+    {
       "artifact_sha256": "7ebadc4bfd0eeec84b9d4d39dfcae39f893fe05e80521caf431a8f4fafde54de",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
@@ -292,7 +323,7 @@
       "source_commit": "7c256cf1e40995615c21b57618e90d7e8b760ce0"
     },
     {
-      "artifact_sha256": "f6c2b989280b8580c058ec6461310dd9c0bff3fd2df90f71a9adf247f02ac130",
+      "artifact_sha256": "d71371729b210991bbbe44b4a23b310df311a51ca0b2c733dfb3644aa417edb0",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -321,20 +352,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-28T12:16:27.739165Z",
+      "first_seen_at": "2026-09-28T22:45:47.489357Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.57.2",
+      "release": "panel-de-control-v0.57.4",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 3,
       "risk_score": 392,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "46b979953dda0ad2775532dd2e771eec60caca32"
+      "source_commit": "4f9304647e9e5828f8e0c430e62e86cb5ebce074"
     },
     {
       "artifact_sha256": "fd2fc0be948b1df3662a379a8e93feb4636912631288ee504df164c771a5c738",
@@ -375,7 +406,7 @@
       "source_commit": "2423d32a8a22909cd3da39960eed55ad28384858"
     },
     {
-      "artifact_sha256": "89b13a172059a270e2a9bb8f98d10480d179706e70c3264a2373b886d49b2e5c",
+      "artifact_sha256": "0eb3099ccb541376f9139386d2bbd7e5348decdd9ca1f2a4f8b5c0d6f8f50c03",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [
@@ -404,20 +435,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-27T20:34:55.919332Z",
+      "first_seen_at": "2026-09-28T22:45:47.489357Z",
       "plugin_name": "Steamcord",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v1.39.1",
+      "release": "v1.39.2",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_attention_count": 3,
       "risk_score": 742,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "eb06e9350c3d0048e7c96c73bb667b961b8716fd"
+      "source_commit": "d82eaca3e1ea78204d320e21a748b961fea182b7"
     },
     {
       "artifact_sha256": "03d7cd44b789a2ab506c8de6613f961abf5cef8dc002d7d4ebda19769f7ffeec",
@@ -664,28 +695,6 @@
       "source_commit": "64d5faf8127f7e8588c8d26fae4567d58dc3f4f0"
     },
     {
-      "artifact_sha256": "6642c511f52064eed68ca72cdb2782c59bf382b6f0db4f41b46c04304f0b9922",
-      "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
-      "baseline_release": "v0.3.6",
-      "changed_capabilities": [],
-      "comparison_status": "compared",
-      "error_count": 0,
-      "final_classification": "PASS",
-      "first_seen_at": "2026-09-21T02:08:26.265222Z",
-      "plugin_name": "Decky Metadata",
-      "priority": "normal",
-      "reasons": [
-        "new_artifact"
-      ],
-      "release": "v0.3.14",
-      "repository": "https://github.com/beallio/Decky-Metadata",
-      "reviewer_attention_count": 0,
-      "risk_score": 0,
-      "same_artifact": false,
-      "scanner_failures": [],
-      "source_commit": "e67bf200de914c23343cbba3b21a89804c9d1288"
-    },
-    {
       "artifact_sha256": "e06302ed068e0d2a5a5805beca8cb9ef5c48a019f0b79f5f147e9108b1fd1d13",
       "baseline_artifact_sha256": "0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a",
       "baseline_release": "v0.2.0",
@@ -885,5 +894,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/36420415670"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/36493926358"
 }
