@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-09-29T11:46:28.170511Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/36563474771
+Generated: `2026-09-29T21:38:36.157569Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/36634326431
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -26,7 +26,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **NORMAL** | PlayTime | v3.3.1 / `f264720906b6` | v3.3.0 / `1d8a520b499b` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
-| **NORMAL** | SDH-Ludusavi | v0.4.8 / `537b238cb599` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | SDH-Ludusavi | v0.4.9 / `6d39f77e5b4f` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ProtonDB Badges | v1.3.4 / `763b8398ea43` | v1.3.3 / `0cbf5948ca5a` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Docky | v1.4.13 / `297a7078a1ef` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | new artifact |
@@ -275,10 +275,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## SDH-Ludusavi
 
 - Repository: `https://github.com/beallio/SDH-Ludusavi`
-- Candidate: `v0.4.8` — `537b238cb5995ff5ad4de6f7431d76cb5825ef648fe546b19ed66ac44466ac2b`
+- Candidate: `v0.4.9` — `6d39f77e5b4ffea5acb247043bd1a8c11f03bfef2b9a1b0f955ff5475b2a84b3`
 - Classification: **MANUAL\_REVIEW** (risk 42)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-21T02:08:26.265222Z`
+- First seen: `2026-09-29T21:38:36.157569Z`
 - Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
 - Capability changes: none observed in the comparison model.
 
