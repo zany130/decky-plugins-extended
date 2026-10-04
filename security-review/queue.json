@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-04T03:14:26.742913Z",
+  "generated_at": "2026-10-04T16:09:03.972686Z",
   "item_count": 28,
   "items": [
     {
@@ -375,45 +375,52 @@
       "source_commit": "5dd8fb18ef599af0f56527b927de99640462171c"
     },
     {
-      "artifact_sha256": "fd2fc0be948b1df3662a379a8e93feb4636912631288ee504df164c771a5c738",
+      "artifact_sha256": "36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315",
       "baseline_artifact_sha256": "dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7",
       "baseline_release": "Release-0.7.3",
       "changed_capabilities": [
         {
+          "id": "native_code",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "native binaries +5/-0",
+          "title": "Native executable code"
+        },
+        {
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +5/-0",
+          "summary": "network destinations +11/-0",
           "title": "Network communication"
         },
         {
           "id": "source_release_integrity",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "source/release difference profile changed; rule profile +1/-0",
+          "summary": "source/release difference profile changed (1 count change(s)); rule profile +2/-0",
           "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-10T01:55:43.555485Z",
+      "first_seen_at": "2026-10-04T16:09:03.972686Z",
       "plugin_name": "Unifideck",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "Release-0.7.5",
+      "release": "Release-0.7.6",
       "repository": "https://github.com/mubaraknumann/unifideck",
-      "reviewer_attention_count": 2,
-      "risk_score": 2366,
+      "reviewer_attention_count": 3,
+      "risk_score": 2453,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "2423d32a8a22909cd3da39960eed55ad28384858"
+      "source_commit": "72699f1cb0919be694b3d9311c653f7ea7f243e0"
     },
     {
-      "artifact_sha256": "e2df6e1918f36cbfc66f68d8c78b67b36a668e58a9b0c9ba773a5c8e09d4de65",
+      "artifact_sha256": "edf4c13f5f38ee7c0e9a190aae3866ae81b47bd370811ed783497556f47f072e",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [
@@ -442,20 +449,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-01T18:01:01.571772Z",
+      "first_seen_at": "2026-10-04T16:09:03.972686Z",
       "plugin_name": "Steamcord",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v1.40.1",
+      "release": "v1.40.2",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_attention_count": 3,
       "risk_score": 742,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "58df6026e98f97ef62b1d53464ae8186f7007c2a"
+      "source_commit": "58ab64d40e087a8c7443e391aeb7ec38d076118e"
     },
     {
       "artifact_sha256": "03d7cd44b789a2ab506c8de6613f961abf5cef8dc002d7d4ebda19769f7ffeec",
@@ -901,5 +908,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/37173374779"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/37215429923"
 }

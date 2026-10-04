@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-04T03:14:26.742913Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/37173374779
+Generated: `2026-10-04T16:09:03.972686Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/37215429923
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -15,8 +15,8 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `73f3010fd22c` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.61.1 / `f4ede4a588a1` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Unifideck | Release-0.7.5 / `fd2fc0be948b` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.40.1 / `e2df6e1918f3` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.40.2 / `edf4c13f5f38` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.4 / `03d7cd44b789` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.2 / `55ed340fb6da` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
@@ -153,22 +153,23 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Unifideck
 
 - Repository: `https://github.com/mubaraknumann/unifideck`
-- Candidate: `Release-0.7.5` — `fd2fc0be948b1df3662a379a8e93feb4636912631288ee504df164c771a5c738`
-- Classification: **MANUAL\_REVIEW** (risk 2366)
-- Comparison: `compared`; reviewer-attention changes: 2
-- First seen: `2026-09-10T01:55:43.555485Z`
+- Candidate: `Release-0.7.6` — `36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315`
+- Classification: **MANUAL\_REVIEW** (risk 2453)
+- Comparison: `compared`; reviewer-attention changes: 3
+- First seen: `2026-10-04T16:09:03.972686Z`
 - Accepted baseline: `Release-0.7.3` — `dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7`
 - Capability changes:
-  - **Network communication:** network destinations +5/-0 — **review**
-  - **Published release versus source:** source/release difference profile changed; rule profile +1/-0 — **review**
+  - **Native executable code:** native binaries +5/-0 — **review**
+  - **Network communication:** network destinations +11/-0 — **review**
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)); rule profile +2/-0 — **review**
 
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.40.1` — `e2df6e1918f36cbfc66f68d8c78b67b36a668e58a9b0c9ba773a5c8e09d4de65`
+- Candidate: `v1.40.2` — `edf4c13f5f38ee7c0e9a190aae3866ae81b47bd370811ed783497556f47f072e`
 - Classification: **MANUAL\_REVIEW** (risk 742)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-10-01T18:01:01.571772Z`
+- First seen: `2026-10-04T16:09:03.972686Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Command and process execution:** rule profile +0/-1 — **review**
