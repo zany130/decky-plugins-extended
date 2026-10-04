@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-02T17:00:08.508130Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/37037394021
+Generated: `2026-10-04T03:14:26.742913Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/37173374779
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -10,7 +10,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | Decky-Framegen | v0.17 / `3300b617e3d9` | v0.17 / `3300b617e3d9` | AUDIT\_ERROR | audit error, security delta, same artifact analysis drift |
 | **HIGH** | steam-achievements | v1.2.5 / `522346503007` | v1.2.3 / `4a698f9f7bf0` | PASS\_WITH\_WARNINGS | new artifact, security delta |
-| **HIGH** | Decky Metadata | v0.4.0 / `6d20214b3937` | v0.3.6 / `0d856632d8a4` | PASS | new artifact, security delta |
+| **HIGH** | Decky Metadata | v0.5.0 / `963fe696b0eb` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `73f3010fd22c` | unavailable | MANUAL\_REVIEW | baseline unavailable |
@@ -95,13 +95,14 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Metadata
 
 - Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `v0.4.0` — `6d20214b39370a1d0087ee31e5a571be39d35bc6d85804d47f1bafdd605370f4`
-- Classification: **PASS** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-09-28T22:45:47.489357Z`
+- Candidate: `v0.5.0` — `963fe696b0eb384db257cacc29ae8820af65d7b9629e0a715bc1bc5c97cbfde3`
+- Classification: **MANUAL\_REVIEW** (risk 30)
+- Comparison: `compared`; reviewer-attention changes: 2
+- First seen: `2026-10-04T03:14:26.742913Z`
 - Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes:
-  - **Network communication:** network destinations +2/-0 — **review**
+  - **Command and process execution:** not\_observed -\> observed; rule profile +1/-0 — **review**
+  - **Network communication:** network destinations +5/-0 — **review**
 
 ## DeckyClash
 
