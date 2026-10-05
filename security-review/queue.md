@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-04T16:09:03.972686Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/37215429923
+Generated: `2026-10-05T23:29:14.194673Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/37388409603
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,10 +13,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Decky Metadata | v0.5.0 / `963fe696b0eb` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | MoonDeck | nightly / `73f3010fd22c` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.61.1 / `f4ede4a588a1` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | MoonDeck | nightly / `6512e53c3459` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | Panel de Control | panel-de-control-v0.62.0 / `fcd00e4ba484` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.40.2 / `edf4c13f5f38` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.40.3 / `314ac8e2938a` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.4 / `03d7cd44b789` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.2 / `55ed340fb6da` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
@@ -130,24 +130,24 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## MoonDeck
 
 - Repository: `https://github.com/FrogTheFrog/moondeck`
-- Candidate: `nightly` — `73f3010fd22cee74d5f0cb2060cf2d83705ecafd90a659732343eb2fc70c7424`
-- Classification: **MANUAL\_REVIEW** (risk 7839)
+- Candidate: `nightly` — `6512e53c34599b0d516000a183a08486405dab5209fc8b549f21c7e066c9c269`
+- Classification: **MANUAL\_REVIEW** (risk 7184)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-09-20T15:03:55.444138Z`
+- First seen: `2026-10-05T23:29:14.194673Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.61.1` — `f4ede4a588a199c69c7d2fab101a13e6abf97db7813d213d124b5ad8193f9f33`
-- Classification: **MANUAL\_REVIEW** (risk 437)
+- Candidate: `panel-de-control-v0.62.0` — `fcd00e4ba4848c5831e39043ccb3bd49d99cff201eb3812d8aca7bc1ebb395a1`
+- Classification: **MANUAL\_REVIEW** (risk 462)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-10-02T17:00:08.508130Z`
+- First seen: `2026-10-05T23:29:14.194673Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
-  - **Network communication:** network destinations +2/-0 — **review**
+  - **Network communication:** network destinations +4/-0 — **review**
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**
 
 ## Unifideck
@@ -166,10 +166,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.40.2` — `edf4c13f5f38ee7c0e9a190aae3866ae81b47bd370811ed783497556f47f072e`
+- Candidate: `v1.40.3` — `314ac8e2938a337fff9126d5236209e35a228e0068622d999b3b1cb0a11e2d25`
 - Classification: **MANUAL\_REVIEW** (risk 742)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-10-04T16:09:03.972686Z`
+- First seen: `2026-10-05T23:29:14.194673Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Command and process execution:** rule profile +0/-1 — **review**
