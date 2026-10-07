@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T22:00:13.585194Z",
+  "generated_at": "2026-10-07T22:25:47.838988Z",
   "item_count": 28,
   "items": [
     {
@@ -203,7 +203,7 @@
       "source_commit": "feffd088b462e1e9ed77fc2c5d82b627cd44d32d"
     },
     {
-      "artifact_sha256": "963fe696b0eb384db257cacc29ae8820af65d7b9629e0a715bc1bc5c97cbfde3",
+      "artifact_sha256": "83bf54f692cf1bf8d6acfba537b2ff660a7d7d5dc28017d89df2ff9c171e73f3",
       "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
       "baseline_release": "v0.3.6",
       "changed_capabilities": [
@@ -211,7 +211,7 @@
           "id": "command_execution",
           "reviewer_attention": true,
           "status_change": "newly_observed",
-          "summary": "not_observed -> observed; rule profile +1/-0",
+          "summary": "not_observed -> observed; rule profile +2/-0",
           "title": "Command and process execution"
         },
         {
@@ -220,25 +220,32 @@
           "status_change": "unchanged",
           "summary": "network destinations +5/-0",
           "title": "Network communication"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; source/release difference profile changed; rule profile +1/-0",
+          "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-04T03:14:26.742913Z",
+      "first_seen_at": "2026-10-07T22:25:47.838988Z",
       "plugin_name": "Decky Metadata",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.5.0",
+      "release": "v0.5.1",
       "repository": "https://github.com/beallio/Decky-Metadata",
-      "reviewer_attention_count": 2,
-      "risk_score": 30,
+      "reviewer_attention_count": 3,
+      "risk_score": 52,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "e0376e2b89633465112ac3364fc05ad33bccfa38"
+      "source_commit": "ac25ba77c9848ac469512a322986d17bbd0f6f44"
     },
     {
       "artifact_sha256": "7ebadc4bfd0eeec84b9d4d39dfcae39f893fe05e80521caf431a8f4fafde54de",
@@ -330,7 +337,7 @@
       "source_commit": "8064beae78914b9a8cf1cbf5d8bdc02c9cab8e51"
     },
     {
-      "artifact_sha256": "fcd00e4ba4848c5831e39043ccb3bd49d99cff201eb3812d8aca7bc1ebb395a1",
+      "artifact_sha256": "db8296805d374d085281d913c4f495e1be0f06e369760f15a11a421b64027f29",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -359,20 +366,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-05T23:29:14.194673Z",
+      "first_seen_at": "2026-10-07T22:25:47.838988Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.62.0",
+      "release": "panel-de-control-v0.63.0",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 3,
       "risk_score": 462,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "4d7a193c52973003890b864cffa8fccc83a31509"
+      "source_commit": "91848844615dff7c8036d708478c78e5bf1aa664"
     },
     {
       "artifact_sha256": "36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315",
@@ -908,5 +915,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/37537476124"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/37695782014"
 }

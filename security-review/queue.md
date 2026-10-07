@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-06T22:00:13.585194Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/37537476124
+Generated: `2026-10-07T22:25:47.838988Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/37695782014
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -10,11 +10,11 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | Decky-Framegen | v0.17 / `3300b617e3d9` | v0.17 / `3300b617e3d9` | AUDIT\_ERROR | audit error, security delta, same artifact analysis drift |
 | **HIGH** | steam-achievements | v1.2.5 / `522346503007` | v1.2.3 / `4a698f9f7bf0` | PASS\_WITH\_WARNINGS | new artifact, security delta |
-| **HIGH** | Decky Metadata | v0.5.0 / `963fe696b0eb` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Metadata | v0.5.1 / `83bf54f692cf` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `6512e53c3459` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.62.0 / `fcd00e4ba484` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.63.0 / `db8296805d37` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.41.0 / `2b532a29a5ee` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.4 / `03d7cd44b789` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
@@ -95,14 +95,15 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Metadata
 
 - Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `v0.5.0` — `963fe696b0eb384db257cacc29ae8820af65d7b9629e0a715bc1bc5c97cbfde3`
-- Classification: **MANUAL\_REVIEW** (risk 30)
-- Comparison: `compared`; reviewer-attention changes: 2
-- First seen: `2026-10-04T03:14:26.742913Z`
+- Candidate: `v0.5.1` — `83bf54f692cf1bf8d6acfba537b2ff660a7d7d5dc28017d89df2ff9c171e73f3`
+- Classification: **MANUAL\_REVIEW** (risk 52)
+- Comparison: `compared`; reviewer-attention changes: 3
+- First seen: `2026-10-07T22:25:47.838988Z`
 - Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes:
-  - **Command and process execution:** not\_observed -\> observed; rule profile +1/-0 — **review**
+  - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
   - **Network communication:** network destinations +5/-0 — **review**
+  - **Published release versus source:** not\_observed -\> observed; source/release difference profile changed; rule profile +1/-0 — **review**
 
 ## DeckyClash
 
@@ -140,10 +141,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.62.0` — `fcd00e4ba4848c5831e39043ccb3bd49d99cff201eb3812d8aca7bc1ebb395a1`
+- Candidate: `panel-de-control-v0.63.0` — `db8296805d374d085281d913c4f495e1be0f06e369760f15a11a421b64027f29`
 - Classification: **MANUAL\_REVIEW** (risk 462)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-10-05T23:29:14.194673Z`
+- First seen: `2026-10-07T22:25:47.838988Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
