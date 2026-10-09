@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T12:15:14.020055Z",
+  "generated_at": "2026-10-09T22:01:04.649232Z",
   "item_count": 28,
   "items": [
     {
@@ -203,7 +203,7 @@
       "source_commit": "feffd088b462e1e9ed77fc2c5d82b627cd44d32d"
     },
     {
-      "artifact_sha256": "83bf54f692cf1bf8d6acfba537b2ff660a7d7d5dc28017d89df2ff9c171e73f3",
+      "artifact_sha256": "7b415dd708eb216565e2f8dfe666c6df97770d63a13a2aeb8e5bfd87dfb767cf",
       "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
       "baseline_release": "v0.3.6",
       "changed_capabilities": [
@@ -220,32 +220,25 @@
           "status_change": "unchanged",
           "summary": "network destinations +5/-0",
           "title": "Network communication"
-        },
-        {
-          "id": "source_release_integrity",
-          "reviewer_attention": true,
-          "status_change": "newly_observed",
-          "summary": "not_observed -> observed; source/release difference profile changed; rule profile +1/-0",
-          "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-07T22:25:47.838988Z",
+      "first_seen_at": "2026-10-09T22:01:04.649232Z",
       "plugin_name": "Decky Metadata",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.5.1",
+      "release": "v0.5.2",
       "repository": "https://github.com/beallio/Decky-Metadata",
-      "reviewer_attention_count": 3,
-      "risk_score": 52,
+      "reviewer_attention_count": 2,
+      "risk_score": 50,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "ac25ba77c9848ac469512a322986d17bbd0f6f44"
+      "source_commit": "df8c2b65ddfca1ded9f9f3b34100240012c816df"
     },
     {
       "artifact_sha256": "7ebadc4bfd0eeec84b9d4d39dfcae39f893fe05e80521caf431a8f4fafde54de",
@@ -315,14 +308,14 @@
       "source_commit": "7999748cbe912ec283d6fc57bf9b11259e0be57c"
     },
     {
-      "artifact_sha256": "6512e53c34599b0d516000a183a08486405dab5209fc8b549f21c7e066c9c269",
+      "artifact_sha256": "8ba02892f5e86b5cd6ddf8e5cfc58493ba41bf113aea73d7f2dddac0a8ce6055",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
       "changed_capabilities": [],
       "comparison_status": "baseline_not_found",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-05T23:29:14.194673Z",
+      "first_seen_at": "2026-10-09T22:01:04.649232Z",
       "plugin_name": "MoonDeck",
       "priority": "high",
       "reasons": [
@@ -331,13 +324,13 @@
       "release": "nightly",
       "repository": "https://github.com/FrogTheFrog/moondeck",
       "reviewer_attention_count": 0,
-      "risk_score": 7184,
+      "risk_score": 7169,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "8064beae78914b9a8cf1cbf5d8bdc02c9cab8e51"
+      "source_commit": "c1de25d4bbb77ba68ce62a1cd73aac3013b74f6c"
     },
     {
-      "artifact_sha256": "0cc94a388bc74edb015da25c2e653a08da0330b1783889b22a07f711c822f6eb",
+      "artifact_sha256": "b35159de1d00c464e0e799db24d8618cd8fb80f59d7c1f048b6427592db5586e",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -349,37 +342,51 @@
           "title": "Command and process execution"
         },
         {
+          "id": "native_code",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "native binaries +2/-0",
+          "title": "Native executable code"
+        },
+        {
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +4/-0",
+          "summary": "network destinations +5/-0",
           "title": "Network communication"
         },
         {
           "id": "sensitive_data_access",
           "reviewer_attention": true,
           "status_change": "newly_observed",
-          "summary": "not_observed -> observed; rule profile +1/-0",
+          "summary": "not_observed -> observed; rule profile +3/-0",
           "title": "Credentials and sensitive data"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed (1 count change(s))",
+          "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-09T03:28:40.308779Z",
+      "first_seen_at": "2026-10-09T22:01:04.649232Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.66.0",
+      "release": "panel-de-control-v0.67.1",
       "repository": "https://github.com/Hooandee/panel-de-control",
-      "reviewer_attention_count": 3,
-      "risk_score": 462,
+      "reviewer_attention_count": 5,
+      "risk_score": 582,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "39bac93aeaefe4efddbec79b857db3a463def8be"
+      "source_commit": "ec167cda3f1e793274d6546332c63fc3d5ec539f"
     },
     {
       "artifact_sha256": "36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315",
@@ -915,5 +922,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/37928538585"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/37996473170"
 }
