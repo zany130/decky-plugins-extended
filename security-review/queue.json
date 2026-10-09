@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T03:28:40.308779Z",
+  "generated_at": "2026-10-09T12:15:14.020055Z",
   "item_count": 28,
   "items": [
     {
@@ -427,7 +427,7 @@
       "source_commit": "72699f1cb0919be694b3d9311c653f7ea7f243e0"
     },
     {
-      "artifact_sha256": "ea1beed8a6d46f1a69dee49f4ebcc9cbb5691d7b036b06fdf6d63ef4beaccedf",
+      "artifact_sha256": "645cf1f20e7bdd35caec85b52fda4da372b6030254c44ba8cfcf5e2ada25bda6",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [
@@ -442,7 +442,7 @@
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +2/-0",
+          "summary": "network destinations +3/-0",
           "title": "Network communication"
         },
         {
@@ -456,20 +456,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-08T12:26:18.044386Z",
+      "first_seen_at": "2026-10-09T12:15:14.020055Z",
       "plugin_name": "Steamcord",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v1.41.1",
+      "release": "v1.41.2",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_attention_count": 3,
       "risk_score": 742,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "a125e66f2b0148150986da93db14468aa791b99a"
+      "source_commit": "24388e4326294d4c5fbf7dab5a7438e2820cbfa2"
     },
     {
       "artifact_sha256": "03d7cd44b789a2ab506c8de6613f961abf5cef8dc002d7d4ebda19769f7ffeec",
@@ -915,5 +915,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/37879241362"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/37928538585"
 }
