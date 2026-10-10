@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T16:32:54.239068Z",
+  "generated_at": "2026-10-10T20:51:11.232689Z",
   "item_count": 28,
   "items": [
     {
@@ -479,35 +479,56 @@
       "source_commit": "dfe83a19d81619c5abbf02acf3c79b9cb364b674"
     },
     {
-      "artifact_sha256": "03d7cd44b789a2ab506c8de6613f961abf5cef8dc002d7d4ebda19769f7ffeec",
+      "artifact_sha256": "0bf9cd6d47f07aaf7964141607cee2f148581aa9cba649c621a8799b9582a938",
       "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
       "baseline_release": "v0.3.2",
       "changed_capabilities": [
         {
+          "id": "command_execution",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; rule profile +1/-0",
+          "title": "Command and process execution"
+        },
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +10/-1",
+          "title": "Network communication"
+        },
+        {
+          "id": "sensitive_data_access",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; rule profile +1/-0",
+          "title": "Credentials and sensitive data"
+        },
+        {
           "id": "source_release_integrity",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "source/release difference profile changed (1 count change(s)); rule profile +1/-0",
+          "summary": "source/release difference profile changed",
           "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-14T11:11:03.176918Z",
+      "first_seen_at": "2026-10-10T20:51:11.232689Z",
       "plugin_name": "Achievement Companion",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.3.4",
+      "release": "v0.14.1",
       "repository": "https://github.com/parvagans/achievement-companion",
-      "reviewer_attention_count": 1,
-      "risk_score": 34,
+      "reviewer_attention_count": 4,
+      "risk_score": 92,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "0d3134ddd0cf18d9c83126259a3b8bad00299973"
+      "source_commit": "47ef6ef8586ec4804db14f6bde464182af8a0237"
     },
     {
       "artifact_sha256": "3b8576406a46906f9a0c3451abd80f9a7cd8cde09a438959e2a43404446ce509",
@@ -929,5 +950,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/38067911096"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/38085174690"
 }
