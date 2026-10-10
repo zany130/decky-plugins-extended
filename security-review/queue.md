@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-09T22:01:04.649232Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/37996473170
+Generated: `2026-10-10T11:33:12.774892Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38048613965
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -10,13 +10,13 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | Decky-Framegen | v0.17 / `3300b617e3d9` | v0.17 / `3300b617e3d9` | AUDIT\_ERROR | audit error, security delta, same artifact analysis drift |
 | **HIGH** | steam-achievements | v1.2.5 / `522346503007` | v1.2.3 / `4a698f9f7bf0` | PASS\_WITH\_WARNINGS | new artifact, security delta |
-| **HIGH** | Decky Metadata | v0.5.2 / `7b415dd708eb` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Metadata | v0.5.3 / `9a3468d9b380` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `8ba02892f5e8` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.67.1 / `b35159de1d00` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.41.2 / `645cf1f20e7b` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.41.3 / `b47b3b7b084a` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.3.4 / `03d7cd44b789` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.0.2 / `55ed340fb6da` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
@@ -95,10 +95,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Metadata
 
 - Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `v0.5.2` — `7b415dd708eb216565e2f8dfe666c6df97770d63a13a2aeb8e5bfd87dfb767cf`
+- Candidate: `v0.5.3` — `9a3468d9b380920f80dc9c87df413026ee631afeb8f50cf35781c6db550f665b`
 - Classification: **MANUAL\_REVIEW** (risk 50)
 - Comparison: `compared`; reviewer-attention changes: 2
-- First seen: `2026-10-09T22:01:04.649232Z`
+- First seen: `2026-10-10T11:33:12.774892Z`
 - Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
@@ -168,10 +168,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.41.2` — `645cf1f20e7bdd35caec85b52fda4da372b6030254c44ba8cfcf5e2ada25bda6`
+- Candidate: `v1.41.3` — `b47b3b7b084ad55a9a9c030cb05452b45276214d03882c75814f65aa48ff64c9`
 - Classification: **MANUAL\_REVIEW** (risk 742)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-10-09T12:15:14.020055Z`
+- First seen: `2026-10-10T11:33:12.774892Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Command and process execution:** rule profile +0/-1 — **review**
