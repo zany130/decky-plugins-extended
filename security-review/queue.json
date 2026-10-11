@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T02:39:31.323390Z",
+  "generated_at": "2026-10-11T11:46:53.650378Z",
   "item_count": 28,
   "items": [
     {
@@ -434,7 +434,7 @@
       "source_commit": "72699f1cb0919be694b3d9311c653f7ea7f243e0"
     },
     {
-      "artifact_sha256": "b47b3b7b084ad55a9a9c030cb05452b45276214d03882c75814f65aa48ff64c9",
+      "artifact_sha256": "36e617ff8b4a5ca12cb81b995a040d819da8bc398ec95b80a99908158c6f7659",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [
@@ -458,28 +458,35 @@
           "status_change": "unchanged",
           "summary": "rule profile +0/-1",
           "title": "Privileged and system-level access"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed (1 count change(s))",
+          "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-10T11:33:12.774892Z",
+      "first_seen_at": "2026-10-11T11:46:53.650378Z",
       "plugin_name": "Steamcord",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v1.41.3",
+      "release": "v1.41.4",
       "repository": "https://github.com/Necrosiak/Steamcord",
-      "reviewer_attention_count": 3,
-      "risk_score": 742,
+      "reviewer_attention_count": 4,
+      "risk_score": 757,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "dfe83a19d81619c5abbf02acf3c79b9cb364b674"
+      "source_commit": "d4dabecc6aa9479bc006711b6caacd3ee8ce0852"
     },
     {
-      "artifact_sha256": "0bf9cd6d47f07aaf7964141607cee2f148581aa9cba649c621a8799b9582a938",
+      "artifact_sha256": "e95fdac01699f9c1c3e0bcf9067de3b4e792b5a65a33a14cb4e43c28d731e01f",
       "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
       "baseline_release": "v0.3.2",
       "changed_capabilities": [
@@ -515,20 +522,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-10T20:51:11.232689Z",
+      "first_seen_at": "2026-10-11T11:46:53.650378Z",
       "plugin_name": "Achievement Companion",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.14.1",
+      "release": "v0.16.1",
       "repository": "https://github.com/parvagans/achievement-companion",
       "reviewer_attention_count": 4,
       "risk_score": 92,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "47ef6ef8586ec4804db14f6bde464182af8a0237"
+      "source_commit": "06acbc3f50a67adb54ff0f7ffd1ba69906dc4c17"
     },
     {
       "artifact_sha256": "bd3ccf13afa69d81e56e6d17ebf9e9e83f3b76daeae13c4c691757c343c3c5ea",
@@ -950,5 +957,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/38105745939"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/38136611544"
 }

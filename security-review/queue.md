@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-11T02:39:31.323390Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38105745939
+Generated: `2026-10-11T11:46:53.650378Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38136611544
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -16,8 +16,8 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | MoonDeck | nightly / `8ba02892f5e8` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.67.1 / `b35159de1d00` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.41.3 / `b47b3b7b084a` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Achievement Companion | v0.14.1 / `0bf9cd6d47f0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.41.4 / `36e617ff8b4a` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Achievement Companion | v0.16.1 / `e95fdac01699` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.1.1 / `bd3ccf13afa6` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.3.3 / `827c26a7c3f2` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
@@ -168,23 +168,24 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.41.3` — `b47b3b7b084ad55a9a9c030cb05452b45276214d03882c75814f65aa48ff64c9`
-- Classification: **MANUAL\_REVIEW** (risk 742)
-- Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-10-10T11:33:12.774892Z`
+- Candidate: `v1.41.4` — `36e617ff8b4a5ca12cb81b995a040d819da8bc398ec95b80a99908158c6f7659`
+- Classification: **MANUAL\_REVIEW** (risk 757)
+- Comparison: `compared`; reviewer-attention changes: 4
+- First seen: `2026-10-11T11:46:53.650378Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Command and process execution:** rule profile +0/-1 — **review**
   - **Network communication:** network destinations +3/-0 — **review**
   - **Privileged and system-level access:** rule profile +0/-1 — **review**
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
 
 ## Achievement Companion
 
 - Repository: `https://github.com/parvagans/achievement-companion`
-- Candidate: `v0.14.1` — `0bf9cd6d47f07aaf7964141607cee2f148581aa9cba649c621a8799b9582a938`
+- Candidate: `v0.16.1` — `e95fdac01699f9c1c3e0bcf9067de3b4e792b5a65a33a14cb4e43c28d731e01f`
 - Classification: **MANUAL\_REVIEW** (risk 92)
 - Comparison: `compared`; reviewer-attention changes: 4
-- First seen: `2026-10-10T20:51:11.232689Z`
+- First seen: `2026-10-11T11:46:53.650378Z`
 - Accepted baseline: `v0.3.2` — `3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +1/-0 — **review**
