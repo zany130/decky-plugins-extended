@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-10T20:51:11.232689Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38085174690
+Generated: `2026-10-11T02:39:31.323390Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38105745939
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -18,7 +18,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.41.3 / `b47b3b7b084a` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.14.1 / `0bf9cd6d47f0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Decky Vibrance HDR | 1.1.0 / `3b8576406a46` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Vibrance HDR | 1.1.1 / `bd3ccf13afa6` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.3.3 / `827c26a7c3f2` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
@@ -195,14 +195,14 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Vibrance HDR
 
 - Repository: `https://github.com/Rayekkk/DeckyVibranceHDR`
-- Candidate: `1.1.0` — `3b8576406a46906f9a0c3451abd80f9a7cd8cde09a438959e2a43404446ce509`
-- Classification: **MANUAL\_REVIEW** (risk 92)
+- Candidate: `1.1.1` — `bd3ccf13afa69d81e56e6d17ebf9e9e83f3b76daeae13c4c691757c343c3c5ea`
+- Classification: **MANUAL\_REVIEW** (risk 77)
 - Comparison: `compared`; reviewer-attention changes: 2
-- First seen: `2026-10-10T16:32:54.239068Z`
+- First seen: `2026-10-11T02:39:31.323390Z`
 - Accepted baseline: `1.0.1` — `8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de`
 - Capability changes:
   - **Command and process execution:** rule profile +2/-0 — **review**
-  - **Published release versus source:** source/release difference profile changed (3 count change(s)) — **review**
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
 
 ## LeGoTDP
 
