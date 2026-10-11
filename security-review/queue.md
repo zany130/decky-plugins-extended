@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-11T11:46:53.650378Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38136611544
+Generated: `2026-10-11T21:13:20.020759Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38175200375
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -17,10 +17,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Panel de Control | panel-de-control-v0.67.1 / `b35159de1d00` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.41.4 / `36e617ff8b4a` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Achievement Companion | v0.16.1 / `e95fdac01699` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Achievement Companion | v0.16.3 / `aed80f002f8d` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.1.1 / `bd3ccf13afa6` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Deck Shelves | v3.3.3 / `827c26a7c3f2` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Deck Shelves | v3.3.4 / `a86d9c9a8f52` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky LSFG-VK | v0.14.4 / `a2187926dfb5` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
@@ -182,10 +182,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Achievement Companion
 
 - Repository: `https://github.com/parvagans/achievement-companion`
-- Candidate: `v0.16.1` — `e95fdac01699f9c1c3e0bcf9067de3b4e792b5a65a33a14cb4e43c28d731e01f`
+- Candidate: `v0.16.3` — `aed80f002f8dd9a711aefbd594800e89afbdcb4449f4e5636a0d8aff1d1f5404`
 - Classification: **MANUAL\_REVIEW** (risk 92)
 - Comparison: `compared`; reviewer-attention changes: 4
-- First seen: `2026-10-11T11:46:53.650378Z`
+- First seen: `2026-10-11T21:13:20.020759Z`
 - Accepted baseline: `v0.3.2` — `3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +1/-0 — **review**
@@ -219,10 +219,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Deck Shelves
 
 - Repository: `https://github.com/santojon/Deck-Shelves`
-- Candidate: `v3.3.3` — `827c26a7c3f20eda429adec91532dfe16a6a7f280aac33691281aaa225925ca5`
+- Candidate: `v3.3.4` — `a86d9c9a8f52613b99e188cfbd88ebe14350c0f36e9f6b8bf496251d8ca147b5`
 - Classification: **MANUAL\_REVIEW** (risk 102)
 - Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-10-02T02:57:00.799116Z`
+- First seen: `2026-10-11T21:13:20.020759Z`
 - Accepted baseline: `v3.1.0` — `71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9`
 - Capability changes:
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**

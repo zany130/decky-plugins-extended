@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T11:46:53.650378Z",
+  "generated_at": "2026-10-11T21:13:20.020759Z",
   "item_count": 28,
   "items": [
     {
@@ -486,7 +486,7 @@
       "source_commit": "d4dabecc6aa9479bc006711b6caacd3ee8ce0852"
     },
     {
-      "artifact_sha256": "e95fdac01699f9c1c3e0bcf9067de3b4e792b5a65a33a14cb4e43c28d731e01f",
+      "artifact_sha256": "aed80f002f8dd9a711aefbd594800e89afbdcb4449f4e5636a0d8aff1d1f5404",
       "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
       "baseline_release": "v0.3.2",
       "changed_capabilities": [
@@ -522,20 +522,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-11T11:46:53.650378Z",
+      "first_seen_at": "2026-10-11T21:13:20.020759Z",
       "plugin_name": "Achievement Companion",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.16.1",
+      "release": "v0.16.3",
       "repository": "https://github.com/parvagans/achievement-companion",
       "reviewer_attention_count": 4,
       "risk_score": 92,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "06acbc3f50a67adb54ff0f7ffd1ba69906dc4c17"
+      "source_commit": "71b2b0a5cf7ed632d462e644d3be008e1ba625c6"
     },
     {
       "artifact_sha256": "bd3ccf13afa69d81e56e6d17ebf9e9e83f3b76daeae13c4c691757c343c3c5ea",
@@ -607,7 +607,7 @@
       "source_commit": "3355b00a8560abf1da9110fd780889242caa6378"
     },
     {
-      "artifact_sha256": "827c26a7c3f20eda429adec91532dfe16a6a7f280aac33691281aaa225925ca5",
+      "artifact_sha256": "a86d9c9a8f52613b99e188cfbd88ebe14350c0f36e9f6b8bf496251d8ca147b5",
       "baseline_artifact_sha256": "71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9",
       "baseline_release": "v3.1.0",
       "changed_capabilities": [
@@ -622,20 +622,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-02T02:57:00.799116Z",
+      "first_seen_at": "2026-10-11T21:13:20.020759Z",
       "plugin_name": "Deck Shelves",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v3.3.3",
+      "release": "v3.3.4",
       "repository": "https://github.com/santojon/Deck-Shelves",
       "reviewer_attention_count": 1,
       "risk_score": 102,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "752af122eb52ed4e5d527a05c85a0b6b2b2ad6da"
+      "source_commit": "ebf443deca43b3cb270af01dd10a55008556b345"
     },
     {
       "artifact_sha256": "070d8850fcacd98db20cf45c09810f9d43898b00fa464673db5664530877daed",
@@ -957,5 +957,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/38136611544"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/38175200375"
 }
