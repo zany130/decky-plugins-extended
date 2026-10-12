@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T21:13:20.020759Z",
+  "generated_at": "2026-10-12T13:48:04.178983Z",
   "item_count": 28,
   "items": [
     {
@@ -203,7 +203,7 @@
       "source_commit": "feffd088b462e1e9ed77fc2c5d82b627cd44d32d"
     },
     {
-      "artifact_sha256": "9a3468d9b380920f80dc9c87df413026ee631afeb8f50cf35781c6db550f665b",
+      "artifact_sha256": "785eeae9add68a94b2cdfc4ec9a42659458fdb1a7f1978221287d8c5b2c8e81d",
       "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
       "baseline_release": "v0.3.6",
       "changed_capabilities": [
@@ -211,7 +211,7 @@
           "id": "command_execution",
           "reviewer_attention": true,
           "status_change": "newly_observed",
-          "summary": "not_observed -> observed; rule profile +2/-0",
+          "summary": "not_observed -> observed; rule profile +1/-0",
           "title": "Command and process execution"
         },
         {
@@ -220,25 +220,32 @@
           "status_change": "unchanged",
           "summary": "network destinations +5/-0",
           "title": "Network communication"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; source/release difference profile changed; rule profile +1/-0",
+          "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-10T11:33:12.774892Z",
+      "first_seen_at": "2026-10-12T13:48:04.178983Z",
       "plugin_name": "Decky Metadata",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.5.3",
+      "release": "v0.5.4",
       "repository": "https://github.com/beallio/Decky-Metadata",
-      "reviewer_attention_count": 2,
-      "risk_score": 50,
+      "reviewer_attention_count": 3,
+      "risk_score": 47,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "57c0fd24b3090705362c600f6ecca6019f24f1e6"
+      "source_commit": "8215f66cd28782341a8107879d014d8c4361d3f2"
     },
     {
       "artifact_sha256": "7ebadc4bfd0eeec84b9d4d39dfcae39f893fe05e80521caf431a8f4fafde54de",
@@ -434,7 +441,7 @@
       "source_commit": "72699f1cb0919be694b3d9311c653f7ea7f243e0"
     },
     {
-      "artifact_sha256": "36e617ff8b4a5ca12cb81b995a040d819da8bc398ec95b80a99908158c6f7659",
+      "artifact_sha256": "dc4027a24394fb1ab421b2b722a28c87d9da66a269e9b6db001322fadda1679f",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [
@@ -470,20 +477,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-11T11:46:53.650378Z",
+      "first_seen_at": "2026-10-12T13:48:04.178983Z",
       "plugin_name": "Steamcord",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v1.41.4",
+      "release": "v1.41.5",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_attention_count": 4,
       "risk_score": 757,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "d4dabecc6aa9479bc006711b6caacd3ee8ce0852"
+      "source_commit": "e1d5978f1c6923982fe93b2c4f6ab0f9ec531c5c"
     },
     {
       "artifact_sha256": "aed80f002f8dd9a711aefbd594800e89afbdcb4449f4e5636a0d8aff1d1f5404",
@@ -957,5 +964,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/38175200375"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/38257828805"
 }
