@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-13T13:08:10.565269Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38402112606
+Generated: `2026-10-13T22:06:12.519260Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38475002049
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -14,10 +14,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `8ba02892f5e8` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.68.1 / `26d34ff486fd` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.69.0 / `01faca7618d0` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.41.5 / `dc4027a24394` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Achievement Companion | v0.16.3 / `aed80f002f8d` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Achievement Companion | v0.19.0 / `e356b8235beb` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.1.1 / `bd3ccf13afa6` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.3.4 / `a86d9c9a8f52` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
@@ -141,10 +141,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.68.1` — `26d34ff486fddd26f7e302f1668ddc70ae86f85fc01013e6571a4249b0a68afb`
+- Candidate: `panel-de-control-v0.69.0` — `01faca7618d0de1418c06518f6a0bf93ccf06f1d5230585028e84b063c3d55e3`
 - Classification: **MANUAL\_REVIEW** (risk 582)
 - Comparison: `compared`; reviewer-attention changes: 5
-- First seen: `2026-10-13T13:08:10.565269Z`
+- First seen: `2026-10-13T22:06:12.519260Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
@@ -183,10 +183,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Achievement Companion
 
 - Repository: `https://github.com/parvagans/achievement-companion`
-- Candidate: `v0.16.3` — `aed80f002f8dd9a711aefbd594800e89afbdcb4449f4e5636a0d8aff1d1f5404`
+- Candidate: `v0.19.0` — `e356b8235beb00658f47399ba5b754002b4d8b84a4b0c2715b08ea75cfff0603`
 - Classification: **MANUAL\_REVIEW** (risk 92)
 - Comparison: `compared`; reviewer-attention changes: 4
-- First seen: `2026-10-11T21:13:20.020759Z`
+- First seen: `2026-10-13T22:06:12.519260Z`
 - Accepted baseline: `v0.3.2` — `3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +1/-0 — **review**
