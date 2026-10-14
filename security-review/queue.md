@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-14T16:08:34.353713Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38595077453
+Generated: `2026-10-14T21:07:30.501404Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38637243130
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,7 +13,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Decky Metadata | v0.5.4 / `785eeae9add6` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | MoonDeck | nightly / `8ba02892f5e8` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | MoonDeck | nightly / `92baf98cdb6d` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.70.0 / `c59b6301aa63` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.41.5 / `dc4027a24394` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
@@ -132,10 +132,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## MoonDeck
 
 - Repository: `https://github.com/FrogTheFrog/moondeck`
-- Candidate: `nightly` — `8ba02892f5e86b5cd6ddf8e5cfc58493ba41bf113aea73d7f2dddac0a8ce6055`
+- Candidate: `nightly` — `92baf98cdb6d2d895e197cad65d47890186b0c50a9cfabd1f910606668208c8c`
 - Classification: **MANUAL\_REVIEW** (risk 7169)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-10-09T22:01:04.649232Z`
+- First seen: `2026-10-14T21:07:30.501404Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
