@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T22:06:12.519260Z",
+  "generated_at": "2026-10-14T10:49:02.003265Z",
   "item_count": 28,
   "items": [
     {
@@ -172,10 +172,17 @@
       "source_commit": "96eb17b0a9f2cfd2b00ad082bef893f4efc229f7"
     },
     {
-      "artifact_sha256": "522346503007e6bb6243d8bdde072c46ec45f19eb7a3a8011e7edc33e704fee1",
+      "artifact_sha256": "6777682fca5e7f157baab257c96669cafa5483d362b393730b27bc61baa78ece",
       "baseline_artifact_sha256": "4a698f9f7bf08e8f4e78c341009ac7003830ad43e071aaef770c1af61ee443e0",
       "baseline_release": "v1.2.3",
       "changed_capabilities": [
+        {
+          "id": "command_execution",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; rule profile +1/-0",
+          "title": "Command and process execution"
+        },
         {
           "id": "source_release_integrity",
           "reviewer_attention": true,
@@ -186,21 +193,21 @@
       ],
       "comparison_status": "compared",
       "error_count": 0,
-      "final_classification": "PASS_WITH_WARNINGS",
-      "first_seen_at": "2026-08-26T12:27:53.973839Z",
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-10-14T10:49:02.003265Z",
       "plugin_name": "steam-achievements",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v1.2.5",
+      "release": "v1.2.6",
       "repository": "https://github.com/AG69075/steamOS_plugin_achievements",
-      "reviewer_attention_count": 1,
-      "risk_score": 2,
+      "reviewer_attention_count": 2,
+      "risk_score": 17,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "feffd088b462e1e9ed77fc2c5d82b627cd44d32d"
+      "source_commit": "2d21d198de1ad4b3a5cf5c4110a282f668aae3d7"
     },
     {
       "artifact_sha256": "785eeae9add68a94b2cdfc4ec9a42659458fdb1a7f1978221287d8c5b2c8e81d",
@@ -964,5 +971,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/38475002049"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/38551838959"
 }

@@ -1,15 +1,15 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-13T22:06:12.519260Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38475002049
+Generated: `2026-10-14T10:49:02.003265Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38551838959
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
 | **CRITICAL** | Muon | 0.5.0.2 / `229ae50f12c4` | unavailable | BLOCK | blocked by policy, baseline unavailable |
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | Decky-Framegen | v0.17 / `3300b617e3d9` | v0.17 / `3300b617e3d9` | AUDIT\_ERROR | audit error, security delta, same artifact analysis drift |
-| **HIGH** | steam-achievements | v1.2.5 / `522346503007` | v1.2.3 / `4a698f9f7bf0` | PASS\_WITH\_WARNINGS | new artifact, security delta |
+| **HIGH** | steam-achievements | v1.2.6 / `6777682fca5e` | v1.2.3 / `4a698f9f7bf0` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Metadata | v0.5.4 / `785eeae9add6` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
@@ -84,12 +84,13 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## steam-achievements
 
 - Repository: `https://github.com/AG69075/steamOS_plugin_achievements`
-- Candidate: `v1.2.5` — `522346503007e6bb6243d8bdde072c46ec45f19eb7a3a8011e7edc33e704fee1`
-- Classification: **PASS\_WITH\_WARNINGS** (risk 2)
-- Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-08-26T12:27:53.973839Z`
+- Candidate: `v1.2.6` — `6777682fca5e7f157baab257c96669cafa5483d362b393730b27bc61baa78ece`
+- Classification: **MANUAL\_REVIEW** (risk 17)
+- Comparison: `compared`; reviewer-attention changes: 2
+- First seen: `2026-10-14T10:49:02.003265Z`
 - Accepted baseline: `v1.2.3` — `4a698f9f7bf08e8f4e78c341009ac7003830ad43e071aaef770c1af61ee443e0`
 - Capability changes:
+  - **Command and process execution:** not\_observed -\> observed; rule profile +1/-0 — **review**
   - **Published release versus source:** source/release difference profile changed; rule profile +0/-1 — **review**
 
 ## Decky Metadata
