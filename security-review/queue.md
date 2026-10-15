@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-15T02:12:09.906420Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38669489558
+Generated: `2026-10-15T15:56:35.708859Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/38764232819
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -17,7 +17,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Panel de Control | panel-de-control-v0.70.1 / `45d7a6ffa154` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.41.5 / `dc4027a24394` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Achievement Companion | v0.19.0 / `e356b8235beb` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Achievement Companion | v0.19.9 / `8f584c150c49` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.1.1 / `bd3ccf13afa6` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.3.4 / `a86d9c9a8f52` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
@@ -184,16 +184,17 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Achievement Companion
 
 - Repository: `https://github.com/parvagans/achievement-companion`
-- Candidate: `v0.19.0` — `e356b8235beb00658f47399ba5b754002b4d8b84a4b0c2715b08ea75cfff0603`
-- Classification: **MANUAL\_REVIEW** (risk 92)
-- Comparison: `compared`; reviewer-attention changes: 4
-- First seen: `2026-10-13T22:06:12.519260Z`
+- Candidate: `v0.19.9` — `8f584c150c495b09c0fe2cbe5a388d56ff2011497c872dc6ce3b86a6f428a715`
+- Classification: **MANUAL\_REVIEW** (risk 187)
+- Comparison: `compared`; reviewer-attention changes: 5
+- First seen: `2026-10-15T15:56:35.708859Z`
 - Accepted baseline: `v0.3.2` — `3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed`
 - Capability changes:
-  - **Command and process execution:** not\_observed -\> observed; rule profile +1/-0 — **review**
-  - **Network communication:** network destinations +10/-1 — **review**
+  - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
+  - **Native executable code:** not\_observed -\> observed; native binaries +1/-0; rule profile +2/-0 — **review**
+  - **Network communication:** network destinations +12/-1 — **review**
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**
-  - **Published release versus source:** source/release difference profile changed — **review**
+  - **Published release versus source:** source/release difference profile changed; rule profile +1/-0 — **review**
 
 ## Decky Vibrance HDR
 

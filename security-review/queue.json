@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T02:12:09.906420Z",
+  "generated_at": "2026-10-15T15:56:35.708859Z",
   "item_count": 28,
   "items": [
     {
@@ -500,7 +500,7 @@
       "source_commit": "e1d5978f1c6923982fe93b2c4f6ab0f9ec531c5c"
     },
     {
-      "artifact_sha256": "e356b8235beb00658f47399ba5b754002b4d8b84a4b0c2715b08ea75cfff0603",
+      "artifact_sha256": "8f584c150c495b09c0fe2cbe5a388d56ff2011497c872dc6ce3b86a6f428a715",
       "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
       "baseline_release": "v0.3.2",
       "changed_capabilities": [
@@ -508,14 +508,21 @@
           "id": "command_execution",
           "reviewer_attention": true,
           "status_change": "newly_observed",
-          "summary": "not_observed -> observed; rule profile +1/-0",
+          "summary": "not_observed -> observed; rule profile +2/-0",
           "title": "Command and process execution"
+        },
+        {
+          "id": "native_code",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; native binaries +1/-0; rule profile +2/-0",
+          "title": "Native executable code"
         },
         {
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +10/-1",
+          "summary": "network destinations +12/-1",
           "title": "Network communication"
         },
         {
@@ -529,27 +536,27 @@
           "id": "source_release_integrity",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "source/release difference profile changed",
+          "summary": "source/release difference profile changed; rule profile +1/-0",
           "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-13T22:06:12.519260Z",
+      "first_seen_at": "2026-10-15T15:56:35.708859Z",
       "plugin_name": "Achievement Companion",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.19.0",
+      "release": "v0.19.9",
       "repository": "https://github.com/parvagans/achievement-companion",
-      "reviewer_attention_count": 4,
-      "risk_score": 92,
+      "reviewer_attention_count": 5,
+      "risk_score": 187,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "3f23e97ca434b539151d9d8d1fe6b0163d8ef79d"
+      "source_commit": "1162e9dfea509bf1121d1aaa1cebe204b0ba903d"
     },
     {
       "artifact_sha256": "bd3ccf13afa69d81e56e6d17ebf9e9e83f3b76daeae13c4c691757c343c3c5ea",
@@ -971,5 +978,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/38669489558"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/38764232819"
 }
