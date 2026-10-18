@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **28** — critical 3, high 15, normal 10.
-Generated: `2026-10-17T19:49:07.706941Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/39063910146
+Pending artifacts: **29** — critical 3, high 15, normal 11.
+Generated: `2026-10-18T10:04:55.626922Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/39117630763
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -16,7 +16,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | MoonDeck | nightly / `92baf98cdb6d` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.72.0 / `80758212459c` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.41.5 / `dc4027a24394` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.42.0 / `5df2324a3ec1` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.24.0 / `7d10ea385c77` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.1.1 / `bd3ccf13afa6` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
@@ -24,7 +24,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky LSFG-VK | v0.14.4 / `a2187926dfb5` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
-| **NORMAL** | PlayTime | v3.3.1 / `f264720906b6` | v3.3.0 / `1d8a520b499b` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | PlayTime | v3.3.2 / `9de2807d891c` | v3.3.0 / `1d8a520b499b` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.9 / `6d39f77e5b4f` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
@@ -34,6 +34,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | 16:10 Fixes | v0.1.17 / `83b9fd61d7c0` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | MagicPods | 2.0.17 / `1e4bf0d3e77d` | 2.0.15 / `bbd64bc92b14` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Launch Options | v1.16.1 / `685a6cd500e7` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Pause Games | 20261018022616 / `e887da0d13fc` | 20260723060434 / `18b90ac01253` | MANUAL\_REVIEW | new artifact |
 
 ## Muon
 
@@ -170,10 +171,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.41.5` — `dc4027a24394fb1ab421b2b722a28c87d9da66a269e9b6db001322fadda1679f`
-- Classification: **MANUAL\_REVIEW** (risk 757)
+- Candidate: `v1.42.0` — `5df2324a3ec19ecce0abd5d05650d537c9a16cdd490236e64ad05eeadf2791b2`
+- Classification: **MANUAL\_REVIEW** (risk 787)
 - Comparison: `compared`; reviewer-attention changes: 4
-- First seen: `2026-10-12T13:48:04.178983Z`
+- First seen: `2026-10-18T10:04:55.626922Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Command and process execution:** rule profile +0/-1 — **review**
@@ -267,10 +268,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## PlayTime
 
 - Repository: `https://github.com/0u73r-h34v3n/SDH-PlayTime`
-- Candidate: `v3.3.1` — `f264720906b680e43c1cb0eaf1d5062003d86784912042f4b19eb0ce126b55c9`
+- Candidate: `v3.3.2` — `9de2807d891cb65191e427f57c4073d458b812a7d2835b3dc426cb0bf474749e`
 - Classification: **MANUAL\_REVIEW** (risk 37)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-27T15:57:43.813939Z`
+- First seen: `2026-10-18T10:04:55.626922Z`
 - Accepted baseline: `v3.3.0` — `1d8a520b499bb365dfb9ca87b03aaa0ba1afb4f57a6b1fc3b7b6183b5b53399e`
 - Capability changes: none observed in the comparison model.
 
@@ -362,4 +363,14 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-09-10T15:25:07.396620Z`
 - Accepted baseline: `v1.14.0` — `377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668`
+- Capability changes: none observed in the comparison model.
+
+## Pause Games
+
+- Repository: `https://github.com/wynn1212/SDH-PauseGames`
+- Candidate: `20261018022616` — `e887da0d13fce682037ef358f3ca46a2c6bf45c8371f7907172d5e7d4bfda7ad`
+- Classification: **MANUAL\_REVIEW** (risk 102)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-18T10:04:55.626922Z`
+- Accepted baseline: `20260723060434` — `18b90ac0125350715170dae88e8235c6a70d63833a8d4015410f8c8ea82b996b`
 - Capability changes: none observed in the comparison model.
