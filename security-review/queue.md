@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **29** — critical 3, high 15, normal 11.
-Generated: `2026-10-18T10:04:55.626922Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/39117630763
+Pending artifacts: **30** — critical 3, high 15, normal 12.
+Generated: `2026-10-18T19:50:41.674672Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/39160395231
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -17,7 +17,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Panel de Control | panel-de-control-v0.72.0 / `80758212459c` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.42.0 / `5df2324a3ec1` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Achievement Companion | v0.24.0 / `7d10ea385c77` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Achievement Companion | v0.30.0 / `b157febf318e` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.1.1 / `bd3ccf13afa6` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.3.4 / `a86d9c9a8f52` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
@@ -25,6 +25,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Decky LSFG-VK | v0.14.4 / `a2187926dfb5` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **NORMAL** | PlayTime | v3.3.2 / `9de2807d891c` | v3.3.0 / `1d8a520b499b` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Game Sync | 20261018150711 / `e8e5b9a84d07` | 20260530153903 / `f5a6fd360016` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.9 / `6d39f77e5b4f` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
@@ -185,10 +186,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Achievement Companion
 
 - Repository: `https://github.com/parvagans/achievement-companion`
-- Candidate: `v0.24.0` — `7d10ea385c777ed8300a19e261cdc829cac7f874ade4f029548c0031aa1a10a0`
-- Classification: **MANUAL\_REVIEW** (risk 187)
+- Candidate: `v0.30.0` — `b157febf318e93440943cc154944eb62dbeeefbc6ffad091cf561e99e00f8110`
+- Classification: **MANUAL\_REVIEW** (risk 217)
 - Comparison: `compared`; reviewer-attention changes: 5
-- First seen: `2026-10-17T19:49:07.706941Z`
+- First seen: `2026-10-18T19:50:41.674672Z`
 - Accepted baseline: `v0.3.2` — `3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
@@ -273,6 +274,16 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-10-18T10:04:55.626922Z`
 - Accepted baseline: `v3.3.0` — `1d8a520b499bb365dfb9ca87b03aaa0ba1afb4f57a6b1fc3b7b6183b5b53399e`
+- Capability changes: none observed in the comparison model.
+
+## Game Sync
+
+- Repository: `https://github.com/AkazaRenn/SDH-GameSync`
+- Candidate: `20261018150711` — `e8e5b9a84d078c6ba5513a6eae50438b79af512e3d114af14fcd3b6fc5b7be59`
+- Classification: **PASS\_WITH\_WARNINGS** (risk 12)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-18T19:50:41.674672Z`
+- Accepted baseline: `20260530153903` — `f5a6fd3600165ec6791b0c47d8eb8cbb657bb2de6d891a0e57490a4cf5794844`
 - Capability changes: none observed in the comparison model.
 
 ## Decky UI Restored

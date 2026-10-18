@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-18T10:04:55.626922Z",
-  "item_count": 29,
+  "generated_at": "2026-10-18T19:50:41.674672Z",
+  "item_count": 30,
   "items": [
     {
       "artifact_sha256": "229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a",
@@ -500,7 +500,7 @@
       "source_commit": "9c2ecfb281645743bf30560e04b965781df77ad1"
     },
     {
-      "artifact_sha256": "7d10ea385c777ed8300a19e261cdc829cac7f874ade4f029548c0031aa1a10a0",
+      "artifact_sha256": "b157febf318e93440943cc154944eb62dbeeefbc6ffad091cf561e99e00f8110",
       "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
       "baseline_release": "v0.3.2",
       "changed_capabilities": [
@@ -543,20 +543,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-17T19:49:07.706941Z",
+      "first_seen_at": "2026-10-18T19:50:41.674672Z",
       "plugin_name": "Achievement Companion",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.24.0",
+      "release": "v0.30.0",
       "repository": "https://github.com/parvagans/achievement-companion",
       "reviewer_attention_count": 5,
-      "risk_score": 187,
+      "risk_score": 217,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "c1478b110eada0994820d4d477c8a836f1ac4e00"
+      "source_commit": "e7a833de17f98efddf6f4a6e495e61d6a2bafe2b"
     },
     {
       "artifact_sha256": "bd3ccf13afa69d81e56e6d17ebf9e9e83f3b76daeae13c4c691757c343c3c5ea",
@@ -777,6 +777,28 @@
       "same_artifact": false,
       "scanner_failures": [],
       "source_commit": "7f3a038ffca0ea2306b6f8765fd243115c288c89"
+    },
+    {
+      "artifact_sha256": "e8e5b9a84d078c6ba5513a6eae50438b79af512e3d114af14fcd3b6fc5b7be59",
+      "baseline_artifact_sha256": "f5a6fd3600165ec6791b0c47d8eb8cbb657bb2de6d891a0e57490a4cf5794844",
+      "baseline_release": "20260530153903",
+      "changed_capabilities": [],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-10-18T19:50:41.674672Z",
+      "plugin_name": "Game Sync",
+      "priority": "normal",
+      "reasons": [
+        "new_artifact"
+      ],
+      "release": "20261018150711",
+      "repository": "https://github.com/AkazaRenn/SDH-GameSync",
+      "reviewer_attention_count": 0,
+      "risk_score": 12,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "5b6ace05c7f342153b4abe0fd1446152c53e43cd"
     },
     {
       "artifact_sha256": "e06302ed068e0d2a5a5805beca8cb9ef5c48a019f0b79f5f147e9108b1fd1d13",
@@ -1000,5 +1022,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/39117630763"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/39160395231"
 }
