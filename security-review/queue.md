@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **30** — critical 3, high 15, normal 12.
-Generated: `2026-10-19T02:13:09.383796Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/39188679254
+Generated: `2026-10-19T11:28:26.823464Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/39244598428
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -16,7 +16,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | MoonDeck | nightly / `92baf98cdb6d` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.73.0 / `04233034ad86` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.42.0 / `5df2324a3ec1` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.42.1 / `12bc2267c703` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.30.0 / `b157febf318e` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.1.1 / `bd3ccf13afa6` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
@@ -172,10 +172,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.42.0` — `5df2324a3ec19ecce0abd5d05650d537c9a16cdd490236e64ad05eeadf2791b2`
+- Candidate: `v1.42.1` — `12bc2267c703520dca323a2a71f5dfc2d9d6bc4b7e649ff5ab111889977e82be`
 - Classification: **MANUAL\_REVIEW** (risk 787)
 - Comparison: `compared`; reviewer-attention changes: 4
-- First seen: `2026-10-18T10:04:55.626922Z`
+- First seen: `2026-10-19T11:28:26.823464Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Command and process execution:** rule profile +0/-1 — **review**
