@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T16:16:35.494864Z",
+  "generated_at": "2026-10-21T21:01:29.261652Z",
   "item_count": 30,
   "items": [
     {
@@ -448,7 +448,7 @@
       "source_commit": "72699f1cb0919be694b3d9311c653f7ea7f243e0"
     },
     {
-      "artifact_sha256": "12bc2267c703520dca323a2a71f5dfc2d9d6bc4b7e649ff5ab111889977e82be",
+      "artifact_sha256": "97184c127c0948d144fa3c1c51121a0c5a24844976481d89355a96e5b23807c2",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [
@@ -484,20 +484,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-19T11:28:26.823464Z",
+      "first_seen_at": "2026-10-21T21:01:29.261652Z",
       "plugin_name": "Steamcord",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v1.42.1",
+      "release": "v1.42.2",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_attention_count": 4,
       "risk_score": 787,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "9950015512febb966d18e12f89ee0da46cb4f93a"
+      "source_commit": "17f3c0fc44862f13de192d98701360880cad1479"
     },
     {
       "artifact_sha256": "8c49779699ac90838abd480bd7799987c12da523c9957a43785d82e3b8f8d615",
@@ -559,7 +559,7 @@
       "source_commit": "00c928dcd3f1f4ddd0def1ad9cf13aee77864dae"
     },
     {
-      "artifact_sha256": "bd3ccf13afa69d81e56e6d17ebf9e9e83f3b76daeae13c4c691757c343c3c5ea",
+      "artifact_sha256": "e92c3b9580e9e0a604487570902dda588d803845152787d121a60bf8fe233dd5",
       "baseline_artifact_sha256": "8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de",
       "baseline_release": "1.0.1",
       "changed_capabilities": [
@@ -574,27 +574,27 @@
           "id": "source_release_integrity",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "source/release difference profile changed (1 count change(s))",
+          "summary": "source/release difference profile changed (1 count change(s)); rule profile +0/-1",
           "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-11T02:39:31.323390Z",
+      "first_seen_at": "2026-10-21T21:01:29.261652Z",
       "plugin_name": "Decky Vibrance HDR",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "1.1.1",
+      "release": "1.2.0",
       "repository": "https://github.com/Rayekkk/DeckyVibranceHDR",
       "reviewer_attention_count": 2,
-      "risk_score": 77,
+      "risk_score": 62,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "d0269139e251daa2737880383fa2679b7be1320f"
+      "source_commit": "19444c1a746cdc20492532dd794548df81acc98b"
     },
     {
       "artifact_sha256": "05ec1d51456b7719286349b570d6679a53ba6482828a0ba67388df280f054ba7",
@@ -657,6 +657,37 @@
       "same_artifact": false,
       "scanner_failures": [],
       "source_commit": "ebf443deca43b3cb270af01dd10a55008556b345"
+    },
+    {
+      "artifact_sha256": "e499af4809e7260d242c52c642da6dcba5b9fcf1de92c4fdd7c21a0ccb9b1bd1",
+      "baseline_artifact_sha256": "bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e",
+      "baseline_release": "2.0.15",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +1/-0",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-10-21T21:01:29.261652Z",
+      "plugin_name": "MagicPods",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "2.0.21",
+      "repository": "https://github.com/steam3d/MagicPodsDecky",
+      "reviewer_attention_count": 1,
+      "risk_score": 192,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "ada6e98a62a881cfd6ba6070b4a58c6a323c8cc2"
     },
     {
       "artifact_sha256": "070d8850fcacd98db20cf45c09810f9d43898b00fa464673db5664530877daed",
@@ -955,28 +986,6 @@
       "source_commit": "444c72e4927747461db76d50a5871112479061ab"
     },
     {
-      "artifact_sha256": "1e4bf0d3e77d935325d40ccbeffeca717f1ff768b924fbea75ae4354a45e19b1",
-      "baseline_artifact_sha256": "bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e",
-      "baseline_release": "2.0.15",
-      "changed_capabilities": [],
-      "comparison_status": "compared",
-      "error_count": 0,
-      "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-14T11:11:03.176918Z",
-      "plugin_name": "MagicPods",
-      "priority": "normal",
-      "reasons": [
-        "new_artifact"
-      ],
-      "release": "2.0.17",
-      "repository": "https://github.com/steam3d/MagicPodsDecky",
-      "reviewer_attention_count": 0,
-      "risk_score": 192,
-      "same_artifact": false,
-      "scanner_failures": [],
-      "source_commit": "ae8011923b701fe1285f92c44a7ce4241633e6f6"
-    },
-    {
       "artifact_sha256": "685a6cd500e7ff297e03684fd6776db9546ef3c2658e5cd686596d7f2e5edc9b",
       "baseline_artifact_sha256": "377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668",
       "baseline_release": "v1.14.0",
@@ -1022,5 +1031,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/39632874897"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/39674829873"
 }

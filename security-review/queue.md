@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **30** — critical 3, high 15, normal 12.
-Generated: `2026-10-21T16:16:35.494864Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/39632874897
+Pending artifacts: **30** — critical 3, high 16, normal 11.
+Generated: `2026-10-21T21:01:29.261652Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/39674829873
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -16,11 +16,12 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | MoonDeck | nightly / `a0ce91020be4` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.75.2 / `8aa67546bcbe` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.42.1 / `12bc2267c703` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.42.2 / `97184c127c09` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.31.3 / `8c49779699ac` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Decky Vibrance HDR | 1.1.1 / `bd3ccf13afa6` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Vibrance HDR | 1.2.0 / `e92c3b9580e9` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.3.4 / `a86d9c9a8f52` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | MagicPods | 2.0.21 / `e499af4809e7` | 2.0.15 / `bbd64bc92b14` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky LSFG-VK | v0.14.4 / `a2187926dfb5` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
@@ -33,7 +34,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | Docky | v1.4.15 / `605a4b85b574` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | vpn-deck | v3.0.0 / `58614ab76694` | v2.3.0 / `27936a0a8228` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | 16:10 Fixes | v0.1.17 / `83b9fd61d7c0` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | MagicPods | 2.0.17 / `1e4bf0d3e77d` | 2.0.15 / `bbd64bc92b14` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Launch Options | v1.16.1 / `685a6cd500e7` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Pause Games | 20261018022616 / `e887da0d13fc` | 20260723060434 / `18b90ac01253` | MANUAL\_REVIEW | new artifact |
 
@@ -172,10 +172,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.42.1` — `12bc2267c703520dca323a2a71f5dfc2d9d6bc4b7e649ff5ab111889977e82be`
+- Candidate: `v1.42.2` — `97184c127c0948d144fa3c1c51121a0c5a24844976481d89355a96e5b23807c2`
 - Classification: **MANUAL\_REVIEW** (risk 787)
 - Comparison: `compared`; reviewer-attention changes: 4
-- First seen: `2026-10-19T11:28:26.823464Z`
+- First seen: `2026-10-21T21:01:29.261652Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Command and process execution:** rule profile +0/-1 — **review**
@@ -201,14 +201,14 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Vibrance HDR
 
 - Repository: `https://github.com/Rayekkk/DeckyVibranceHDR`
-- Candidate: `1.1.1` — `bd3ccf13afa69d81e56e6d17ebf9e9e83f3b76daeae13c4c691757c343c3c5ea`
-- Classification: **MANUAL\_REVIEW** (risk 77)
+- Candidate: `1.2.0` — `e92c3b9580e9e0a604487570902dda588d803845152787d121a60bf8fe233dd5`
+- Classification: **MANUAL\_REVIEW** (risk 62)
 - Comparison: `compared`; reviewer-attention changes: 2
-- First seen: `2026-10-11T02:39:31.323390Z`
+- First seen: `2026-10-21T21:01:29.261652Z`
 - Accepted baseline: `1.0.1` — `8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de`
 - Capability changes:
   - **Command and process execution:** rule profile +2/-0 — **review**
-  - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)); rule profile +0/-1 — **review**
 
 ## LeGoTDP
 
@@ -231,6 +231,17 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Accepted baseline: `v3.1.0` — `71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9`
 - Capability changes:
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**
+
+## MagicPods
+
+- Repository: `https://github.com/steam3d/MagicPodsDecky`
+- Candidate: `2.0.21` — `e499af4809e7260d242c52c642da6dcba5b9fcf1de92c4fdd7c21a0ccb9b1bd1`
+- Classification: **MANUAL\_REVIEW** (risk 192)
+- Comparison: `compared`; reviewer-attention changes: 1
+- First seen: `2026-10-21T21:01:29.261652Z`
+- Accepted baseline: `2.0.15` — `bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e`
+- Capability changes:
+  - **Network communication:** network destinations +1/-0 — **review**
 
 ## RetroDECKY
 
@@ -354,16 +365,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-09-13T15:15:31.730120Z`
 - Accepted baseline: `v0.1.16` — `a8924e945dcfd57372c11a8ac8d5fa3681c3beb0171cd3991d90fccc53e161b6`
-- Capability changes: none observed in the comparison model.
-
-## MagicPods
-
-- Repository: `https://github.com/steam3d/MagicPodsDecky`
-- Candidate: `2.0.17` — `1e4bf0d3e77d935325d40ccbeffeca717f1ff768b924fbea75ae4354a45e19b1`
-- Classification: **MANUAL\_REVIEW** (risk 192)
-- Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-09-14T11:11:03.176918Z`
-- Accepted baseline: `2.0.15` — `bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e`
 - Capability changes: none observed in the comparison model.
 
 ## Launch Options
