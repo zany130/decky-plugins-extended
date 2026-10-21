@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T16:00:18.694527Z",
+  "generated_at": "2026-10-21T10:48:00.319278Z",
   "item_count": 30,
   "items": [
     {
@@ -344,7 +344,7 @@
       "source_commit": "00f8c31a6d9324878811178a2f8a319e4ca5c7c2"
     },
     {
-      "artifact_sha256": "747a2a1e9efaf96b3e1d663aaf9745c80ceb3bdfd19b2cda1b7a7dd4334a54f6",
+      "artifact_sha256": "d39c5f8de7b8ffd4260e80b1357f96fb873f07d8dbc706cb53f281b2d298eed5",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -387,20 +387,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-20T02:28:26.849448Z",
+      "first_seen_at": "2026-10-21T10:48:00.319278Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.74.1",
+      "release": "panel-de-control-v0.75.0",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 5,
-      "risk_score": 602,
+      "risk_score": 617,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "26d5a1e704b88633a8c81f28270a87978fec9158"
+      "source_commit": "99893970eda889a3d3f9cfc421753df830df9d42"
     },
     {
       "artifact_sha256": "36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315",
@@ -889,26 +889,26 @@
       "source_commit": "d3c4433a45c9687dabcb95faafc150644f0a71c7"
     },
     {
-      "artifact_sha256": "297a7078a1ef956d20373c999bd92b7e98555b497516af47532f5f7c71d66733",
+      "artifact_sha256": "605a4b85b574d4574a8a5711087633a946b69e330542f2afadc110df600c59e8",
       "baseline_artifact_sha256": "6fa09e2dbfa76af695b74e4eb918a62ef94573c5b131a304dc5fec58fe5d56b3",
       "baseline_release": "v1.4.8",
       "changed_capabilities": [],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-09-23T02:13:58.341771Z",
+      "first_seen_at": "2026-10-21T10:48:00.319278Z",
       "plugin_name": "Docky",
       "priority": "normal",
       "reasons": [
         "new_artifact"
       ],
-      "release": "v1.4.13",
+      "release": "v1.4.15",
       "repository": "https://github.com/datbird/docky",
       "reviewer_attention_count": 0,
       "risk_score": 227,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "5044f6da5230fc9cb09fb6cdadc694772f5f991e"
+      "source_commit": "a5cfc537a8baf928d269dc5742f53098f12caf3b"
     },
     {
       "artifact_sha256": "58614ab76694cc8f66a9b6570329e03a283ff29e089cb78fe29e6d2ef6c209e3",
@@ -1022,5 +1022,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/39453037938"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/39586833898"
 }
