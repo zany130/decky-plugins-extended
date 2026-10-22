@@ -1,809 +1,50 @@
 # Security Review Queue
 
-Pending artifacts: **45** — critical 43, high 2, normal 0.
-Generated: `2026-10-22T16:17:49.081388Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/39811946212
+Pending artifacts: **29** — critical 2, high 16, normal 11.
+Generated: `2026-10-22T21:04:31.357640Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/39853093060
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
-| **CRITICAL** | https://github.com/0u73r-h34v3n/SDH-PlayTime |  / `unavailable` | v3.3.0 / `1d8a520b499b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/AG69075/steamOS\_plugin\_achievements |  / `unavailable` | v1.2.3 / `4a698f9f7bf0` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/AkazaRenn/SDH-GameSync |  / `unavailable` | 20260530153903 / `f5a6fd360016` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/andrewburgess/steamdeck-discord-status |  / `unavailable` | v1.6.0 / `e5239caa11c2` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/andriuspetravicius/Deckcord |  / `unavailable` | v1.0.9 / `38b268f5c0c5` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/beallio/Decky-Metadata |  / `unavailable` | v0.3.6 / `0d856632d8a4` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/beallio/Decky-SteamAchievements |  / `unavailable` | v0.2.0 / `0c5e9cda3953` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/beallio/SDH-Ludusavi |  / `unavailable` | v0.4.3 / `28171f4a1039` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/BrenticusMaximus/ThemeDeck |  / `unavailable` | v3.0.1 / `92610937d8fd` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/bschelst/protondb-decky |  / `unavailable` | v1.3.3 / `0cbf5948ca5a` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/cat-in-a-box/Decky-Translator |  / `unavailable` | 0.9.1 / `f0bb88e7f688` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/chenx-dust/DeckyClash |  / `unavailable` | unavailable | AUDIT\_ERROR | audit error, artifact identity unavailable, baseline unavailable |
-| **CRITICAL** | https://github.com/danielcopper/decky-romm-sync |  / `unavailable` | decky-romm-sync-v0.30.1 / `254a911f01e6` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/datbird/docky |  / `unavailable` | v1.4.8 / `6fa09e2dbfa7` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/FrogTheFrog/moondeck |  / `unavailable` | unavailable | AUDIT\_ERROR | audit error, artifact identity unavailable, baseline unavailable |
-| **CRITICAL** | https://github.com/Hooandee/panel-de-control |  / `unavailable` | panel-de-control-v0.37.1 / `e20cce88c57d` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/hostsrc/decky-prysm |  / `unavailable` | v0.2.0 / `516ada5cf2b9` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/Janleyx/DeckBridge |  / `unavailable` | v1.1.0 / `eafaac2e380f` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/Janleyx/decky-spotify-connect |  / `unavailable` | v1.0.0 / `f73c54f0c207` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/jeanbottein/DeckaTV |  / `unavailable` | v3.1.2 / `06b353b09d24` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/MrWaip/vpn-deck |  / `unavailable` | v2.3.0 / `27936a0a8228` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/mubaraknumann/unifideck |  / `unavailable` | Release-0.7.3 / `dd9943ce6b0c` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/Necrosiak/Steamcord |  / `unavailable` | v1.21.1 / `4c0ca32204c2` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/nucat176/decky-16x10-fixes |  / `unavailable` | v0.1.16 / `a8924e945dcf` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/PixelAddictUnlocked/allycenter |  / `unavailable` | v1.2.0 / `a1059534de2a` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/piyush-tyagi-13/ally-vibe-control |  / `unavailable` | v1.0.5 / `fd08937fc6d1` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/Rayekkk/DeckyVibranceHDR |  / `unavailable` | 1.0.1 / `8bbf5601ea5b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/Rayekkk/LeGo-Vibe-Control |  / `unavailable` | 1.5.0 / `adda3be351c1` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/Rayekkk/LeGo2BrightnessFix |  / `unavailable` | 2.0.0 / `596dde0f5811` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/Rayekkk/LeGoTDP |  / `unavailable` | 1.6.1 / `2bccb912292b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/rsore/decky-bootnext |  / `unavailable` | v1.0.0 / `dfb128f1ed15` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/santojon/Deck-Shelves |  / `unavailable` | v3.1.0 / `71a7c6d4f53e` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/SheffeyG/CheatDeck |  / `unavailable` | v2.0.0 / `32e2931f9ca8` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/snoein/decky-insignia |  / `unavailable` | v0.1.2 / `b951968f1e89` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/steam3d/MagicPodsDecky |  / `unavailable` | 2.0.15 / `bbd64bc92b14` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/Teppichseite/RetroDECKY |  / `unavailable` | v1.1.0 / `344fb7a08202` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/wtlnetwork/muon |  / `unavailable` | unavailable | AUDIT\_ERROR | audit error, artifact identity unavailable, baseline unavailable |
-| **CRITICAL** | https://github.com/Wurielle/decky-launch-options |  / `unavailable` | v1.14.0 / `377c1625de95` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/wynn1212/SDH-PauseGames |  / `unavailable` | 20260723060434 / `18b90ac01253` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
+| **CRITICAL** | Muon | 0.5.0.2 / `229ae50f12c4` | unavailable | BLOCK | blocked by policy, baseline unavailable |
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-Framegen |  / `unavailable` | v0.17 / `3300b617e3d9` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/xXJSONDeruloXx/decky-lsfg-vk |  / `unavailable` | v0.12.8 / `322f6eec21a4` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
-| **CRITICAL** | https://github.com/zany130/RSM-Decky |  / `unavailable` | v1.0.1 / `039a603b75ef` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
+| **HIGH** | steam-achievements | v1.2.6 / `6777682fca5e` | v1.2.3 / `4a698f9f7bf0` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Metadata | v0.5.4 / `785eeae9add6` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | MoonDeck | nightly / `a0ce91020be4` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | Panel de Control | panel-de-control-v0.75.2 / `8aa67546bcbe` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.42.2 / `97184c127c09` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.31.3 / `8c49779699ac` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Vibrance HDR | 1.2.0 / `e92c3b9580e9` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Deck Shelves | v3.3.4 / `a86d9c9a8f52` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | MagicPods | 2.0.21 / `e499af4809e7` | 2.0.15 / `bbd64bc92b14` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky LSFG-VK | v0.14.4 / `a2187926dfb5` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
-
-## https://github.com/0u73r-h34v3n/SDH-PlayTime
-
-- Repository: `https://github.com/0u73r-h34v3n/SDH-PlayTime`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v3.3.0` — `1d8a520b499bb365dfb9ca87b03aaa0ba1afb4f57a6b1fc3b7b6183b5b53399e`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-20 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/AG69075/steamOS\_plugin\_achievements
-
-- Repository: `https://github.com/AG69075/steamOS_plugin_achievements`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.2.3` — `4a698f9f7bf08e8f4e78c341009ac7003830ad43e071aaef770c1af61ee443e0`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** not\_observed -\> unknown — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-4 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
-
-## https://github.com/AkazaRenn/SDH-GameSync
-
-- Repository: `https://github.com/AkazaRenn/SDH-GameSync`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `20260530153903` — `f5a6fd3600165ec6791b0c47d8eb8cbb657bb2de6d891a0e57490a4cf5794844`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-9 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/andrewburgess/steamdeck-discord-status
-
-- Repository: `https://github.com/andrewburgess/steamdeck-discord-status`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.6.0` — `e5239caa11c25c68bc5d3e053391ebc417e24e831ab687d521e6b768a2a73aaf`
-- Report errors: 2 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** not\_observed -\> unknown — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-4 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/andriuspetravicius/Deckcord
-
-- Repository: `https://github.com/andriuspetravicius/Deckcord`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.0.9` — `38b268f5c0c590365be8c5d7f5d6659c0628b89e577af83bf0f85f07a04cff76`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** not\_observed -\> unknown — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-10 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/beallio/Decky-Metadata
-
-- Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** not\_observed -\> unknown — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-15 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** not\_observed -\> unknown — **review**
-
-## https://github.com/beallio/Decky-SteamAchievements
-
-- Repository: `https://github.com/beallio/Decky-SteamAchievements`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v0.2.0` — `0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** not\_observed -\> unknown — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-5 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/beallio/SDH-Ludusavi
-
-- Repository: `https://github.com/beallio/SDH-Ludusavi`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-2 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-13 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/BrenticusMaximus/ThemeDeck
-
-- Repository: `https://github.com/BrenticusMaximus/ThemeDeck`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v3.0.1` — `92610937d8fd91392aecf1a1a7613d9208fdb838dd934c7d262de759c10d7585`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-2 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-12; rule profile +0/-1 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/bschelst/protondb-decky
-
-- Repository: `https://github.com/bschelst/protondb-decky`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.3.3` — `0cbf5948ca5a6f384181d0982db8874c88fad6a0d85bc3396bdfde564d322ffa`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** not\_observed -\> unknown — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-15 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/cat-in-a-box/Decky-Translator
-
-- Repository: `https://github.com/cat-in-a-box/Decky-Translator`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `0.9.1` — `f0bb88e7f688afa7bbb887bc3cec0bbfb58a96b0c99b4a0fea3b252df73bb4dd`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-2 — **review**
-  - **Known vulnerabilities:** observed -\> unknown; rule profile +0/-27 — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-34 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/chenx-dust/DeckyClash
-
-- Repository: `https://github.com/chenx-dust/DeckyClash`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: unavailable
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes: none observed in the comparison model.
-
-## https://github.com/danielcopper/decky-romm-sync
-
-- Repository: `https://github.com/danielcopper/decky-romm-sync`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `decky-romm-sync-v0.30.1` — `254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-1; rule profile +0/-1 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-7 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/datbird/docky
-
-- Repository: `https://github.com/datbird/docky`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.4.8` — `6fa09e2dbfa76af695b74e4eb918a62ef94573c5b131a304dc5fec58fe5d56b3`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-3 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-7 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-5 — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/FrogTheFrog/moondeck
-
-- Repository: `https://github.com/FrogTheFrog/moondeck`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: unavailable
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes: none observed in the comparison model.
-
-## https://github.com/Hooandee/panel-de-control
-
-- Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-2 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-1; rule profile +0/-2 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-20 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-3 — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
-
-## https://github.com/hostsrc/decky-prysm
-
-- Repository: `https://github.com/hostsrc/decky-prysm`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v0.2.0` — `516ada5cf2b9a6463eba8defbba0d1a1213b7a7a5e5dc63f0013a1429adf88eb`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-2 — **review**
-  - **Known vulnerabilities:** observed -\> unknown; rule profile +0/-4 — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-1; rule profile +0/-2 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-12 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
-
-## https://github.com/Janleyx/DeckBridge
-
-- Repository: `https://github.com/Janleyx/DeckBridge`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.1.0` — `eafaac2e380fa3d60092c1aa1604fda74f86466e642e407bcdf9b245c4915409`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-2; rule profile +0/-1 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-10 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-3 — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** not\_observed -\> unknown — **review**
-
-## https://github.com/Janleyx/decky-spotify-connect
-
-- Repository: `https://github.com/Janleyx/decky-spotify-connect`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.0.0` — `f73c54f0c20740020d6805684dc81ed22f854c1eed0567767db4931f6c62c3b0`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-2 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-1; rule profile +0/-1 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-6 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Published release versus source:** not\_observed -\> unknown — **review**
-
-## https://github.com/jeanbottein/DeckaTV
-
-- Repository: `https://github.com/jeanbottein/DeckaTV`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v3.1.2` — `06b353b09d24b75cd70c4fb8b2cb5c7a94a47c62278a370ffd3c7ef02ead61de`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-11 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/MrWaip/vpn-deck
-
-- Repository: `https://github.com/MrWaip/vpn-deck`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v2.3.0` — `27936a0a822873f8653607fb90ec4b2d14d418343b22dc17acb92568eb6cb604`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-2; rule profile +0/-2 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-8 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-3 — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
-
-## https://github.com/mubaraknumann/unifideck
-
-- Repository: `https://github.com/mubaraknumann/unifideck`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `Release-0.7.3` — `dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-7 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-34; rule profile +0/-3 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-438; rule profile +0/-1 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-2 — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-2 — **review**
-  - **Credentials and sensitive data:** observed -\> unknown; rule profile +0/-4 — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-2 — **review**
-
-## https://github.com/Necrosiak/Steamcord
-
-- Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-3 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-1; rule profile +0/-2 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-28 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-2 — **review**
-  - **Credentials and sensitive data:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-2 — **review**
-
-## https://github.com/nucat176/decky-16x10-fixes
-
-- Repository: `https://github.com/nucat176/decky-16x10-fixes`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v0.1.16` — `a8924e945dcfd57372c11a8ac8d5fa3681c3beb0171cd3991d90fccc53e161b6`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-4 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/PixelAddictUnlocked/allycenter
-
-- Repository: `https://github.com/PixelAddictUnlocked/allycenter`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.2.0` — `a1059534de2a0e9556669adff3d933bcde802101faae7558f9b33db3a8e51bc7`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-3 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/piyush-tyagi-13/ally-vibe-control
-
-- Repository: `https://github.com/piyush-tyagi-13/ally-vibe-control`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.0.5` — `fd08937fc6d1d3df081486dcbf1ca321380536e784ae6622b50827c5f601aefc`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** not\_observed -\> unknown — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-3 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/Rayekkk/DeckyVibranceHDR
-
-- Repository: `https://github.com/Rayekkk/DeckyVibranceHDR`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `1.0.1` — `8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-7 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
-
-## https://github.com/Rayekkk/LeGo-Vibe-Control
-
-- Repository: `https://github.com/Rayekkk/LeGo-Vibe-Control`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `1.5.0` — `adda3be351c14d1c8899fb0997565aa67e7439b988112340fad707cfe6be28b7`
-- Report errors: 2 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** not\_observed -\> unknown — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-14 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/Rayekkk/LeGo2BrightnessFix
-
-- Repository: `https://github.com/Rayekkk/LeGo2BrightnessFix`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `2.0.0` — `596dde0f581145293d6957f25e47df8be15d0cb0d4560dc6712938447b06e241`
-- Report errors: 2 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-12 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
-
-## https://github.com/Rayekkk/LeGoTDP
-
-- Repository: `https://github.com/Rayekkk/LeGoTDP`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `1.6.1` — `2bccb912292b5d6caffcce17b2009b463fd7828aede88ce0f1af51adae4042b8`
-- Report errors: 2 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-9 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
-
-## https://github.com/rsore/decky-bootnext
-
-- Repository: `https://github.com/rsore/decky-bootnext`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.0.0` — `dfb128f1ed15252f58b204f1a798662357c83c06c10eef1f16127362eeeed8fa`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** not\_observed -\> unknown — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-3 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-5 — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/santojon/Deck-Shelves
-
-- Repository: `https://github.com/santojon/Deck-Shelves`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v3.1.0` — `71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-3 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-15 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/SheffeyG/CheatDeck
-
-- Repository: `https://github.com/SheffeyG/CheatDeck`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v2.0.0` — `32e2931f9ca8083c1605f04b4ed089b0bf210f79db236a7fd34f02c519e902d9`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** not\_observed -\> unknown — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-8 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/snoein/decky-insignia
-
-- Repository: `https://github.com/snoein/decky-insignia`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v0.1.2` — `b951968f1e89a92333c7ded9563997adaa41e30457b3f4ea7ed717880b80a65b`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** not\_observed -\> unknown — **review**
-  - **Known vulnerabilities:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-3; rule profile +0/-2 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-60 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
-
-## https://github.com/steam3d/MagicPodsDecky
-
-- Repository: `https://github.com/steam3d/MagicPodsDecky`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `2.0.15` — `bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-5 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-1; rule profile +0/-2 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-11 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
-
-## https://github.com/Teppichseite/RetroDECKY
-
-- Repository: `https://github.com/Teppichseite/RetroDECKY`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.1.0` — `344fb7a082022f492ff2fe8db243e5363e8a2be3757c5ea9fb99e55264d9b25d`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-3 — **review**
-  - **Known vulnerabilities:** observed -\> unknown; rule profile +0/-6 — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-33 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-2 — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
-
-## https://github.com/wtlnetwork/muon
+| **NORMAL** | PlayTime | v3.3.2 / `9de2807d891c` | v3.3.0 / `1d8a520b499b` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Game Sync | 20261018150711 / `e8e5b9a84d07` | 20260530153903 / `f5a6fd360016` | PASS\_WITH\_WARNINGS | new artifact |
+| **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
+| **NORMAL** | SDH-Ludusavi | v0.4.9 / `6d39f77e5b4f` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | ProtonDB Badges | v1.3.4 / `763b8398ea43` | v1.3.3 / `0cbf5948ca5a` | PASS\_WITH\_WARNINGS | new artifact |
+| **NORMAL** | Docky | v1.4.15 / `605a4b85b574` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | vpn-deck | v3.0.0 / `58614ab76694` | v2.3.0 / `27936a0a8228` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | 16:10 Fixes | v0.1.17 / `83b9fd61d7c0` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Launch Options | v1.16.1 / `685a6cd500e7` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
+| **NORMAL** | Pause Games | 20261018022616 / `e887da0d13fc` | 20260723060434 / `18b90ac01253` | MANUAL\_REVIEW | new artifact |
+
+## Muon
 
 - Repository: `https://github.com/wtlnetwork/muon`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
+- Candidate: `0.5.0.2` — `229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a`
+- Classification: **BLOCK** (risk 1362)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-10-22T16:17:49.081388Z`
+- First seen: `2026-10-22T21:04:31.357640Z`
 - Accepted baseline: unavailable
-- Report errors: 1 (see the full audit artifact/logs for details)
 - Capability changes: none observed in the comparison model.
-
-## https://github.com/Wurielle/decky-launch-options
-
-- Repository: `https://github.com/Wurielle/decky-launch-options`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.14.0` — `377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** not\_observed -\> unknown — **review**
-  - **Known vulnerabilities:** observed -\> unknown; rule profile +0/-4 — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-1; rule profile +0/-2 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-7 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** observed -\> unknown; rule profile +0/-2 — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
-
-## https://github.com/wynn1212/SDH-PauseGames
-
-- Repository: `https://github.com/wynn1212/SDH-PauseGames`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `20260723060434` — `18b90ac0125350715170dae88e8235c6a70d63833a8d4015410f8c8ea82b996b`
-- Report errors: 1 (see the full audit artifact/logs for details)
-- Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-3 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-30 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
 
 ## https://github.com/xXJSONDeruloXx/Decky-bionic-fg
 
@@ -825,65 +66,105 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
   - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
   - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
 
-## https://github.com/xXJSONDeruloXx/Decky-Framegen
+## steam-achievements
 
-- Repository: `https://github.com/xXJSONDeruloXx/Decky-Framegen`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v0.17` — `3300b617e3d979b483d03f995c75c829d6d54beaa4ac8dfae300c2560e4fc60f`
-- Report errors: 1 (see the full audit artifact/logs for details)
+- Repository: `https://github.com/AG69075/steamOS_plugin_achievements`
+- Candidate: `v1.2.6` — `6777682fca5e7f157baab257c96669cafa5483d362b393730b27bc61baa78ece`
+- Classification: **MANUAL\_REVIEW** (risk 17)
+- Comparison: `compared`; reviewer-attention changes: 2
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v1.2.3` — `4a698f9f7bf08e8f4e78c341009ac7003830ad43e071aaef770c1af61ee443e0`
 - Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-6; rule profile +0/-2 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-13 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-2 — **review**
+  - **Command and process execution:** not\_observed -\> observed; rule profile +1/-0 — **review**
+  - **Published release versus source:** source/release difference profile changed; rule profile +0/-1 — **review**
 
-## https://github.com/xXJSONDeruloXx/decky-lsfg-vk
+## Decky Metadata
 
-- Repository: `https://github.com/xXJSONDeruloXx/decky-lsfg-vk`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v0.12.8` — `322f6eec21a489ef9f12938ea2ec4e43c234093876f95b7245fbd260f882ce9c`
-- Report errors: 1 (see the full audit artifact/logs for details)
+- Repository: `https://github.com/beallio/Decky-Metadata`
+- Candidate: `v0.5.4` — `785eeae9add68a94b2cdfc4ec9a42659458fdb1a7f1978221287d8c5b2c8e81d`
+- Classification: **MANUAL\_REVIEW** (risk 47)
+- Comparison: `compared`; reviewer-attention changes: 3
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** observed -\> unknown; native binaries +0/-1; rule profile +0/-2 — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-9 — **review**
-  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
+  - **Command and process execution:** not\_observed -\> observed; rule profile +1/-0 — **review**
+  - **Network communication:** network destinations +5/-0 — **review**
+  - **Published release versus source:** not\_observed -\> observed; source/release difference profile changed; rule profile +1/-0 — **review**
 
-## https://github.com/zany130/RSM-Decky
+## DeckyClash
 
-- Repository: `https://github.com/zany130/RSM-Decky`
-- Candidate: `` — `artifact SHA unavailable`
-- Classification: **AUDIT\_ERROR** (risk 0)
-- Comparison: `compared`; reviewer-attention changes: 9
-- First seen: `2026-10-22T16:17:49.081388Z`
-- Accepted baseline: `v1.0.1` — `039a603b75ef5d7d5b8aac0b8172069e15e607e563256932ac36f8ed5c368a61`
-- Report errors: 1 (see the full audit artifact/logs for details)
+- Repository: `https://github.com/chenx-dust/DeckyClash`
+- Candidate: `v0.1.2` — `7ebadc4bfd0eeec84b9d4d39dfcae39f893fe05e80521caf431a8f4fafde54de`
+- Classification: **MANUAL\_REVIEW** (risk 162)
+- Comparison: `baseline_not_found`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: unavailable
+- Capability changes: none observed in the comparison model.
+
+## Tender
+
+- Repository: `https://github.com/danielcopper/decky-romm-sync`
+- Candidate: `tender-v0.33.0` — `7af9ec603ae713f96bb22cf0096fcb3ae241d92c9bd5266b17f0d784dce9a9bf`
+- Classification: **MANUAL\_REVIEW** (risk 184)
+- Comparison: `compared`; reviewer-attention changes: 3
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `decky-romm-sync-v0.30.1` — `254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db`
 - Capability changes:
-  - **Command and process execution:** observed -\> unknown; rule profile +0/-2 — **review**
-  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
-  - **Malware detection:** not\_observed -\> unknown — **review**
-  - **Native executable code:** not\_observed -\> unknown — **review**
-  - **Network communication:** observed -\> unknown; network destinations +0/-9; rule profile +0/-1 — **review**
-  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
-  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
-  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
-  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
+  - **Command and process execution:** rule profile +1/-0 — **review**
+  - **Native executable code:** native binaries +1/-1 — **review**
+  - **Network communication:** network destinations +1/-1; rule profile +1/-0 — **review**
+
+## MoonDeck
+
+- Repository: `https://github.com/FrogTheFrog/moondeck`
+- Candidate: `nightly` — `a0ce91020be4a7fe29972a2c4bfe9325c94782356f8b60a6767cc8fec380a342`
+- Classification: **MANUAL\_REVIEW** (risk 7201)
+- Comparison: `baseline_not_found`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: unavailable
+- Capability changes: none observed in the comparison model.
+
+## Panel de Control
+
+- Repository: `https://github.com/Hooandee/panel-de-control`
+- Candidate: `panel-de-control-v0.75.2` — `8aa67546bcbe006a3fc5918abb644ca26b1aa5536aaf0c816ddd83419a3f6579`
+- Classification: **MANUAL\_REVIEW** (risk 617)
+- Comparison: `compared`; reviewer-attention changes: 5
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
+- Capability changes:
+  - **Command and process execution:** rule profile +3/-0 — **review**
+  - **Native executable code:** native binaries +2/-0 — **review**
+  - **Network communication:** network destinations +5/-0 — **review**
+  - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +3/-0 — **review**
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
+
+## Unifideck
+
+- Repository: `https://github.com/mubaraknumann/unifideck`
+- Candidate: `Release-0.7.6` — `36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315`
+- Classification: **MANUAL\_REVIEW** (risk 2453)
+- Comparison: `compared`; reviewer-attention changes: 3
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `Release-0.7.3` — `dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7`
+- Capability changes:
+  - **Native executable code:** native binaries +5/-0 — **review**
+  - **Network communication:** network destinations +11/-0 — **review**
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)); rule profile +2/-0 — **review**
+
+## Steamcord
+
+- Repository: `https://github.com/Necrosiak/Steamcord`
+- Candidate: `v1.42.2` — `97184c127c0948d144fa3c1c51121a0c5a24844976481d89355a96e5b23807c2`
+- Classification: **MANUAL\_REVIEW** (risk 787)
+- Comparison: `compared`; reviewer-attention changes: 4
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
+- Capability changes:
+  - **Command and process execution:** rule profile +0/-1 — **review**
+  - **Network communication:** network destinations +3/-0 — **review**
+  - **Privileged and system-level access:** rule profile +0/-1 — **review**
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
 
 ## Achievement Companion
 
@@ -900,6 +181,75 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**
   - **Published release versus source:** source/release difference profile changed; rule profile +1/-0 — **review**
 
+## Decky Vibrance HDR
+
+- Repository: `https://github.com/Rayekkk/DeckyVibranceHDR`
+- Candidate: `1.2.0` — `e92c3b9580e9e0a604487570902dda588d803845152787d121a60bf8fe233dd5`
+- Classification: **MANUAL\_REVIEW** (risk 62)
+- Comparison: `compared`; reviewer-attention changes: 2
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `1.0.1` — `8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de`
+- Capability changes:
+  - **Command and process execution:** rule profile +2/-0 — **review**
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)); rule profile +0/-1 — **review**
+
+## LeGoTDP
+
+- Repository: `https://github.com/Rayekkk/LeGoTDP`
+- Candidate: `1.7.0` — `05ec1d51456b7719286349b570d6679a53ba6482828a0ba67388df280f054ba7`
+- Classification: **MANUAL\_REVIEW** (risk 52)
+- Comparison: `compared`; reviewer-attention changes: 1
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `1.6.1` — `2bccb912292b5d6caffcce17b2009b463fd7828aede88ce0f1af51adae4042b8`
+- Capability changes:
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
+
+## Deck Shelves
+
+- Repository: `https://github.com/santojon/Deck-Shelves`
+- Candidate: `v3.3.4` — `a86d9c9a8f52613b99e188cfbd88ebe14350c0f36e9f6b8bf496251d8ca147b5`
+- Classification: **MANUAL\_REVIEW** (risk 102)
+- Comparison: `compared`; reviewer-attention changes: 1
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v3.1.0` — `71a7c6d4f53eebbcd86d2d0e7563945bb4154b92edcc68e33af8caa7fde2e8d9`
+- Capability changes:
+  - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**
+
+## MagicPods
+
+- Repository: `https://github.com/steam3d/MagicPodsDecky`
+- Candidate: `2.0.21` — `e499af4809e7260d242c52c642da6dcba5b9fcf1de92c4fdd7c21a0ccb9b1bd1`
+- Classification: **MANUAL\_REVIEW** (risk 192)
+- Comparison: `compared`; reviewer-attention changes: 1
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `2.0.15` — `bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e`
+- Capability changes:
+  - **Network communication:** network destinations +1/-0 — **review**
+
+## RetroDECKY
+
+- Repository: `https://github.com/Teppichseite/RetroDECKY`
+- Candidate: `v1.2.0` — `070d8850fcacd98db20cf45c09810f9d43898b00fa464673db5664530877daed`
+- Classification: **MANUAL\_REVIEW** (risk 404)
+- Comparison: `compared`; reviewer-attention changes: 1
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v1.1.0` — `344fb7a082022f492ff2fe8db243e5363e8a2be3757c5ea9fb99e55264d9b25d`
+- Capability changes:
+  - **Network communication:** network destinations +3/-0 — **review**
+
+## Decky LSFG-VK
+
+- Repository: `https://github.com/xXJSONDeruloXx/decky-lsfg-vk`
+- Candidate: `v0.14.4` — `a2187926dfb53e1813fa786d6e12a1d078638aa27153061389b755806e97338f`
+- Classification: **PASS\_WITH\_WARNINGS** (risk 12)
+- Comparison: `compared`; reviewer-attention changes: 3
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v0.12.8` — `322f6eec21a489ef9f12938ea2ec4e43c234093876f95b7245fbd260f882ce9c`
+- Capability changes:
+  - **Native executable code:** observed -\> not\_observed; native binaries +0/-1; rule profile +0/-2 — **review**
+  - **Network communication:** network destinations +2/-1 — **review**
+  - **Published release versus source:** source/release difference profile changed; rule profile +0/-1 — **review**
+
 ## Decky Notifications
 
 - Repository: `https://github.com/zany130/decky-notifications`
@@ -908,4 +258,114 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
 - First seen: `2026-08-09T01:07:41.070060Z`
 - Accepted baseline: unavailable
+- Capability changes: none observed in the comparison model.
+
+## PlayTime
+
+- Repository: `https://github.com/0u73r-h34v3n/SDH-PlayTime`
+- Candidate: `v3.3.2` — `9de2807d891cb65191e427f57c4073d458b812a7d2835b3dc426cb0bf474749e`
+- Classification: **MANUAL\_REVIEW** (risk 37)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v3.3.0` — `1d8a520b499bb365dfb9ca87b03aaa0ba1afb4f57a6b1fc3b7b6183b5b53399e`
+- Capability changes: none observed in the comparison model.
+
+## Game Sync
+
+- Repository: `https://github.com/AkazaRenn/SDH-GameSync`
+- Candidate: `20261018150711` — `e8e5b9a84d078c6ba5513a6eae50438b79af512e3d114af14fcd3b6fc5b7be59`
+- Classification: **PASS\_WITH\_WARNINGS** (risk 12)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `20260530153903` — `f5a6fd3600165ec6791b0c47d8eb8cbb657bb2de6d891a0e57490a4cf5794844`
+- Capability changes: none observed in the comparison model.
+
+## Decky UI Restored
+
+- Repository: `https://github.com/beallio/Decky-SteamAchievements`
+- Candidate: `v0.2.3` — `e06302ed068e0d2a5a5805beca8cb9ef5c48a019f0b79f5f147e9108b1fd1d13`
+- Classification: **PASS\_WITH\_WARNINGS** (risk 4)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v0.2.0` — `0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a`
+- Capability changes: none observed in the comparison model.
+
+## SDH-Ludusavi
+
+- Repository: `https://github.com/beallio/SDH-Ludusavi`
+- Candidate: `v0.4.9` — `6d39f77e5b4ffea5acb247043bd1a8c11f03bfef2b9a1b0f955ff5475b2a84b3`
+- Classification: **MANUAL\_REVIEW** (risk 42)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
+- Capability changes: none observed in the comparison model.
+
+## ThemeDeck
+
+- Repository: `https://github.com/BrenticusMaximus/ThemeDeck`
+- Candidate: `v3.0.2` — `0c79b119e00b3ec361ce5fac337e4ac4daa12820b8795055be15c57b5eb10a8a`
+- Classification: **MANUAL\_REVIEW** (risk 82)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v3.0.1` — `92610937d8fd91392aecf1a1a7613d9208fdb838dd934c7d262de759c10d7585`
+- Capability changes: none observed in the comparison model.
+
+## ProtonDB Badges
+
+- Repository: `https://github.com/bschelst/protondb-decky`
+- Candidate: `v1.3.4` — `763b8398ea43e975d3e992e31301626ff4319ae4f5a167c0df9f0b58482de274`
+- Classification: **PASS\_WITH\_WARNINGS** (risk 2)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v1.3.3` — `0cbf5948ca5a6f384181d0982db8874c88fad6a0d85bc3396bdfde564d322ffa`
+- Capability changes: none observed in the comparison model.
+
+## Docky
+
+- Repository: `https://github.com/datbird/docky`
+- Candidate: `v1.4.15` — `605a4b85b574d4574a8a5711087633a946b69e330542f2afadc110df600c59e8`
+- Classification: **MANUAL\_REVIEW** (risk 227)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v1.4.8` — `6fa09e2dbfa76af695b74e4eb918a62ef94573c5b131a304dc5fec58fe5d56b3`
+- Capability changes: none observed in the comparison model.
+
+## vpn-deck
+
+- Repository: `https://github.com/MrWaip/vpn-deck`
+- Candidate: `v3.0.0` — `58614ab76694cc8f66a9b6570329e03a283ff29e089cb78fe29e6d2ef6c209e3`
+- Classification: **MANUAL\_REVIEW** (risk 112)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v2.3.0` — `27936a0a822873f8653607fb90ec4b2d14d418343b22dc17acb92568eb6cb604`
+- Capability changes: none observed in the comparison model.
+
+## 16:10 Fixes
+
+- Repository: `https://github.com/nucat176/decky-16x10-fixes`
+- Candidate: `v0.1.17` — `83b9fd61d7c058e8def34416cb08d36960b47cba25201001d0d7b3d05cd6f107`
+- Classification: **MANUAL\_REVIEW** (risk 47)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v0.1.16` — `a8924e945dcfd57372c11a8ac8d5fa3681c3beb0171cd3991d90fccc53e161b6`
+- Capability changes: none observed in the comparison model.
+
+## Launch Options
+
+- Repository: `https://github.com/Wurielle/decky-launch-options`
+- Candidate: `v1.16.1` — `685a6cd500e7ff297e03684fd6776db9546ef3c2658e5cd686596d7f2e5edc9b`
+- Classification: **MANUAL\_REVIEW** (risk 102)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `v1.14.0` — `377c1625de950b071e275e65c48e8c7869c7717de4a4878970fb74414e95a668`
+- Capability changes: none observed in the comparison model.
+
+## Pause Games
+
+- Repository: `https://github.com/wynn1212/SDH-PauseGames`
+- Candidate: `20261018022616` — `e887da0d13fce682037ef358f3ca46a2c6bf45c8371f7907172d5e7d4bfda7ad`
+- Classification: **MANUAL\_REVIEW** (risk 102)
+- Comparison: `compared`; reviewer-attention changes: 0
+- First seen: `2026-10-22T21:04:31.357640Z`
+- Accepted baseline: `20260723060434` — `18b90ac0125350715170dae88e8235c6a70d63833a8d4015410f8c8ea82b996b`
 - Capability changes: none observed in the comparison model.
