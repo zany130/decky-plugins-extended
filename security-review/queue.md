@@ -1,11 +1,12 @@
 # Security Review Queue
 
-Pending artifacts: **29** — critical 2, high 16, normal 11.
-Generated: `2026-10-23T16:11:53.947925Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/39983343861
+Pending artifacts: **30** — critical 3, high 16, normal 11.
+Generated: `2026-10-24T02:20:10.479690Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/40053557343
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
+| **CRITICAL** | https://github.com/Rayekkk/LeGo2BrightnessFix |  / `unavailable` | 2.0.0 / `596dde0f5811` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | Muon | 0.5.0.2 / `229ae50f12c4` | unavailable | BLOCK | blocked by policy, baseline unavailable |
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **HIGH** | steam-achievements | v1.2.6 / `6777682fca5e` | v1.2.3 / `4a698f9f7bf0` | MANUAL\_REVIEW | new artifact, security delta |
@@ -16,7 +17,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Panel de Control | panel-de-control-v0.76.0 / `af1c403349ac` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.42.2 / `97184c127c09` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Achievement Companion | v0.31.3 / `8c49779699ac` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Achievement Companion | v0.35.3 / `6cd7a0e0bd57` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.2.0 / `e92c3b9580e9` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.4.0 / `05363eac8db6` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
@@ -35,6 +36,26 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | 16:10 Fixes | v0.1.18 / `165fe644b442` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Launch Options | v1.16.1 / `685a6cd500e7` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Pause Games | 20261018022616 / `e887da0d13fc` | 20260723060434 / `18b90ac01253` | MANUAL\_REVIEW | new artifact |
+
+## https://github.com/Rayekkk/LeGo2BrightnessFix
+
+- Repository: `https://github.com/Rayekkk/LeGo2BrightnessFix`
+- Candidate: `` — `artifact SHA unavailable`
+- Classification: **AUDIT\_ERROR** (risk 0)
+- Comparison: `compared`; reviewer-attention changes: 9
+- First seen: `2026-10-24T02:20:10.479690Z`
+- Accepted baseline: `2.0.0` — `596dde0f581145293d6957f25e47df8be15d0cb0d4560dc6712938447b06e241`
+- Report errors: 1 (see the full audit artifact/logs for details)
+- Capability changes:
+  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
+  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
+  - **Malware detection:** not\_observed -\> unknown — **review**
+  - **Native executable code:** not\_observed -\> unknown — **review**
+  - **Network communication:** observed -\> unknown; network destinations +0/-12 — **review**
+  - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
+  - **Privileged and system-level access:** not\_observed -\> unknown — **review**
+  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
+  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
 
 ## Muon
 
@@ -169,15 +190,15 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Achievement Companion
 
 - Repository: `https://github.com/parvagans/achievement-companion`
-- Candidate: `v0.31.3` — `8c49779699ac90838abd480bd7799987c12da523c9957a43785d82e3b8f8d615`
-- Classification: **MANUAL\_REVIEW** (risk 247)
+- Candidate: `v0.35.3` — `6cd7a0e0bd57e9366ba76b3e176a1fadcbcbe52561b9cc4910b6ca86a8612fe2`
+- Classification: **MANUAL\_REVIEW** (risk 242)
 - Comparison: `compared`; reviewer-attention changes: 5
-- First seen: `2026-10-20T10:35:37.809941Z`
+- First seen: `2026-10-24T02:20:10.479690Z`
 - Accepted baseline: `v0.3.2` — `3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
   - **Native executable code:** not\_observed -\> observed; native binaries +1/-0; rule profile +2/-0 — **review**
-  - **Network communication:** network destinations +11/-1 — **review**
+  - **Network communication:** network destinations +10/-1 — **review**
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**
   - **Published release versus source:** source/release difference profile changed; rule profile +1/-0 — **review**
 

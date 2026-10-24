@@ -1,7 +1,95 @@
 {
-  "generated_at": "2026-10-23T16:11:53.947925Z",
-  "item_count": 29,
+  "generated_at": "2026-10-24T02:20:10.479690Z",
+  "item_count": 30,
   "items": [
+    {
+      "artifact_sha256": "",
+      "baseline_artifact_sha256": "596dde0f581145293d6957f25e47df8be15d0cb0d4560dc6712938447b06e241",
+      "baseline_release": "2.0.0",
+      "changed_capabilities": [
+        {
+          "id": "command_execution",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "observed -> unknown; rule profile +0/-1",
+          "title": "Command and process execution"
+        },
+        {
+          "id": "known_vulnerabilities",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Known vulnerabilities"
+        },
+        {
+          "id": "malware",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Malware detection"
+        },
+        {
+          "id": "native_code",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Native executable code"
+        },
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "observed -> unknown; network destinations +0/-12",
+          "title": "Network communication"
+        },
+        {
+          "id": "persistence",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "observed -> unknown; rule profile +0/-1",
+          "title": "Persistence and automatic startup"
+        },
+        {
+          "id": "privileged_system_access",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Privileged and system-level access"
+        },
+        {
+          "id": "sensitive_data_access",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "not_observed -> unknown",
+          "title": "Credentials and sensitive data"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "coverage_became_unknown",
+          "summary": "observed -> unknown; source/release difference profile changed; rule profile +0/-1",
+          "title": "Published release versus source"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 1,
+      "final_classification": "AUDIT_ERROR",
+      "first_seen_at": "2026-10-24T02:20:10.479690Z",
+      "plugin_name": "",
+      "priority": "critical",
+      "reasons": [
+        "audit_error",
+        "artifact_identity_unavailable",
+        "security_delta"
+      ],
+      "release": "",
+      "repository": "https://github.com/Rayekkk/LeGo2BrightnessFix",
+      "reviewer_attention_count": 9,
+      "risk_score": 0,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": ""
+    },
     {
       "artifact_sha256": "229ae50f12c45e693813d496bad547680c75966405684460200a14fce050fe9a",
       "baseline_artifact_sha256": "",
@@ -442,7 +530,7 @@
       "source_commit": "17f3c0fc44862f13de192d98701360880cad1479"
     },
     {
-      "artifact_sha256": "8c49779699ac90838abd480bd7799987c12da523c9957a43785d82e3b8f8d615",
+      "artifact_sha256": "6cd7a0e0bd57e9366ba76b3e176a1fadcbcbe52561b9cc4910b6ca86a8612fe2",
       "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
       "baseline_release": "v0.3.2",
       "changed_capabilities": [
@@ -464,7 +552,7 @@
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +11/-1",
+          "summary": "network destinations +10/-1",
           "title": "Network communication"
         },
         {
@@ -485,20 +573,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-20T10:35:37.809941Z",
+      "first_seen_at": "2026-10-24T02:20:10.479690Z",
       "plugin_name": "Achievement Companion",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.31.3",
+      "release": "v0.35.3",
       "repository": "https://github.com/parvagans/achievement-companion",
       "reviewer_attention_count": 5,
-      "risk_score": 247,
+      "risk_score": 242,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "00c928dcd3f1f4ddd0def1ad9cf13aee77864dae"
+      "source_commit": "e58d6243601c7ef394572a5a3bff9156ae516e31"
     },
     {
       "artifact_sha256": "e92c3b9580e9e0a604487570902dda588d803845152787d121a60bf8fe233dd5",
@@ -973,5 +1061,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/39983343861"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/40053557343"
 }
