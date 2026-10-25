@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T09:58:50.352379Z",
+  "generated_at": "2026-10-25T10:20:49.676101Z",
   "item_count": 30,
   "items": [
     {
@@ -478,7 +478,7 @@
       "source_commit": "7b83cd554bb8fe0faafda5c15988cf44e763adec"
     },
     {
-      "artifact_sha256": "97184c127c0948d144fa3c1c51121a0c5a24844976481d89355a96e5b23807c2",
+      "artifact_sha256": "cc9fba46a2942adeb1af211ee87642453e44eac44fc5df12989bc12929f5e47b",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [
@@ -493,7 +493,7 @@
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +3/-0",
+          "summary": "network destinations +6/-1",
           "title": "Network communication"
         },
         {
@@ -514,20 +514,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-22T21:04:31.357640Z",
+      "first_seen_at": "2026-10-25T10:20:49.676101Z",
       "plugin_name": "Steamcord",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v1.42.2",
+      "release": "v1.42.3",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_attention_count": 4,
       "risk_score": 787,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "17f3c0fc44862f13de192d98701360880cad1479"
+      "source_commit": "287c06dde739bb02d380f8efbada9549fd2d5240"
     },
     {
       "artifact_sha256": "c2ec9e05be5b13a41e139a796e58b862bfb808a7a0885779f86c30c049234c47",
@@ -1061,5 +1061,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/40083897960"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/40184203664"
 }
