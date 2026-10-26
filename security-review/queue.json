@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T15:13:39.405685Z",
+  "generated_at": "2026-10-26T02:07:40.745647Z",
   "item_count": 30,
   "items": [
     {
@@ -240,7 +240,7 @@
       "source_commit": "2d21d198de1ad4b3a5cf5c4110a282f668aae3d7"
     },
     {
-      "artifact_sha256": "785eeae9add68a94b2cdfc4ec9a42659458fdb1a7f1978221287d8c5b2c8e81d",
+      "artifact_sha256": "929d764200f69ded08d5b9c95c4bd9e09acebd14598967727ecb358a4ed07474",
       "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
       "baseline_release": "v0.3.6",
       "changed_capabilities": [
@@ -248,14 +248,21 @@
           "id": "command_execution",
           "reviewer_attention": true,
           "status_change": "newly_observed",
-          "summary": "not_observed -> observed; rule profile +1/-0",
+          "summary": "not_observed -> observed; rule profile +2/-0",
           "title": "Command and process execution"
+        },
+        {
+          "id": "native_code",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; native binaries +1/-0; rule profile +2/-0",
+          "title": "Native executable code"
         },
         {
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +5/-0",
+          "summary": "network destinations +12/-6",
           "title": "Network communication"
         },
         {
@@ -269,20 +276,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-22T21:04:31.357640Z",
+      "first_seen_at": "2026-10-26T02:07:40.745647Z",
       "plugin_name": "Decky Metadata",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.5.4",
+      "release": "v0.6.0",
       "repository": "https://github.com/beallio/Decky-Metadata",
-      "reviewer_attention_count": 3,
-      "risk_score": 47,
+      "reviewer_attention_count": 4,
+      "risk_score": 70,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "8215f66cd28782341a8107879d014d8c4361d3f2"
+      "source_commit": "e7d42adc4fa0c800db37fdc7129effe253aca6cb"
     },
     {
       "artifact_sha256": "7ebadc4bfd0eeec84b9d4d39dfcae39f893fe05e80521caf431a8f4fafde54de",
@@ -1061,5 +1068,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/40205682471"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/40257330782"
 }

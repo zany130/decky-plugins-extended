@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **30** — critical 3, high 16, normal 11.
-Generated: `2026-10-25T15:13:39.405685Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/40205682471
+Generated: `2026-10-26T02:07:40.745647Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/40257330782
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -10,7 +10,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | Muon | 0.5.0.2 / `229ae50f12c4` | unavailable | BLOCK | blocked by policy, baseline unavailable |
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **HIGH** | steam-achievements | v1.2.6 / `6777682fca5e` | v1.2.3 / `4a698f9f7bf0` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Decky Metadata | v0.5.4 / `785eeae9add6` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Metadata | v0.6.0 / `929d764200f6` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `a0ce91020be4` | unavailable | MANUAL\_REVIEW | baseline unavailable |
@@ -102,14 +102,15 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Metadata
 
 - Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `v0.5.4` — `785eeae9add68a94b2cdfc4ec9a42659458fdb1a7f1978221287d8c5b2c8e81d`
-- Classification: **MANUAL\_REVIEW** (risk 47)
-- Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-10-22T21:04:31.357640Z`
+- Candidate: `v0.6.0` — `929d764200f69ded08d5b9c95c4bd9e09acebd14598967727ecb358a4ed07474`
+- Classification: **MANUAL\_REVIEW** (risk 70)
+- Comparison: `compared`; reviewer-attention changes: 4
+- First seen: `2026-10-26T02:07:40.745647Z`
 - Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes:
-  - **Command and process execution:** not\_observed -\> observed; rule profile +1/-0 — **review**
-  - **Network communication:** network destinations +5/-0 — **review**
+  - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
+  - **Native executable code:** not\_observed -\> observed; native binaries +1/-0; rule profile +2/-0 — **review**
+  - **Network communication:** network destinations +12/-6 — **review**
   - **Published release versus source:** not\_observed -\> observed; source/release difference profile changed; rule profile +1/-0 — **review**
 
 ## DeckyClash
