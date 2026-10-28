@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **30** — critical 3, high 16, normal 11.
-Generated: `2026-10-28T11:48:31.900076Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/40682481875
+Generated: `2026-10-28T22:00:24.873443Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/40776166885
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -14,10 +14,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `a0ce91020be4` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.79.0 / `df4a9db307d5` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.80.0 / `3005746dc03f` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.42.4 / `f757f785e0d4` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Achievement Companion | v0.36.5 / `3c9be3f56ce4` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Achievement Companion | v0.38.1 / `68e02c341de0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.2.0 / `e92c3b9580e9` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.4.0 / `05363eac8db6` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
@@ -149,10 +149,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.79.0` — `df4a9db307d50d97bbb46de48ba00fe70945c597306f0f88c1f0cf80899eab1b`
-- Classification: **MANUAL\_REVIEW** (risk 617)
+- Candidate: `panel-de-control-v0.80.0` — `3005746dc03f6ef3a8c2129ce3ac988fd7a6b704194cc57abf94d8bf8acb3110`
+- Classification: **MANUAL\_REVIEW** (risk 647)
 - Comparison: `compared`; reviewer-attention changes: 5
-- First seen: `2026-10-27T02:45:11.646775Z`
+- First seen: `2026-10-28T22:00:24.873443Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
@@ -191,15 +191,15 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Achievement Companion
 
 - Repository: `https://github.com/parvagans/achievement-companion`
-- Candidate: `v0.36.5` — `3c9be3f56ce4ee4ddff1ba451e1c6129ebe237c2a029828c100fa800261934c9`
+- Candidate: `v0.38.1` — `68e02c341de066d2e8725b9ccde651ece59d569a58a70641afda26518bb29aad`
 - Classification: **MANUAL\_REVIEW** (risk 282)
 - Comparison: `compared`; reviewer-attention changes: 5
-- First seen: `2026-10-25T15:13:39.405685Z`
+- First seen: `2026-10-28T22:00:24.873443Z`
 - Accepted baseline: `v0.3.2` — `3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
   - **Native executable code:** not\_observed -\> observed; native binaries +1/-0; rule profile +2/-0 — **review**
-  - **Network communication:** network destinations +10/-1 — **review**
+  - **Network communication:** network destinations +12/-1 — **review**
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**
   - **Published release versus source:** source/release difference profile changed; rule profile +1/-0 — **review**
 
