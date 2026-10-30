@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T03:19:42.365955Z",
+  "generated_at": "2026-10-30T17:25:41.727573Z",
   "item_count": 30,
   "items": [
     {
@@ -381,7 +381,7 @@
       "source_commit": "00f8c31a6d9324878811178a2f8a319e4ca5c7c2"
     },
     {
-      "artifact_sha256": "578012c5af1c61a0d6f904714f7c1c35c7517914699fc623efabbebd93ca5b60",
+      "artifact_sha256": "df2bb1a78e423a97cb9aa8d57ac67d453f207607f5b25ad4a452241897cce0c4",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -403,7 +403,7 @@
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +5/-0",
+          "summary": "network destinations +28/-0",
           "title": "Network communication"
         },
         {
@@ -424,20 +424,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-30T03:19:42.365955Z",
+      "first_seen_at": "2026-10-30T17:25:41.727573Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.80.3",
+      "release": "panel-de-control-v0.81.1",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 5,
-      "risk_score": 647,
+      "risk_score": 732,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "a9e04b45dee50984847d0706929a27f5036d2a98"
+      "source_commit": "fbcb40ab7accedf3c9cb07d5d1387aaec3ee95e5"
     },
     {
       "artifact_sha256": "36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315",
@@ -537,7 +537,7 @@
       "source_commit": "4626d878577d2e690b1736b9bf5c598eab70a824"
     },
     {
-      "artifact_sha256": "68e02c341de066d2e8725b9ccde651ece59d569a58a70641afda26518bb29aad",
+      "artifact_sha256": "577a01a9f9b0d682156954cee20ef22825797cea645dfebb03b41d5e02655773",
       "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
       "baseline_release": "v0.3.2",
       "changed_capabilities": [
@@ -559,8 +559,15 @@
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +12/-1",
+          "summary": "network destinations +13/-1",
           "title": "Network communication"
+        },
+        {
+          "id": "persistence",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; rule profile +1/-0",
+          "title": "Persistence and automatic startup"
         },
         {
           "id": "sensitive_data_access",
@@ -580,23 +587,23 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-28T22:00:24.873443Z",
+      "first_seen_at": "2026-10-30T17:25:41.727573Z",
       "plugin_name": "Achievement Companion",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.38.1",
+      "release": "v0.38.2",
       "repository": "https://github.com/parvagans/achievement-companion",
-      "reviewer_attention_count": 5,
-      "risk_score": 282,
+      "reviewer_attention_count": 6,
+      "risk_score": 287,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "65540c781e0203500fa207f868878b1bd26af9c2"
+      "source_commit": "40839e638e5df6b879509a553582b53d2fea6145"
     },
     {
-      "artifact_sha256": "e92c3b9580e9e0a604487570902dda588d803845152787d121a60bf8fe233dd5",
+      "artifact_sha256": "a8560711894c30d251392cbaa2fa80b3d09274a13fd9e775323b06f6fe34f631",
       "baseline_artifact_sha256": "8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de",
       "baseline_release": "1.0.1",
       "changed_capabilities": [
@@ -606,6 +613,20 @@
           "status_change": "unchanged",
           "summary": "rule profile +2/-0",
           "title": "Command and process execution"
+        },
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +1/-1",
+          "title": "Network communication"
+        },
+        {
+          "id": "sensitive_data_access",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; rule profile +1/-0",
+          "title": "Credentials and sensitive data"
         },
         {
           "id": "source_release_integrity",
@@ -618,20 +639,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-22T21:04:31.357640Z",
+      "first_seen_at": "2026-10-30T17:25:41.727573Z",
       "plugin_name": "Decky Vibrance HDR",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "1.2.0",
+      "release": "1.3.0",
       "repository": "https://github.com/Rayekkk/DeckyVibranceHDR",
-      "reviewer_attention_count": 2,
-      "risk_score": 62,
+      "reviewer_attention_count": 4,
+      "risk_score": 72,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "19444c1a746cdc20492532dd794548df81acc98b"
+      "source_commit": "cf076247d782fa5516a031bec2f2faf77881af1b"
     },
     {
       "artifact_sha256": "05ec1d51456b7719286349b570d6679a53ba6482828a0ba67388df280f054ba7",
@@ -1068,5 +1089,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/40996517442"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/41098254884"
 }

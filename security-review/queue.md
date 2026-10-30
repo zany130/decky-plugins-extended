@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **30** — critical 3, high 16, normal 11.
-Generated: `2026-10-30T03:19:42.365955Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/40996517442
+Generated: `2026-10-30T17:25:41.727573Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/41098254884
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -14,11 +14,11 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `a0ce91020be4` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.80.3 / `578012c5af1c` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.81.1 / `df2bb1a78e42` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.42.5 / `1d5c17ced4f8` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Achievement Companion | v0.38.1 / `68e02c341de0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Decky Vibrance HDR | 1.2.0 / `e92c3b9580e9` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Achievement Companion | v0.38.2 / `577a01a9f9b0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Vibrance HDR | 1.3.0 / `a8560711894c` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.4.0 / `05363eac8db6` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MagicPods | 2.0.21 / `e499af4809e7` | 2.0.15 / `bbd64bc92b14` | MANUAL\_REVIEW | new artifact, security delta |
@@ -149,15 +149,15 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.80.3` — `578012c5af1c61a0d6f904714f7c1c35c7517914699fc623efabbebd93ca5b60`
-- Classification: **MANUAL\_REVIEW** (risk 647)
+- Candidate: `panel-de-control-v0.81.1` — `df2bb1a78e423a97cb9aa8d57ac67d453f207607f5b25ad4a452241897cce0c4`
+- Classification: **MANUAL\_REVIEW** (risk 732)
 - Comparison: `compared`; reviewer-attention changes: 5
-- First seen: `2026-10-30T03:19:42.365955Z`
+- First seen: `2026-10-30T17:25:41.727573Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
   - **Native executable code:** native binaries +2/-0 — **review**
-  - **Network communication:** network destinations +5/-0 — **review**
+  - **Network communication:** network destinations +28/-0 — **review**
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +3/-0 — **review**
   - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
 
@@ -191,28 +191,31 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Achievement Companion
 
 - Repository: `https://github.com/parvagans/achievement-companion`
-- Candidate: `v0.38.1` — `68e02c341de066d2e8725b9ccde651ece59d569a58a70641afda26518bb29aad`
-- Classification: **MANUAL\_REVIEW** (risk 282)
-- Comparison: `compared`; reviewer-attention changes: 5
-- First seen: `2026-10-28T22:00:24.873443Z`
+- Candidate: `v0.38.2` — `577a01a9f9b0d682156954cee20ef22825797cea645dfebb03b41d5e02655773`
+- Classification: **MANUAL\_REVIEW** (risk 287)
+- Comparison: `compared`; reviewer-attention changes: 6
+- First seen: `2026-10-30T17:25:41.727573Z`
 - Accepted baseline: `v0.3.2` — `3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
   - **Native executable code:** not\_observed -\> observed; native binaries +1/-0; rule profile +2/-0 — **review**
-  - **Network communication:** network destinations +12/-1 — **review**
+  - **Network communication:** network destinations +13/-1 — **review**
+  - **Persistence and automatic startup:** not\_observed -\> observed; rule profile +1/-0 — **review**
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**
   - **Published release versus source:** source/release difference profile changed; rule profile +1/-0 — **review**
 
 ## Decky Vibrance HDR
 
 - Repository: `https://github.com/Rayekkk/DeckyVibranceHDR`
-- Candidate: `1.2.0` — `e92c3b9580e9e0a604487570902dda588d803845152787d121a60bf8fe233dd5`
-- Classification: **MANUAL\_REVIEW** (risk 62)
-- Comparison: `compared`; reviewer-attention changes: 2
-- First seen: `2026-10-22T21:04:31.357640Z`
+- Candidate: `1.3.0` — `a8560711894c30d251392cbaa2fa80b3d09274a13fd9e775323b06f6fe34f631`
+- Classification: **MANUAL\_REVIEW** (risk 72)
+- Comparison: `compared`; reviewer-attention changes: 4
+- First seen: `2026-10-30T17:25:41.727573Z`
 - Accepted baseline: `1.0.1` — `8bbf5601ea5b9e9865329773f05e7a9a8e8496303a6bb447a7da5a00c61407de`
 - Capability changes:
   - **Command and process execution:** rule profile +2/-0 — **review**
+  - **Network communication:** network destinations +1/-1 — **review**
+  - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**
   - **Published release versus source:** source/release difference profile changed (1 count change(s)); rule profile +0/-1 — **review**
 
 ## LeGoTDP
