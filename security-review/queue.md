@@ -1,12 +1,14 @@
 # Security Review Queue
 
-Pending artifacts: **30** — critical 3, high 16, normal 11.
-Generated: `2026-10-30T17:25:41.727573Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/41098254884
+Pending artifacts: **31** — critical 5, high 15, normal 11.
+Generated: `2026-10-30T21:48:15.569098Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/41133315483
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
+| **CRITICAL** | https://github.com/Rayekkk/LeGo-Vibe-Control |  / `unavailable` | 1.5.0 / `adda3be351c1` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | https://github.com/Rayekkk/LeGo2BrightnessFix |  / `unavailable` | 2.0.0 / `596dde0f5811` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
+| **CRITICAL** | https://github.com/Rayekkk/LeGoTDP |  / `unavailable` | 1.6.1 / `2bccb912292b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | Muon | 0.5.0.2 / `229ae50f12c4` | unavailable | BLOCK | blocked by policy, baseline unavailable |
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **HIGH** | steam-achievements | v1.2.6 / `6777682fca5e` | v1.2.3 / `4a698f9f7bf0` | MANUAL\_REVIEW | new artifact, security delta |
@@ -14,12 +16,11 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `a0ce91020be4` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.81.1 / `df2bb1a78e42` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.81.2 / `3c9c3622c31c` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.42.5 / `1d5c17ced4f8` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Achievement Companion | v0.38.2 / `577a01a9f9b0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Achievement Companion | v0.39.1 / `5df9d9b412c2` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.3.0 / `a8560711894c` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | LeGoTDP | 1.7.0 / `05ec1d51456b` | 1.6.1 / `2bccb912292b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.4.0 / `05363eac8db6` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MagicPods | 2.0.21 / `e499af4809e7` | 2.0.15 / `bbd64bc92b14` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
@@ -36,6 +37,26 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | 16:10 Fixes | v0.1.18 / `165fe644b442` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Launch Options | v1.16.1 / `685a6cd500e7` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Pause Games | 20261018022616 / `e887da0d13fc` | 20260723060434 / `18b90ac01253` | MANUAL\_REVIEW | new artifact |
+
+## https://github.com/Rayekkk/LeGo-Vibe-Control
+
+- Repository: `https://github.com/Rayekkk/LeGo-Vibe-Control`
+- Candidate: `` — `artifact SHA unavailable`
+- Classification: **AUDIT\_ERROR** (risk 0)
+- Comparison: `compared`; reviewer-attention changes: 9
+- First seen: `2026-10-30T21:48:15.569098Z`
+- Accepted baseline: `1.5.0` — `adda3be351c14d1c8899fb0997565aa67e7439b988112340fad707cfe6be28b7`
+- Report errors: 1 (see the full audit artifact/logs for details)
+- Capability changes:
+  - **Command and process execution:** not\_observed -\> unknown — **review**
+  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
+  - **Malware detection:** not\_observed -\> unknown — **review**
+  - **Native executable code:** not\_observed -\> unknown — **review**
+  - **Network communication:** observed -\> unknown; network destinations +0/-14 — **review**
+  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
+  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-1 — **review**
+  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
+  - **Published release versus source:** observed -\> unknown; source/release difference profile changed — **review**
 
 ## https://github.com/Rayekkk/LeGo2BrightnessFix
 
@@ -54,6 +75,26 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
   - **Network communication:** observed -\> unknown; network destinations +0/-12 — **review**
   - **Persistence and automatic startup:** observed -\> unknown; rule profile +0/-1 — **review**
   - **Privileged and system-level access:** not\_observed -\> unknown — **review**
+  - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
+  - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
+
+## https://github.com/Rayekkk/LeGoTDP
+
+- Repository: `https://github.com/Rayekkk/LeGoTDP`
+- Candidate: `` — `artifact SHA unavailable`
+- Classification: **AUDIT\_ERROR** (risk 0)
+- Comparison: `compared`; reviewer-attention changes: 9
+- First seen: `2026-10-30T21:48:15.569098Z`
+- Accepted baseline: `1.6.1` — `2bccb912292b5d6caffcce17b2009b463fd7828aede88ce0f1af51adae4042b8`
+- Report errors: 1 (see the full audit artifact/logs for details)
+- Capability changes:
+  - **Command and process execution:** observed -\> unknown; rule profile +0/-1 — **review**
+  - **Known vulnerabilities:** not\_observed -\> unknown — **review**
+  - **Malware detection:** not\_observed -\> unknown — **review**
+  - **Native executable code:** not\_observed -\> unknown — **review**
+  - **Network communication:** observed -\> unknown; network destinations +0/-9 — **review**
+  - **Persistence and automatic startup:** not\_observed -\> unknown — **review**
+  - **Privileged and system-level access:** observed -\> unknown; rule profile +0/-1 — **review**
   - **Credentials and sensitive data:** not\_observed -\> unknown — **review**
   - **Published release versus source:** observed -\> unknown; source/release difference profile changed; rule profile +0/-1 — **review**
 
@@ -149,10 +190,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.81.1` — `df2bb1a78e423a97cb9aa8d57ac67d453f207607f5b25ad4a452241897cce0c4`
+- Candidate: `panel-de-control-v0.81.2` — `3c9c3622c31c0f530739562952c2d8897b938253b6fb4ce89c265105668c1e0f`
 - Classification: **MANUAL\_REVIEW** (risk 732)
 - Comparison: `compared`; reviewer-attention changes: 5
-- First seen: `2026-10-30T17:25:41.727573Z`
+- First seen: `2026-10-30T21:48:15.569098Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
@@ -191,10 +232,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Achievement Companion
 
 - Repository: `https://github.com/parvagans/achievement-companion`
-- Candidate: `v0.38.2` — `577a01a9f9b0d682156954cee20ef22825797cea645dfebb03b41d5e02655773`
+- Candidate: `v0.39.1` — `5df9d9b412c2ffb656435e789cf049efb67d187efb2499b025a03e1a163edebe`
 - Classification: **MANUAL\_REVIEW** (risk 287)
 - Comparison: `compared`; reviewer-attention changes: 6
-- First seen: `2026-10-30T17:25:41.727573Z`
+- First seen: `2026-10-30T21:48:15.569098Z`
 - Accepted baseline: `v0.3.2` — `3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
@@ -217,17 +258,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
   - **Network communication:** network destinations +1/-1 — **review**
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +1/-0 — **review**
   - **Published release versus source:** source/release difference profile changed (1 count change(s)); rule profile +0/-1 — **review**
-
-## LeGoTDP
-
-- Repository: `https://github.com/Rayekkk/LeGoTDP`
-- Candidate: `1.7.0` — `05ec1d51456b7719286349b570d6679a53ba6482828a0ba67388df280f054ba7`
-- Classification: **MANUAL\_REVIEW** (risk 52)
-- Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-10-22T21:04:31.357640Z`
-- Accepted baseline: `1.6.1` — `2bccb912292b5d6caffcce17b2009b463fd7828aede88ce0f1af51adae4042b8`
-- Capability changes:
-  - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
 
 ## Deck Shelves
 
