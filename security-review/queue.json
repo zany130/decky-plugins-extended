@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T21:48:15.569098Z",
+  "generated_at": "2026-10-31T16:29:04.821234Z",
   "item_count": 31,
   "items": [
     {
@@ -713,7 +713,7 @@
       "source_commit": "4626d878577d2e690b1736b9bf5c598eab70a824"
     },
     {
-      "artifact_sha256": "5df9d9b412c2ffb656435e789cf049efb67d187efb2499b025a03e1a163edebe",
+      "artifact_sha256": "4ff0c64ad3b00b563dc236e1fdab0dba96b9cb225e4fd4b677c5752749cbbcd9",
       "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
       "baseline_release": "v0.3.2",
       "changed_capabilities": [
@@ -763,20 +763,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-30T21:48:15.569098Z",
+      "first_seen_at": "2026-10-31T16:29:04.821234Z",
       "plugin_name": "Achievement Companion",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.39.1",
+      "release": "v0.40.0",
       "repository": "https://github.com/parvagans/achievement-companion",
       "reviewer_attention_count": 6,
       "risk_score": 287,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "4359a8e5c91fe3ea93f1b43fe080bb058ff7a0e8"
+      "source_commit": "133bb54f0487486205e623d38070ed15d20e0437"
     },
     {
       "artifact_sha256": "a8560711894c30d251392cbaa2fa80b3d09274a13fd9e775323b06f6fe34f631",
@@ -1234,5 +1234,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/41133315483"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/41219695787"
 }

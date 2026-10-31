@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **31** — critical 5, high 15, normal 11.
-Generated: `2026-10-30T21:48:15.569098Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/41133315483
+Generated: `2026-10-31T16:29:04.821234Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/41219695787
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -19,7 +19,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Panel de Control | panel-de-control-v0.81.2 / `3c9c3622c31c` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.42.5 / `1d5c17ced4f8` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Achievement Companion | v0.39.1 / `5df9d9b412c2` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Achievement Companion | v0.40.0 / `4ff0c64ad3b0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.3.0 / `a8560711894c` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.4.0 / `05363eac8db6` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MagicPods | 2.0.21 / `e499af4809e7` | 2.0.15 / `bbd64bc92b14` | MANUAL\_REVIEW | new artifact, security delta |
@@ -232,10 +232,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Achievement Companion
 
 - Repository: `https://github.com/parvagans/achievement-companion`
-- Candidate: `v0.39.1` — `5df9d9b412c2ffb656435e789cf049efb67d187efb2499b025a03e1a163edebe`
+- Candidate: `v0.40.0` — `4ff0c64ad3b00b563dc236e1fdab0dba96b9cb225e4fd4b677c5752749cbbcd9`
 - Classification: **MANUAL\_REVIEW** (risk 287)
 - Comparison: `compared`; reviewer-attention changes: 6
-- First seen: `2026-10-30T21:48:15.569098Z`
+- First seen: `2026-10-31T16:29:04.821234Z`
 - Accepted baseline: `v0.3.2` — `3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
