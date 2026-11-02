@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **31** — critical 5, high 15, normal 11.
-Generated: `2026-11-01T12:15:04.310909Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/41305347192
+Pending artifacts: **31** — critical 5, high 16, normal 10.
+Generated: `2026-11-02T03:06:55.335170Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/41381047709
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,12 +13,13 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **HIGH** | steam-achievements | v1.2.6 / `6777682fca5e` | v1.2.3 / `4a698f9f7bf0` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Metadata | v0.6.0 / `929d764200f6` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | ThemeDeck | v3.1.4 / `1f1c7f23210e` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `a0ce91020be4` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.81.2 / `3c9c3622c31c` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.42.6 / `4ed62c097782` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.43.0 / `671d6d29112a` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.40.0 / `4ff0c64ad3b0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.3.0 / `a8560711894c` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.4.0 / `05363eac8db6` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
@@ -30,7 +31,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | Game Sync | 20261018150711 / `e8e5b9a84d07` | 20260530153903 / `f5a6fd360016` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | SDH-Ludusavi | v0.4.9 / `6d39f77e5b4f` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | ThemeDeck | v3.0.2 / `0c79b119e00b` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ProtonDB Badges | v1.3.4 / `763b8398ea43` | v1.3.3 / `0cbf5948ca5a` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Docky | v1.4.15 / `605a4b85b574` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | vpn-deck | v3.0.0 / `58614ab76694` | v2.3.0 / `27936a0a8228` | MANUAL\_REVIEW | new artifact |
@@ -154,6 +154,17 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
   - **Network communication:** network destinations +12/-6 — **review**
   - **Published release versus source:** not\_observed -\> observed; source/release difference profile changed; rule profile +1/-0 — **review**
 
+## ThemeDeck
+
+- Repository: `https://github.com/BrenticusMaximus/ThemeDeck`
+- Candidate: `v3.1.4` — `1f1c7f23210e9a253c0548c0ec0530153ce48e0174c0446301517518168649f9`
+- Classification: **MANUAL\_REVIEW** (risk 87)
+- Comparison: `compared`; reviewer-attention changes: 1
+- First seen: `2026-11-02T03:06:55.335170Z`
+- Accepted baseline: `v3.0.1` — `92610937d8fd91392aecf1a1a7613d9208fdb838dd934c7d262de759c10d7585`
+- Capability changes:
+  - **Command and process execution:** rule profile +1/-0 — **review**
+
 ## DeckyClash
 
 - Repository: `https://github.com/chenx-dust/DeckyClash`
@@ -218,14 +229,13 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.42.6` — `4ed62c0977822c319e9b2a04e6ec9a1e5eb75ea46628766c70a263bc356facfd`
-- Classification: **MANUAL\_REVIEW** (risk 787)
-- Comparison: `compared`; reviewer-attention changes: 4
-- First seen: `2026-11-01T12:15:04.310909Z`
+- Candidate: `v1.43.0` — `671d6d29112a2f1f848ac0f8efb22d4e740b2705f1e168b39dfd8af41c09cd0a`
+- Classification: **MANUAL\_REVIEW** (risk 847)
+- Comparison: `compared`; reviewer-attention changes: 3
+- First seen: `2026-11-02T03:06:55.335170Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
-  - **Command and process execution:** rule profile +0/-1 — **review**
-  - **Network communication:** network destinations +6/-1 — **review**
+  - **Network communication:** network destinations +7/-1 — **review**
   - **Privileged and system-level access:** rule profile +0/-1 — **review**
   - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
 
@@ -353,16 +363,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-10-22T21:04:31.357640Z`
 - Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
-- Capability changes: none observed in the comparison model.
-
-## ThemeDeck
-
-- Repository: `https://github.com/BrenticusMaximus/ThemeDeck`
-- Candidate: `v3.0.2` — `0c79b119e00b3ec361ce5fac337e4ac4daa12820b8795055be15c57b5eb10a8a`
-- Classification: **MANUAL\_REVIEW** (risk 82)
-- Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-10-22T21:04:31.357640Z`
-- Accepted baseline: `v3.0.1` — `92610937d8fd91392aecf1a1a7613d9208fdb838dd934c7d262de759c10d7585`
 - Capability changes: none observed in the comparison model.
 
 ## ProtonDB Badges
