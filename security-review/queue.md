@@ -1,23 +1,24 @@
 # Security Review Queue
 
-Pending artifacts: **31** — critical 5, high 16, normal 10.
-Generated: `2026-11-02T14:05:32.217451Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/41458023584
+Pending artifacts: **31** — critical 6, high 16, normal 9.
+Generated: `2026-11-03T00:12:56.528620Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/41550655253
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
+| **CRITICAL** | SDH-Ludusavi | v0.5.0 / `9dbe7e28b07a` | v0.4.3 / `28171f4a1039` | BLOCK | blocked by policy, new artifact, security delta |
 | **CRITICAL** | https://github.com/Rayekkk/LeGo-Vibe-Control |  / `unavailable` | 1.5.0 / `adda3be351c1` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | https://github.com/Rayekkk/LeGo2BrightnessFix |  / `unavailable` | 2.0.0 / `596dde0f5811` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | https://github.com/Rayekkk/LeGoTDP |  / `unavailable` | 1.6.1 / `2bccb912292b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **CRITICAL** | Muon | 0.5.0.2 / `229ae50f12c4` | unavailable | BLOCK | blocked by policy, baseline unavailable |
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **HIGH** | steam-achievements | v1.2.6 / `6777682fca5e` | v1.2.3 / `4a698f9f7bf0` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Decky Metadata | v0.6.0 / `929d764200f6` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | ThemeDeck | v3.1.4 / `1f1c7f23210e` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Metadata | v0.6.1 / `881485463542` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | ThemeDeck | v3.1.7 / `a9490919a7d0` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | MoonDeck | nightly / `a0ce91020be4` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.81.2 / `3c9c3622c31c` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | MoonDeck | nightly / `9b9c931f5e4e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | Panel de Control | panel-de-control-v0.82.0 / `46a784c73cf2` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.43.1 / `599ab775491d` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.40.0 / `4ff0c64ad3b0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
@@ -30,13 +31,28 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **NORMAL** | PlayTime | v3.3.2 / `9de2807d891c` | v3.3.0 / `1d8a520b499b` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Game Sync | 20261018150711 / `e8e5b9a84d07` | 20260530153903 / `f5a6fd360016` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
-| **NORMAL** | SDH-Ludusavi | v0.4.9 / `6d39f77e5b4f` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | ProtonDB Badges | v1.3.4 / `763b8398ea43` | v1.3.3 / `0cbf5948ca5a` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Docky | v1.4.15 / `605a4b85b574` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | vpn-deck | v3.0.0 / `58614ab76694` | v2.3.0 / `27936a0a8228` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | 16:10 Fixes | v0.1.18 / `165fe644b442` | v0.1.16 / `a8924e945dcf` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Launch Options | v1.16.1 / `685a6cd500e7` | v1.14.0 / `377c1625de95` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Pause Games | 20261018022616 / `e887da0d13fc` | 20260723060434 / `18b90ac01253` | MANUAL\_REVIEW | new artifact |
+
+## SDH-Ludusavi
+
+- Repository: `https://github.com/beallio/SDH-Ludusavi`
+- Candidate: `v0.5.0` — `9dbe7e28b07ac0d8ecd50395c6c1ee5eb68ccdac9f37688691f78b6d5c7f41dd`
+- Classification: **BLOCK** (risk 92)
+- Comparison: `compared`; reviewer-attention changes: 6
+- First seen: `2026-11-03T00:12:56.528620Z`
+- Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
+- Capability changes:
+  - **Command and process execution:** rule profile +0/-1 — **review**
+  - **Known vulnerabilities:** not\_observed -\> observed; rule profile +2/-0 — **review**
+  - **Native executable code:** not\_observed -\> observed; native binaries +2/-0; rule profile +2/-0 — **review**
+  - **Network communication:** network destinations +13/-7 — **review**
+  - **Credentials and sensitive data:** observed -\> not\_observed; rule profile +0/-1 — **review**
+  - **Published release versus source:** source/release difference profile changed; rule profile +1/-0 — **review**
 
 ## https://github.com/Rayekkk/LeGo-Vibe-Control
 
@@ -143,24 +159,24 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Metadata
 
 - Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `v0.6.0` — `929d764200f69ded08d5b9c95c4bd9e09acebd14598967727ecb358a4ed07474`
-- Classification: **MANUAL\_REVIEW** (risk 70)
+- Candidate: `v0.6.1` — `8814854635420c8da5798cec3470ad3fca3c5402933b242cd2cc12b7f30ebe1f`
+- Classification: **MANUAL\_REVIEW** (risk 85)
 - Comparison: `compared`; reviewer-attention changes: 4
-- First seen: `2026-10-26T02:07:40.745647Z`
+- First seen: `2026-11-03T00:12:56.528620Z`
 - Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
   - **Native executable code:** not\_observed -\> observed; native binaries +1/-0; rule profile +2/-0 — **review**
-  - **Network communication:** network destinations +12/-6 — **review**
+  - **Network communication:** network destinations +13/-6 — **review**
   - **Published release versus source:** not\_observed -\> observed; source/release difference profile changed; rule profile +1/-0 — **review**
 
 ## ThemeDeck
 
 - Repository: `https://github.com/BrenticusMaximus/ThemeDeck`
-- Candidate: `v3.1.4` — `1f1c7f23210e9a253c0548c0ec0530153ce48e0174c0446301517518168649f9`
+- Candidate: `v3.1.7` — `a9490919a7d0a6e5397b292f3ebe833854e0d94817f4f0f46bd7ef4724c3e5b7`
 - Classification: **MANUAL\_REVIEW** (risk 87)
 - Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-11-02T03:06:55.335170Z`
+- First seen: `2026-11-03T00:12:56.528620Z`
 - Accepted baseline: `v3.0.1` — `92610937d8fd91392aecf1a1a7613d9208fdb838dd934c7d262de759c10d7585`
 - Capability changes:
   - **Command and process execution:** rule profile +1/-0 — **review**
@@ -191,20 +207,20 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## MoonDeck
 
 - Repository: `https://github.com/FrogTheFrog/moondeck`
-- Candidate: `nightly` — `a0ce91020be4a7fe29972a2c4bfe9325c94782356f8b60a6767cc8fec380a342`
-- Classification: **MANUAL\_REVIEW** (risk 7201)
+- Candidate: `nightly` — `9b9c931f5e4effa2fb8cd84fe0ebef5694093904743acbcf5f3ae812f8ef4476`
+- Classification: **MANUAL\_REVIEW** (risk 7236)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-10-22T21:04:31.357640Z`
+- First seen: `2026-11-03T00:12:56.528620Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.81.2` — `3c9c3622c31c0f530739562952c2d8897b938253b6fb4ce89c265105668c1e0f`
+- Candidate: `panel-de-control-v0.82.0` — `46a784c73cf2a09b2cd5426e963e2160da52fd2b1ec8b563737dd596623229f4`
 - Classification: **MANUAL\_REVIEW** (risk 732)
 - Comparison: `compared`; reviewer-attention changes: 5
-- First seen: `2026-10-30T21:48:15.569098Z`
+- First seen: `2026-11-03T00:12:56.528620Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
@@ -353,16 +369,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-10-22T21:04:31.357640Z`
 - Accepted baseline: `v0.2.0` — `0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a`
-- Capability changes: none observed in the comparison model.
-
-## SDH-Ludusavi
-
-- Repository: `https://github.com/beallio/SDH-Ludusavi`
-- Candidate: `v0.4.9` — `6d39f77e5b4ffea5acb247043bd1a8c11f03bfef2b9a1b0f955ff5475b2a84b3`
-- Classification: **MANUAL\_REVIEW** (risk 42)
-- Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-10-22T21:04:31.357640Z`
-- Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
 - Capability changes: none observed in the comparison model.
 
 ## ProtonDB Badges

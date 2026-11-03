@@ -1,7 +1,74 @@
 {
-  "generated_at": "2026-11-02T14:05:32.217451Z",
+  "generated_at": "2026-11-03T00:12:56.528620Z",
   "item_count": 31,
   "items": [
+    {
+      "artifact_sha256": "9dbe7e28b07ac0d8ecd50395c6c1ee5eb68ccdac9f37688691f78b6d5c7f41dd",
+      "baseline_artifact_sha256": "28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355",
+      "baseline_release": "v0.4.3",
+      "changed_capabilities": [
+        {
+          "id": "command_execution",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "rule profile +0/-1",
+          "title": "Command and process execution"
+        },
+        {
+          "id": "known_vulnerabilities",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; rule profile +2/-0",
+          "title": "Known vulnerabilities"
+        },
+        {
+          "id": "native_code",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; native binaries +2/-0; rule profile +2/-0",
+          "title": "Native executable code"
+        },
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +13/-7",
+          "title": "Network communication"
+        },
+        {
+          "id": "sensitive_data_access",
+          "reviewer_attention": true,
+          "status_change": "no_longer_observed",
+          "summary": "observed -> not_observed; rule profile +0/-1",
+          "title": "Credentials and sensitive data"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed; rule profile +1/-0",
+          "title": "Published release versus source"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "BLOCK",
+      "first_seen_at": "2026-11-03T00:12:56.528620Z",
+      "plugin_name": "SDH-Ludusavi",
+      "priority": "critical",
+      "reasons": [
+        "blocked_by_policy",
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "v0.5.0",
+      "repository": "https://github.com/beallio/SDH-Ludusavi",
+      "reviewer_attention_count": 6,
+      "risk_score": 92,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "9912469c62d6db2fc233e7b0e31526f65841ef87"
+    },
     {
       "artifact_sha256": "",
       "baseline_artifact_sha256": "adda3be351c14d1c8899fb0997565aa67e7439b988112340fad707cfe6be28b7",
@@ -416,7 +483,7 @@
       "source_commit": "2d21d198de1ad4b3a5cf5c4110a282f668aae3d7"
     },
     {
-      "artifact_sha256": "929d764200f69ded08d5b9c95c4bd9e09acebd14598967727ecb358a4ed07474",
+      "artifact_sha256": "8814854635420c8da5798cec3470ad3fca3c5402933b242cd2cc12b7f30ebe1f",
       "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
       "baseline_release": "v0.3.6",
       "changed_capabilities": [
@@ -438,7 +505,7 @@
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +12/-6",
+          "summary": "network destinations +13/-6",
           "title": "Network communication"
         },
         {
@@ -452,23 +519,23 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-26T02:07:40.745647Z",
+      "first_seen_at": "2026-11-03T00:12:56.528620Z",
       "plugin_name": "Decky Metadata",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.6.0",
+      "release": "v0.6.1",
       "repository": "https://github.com/beallio/Decky-Metadata",
       "reviewer_attention_count": 4,
-      "risk_score": 70,
+      "risk_score": 85,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "e7d42adc4fa0c800db37fdc7129effe253aca6cb"
+      "source_commit": "e8a224106e5f6903f062cbb439c6ff43f8637328"
     },
     {
-      "artifact_sha256": "1f1c7f23210e9a253c0548c0ec0530153ce48e0174c0446301517518168649f9",
+      "artifact_sha256": "a9490919a7d0a6e5397b292f3ebe833854e0d94817f4f0f46bd7ef4724c3e5b7",
       "baseline_artifact_sha256": "92610937d8fd91392aecf1a1a7613d9208fdb838dd934c7d262de759c10d7585",
       "baseline_release": "v3.0.1",
       "changed_capabilities": [
@@ -483,20 +550,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-02T03:06:55.335170Z",
+      "first_seen_at": "2026-11-03T00:12:56.528620Z",
       "plugin_name": "ThemeDeck",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v3.1.4",
+      "release": "v3.1.7",
       "repository": "https://github.com/BrenticusMaximus/ThemeDeck",
       "reviewer_attention_count": 1,
       "risk_score": 87,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "9e5e067af8b364b9b1e6abb16afbbe6d23c73df5"
+      "source_commit": "c62eebb8d5fac7fac8a9f66a20724e369439d369"
     },
     {
       "artifact_sha256": "7ebadc4bfd0eeec84b9d4d39dfcae39f893fe05e80521caf431a8f4fafde54de",
@@ -566,14 +633,14 @@
       "source_commit": "7999748cbe912ec283d6fc57bf9b11259e0be57c"
     },
     {
-      "artifact_sha256": "a0ce91020be4a7fe29972a2c4bfe9325c94782356f8b60a6767cc8fec380a342",
+      "artifact_sha256": "9b9c931f5e4effa2fb8cd84fe0ebef5694093904743acbcf5f3ae812f8ef4476",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
       "changed_capabilities": [],
       "comparison_status": "baseline_not_found",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-22T21:04:31.357640Z",
+      "first_seen_at": "2026-11-03T00:12:56.528620Z",
       "plugin_name": "MoonDeck",
       "priority": "high",
       "reasons": [
@@ -582,13 +649,13 @@
       "release": "nightly",
       "repository": "https://github.com/FrogTheFrog/moondeck",
       "reviewer_attention_count": 0,
-      "risk_score": 7201,
+      "risk_score": 7236,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "00f8c31a6d9324878811178a2f8a319e4ca5c7c2"
+      "source_commit": "23fee4b21ec07185fb9094dbc225c17285addd46"
     },
     {
-      "artifact_sha256": "3c9c3622c31c0f530739562952c2d8897b938253b6fb4ce89c265105668c1e0f",
+      "artifact_sha256": "46a784c73cf2a09b2cd5426e963e2160da52fd2b1ec8b563737dd596623229f4",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -631,20 +698,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-30T21:48:15.569098Z",
+      "first_seen_at": "2026-11-03T00:12:56.528620Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.81.2",
+      "release": "panel-de-control-v0.82.0",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 5,
       "risk_score": 732,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "bd2bb2ad722c94dc36e8255ec6e54284cf267da8"
+      "source_commit": "583f8bd5ae8f70c1c7e4ab4856c65959ee82c45f"
     },
     {
       "artifact_sha256": "36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315",
@@ -1081,28 +1148,6 @@
       "source_commit": "1ecd5d439d747a3fe9fe2551fe509fb1cafac652"
     },
     {
-      "artifact_sha256": "6d39f77e5b4ffea5acb247043bd1a8c11f03bfef2b9a1b0f955ff5475b2a84b3",
-      "baseline_artifact_sha256": "28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355",
-      "baseline_release": "v0.4.3",
-      "changed_capabilities": [],
-      "comparison_status": "compared",
-      "error_count": 0,
-      "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-22T21:04:31.357640Z",
-      "plugin_name": "SDH-Ludusavi",
-      "priority": "normal",
-      "reasons": [
-        "new_artifact"
-      ],
-      "release": "v0.4.9",
-      "repository": "https://github.com/beallio/SDH-Ludusavi",
-      "reviewer_attention_count": 0,
-      "risk_score": 42,
-      "same_artifact": false,
-      "scanner_failures": [],
-      "source_commit": "9fce68b21205cea17a7c27a3d5bfc1880cb635c2"
-    },
-    {
       "artifact_sha256": "763b8398ea43e975d3e992e31301626ff4319ae4f5a167c0df9f0b58482de274",
       "baseline_artifact_sha256": "0cbf5948ca5a6f384181d0982db8874c88fad6a0d85bc3396bdfde564d322ffa",
       "baseline_release": "v1.3.3",
@@ -1236,5 +1281,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/41458023584"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/41550655253"
 }
