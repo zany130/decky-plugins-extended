@@ -1,74 +1,7 @@
 {
-  "generated_at": "2026-11-03T13:13:17.537173Z",
+  "generated_at": "2026-11-03T22:42:30.414031Z",
   "item_count": 31,
   "items": [
-    {
-      "artifact_sha256": "9dbe7e28b07ac0d8ecd50395c6c1ee5eb68ccdac9f37688691f78b6d5c7f41dd",
-      "baseline_artifact_sha256": "28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355",
-      "baseline_release": "v0.4.3",
-      "changed_capabilities": [
-        {
-          "id": "command_execution",
-          "reviewer_attention": true,
-          "status_change": "unchanged",
-          "summary": "rule profile +0/-1",
-          "title": "Command and process execution"
-        },
-        {
-          "id": "known_vulnerabilities",
-          "reviewer_attention": true,
-          "status_change": "newly_observed",
-          "summary": "not_observed -> observed; rule profile +2/-0",
-          "title": "Known vulnerabilities"
-        },
-        {
-          "id": "native_code",
-          "reviewer_attention": true,
-          "status_change": "newly_observed",
-          "summary": "not_observed -> observed; native binaries +2/-0; rule profile +2/-0",
-          "title": "Native executable code"
-        },
-        {
-          "id": "network_communication",
-          "reviewer_attention": true,
-          "status_change": "unchanged",
-          "summary": "network destinations +13/-7",
-          "title": "Network communication"
-        },
-        {
-          "id": "sensitive_data_access",
-          "reviewer_attention": true,
-          "status_change": "no_longer_observed",
-          "summary": "observed -> not_observed; rule profile +0/-1",
-          "title": "Credentials and sensitive data"
-        },
-        {
-          "id": "source_release_integrity",
-          "reviewer_attention": true,
-          "status_change": "unchanged",
-          "summary": "source/release difference profile changed; rule profile +1/-0",
-          "title": "Published release versus source"
-        }
-      ],
-      "comparison_status": "compared",
-      "error_count": 0,
-      "final_classification": "BLOCK",
-      "first_seen_at": "2026-11-03T00:12:56.528620Z",
-      "plugin_name": "SDH-Ludusavi",
-      "priority": "critical",
-      "reasons": [
-        "blocked_by_policy",
-        "new_artifact",
-        "security_delta"
-      ],
-      "release": "v0.5.0",
-      "repository": "https://github.com/beallio/SDH-Ludusavi",
-      "reviewer_attention_count": 6,
-      "risk_score": 92,
-      "same_artifact": false,
-      "scanner_failures": [],
-      "source_commit": "9912469c62d6db2fc233e7b0e31526f65841ef87"
-    },
     {
       "artifact_sha256": "",
       "baseline_artifact_sha256": "adda3be351c14d1c8899fb0997565aa67e7439b988112340fad707cfe6be28b7",
@@ -535,7 +468,66 @@
       "source_commit": "e8a224106e5f6903f062cbb439c6ff43f8637328"
     },
     {
-      "artifact_sha256": "a9490919a7d0a6e5397b292f3ebe833854e0d94817f4f0f46bd7ef4724c3e5b7",
+      "artifact_sha256": "df1affc6350eb523b30e2966fa460ffc8d48dd2a4e4bc1c122d4859fcb0fb06d",
+      "baseline_artifact_sha256": "28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355",
+      "baseline_release": "v0.4.3",
+      "changed_capabilities": [
+        {
+          "id": "command_execution",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "rule profile +0/-1",
+          "title": "Command and process execution"
+        },
+        {
+          "id": "native_code",
+          "reviewer_attention": true,
+          "status_change": "newly_observed",
+          "summary": "not_observed -> observed; native binaries +2/-0; rule profile +2/-0",
+          "title": "Native executable code"
+        },
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +13/-7",
+          "title": "Network communication"
+        },
+        {
+          "id": "sensitive_data_access",
+          "reviewer_attention": true,
+          "status_change": "no_longer_observed",
+          "summary": "observed -> not_observed; rule profile +0/-1",
+          "title": "Credentials and sensitive data"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed; rule profile +1/-0",
+          "title": "Published release versus source"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "MANUAL_REVIEW",
+      "first_seen_at": "2026-11-03T22:42:30.414031Z",
+      "plugin_name": "SDH-Ludusavi",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "v0.5.2",
+      "repository": "https://github.com/beallio/SDH-Ludusavi",
+      "reviewer_attention_count": 5,
+      "risk_score": 47,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "4d0ec3917128c943731170711ad40baa92877d59"
+    },
+    {
+      "artifact_sha256": "9a2bd31bf4a9daeb2a2c3ba1e3b94fab4259dac27166a2098405580e3063b9c0",
       "baseline_artifact_sha256": "92610937d8fd91392aecf1a1a7613d9208fdb838dd934c7d262de759c10d7585",
       "baseline_release": "v3.0.1",
       "changed_capabilities": [
@@ -550,20 +542,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-03T00:12:56.528620Z",
+      "first_seen_at": "2026-11-03T22:42:30.414031Z",
       "plugin_name": "ThemeDeck",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v3.1.7",
+      "release": "v4.0.0",
       "repository": "https://github.com/BrenticusMaximus/ThemeDeck",
       "reviewer_attention_count": 1,
       "risk_score": 87,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "c62eebb8d5fac7fac8a9f66a20724e369439d369"
+      "source_commit": "3caf28c19b03ff98e20992ab982b63eadc790d97"
     },
     {
       "artifact_sha256": "7ebadc4bfd0eeec84b9d4d39dfcae39f893fe05e80521caf431a8f4fafde54de",
@@ -655,7 +647,7 @@
       "source_commit": "23fee4b21ec07185fb9094dbc225c17285addd46"
     },
     {
-      "artifact_sha256": "46a784c73cf2a09b2cd5426e963e2160da52fd2b1ec8b563737dd596623229f4",
+      "artifact_sha256": "3d8ef7703ec01d800971db3a7637a45d64bd6f4a698ef53e78d39d62eb07191f",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -677,7 +669,7 @@
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +28/-0",
+          "summary": "network destinations +29/-0",
           "title": "Network communication"
         },
         {
@@ -698,20 +690,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-03T00:12:56.528620Z",
+      "first_seen_at": "2026-11-03T22:42:30.414031Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.82.0",
+      "release": "panel-de-control-v0.82.1",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 5,
       "risk_score": 732,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "583f8bd5ae8f70c1c7e4ab4856c65959ee82c45f"
+      "source_commit": "cbdae5b8c620b40ef076426c3e75b4f8b107e785"
     },
     {
       "artifact_sha256": "36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315",
@@ -1281,5 +1273,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/41641852165"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/41732605483"
 }
