@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **31** — critical 5, high 17, normal 9.
-Generated: `2026-11-03T22:42:30.414031Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/41732605483
+Generated: `2026-11-04T03:44:06.511620Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/41768638961
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,7 +13,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **HIGH** | steam-achievements | v1.2.6 / `6777682fca5e` | v1.2.3 / `4a698f9f7bf0` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Metadata | v0.6.1 / `881485463542` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | SDH-Ludusavi | v0.5.2 / `df1affc6350e` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | SDH-Ludusavi | v0.5.3 / `94d7ba3d1e9a` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | ThemeDeck | v4.0.0 / `9a2bd31bf4a9` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
@@ -157,10 +157,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## SDH-Ludusavi
 
 - Repository: `https://github.com/beallio/SDH-Ludusavi`
-- Candidate: `v0.5.2` — `df1affc6350eb523b30e2966fa460ffc8d48dd2a4e4bc1c122d4859fcb0fb06d`
+- Candidate: `v0.5.3` — `94d7ba3d1e9a7dfbc9e204807cd556c7148f72aee08d3b54d5301d4f0522ca7b`
 - Classification: **MANUAL\_REVIEW** (risk 47)
 - Comparison: `compared`; reviewer-attention changes: 5
-- First seen: `2026-11-03T22:42:30.414031Z`
+- First seen: `2026-11-04T03:44:06.511620Z`
 - Accepted baseline: `v0.4.3` — `28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355`
 - Capability changes:
   - **Command and process execution:** rule profile +0/-1 — **review**
