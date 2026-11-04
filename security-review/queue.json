@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T03:44:06.511620Z",
+  "generated_at": "2026-11-04T13:28:11.505358Z",
   "item_count": 31,
   "items": [
     {
@@ -625,14 +625,14 @@
       "source_commit": "7999748cbe912ec283d6fc57bf9b11259e0be57c"
     },
     {
-      "artifact_sha256": "9b9c931f5e4effa2fb8cd84fe0ebef5694093904743acbcf5f3ae812f8ef4476",
+      "artifact_sha256": "bbf67d9ac5d3a8dd4228a9f8569bf65079cb11ae4023ea6c1ee8893f0d78bdbb",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
       "changed_capabilities": [],
       "comparison_status": "baseline_not_found",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-03T00:12:56.528620Z",
+      "first_seen_at": "2026-11-04T13:28:11.505358Z",
       "plugin_name": "MoonDeck",
       "priority": "high",
       "reasons": [
@@ -641,13 +641,13 @@
       "release": "nightly",
       "repository": "https://github.com/FrogTheFrog/moondeck",
       "reviewer_attention_count": 0,
-      "risk_score": 7236,
+      "risk_score": 7231,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "23fee4b21ec07185fb9094dbc225c17285addd46"
+      "source_commit": "8131662063a161870409696ec0e476f9220f7342"
     },
     {
-      "artifact_sha256": "3d8ef7703ec01d800971db3a7637a45d64bd6f4a698ef53e78d39d62eb07191f",
+      "artifact_sha256": "3b345ec87a90dfd4ebfb331569b6bf5b81f9e0d7e9687ee93e52513a16b7d90b",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -690,20 +690,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-03T22:42:30.414031Z",
+      "first_seen_at": "2026-11-04T13:28:11.505358Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.82.1",
+      "release": "panel-de-control-v0.83.0",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 5,
       "risk_score": 732,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "cbdae5b8c620b40ef076426c3e75b4f8b107e785"
+      "source_commit": "3c0bdb82decf5f85e81172d4385a75314470d1f3"
     },
     {
       "artifact_sha256": "36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315",
@@ -1273,5 +1273,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/41768638961"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/41837774367"
 }
