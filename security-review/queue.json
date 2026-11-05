@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T13:42:50.630237Z",
+  "generated_at": "2026-11-05T23:01:50.115433Z",
   "item_count": 31,
   "items": [
     {
@@ -625,14 +625,14 @@
       "source_commit": "7999748cbe912ec283d6fc57bf9b11259e0be57c"
     },
     {
-      "artifact_sha256": "d7e60b3f4672ba08fff4aede5ced55bfea3232d75c89ddd6d417e6aa85584a5f",
+      "artifact_sha256": "1735deae58cbde52aa51274cc6f7ce6c2d492a41be2db7388c122c02493010ce",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
       "changed_capabilities": [],
       "comparison_status": "baseline_not_found",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-05T13:42:50.630237Z",
+      "first_seen_at": "2026-11-05T23:01:50.115433Z",
       "plugin_name": "MoonDeck",
       "priority": "high",
       "reasons": [
@@ -644,10 +644,10 @@
       "risk_score": 7271,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "657c132d3d6500cfb49f6a6d7f8d8762c6b71b53"
+      "source_commit": "af4c0d61baa7204b1645dd6e0197bf42896bdf0e"
     },
     {
-      "artifact_sha256": "d1faffcaf5ec554716dd7bc46713ef1887501413e936cfd60f3bbc20289bc8ce",
+      "artifact_sha256": "4836610da278bcca0f08d39f2d53bc263cbf8b72488bcaae249fd50ba4a77489",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -690,20 +690,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-04T23:02:57.855231Z",
+      "first_seen_at": "2026-11-05T23:01:50.115433Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.84.0",
+      "release": "panel-de-control-v0.84.1",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 5,
       "risk_score": 732,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "eca9901739a3fcfa661aa68dcbcf4f085c803d70"
+      "source_commit": "8b3717d841bfd915c1dc2179c3e1d0e4a5f35d3c"
     },
     {
       "artifact_sha256": "36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315",
@@ -1273,5 +1273,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/42037627579"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/42125938553"
 }

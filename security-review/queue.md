@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **31** — critical 5, high 17, normal 9.
-Generated: `2026-11-05T13:42:50.630237Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/42037627579
+Generated: `2026-11-05T23:01:50.115433Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/42125938553
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -17,8 +17,8 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | ThemeDeck | v4.0.0 / `9a2bd31bf4a9` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | MoonDeck | nightly / `d7e60b3f4672` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.84.0 / `d1faffcaf5ec` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | MoonDeck | nightly / `1735deae58cb` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | Panel de Control | panel-de-control-v0.84.1 / `4836610da278` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.43.2 / `2556908f38e0` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.40.0 / `4ff0c64ad3b0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
@@ -206,20 +206,20 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## MoonDeck
 
 - Repository: `https://github.com/FrogTheFrog/moondeck`
-- Candidate: `nightly` — `d7e60b3f4672ba08fff4aede5ced55bfea3232d75c89ddd6d417e6aa85584a5f`
+- Candidate: `nightly` — `1735deae58cbde52aa51274cc6f7ce6c2d492a41be2db7388c122c02493010ce`
 - Classification: **MANUAL\_REVIEW** (risk 7271)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-11-05T13:42:50.630237Z`
+- First seen: `2026-11-05T23:01:50.115433Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.84.0` — `d1faffcaf5ec554716dd7bc46713ef1887501413e936cfd60f3bbc20289bc8ce`
+- Candidate: `panel-de-control-v0.84.1` — `4836610da278bcca0f08d39f2d53bc263cbf8b72488bcaae249fd50ba4a77489`
 - Classification: **MANUAL\_REVIEW** (risk 732)
 - Comparison: `compared`; reviewer-attention changes: 5
-- First seen: `2026-11-04T23:02:57.855231Z`
+- First seen: `2026-11-05T23:01:50.115433Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
