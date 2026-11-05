@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **31** — critical 5, high 17, normal 9.
-Generated: `2026-11-04T23:02:57.855231Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/41929749190
+Generated: `2026-11-05T13:42:50.630237Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/42037627579
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -17,7 +17,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | ThemeDeck | v4.0.0 / `9a2bd31bf4a9` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | MoonDeck | nightly / `bbf67d9ac5d3` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | MoonDeck | nightly / `d7e60b3f4672` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.84.0 / `d1faffcaf5ec` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.43.2 / `2556908f38e0` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
@@ -206,10 +206,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## MoonDeck
 
 - Repository: `https://github.com/FrogTheFrog/moondeck`
-- Candidate: `nightly` — `bbf67d9ac5d3a8dd4228a9f8569bf65079cb11ae4023ea6c1ee8893f0d78bdbb`
-- Classification: **MANUAL\_REVIEW** (risk 7231)
+- Candidate: `nightly` — `d7e60b3f4672ba08fff4aede5ced55bfea3232d75c89ddd6d417e6aa85584a5f`
+- Classification: **MANUAL\_REVIEW** (risk 7271)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-11-04T13:28:11.505358Z`
+- First seen: `2026-11-05T13:42:50.630237Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
