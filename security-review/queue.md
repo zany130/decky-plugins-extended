@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **31** — critical 5, high 17, normal 9.
-Generated: `2026-11-06T04:00:47.642679Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/42159653052
+Generated: `2026-11-06T13:32:26.419217Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/42224966368
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -24,7 +24,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Achievement Companion | v0.40.0 / `4ff0c64ad3b0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.3.0 / `a8560711894c` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.4.1 / `887a46b0265d` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | MagicPods | 2.0.21 / `e499af4809e7` | 2.0.15 / `bbd64bc92b14` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | MagicPods | 2.0.24 / `474b261586ac` | 2.0.15 / `bbd64bc92b14` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | RetroDECKY | v1.2.0 / `070d8850fcac` | v1.1.0 / `344fb7a08202` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky LSFG-VK | v0.14.4 / `a2187926dfb5` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
@@ -298,13 +298,15 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## MagicPods
 
 - Repository: `https://github.com/steam3d/MagicPodsDecky`
-- Candidate: `2.0.21` — `e499af4809e7260d242c52c642da6dcba5b9fcf1de92c4fdd7c21a0ccb9b1bd1`
-- Classification: **MANUAL\_REVIEW** (risk 192)
-- Comparison: `compared`; reviewer-attention changes: 1
-- First seen: `2026-10-22T21:04:31.357640Z`
+- Candidate: `2.0.24` — `474b261586ac6396bf17ddc530f7e8b59e732cb55362def30e45cfef37fb5bdf`
+- Classification: **MANUAL\_REVIEW** (risk 232)
+- Comparison: `compared`; reviewer-attention changes: 3
+- First seen: `2026-11-06T13:32:26.419217Z`
 - Accepted baseline: `2.0.15` — `bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e`
 - Capability changes:
+  - **Native executable code:** native binaries +3/-1 — **review**
   - **Network communication:** network destinations +1/-0 — **review**
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
 
 ## RetroDECKY
 

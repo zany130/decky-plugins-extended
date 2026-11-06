@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T04:00:47.642679Z",
+  "generated_at": "2026-11-06T13:32:26.419217Z",
   "item_count": 31,
   "items": [
     {
@@ -945,35 +945,49 @@
       "source_commit": "cf85e8e954e303eb318bb259c6754c8491fa4dcd"
     },
     {
-      "artifact_sha256": "e499af4809e7260d242c52c642da6dcba5b9fcf1de92c4fdd7c21a0ccb9b1bd1",
+      "artifact_sha256": "474b261586ac6396bf17ddc530f7e8b59e732cb55362def30e45cfef37fb5bdf",
       "baseline_artifact_sha256": "bbd64bc92b1409d2bfd1535634c6d3b35ca75eeba8daef1d3dfcac7a9f33389e",
       "baseline_release": "2.0.15",
       "changed_capabilities": [
+        {
+          "id": "native_code",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "native binaries +3/-1",
+          "title": "Native executable code"
+        },
         {
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
           "summary": "network destinations +1/-0",
           "title": "Network communication"
+        },
+        {
+          "id": "source_release_integrity",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "source/release difference profile changed (1 count change(s))",
+          "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-22T21:04:31.357640Z",
+      "first_seen_at": "2026-11-06T13:32:26.419217Z",
       "plugin_name": "MagicPods",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "2.0.21",
+      "release": "2.0.24",
       "repository": "https://github.com/steam3d/MagicPodsDecky",
-      "reviewer_attention_count": 1,
-      "risk_score": 192,
+      "reviewer_attention_count": 3,
+      "risk_score": 232,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "ada6e98a62a881cfd6ba6070b4a58c6a323c8cc2"
+      "source_commit": "f8312451874cc2b33f74210aea51a72278f1867d"
     },
     {
       "artifact_sha256": "070d8850fcacd98db20cf45c09810f9d43898b00fa464673db5664530877daed",
@@ -1273,5 +1287,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/42159653052"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/42224966368"
 }
