@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T14:37:05.495249Z",
+  "generated_at": "2026-11-10T01:01:22.484523Z",
   "item_count": 31,
   "items": [
     {
@@ -647,7 +647,7 @@
       "source_commit": "af4c0d61baa7204b1645dd6e0197bf42896bdf0e"
     },
     {
-      "artifact_sha256": "cd0fb1b1edeb2f0a10fa06cb9733ad0c16e527bbfef093137fa9bf2669d92d62",
+      "artifact_sha256": "6cf605976afdd73008c0ed41d3b8255e8d954f5d0e1e906f8ae235a0fd8b8784",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -669,8 +669,15 @@
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +28/-0",
+          "summary": "network destinations +31/-0",
           "title": "Network communication"
+        },
+        {
+          "id": "persistence",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "rule profile +1/-0",
+          "title": "Persistence and automatic startup"
         },
         {
           "id": "sensitive_data_access",
@@ -690,23 +697,23 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-08T21:29:25.619848Z",
+      "first_seen_at": "2026-11-10T01:01:22.484523Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.84.4",
+      "release": "panel-de-control-v0.86.0",
       "repository": "https://github.com/Hooandee/panel-de-control",
-      "reviewer_attention_count": 5,
-      "risk_score": 777,
+      "reviewer_attention_count": 6,
+      "risk_score": 857,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "23918da227722a3308ad42fbe12a6fe1ff9dcf8f"
+      "source_commit": "a1f50d05dc9af961a50f329064771c410fcfcdea"
     },
     {
-      "artifact_sha256": "36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315",
+      "artifact_sha256": "6fe7a4566e701ada64f3bc90cd148fa4e42e3b23e5cae7361b958032b2e11d20",
       "baseline_artifact_sha256": "dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7",
       "baseline_release": "Release-0.7.3",
       "changed_capabilities": [
@@ -714,41 +721,41 @@
           "id": "native_code",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "native binaries +5/-0",
+          "summary": "native binaries +4/-0",
           "title": "Native executable code"
         },
         {
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +11/-0",
+          "summary": "network destinations +13/-1",
           "title": "Network communication"
         },
         {
           "id": "source_release_integrity",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "source/release difference profile changed (1 count change(s)); rule profile +2/-0",
+          "summary": "source/release difference profile changed (1 count change(s)); rule profile +1/-0",
           "title": "Published release versus source"
         }
       ],
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-10-22T21:04:31.357640Z",
+      "first_seen_at": "2026-11-10T01:01:22.484523Z",
       "plugin_name": "Unifideck",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "Release-0.7.6",
+      "release": "Release-0.8.0",
       "repository": "https://github.com/mubaraknumann/unifideck",
       "reviewer_attention_count": 3,
-      "risk_score": 2453,
+      "risk_score": 2463,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "7b83cd554bb8fe0faafda5c15988cf44e763adec"
+      "source_commit": "8c05481efcb47fbefdabd1ffc7aa58c2466f64f5"
     },
     {
       "artifact_sha256": "76880d22c8e4799a3e319c9bb2009d81f14cacb6426b8ad661d87d44b8871735",
@@ -1287,5 +1294,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/42635976559"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/42732054692"
 }

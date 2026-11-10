@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **31** — critical 5, high 17, normal 9.
-Generated: `2026-11-09T14:37:05.495249Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/42635976559
+Generated: `2026-11-10T01:01:22.484523Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/42732054692
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -18,8 +18,8 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `1735deae58cb` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.84.4 / `cd0fb1b1edeb` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Unifideck | Release-0.7.6 / `36c9e057a22e` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.86.0 / `6cf605976afd` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Unifideck | Release-0.8.0 / `6fe7a4566e70` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.45.0 / `76880d22c8e4` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.40.0 / `4ff0c64ad3b0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.3.0 / `a8560711894c` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
@@ -216,30 +216,31 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.84.4` — `cd0fb1b1edeb2f0a10fa06cb9733ad0c16e527bbfef093137fa9bf2669d92d62`
-- Classification: **MANUAL\_REVIEW** (risk 777)
-- Comparison: `compared`; reviewer-attention changes: 5
-- First seen: `2026-11-08T21:29:25.619848Z`
+- Candidate: `panel-de-control-v0.86.0` — `6cf605976afdd73008c0ed41d3b8255e8d954f5d0e1e906f8ae235a0fd8b8784`
+- Classification: **MANUAL\_REVIEW** (risk 857)
+- Comparison: `compared`; reviewer-attention changes: 6
+- First seen: `2026-11-10T01:01:22.484523Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
   - **Native executable code:** native binaries +2/-0 — **review**
-  - **Network communication:** network destinations +28/-0 — **review**
+  - **Network communication:** network destinations +31/-0 — **review**
+  - **Persistence and automatic startup:** rule profile +1/-0 — **review**
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +3/-0 — **review**
   - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
 
 ## Unifideck
 
 - Repository: `https://github.com/mubaraknumann/unifideck`
-- Candidate: `Release-0.7.6` — `36c9e057a22e2daa5f7406da789e85db039005de307e160f725113f2a39e6315`
-- Classification: **MANUAL\_REVIEW** (risk 2453)
+- Candidate: `Release-0.8.0` — `6fe7a4566e701ada64f3bc90cd148fa4e42e3b23e5cae7361b958032b2e11d20`
+- Classification: **MANUAL\_REVIEW** (risk 2463)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-10-22T21:04:31.357640Z`
+- First seen: `2026-11-10T01:01:22.484523Z`
 - Accepted baseline: `Release-0.7.3` — `dd9943ce6b0c2be3a68644727046f1693ad537b6085c5adaf16b29cf436a0bf7`
 - Capability changes:
-  - **Native executable code:** native binaries +5/-0 — **review**
-  - **Network communication:** network destinations +11/-0 — **review**
-  - **Published release versus source:** source/release difference profile changed (1 count change(s)); rule profile +2/-0 — **review**
+  - **Native executable code:** native binaries +4/-0 — **review**
+  - **Network communication:** network destinations +13/-1 — **review**
+  - **Published release versus source:** source/release difference profile changed (1 count change(s)); rule profile +1/-0 — **review**
 
 ## Steamcord
 
