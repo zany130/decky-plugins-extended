@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T22:40:36.204552Z",
+  "generated_at": "2026-11-11T23:49:51.602526Z",
   "item_count": 31,
   "items": [
     {
@@ -647,7 +647,7 @@
       "source_commit": "af4c0d61baa7204b1645dd6e0197bf42896bdf0e"
     },
     {
-      "artifact_sha256": "a419aecee0d748e1c2ccd728b5500397647f7174fcb16152a3758656d09d65c2",
+      "artifact_sha256": "52e135bd7ac92a14fb5fe0061a73aec2745a7947532a5bfea5ce4efa1d280b42",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -669,7 +669,7 @@
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +31/-0",
+          "summary": "network destinations +33/-0",
           "title": "Network communication"
         },
         {
@@ -697,20 +697,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-10T22:40:36.204552Z",
+      "first_seen_at": "2026-11-11T23:49:51.602526Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.86.1",
+      "release": "panel-de-control-v0.88.0",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 6,
-      "risk_score": 857,
+      "risk_score": 872,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "2e9d58901c48d0938ee571944edb416ac19617ca"
+      "source_commit": "6c08dc6bcd77c90f54d9a217294f621a7aa93db6"
     },
     {
       "artifact_sha256": "6fe7a4566e701ada64f3bc90cd148fa4e42e3b23e5cae7361b958032b2e11d20",
@@ -1294,5 +1294,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/42916249491"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/43122425215"
 }

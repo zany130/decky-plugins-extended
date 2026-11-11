@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **31** — critical 5, high 17, normal 9.
-Generated: `2026-11-10T22:40:36.204552Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/42916249491
+Generated: `2026-11-11T23:49:51.602526Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/43122425215
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -18,7 +18,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `1735deae58cb` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.86.1 / `a419aecee0d7` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.88.0 / `52e135bd7ac9` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.8.0 / `6fe7a4566e70` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.45.1 / `e5826ca33427` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.40.0 / `4ff0c64ad3b0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
@@ -216,15 +216,15 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.86.1` — `a419aecee0d748e1c2ccd728b5500397647f7174fcb16152a3758656d09d65c2`
-- Classification: **MANUAL\_REVIEW** (risk 857)
+- Candidate: `panel-de-control-v0.88.0` — `52e135bd7ac92a14fb5fe0061a73aec2745a7947532a5bfea5ce4efa1d280b42`
+- Classification: **MANUAL\_REVIEW** (risk 872)
 - Comparison: `compared`; reviewer-attention changes: 6
-- First seen: `2026-11-10T22:40:36.204552Z`
+- First seen: `2026-11-11T23:49:51.602526Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
   - **Native executable code:** native binaries +2/-0 — **review**
-  - **Network communication:** network destinations +31/-0 — **review**
+  - **Network communication:** network destinations +33/-0 — **review**
   - **Persistence and automatic startup:** rule profile +1/-0 — **review**
   - **Credentials and sensitive data:** not\_observed -\> observed; rule profile +3/-0 — **review**
   - **Published release versus source:** source/release difference profile changed (1 count change(s)) — **review**
