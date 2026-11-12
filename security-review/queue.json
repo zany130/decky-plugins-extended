@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T04:44:00.770403Z",
+  "generated_at": "2026-11-12T23:00:01.017592Z",
   "item_count": 31,
   "items": [
     {
@@ -468,6 +468,37 @@
       "source_commit": "e8a224106e5f6903f062cbb439c6ff43f8637328"
     },
     {
+      "artifact_sha256": "decf18d0d6db88e457615a57afb06617df25b5264306af3eff54061c2c7f2a7a",
+      "baseline_artifact_sha256": "0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a",
+      "baseline_release": "v0.2.0",
+      "changed_capabilities": [
+        {
+          "id": "network_communication",
+          "reviewer_attention": true,
+          "status_change": "unchanged",
+          "summary": "network destinations +1/-1",
+          "title": "Network communication"
+        }
+      ],
+      "comparison_status": "compared",
+      "error_count": 0,
+      "final_classification": "PASS_WITH_WARNINGS",
+      "first_seen_at": "2026-11-12T23:00:01.017592Z",
+      "plugin_name": "Decky UI Restored",
+      "priority": "high",
+      "reasons": [
+        "new_artifact",
+        "security_delta"
+      ],
+      "release": "v0.2.5",
+      "repository": "https://github.com/beallio/Decky-SteamAchievements",
+      "reviewer_attention_count": 1,
+      "risk_score": 4,
+      "same_artifact": false,
+      "scanner_failures": [],
+      "source_commit": "f61e5a6661091bd41e7cc59f42718648ee68a672"
+    },
+    {
       "artifact_sha256": "94d7ba3d1e9a7dfbc9e204807cd556c7148f72aee08d3b54d5301d4f0522ca7b",
       "baseline_artifact_sha256": "28171f4a10398c75f228112aa607529691804547e8c85eb518e7f015f3a26355",
       "baseline_release": "v0.4.3",
@@ -625,14 +656,14 @@
       "source_commit": "7999748cbe912ec283d6fc57bf9b11259e0be57c"
     },
     {
-      "artifact_sha256": "1735deae58cbde52aa51274cc6f7ce6c2d492a41be2db7388c122c02493010ce",
+      "artifact_sha256": "76f4d2f7a6c504febe91643b74b91f42a9c15aaf581626ab044d4e481e8fbb74",
       "baseline_artifact_sha256": "",
       "baseline_release": "",
       "changed_capabilities": [],
       "comparison_status": "baseline_not_found",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-05T23:01:50.115433Z",
+      "first_seen_at": "2026-11-12T23:00:01.017592Z",
       "plugin_name": "MoonDeck",
       "priority": "high",
       "reasons": [
@@ -644,7 +675,7 @@
       "risk_score": 7271,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "af4c0d61baa7204b1645dd6e0197bf42896bdf0e"
+      "source_commit": "de3f5e42f400e44318d47d0597c0c78ebb2bb934"
     },
     {
       "artifact_sha256": "52e135bd7ac92a14fb5fe0061a73aec2745a7947532a5bfea5ce4efa1d280b42",
@@ -1139,28 +1170,6 @@
       "source_commit": "5b6ace05c7f342153b4abe0fd1446152c53e43cd"
     },
     {
-      "artifact_sha256": "e06302ed068e0d2a5a5805beca8cb9ef5c48a019f0b79f5f147e9108b1fd1d13",
-      "baseline_artifact_sha256": "0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a",
-      "baseline_release": "v0.2.0",
-      "changed_capabilities": [],
-      "comparison_status": "compared",
-      "error_count": 0,
-      "final_classification": "PASS_WITH_WARNINGS",
-      "first_seen_at": "2026-10-22T21:04:31.357640Z",
-      "plugin_name": "Decky UI Restored",
-      "priority": "normal",
-      "reasons": [
-        "new_artifact"
-      ],
-      "release": "v0.2.3",
-      "repository": "https://github.com/beallio/Decky-SteamAchievements",
-      "reviewer_attention_count": 0,
-      "risk_score": 4,
-      "same_artifact": false,
-      "scanner_failures": [],
-      "source_commit": "1ecd5d439d747a3fe9fe2551fe509fb1cafac652"
-    },
-    {
       "artifact_sha256": "763b8398ea43e975d3e992e31301626ff4319ae4f5a167c0df9f0b58482de274",
       "baseline_artifact_sha256": "0cbf5948ca5a6f384181d0982db8874c88fad6a0d85bc3396bdfde564d322ffa",
       "baseline_release": "v1.3.3",
@@ -1294,5 +1303,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/43156442339"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/43324428248"
 }

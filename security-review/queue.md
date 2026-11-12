@@ -1,8 +1,8 @@
 # Security Review Queue
 
-Pending artifacts: **31** — critical 5, high 17, normal 9.
-Generated: `2026-11-12T04:44:00.770403Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/43156442339
+Pending artifacts: **31** — critical 5, high 18, normal 8.
+Generated: `2026-11-12T23:00:01.017592Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/43324428248
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -13,11 +13,12 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **HIGH** | steam-achievements | v1.2.6 / `6777682fca5e` | v1.2.3 / `4a698f9f7bf0` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Metadata | v0.6.1 / `881485463542` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky UI Restored | v0.2.5 / `decf18d0d6db` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | SDH-Ludusavi | v0.5.3 / `94d7ba3d1e9a` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | ThemeDeck | v4.0.0 / `9a2bd31bf4a9` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | MoonDeck | nightly / `1735deae58cb` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | MoonDeck | nightly / `76f4d2f7a6c5` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.88.0 / `52e135bd7ac9` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.8.0 / `6fe7a4566e70` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.45.2 / `4551f8f874e8` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
@@ -30,7 +31,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **NORMAL** | PlayTime | v3.3.2 / `9de2807d891c` | v3.3.0 / `1d8a520b499b` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | Game Sync | 20261018150711 / `e8e5b9a84d07` | 20260530153903 / `f5a6fd360016` | PASS\_WITH\_WARNINGS | new artifact |
-| **NORMAL** | Decky UI Restored | v0.2.3 / `e06302ed068e` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | ProtonDB Badges | v1.3.4 / `763b8398ea43` | v1.3.3 / `0cbf5948ca5a` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Docky | v1.4.15 / `605a4b85b574` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | vpn-deck | v3.0.0 / `58614ab76694` | v2.3.0 / `27936a0a8228` | MANUAL\_REVIEW | new artifact |
@@ -154,6 +154,17 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
   - **Network communication:** network destinations +13/-6 — **review**
   - **Published release versus source:** not\_observed -\> observed; source/release difference profile changed; rule profile +1/-0 — **review**
 
+## Decky UI Restored
+
+- Repository: `https://github.com/beallio/Decky-SteamAchievements`
+- Candidate: `v0.2.5` — `decf18d0d6db88e457615a57afb06617df25b5264306af3eff54061c2c7f2a7a`
+- Classification: **PASS\_WITH\_WARNINGS** (risk 4)
+- Comparison: `compared`; reviewer-attention changes: 1
+- First seen: `2026-11-12T23:00:01.017592Z`
+- Accepted baseline: `v0.2.0` — `0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a`
+- Capability changes:
+  - **Network communication:** network destinations +1/-1 — **review**
+
 ## SDH-Ludusavi
 
 - Repository: `https://github.com/beallio/SDH-Ludusavi`
@@ -206,10 +217,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## MoonDeck
 
 - Repository: `https://github.com/FrogTheFrog/moondeck`
-- Candidate: `nightly` — `1735deae58cbde52aa51274cc6f7ce6c2d492a41be2db7388c122c02493010ce`
+- Candidate: `nightly` — `76f4d2f7a6c504febe91643b74b91f42a9c15aaf581626ab044d4e481e8fbb74`
 - Classification: **MANUAL\_REVIEW** (risk 7271)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-11-05T23:01:50.115433Z`
+- First seen: `2026-11-12T23:00:01.017592Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
@@ -361,16 +372,6 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 - Comparison: `compared`; reviewer-attention changes: 0
 - First seen: `2026-10-22T21:04:31.357640Z`
 - Accepted baseline: `20260530153903` — `f5a6fd3600165ec6791b0c47d8eb8cbb657bb2de6d891a0e57490a4cf5794844`
-- Capability changes: none observed in the comparison model.
-
-## Decky UI Restored
-
-- Repository: `https://github.com/beallio/Decky-SteamAchievements`
-- Candidate: `v0.2.3` — `e06302ed068e0d2a5a5805beca8cb9ef5c48a019f0b79f5f147e9108b1fd1d13`
-- Classification: **PASS\_WITH\_WARNINGS** (risk 4)
-- Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-10-22T21:04:31.357640Z`
-- Accepted baseline: `v0.2.0` — `0c5e9cda3953aa0c563f8ec614f0b342a90762643cb935da42d8688c77c02b3a`
 - Capability changes: none observed in the comparison model.
 
 ## ProtonDB Badges
