@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **31** — critical 5, high 18, normal 8.
-Generated: `2026-11-13T03:57:07.011155Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/43361936419
+Generated: `2026-11-13T13:35:55.744176Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/43434608778
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | MoonDeck | nightly / `76f4d2f7a6c5` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.89.0 / `b4b4a2db55a7` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.8.0 / `6fe7a4566e70` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.45.2 / `4551f8f874e8` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.45.3 / `194fe0a6bc26` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.40.0 / `4ff0c64ad3b0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.3.0 / `a8560711894c` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.4.1 / `887a46b0265d` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
@@ -256,10 +256,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.45.2` — `4551f8f874e8a8effb455a21270f5eefed7006facea6f14997745f49f97cf1e1`
+- Candidate: `v1.45.3` — `194fe0a6bc26cf24af87839fae652868bc6981014e02b3c3b54f0534964e47f9`
 - Classification: **MANUAL\_REVIEW** (risk 877)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-11-12T04:44:00.770403Z`
+- First seen: `2026-11-13T13:35:55.744176Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Network communication:** network destinations +8/-2 — **review**
