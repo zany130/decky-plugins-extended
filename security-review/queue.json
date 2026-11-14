@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13T23:01:40.859208Z",
+  "generated_at": "2026-11-14T03:55:24.460648Z",
   "item_count": 31,
   "items": [
     {
@@ -416,7 +416,7 @@
       "source_commit": "2d21d198de1ad4b3a5cf5c4110a282f668aae3d7"
     },
     {
-      "artifact_sha256": "5a5b0358c4b8b86dd88799e7560858d6c4e04ae0365a4af937fb2bd870a4fdcd",
+      "artifact_sha256": "c50eb0170e50bbfb9bc6e754c80ad88277a9be13cb5d9c4199567404ad694e83",
       "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
       "baseline_release": "v0.3.6",
       "changed_capabilities": [
@@ -452,20 +452,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-13T23:01:40.859208Z",
+      "first_seen_at": "2026-11-14T03:55:24.460648Z",
       "plugin_name": "Decky Metadata",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.6.2",
+      "release": "v0.6.3",
       "repository": "https://github.com/beallio/Decky-Metadata",
       "reviewer_attention_count": 4,
       "risk_score": 100,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "2cf8000a04cff01569898612830dba2ccd4c4b42"
+      "source_commit": "39b3681bfec989023101fb3726cd408b47c4efd8"
     },
     {
       "artifact_sha256": "a8eacfa7a177187ed3be5ba45e1ef6db5dec32221e45a7fe931916feede09617",
@@ -678,7 +678,7 @@
       "source_commit": "de3f5e42f400e44318d47d0597c0c78ebb2bb934"
     },
     {
-      "artifact_sha256": "d12bf388d4b9e92e83a4feee7398918155175e1cdf70879c3362c614292bdf6d",
+      "artifact_sha256": "744cbc90a71c04fd2aae2cb91439a24c02056262aaf14f14197214d458cc7127",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -728,20 +728,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-13T23:01:40.859208Z",
+      "first_seen_at": "2026-11-14T03:55:24.460648Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.89.1",
+      "release": "panel-de-control-v0.89.2",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 6,
       "risk_score": 887,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "a7a1619f9f7fc85a26bb5b1a468936ae978c242f"
+      "source_commit": "3d6e88609c99a269af2a9023ba3c2040e85fc1ed"
     },
     {
       "artifact_sha256": "6fe7a4566e701ada64f3bc90cd148fa4e42e3b23e5cae7361b958032b2e11d20",
@@ -1303,5 +1303,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/43523518631"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/43553821689"
 }
