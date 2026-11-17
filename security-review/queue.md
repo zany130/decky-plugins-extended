@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **31** — critical 5, high 18, normal 8.
-Generated: `2026-11-17T01:17:00.983737Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/43993939023
+Generated: `2026-11-17T15:06:41.268346Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/44109844531
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -17,11 +17,11 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | SDH-Ludusavi | v0.5.3 / `94d7ba3d1e9a` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | ThemeDeck | v4.0.0 / `9a2bd31bf4a9` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Tender | tender-v0.33.0 / `7af9ec603ae7` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Tender | tender-v0.33.1 / `8e18ef0c3c6b` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `76f4d2f7a6c5` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.90.0 / `20666aaca6a4` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.8.0 / `6fe7a4566e70` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.45.7 / `5e97002ef699` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.45.9 / `9910926bd958` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.40.0 / `4ff0c64ad3b0` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.3.0 / `a8560711894c` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.4.1 / `887a46b0265d` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
@@ -30,7 +30,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **HIGH** | Decky LSFG-VK | v0.14.4 / `a2187926dfb5` | v0.12.8 / `322f6eec21a4` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | Decky Notifications | 1.0 / `c48de9ce7a8b` | unavailable | PASS\_WITH\_WARNINGS | baseline unavailable |
 | **NORMAL** | PlayTime | v3.3.2 / `9de2807d891c` | v3.3.0 / `1d8a520b499b` | MANUAL\_REVIEW | new artifact |
-| **NORMAL** | Game Sync | 20261018150711 / `e8e5b9a84d07` | 20260530153903 / `f5a6fd360016` | PASS\_WITH\_WARNINGS | new artifact |
+| **NORMAL** | Game Sync | 20261117135440 / `ea0668db836b` | 20260530153903 / `f5a6fd360016` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | ProtonDB Badges | v1.4.0 / `7fe7814ee429` | v1.3.3 / `0cbf5948ca5a` | PASS\_WITH\_WARNINGS | new artifact |
 | **NORMAL** | Docky | v1.4.15 / `605a4b85b574` | v1.4.8 / `6fa09e2dbfa7` | MANUAL\_REVIEW | new artifact |
 | **NORMAL** | vpn-deck | v3.0.0 / `58614ab76694` | v2.3.0 / `27936a0a8228` | MANUAL\_REVIEW | new artifact |
@@ -204,10 +204,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Tender
 
 - Repository: `https://github.com/danielcopper/decky-romm-sync`
-- Candidate: `tender-v0.33.0` — `7af9ec603ae713f96bb22cf0096fcb3ae241d92c9bd5266b17f0d784dce9a9bf`
+- Candidate: `tender-v0.33.1` — `8e18ef0c3c6b4ca7147205031941da80f7acbc1ead3c0d58e98b742cac0dc77f`
 - Classification: **MANUAL\_REVIEW** (risk 184)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-10-22T21:04:31.357640Z`
+- First seen: `2026-11-17T15:06:41.268346Z`
 - Accepted baseline: `decky-romm-sync-v0.30.1` — `254a911f01e6c8d1c01deddbcfab4c0ee437e1bca3e28bf92d3b41ae0ab002db`
 - Capability changes:
   - **Command and process execution:** rule profile +1/-0 — **review**
@@ -256,10 +256,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.45.7` — `5e97002ef699f46ebbad8bfd6ecb874aa8a0a972798840d80736c52c5b24e17b`
+- Candidate: `v1.45.9` — `9910926bd95828ed846e9fedf2902d8fe4730776705565648b110a882bb29faf`
 - Classification: **MANUAL\_REVIEW** (risk 877)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-11-17T01:17:00.983737Z`
+- First seen: `2026-11-17T15:06:41.268346Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Network communication:** network destinations +8/-2 — **review**
@@ -367,10 +367,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Game Sync
 
 - Repository: `https://github.com/AkazaRenn/SDH-GameSync`
-- Candidate: `20261018150711` — `e8e5b9a84d078c6ba5513a6eae50438b79af512e3d114af14fcd3b6fc5b7be59`
+- Candidate: `20261117135440` — `ea0668db836be91bd51ca64393f92e8146711dd0b9be7e3cac395581d8a46302`
 - Classification: **PASS\_WITH\_WARNINGS** (risk 12)
 - Comparison: `compared`; reviewer-attention changes: 0
-- First seen: `2026-10-22T21:04:31.357640Z`
+- First seen: `2026-11-17T15:06:41.268346Z`
 - Accepted baseline: `20260530153903` — `f5a6fd3600165ec6791b0c47d8eb8cbb657bb2de6d891a0e57490a4cf5794844`
 - Capability changes: none observed in the comparison model.
 
