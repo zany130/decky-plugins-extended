@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T13:46:09.214590Z",
+  "generated_at": "2026-11-22T22:57:47.483103Z",
   "item_count": 31,
   "items": [
     {
@@ -678,7 +678,7 @@
       "source_commit": "de3f5e42f400e44318d47d0597c0c78ebb2bb934"
     },
     {
-      "artifact_sha256": "5d9742d54002f5071a4f395e47d7c74930ba31c36d32593d0a941721581ff8aa",
+      "artifact_sha256": "19d7c4e722b0460b0226cbf866a9a2f8f88ba9d7491fa9024fc5a41a4f779a66",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -728,20 +728,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-20T00:01:10.415348Z",
+      "first_seen_at": "2026-11-22T22:57:47.483103Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.94.1",
+      "release": "panel-de-control-v0.94.2",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 6,
       "risk_score": 882,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "0cef936cb01e63b6f9f608ed1c5d2e5a509012da"
+      "source_commit": "011bb560233a7feb87ba0bfb67def2b70d53a49a"
     },
     {
       "artifact_sha256": "6fe7a4566e701ada64f3bc90cd148fa4e42e3b23e5cae7361b958032b2e11d20",
@@ -834,7 +834,7 @@
       "source_commit": "c2b1453e115452e8a0271c797e1e70c2076b8d76"
     },
     {
-      "artifact_sha256": "23507c3997e8b721b750856905d5a2f3c4d11cc37ca5965293da72419f9a0dc5",
+      "artifact_sha256": "ffff63ccf63a711f3fb0519f7b89231bce0d4871c9f1370c926faeed91e46fd2",
       "baseline_artifact_sha256": "3f0260c0a5526a5d921e35c3cf0ca6e2d5a15d098ae1c0d9f6991711662a70ed",
       "baseline_release": "v0.3.2",
       "changed_capabilities": [
@@ -884,20 +884,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-21T22:33:58.226573Z",
+      "first_seen_at": "2026-11-22T22:57:47.483103Z",
       "plugin_name": "Achievement Companion",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.41.1",
+      "release": "v0.42.0",
       "repository": "https://github.com/parvagans/achievement-companion",
       "reviewer_attention_count": 6,
-      "risk_score": 287,
+      "risk_score": 282,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "d11178803d3feb345187439437c227cf0fdfe67f"
+      "source_commit": "dd4555e6218467277a8f58da76501346c439ed42"
     },
     {
       "artifact_sha256": "a8560711894c30d251392cbaa2fa80b3d09274a13fd9e775323b06f6fe34f631",
@@ -1303,5 +1303,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/45028925907"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/45080304429"
 }
