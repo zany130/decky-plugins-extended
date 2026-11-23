@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **31** — critical 5, high 18, normal 8.
-Generated: `2026-11-22T22:57:47.483103Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/45080304429
+Generated: `2026-11-23T16:46:27.300464Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/45219549945
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -12,16 +12,16 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | Muon | 0.5.0.3 / `eb1df3888452` | unavailable | BLOCK | blocked by policy, baseline unavailable |
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **HIGH** | steam-achievements | v1.2.6 / `6777682fca5e` | v1.2.3 / `4a698f9f7bf0` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Decky Metadata | v0.6.5 / `b1ddb08a0643` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Metadata | v0.6.6 / `6e85876f2501` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky UI Restored | v0.2.6 / `a8eacfa7a177` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | SDH-Ludusavi | v0.5.3 / `94d7ba3d1e9a` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | ThemeDeck | v4.0.0 / `9a2bd31bf4a9` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.1 / `8e18ef0c3c6b` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | MoonDeck | nightly / `76f4d2f7a6c5` | unavailable | MANUAL\_REVIEW | baseline unavailable |
-| **HIGH** | Panel de Control | panel-de-control-v0.94.2 / `19d7c4e722b0` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Panel de Control | panel-de-control-v0.94.3 / `740107d43e5b` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.8.0 / `6fe7a4566e70` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Steamcord | v1.46.1 / `eae9451554cc` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Steamcord | v1.47.0 / `3c56f5e86c22` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Achievement Companion | v0.42.0 / `ffff63ccf63a` | v0.3.2 / `3f0260c0a552` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky Vibrance HDR | 1.3.0 / `a8560711894c` | 1.0.1 / `8bbf5601ea5b` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Deck Shelves | v3.4.1 / `887a46b0265d` | v3.1.0 / `71a7c6d4f53e` | MANUAL\_REVIEW | new artifact, security delta |
@@ -143,15 +143,15 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Metadata
 
 - Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `v0.6.5` — `b1ddb08a06431e8981126947b2dbbf77c5c927d1a2e4bccab3ecddfbb7b8a6f0`
+- Candidate: `v0.6.6` — `6e85876f2501acd6a13a75832e107e5d170b08b1fb61f257f1ecc9b9fbfab999`
 - Classification: **MANUAL\_REVIEW** (risk 130)
 - Comparison: `compared`; reviewer-attention changes: 4
-- First seen: `2026-11-20T14:33:38.409486Z`
+- First seen: `2026-11-23T16:46:27.300464Z`
 - Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
   - **Native executable code:** not\_observed -\> observed; native binaries +1/-0; rule profile +2/-0 — **review**
-  - **Network communication:** network destinations +14/-6 — **review**
+  - **Network communication:** network destinations +15/-5 — **review**
   - **Published release versus source:** not\_observed -\> observed; source/release difference profile changed; rule profile +1/-0 — **review**
 
 ## Decky UI Restored
@@ -227,10 +227,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Panel de Control
 
 - Repository: `https://github.com/Hooandee/panel-de-control`
-- Candidate: `panel-de-control-v0.94.2` — `19d7c4e722b0460b0226cbf866a9a2f8f88ba9d7491fa9024fc5a41a4f779a66`
+- Candidate: `panel-de-control-v0.94.3` — `740107d43e5b855fae18cd40aabf3255f5fbb5f153559e9f2448f426a78234d0`
 - Classification: **MANUAL\_REVIEW** (risk 882)
 - Comparison: `compared`; reviewer-attention changes: 6
-- First seen: `2026-11-22T22:57:47.483103Z`
+- First seen: `2026-11-23T16:46:27.300464Z`
 - Accepted baseline: `panel-de-control-v0.37.1` — `e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07`
 - Capability changes:
   - **Command and process execution:** rule profile +3/-0 — **review**
@@ -256,10 +256,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Steamcord
 
 - Repository: `https://github.com/Necrosiak/Steamcord`
-- Candidate: `v1.46.1` — `eae9451554ccce431218af99c1084a46d4d1dc5b4cceb1fab31c09d3b3c743cf`
+- Candidate: `v1.47.0` — `3c56f5e86c2217dddfca832757b885003d17b817e2f0840948630f9cc98cbc31`
 - Classification: **MANUAL\_REVIEW** (risk 877)
 - Comparison: `compared`; reviewer-attention changes: 3
-- First seen: `2026-11-22T13:46:09.214590Z`
+- First seen: `2026-11-23T16:46:27.300464Z`
 - Accepted baseline: `v1.21.1` — `4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38`
 - Capability changes:
   - **Network communication:** network destinations +7/-2 — **review**

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T22:57:47.483103Z",
+  "generated_at": "2026-11-23T16:46:27.300464Z",
   "item_count": 31,
   "items": [
     {
@@ -416,7 +416,7 @@
       "source_commit": "2d21d198de1ad4b3a5cf5c4110a282f668aae3d7"
     },
     {
-      "artifact_sha256": "b1ddb08a06431e8981126947b2dbbf77c5c927d1a2e4bccab3ecddfbb7b8a6f0",
+      "artifact_sha256": "6e85876f2501acd6a13a75832e107e5d170b08b1fb61f257f1ecc9b9fbfab999",
       "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
       "baseline_release": "v0.3.6",
       "changed_capabilities": [
@@ -438,7 +438,7 @@
           "id": "network_communication",
           "reviewer_attention": true,
           "status_change": "unchanged",
-          "summary": "network destinations +14/-6",
+          "summary": "network destinations +15/-5",
           "title": "Network communication"
         },
         {
@@ -452,20 +452,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-20T14:33:38.409486Z",
+      "first_seen_at": "2026-11-23T16:46:27.300464Z",
       "plugin_name": "Decky Metadata",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.6.5",
+      "release": "v0.6.6",
       "repository": "https://github.com/beallio/Decky-Metadata",
       "reviewer_attention_count": 4,
       "risk_score": 130,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "e50f7b4f2c5854fac33d6ef0ff067480dcdfe9ba"
+      "source_commit": "92cb714c605103ccdd7d4200a5bd3add3b363d71"
     },
     {
       "artifact_sha256": "a8eacfa7a177187ed3be5ba45e1ef6db5dec32221e45a7fe931916feede09617",
@@ -678,7 +678,7 @@
       "source_commit": "de3f5e42f400e44318d47d0597c0c78ebb2bb934"
     },
     {
-      "artifact_sha256": "19d7c4e722b0460b0226cbf866a9a2f8f88ba9d7491fa9024fc5a41a4f779a66",
+      "artifact_sha256": "740107d43e5b855fae18cd40aabf3255f5fbb5f153559e9f2448f426a78234d0",
       "baseline_artifact_sha256": "e20cce88c57d2d4e4793c6b759d7bc4fdc6b51060469764e31e62b7ae05fdb07",
       "baseline_release": "panel-de-control-v0.37.1",
       "changed_capabilities": [
@@ -728,20 +728,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-22T22:57:47.483103Z",
+      "first_seen_at": "2026-11-23T16:46:27.300464Z",
       "plugin_name": "Panel de Control",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "panel-de-control-v0.94.2",
+      "release": "panel-de-control-v0.94.3",
       "repository": "https://github.com/Hooandee/panel-de-control",
       "reviewer_attention_count": 6,
       "risk_score": 882,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "011bb560233a7feb87ba0bfb67def2b70d53a49a"
+      "source_commit": "a21d2a3c68c09654d68ae65418ad5af62e0f6807"
     },
     {
       "artifact_sha256": "6fe7a4566e701ada64f3bc90cd148fa4e42e3b23e5cae7361b958032b2e11d20",
@@ -789,7 +789,7 @@
       "source_commit": "8c05481efcb47fbefdabd1ffc7aa58c2466f64f5"
     },
     {
-      "artifact_sha256": "eae9451554ccce431218af99c1084a46d4d1dc5b4cceb1fab31c09d3b3c743cf",
+      "artifact_sha256": "3c56f5e86c2217dddfca832757b885003d17b817e2f0840948630f9cc98cbc31",
       "baseline_artifact_sha256": "4c0ca32204c25c741d03736199622d8ee6ed63fbca5c67ff7f321b7593348f38",
       "baseline_release": "v1.21.1",
       "changed_capabilities": [
@@ -818,20 +818,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-22T13:46:09.214590Z",
+      "first_seen_at": "2026-11-23T16:46:27.300464Z",
       "plugin_name": "Steamcord",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v1.46.1",
+      "release": "v1.47.0",
       "repository": "https://github.com/Necrosiak/Steamcord",
       "reviewer_attention_count": 3,
       "risk_score": 877,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "c2b1453e115452e8a0271c797e1e70c2076b8d76"
+      "source_commit": "6cf691dfb9f2bf299876dc0cfe83d9b87fd4818d"
     },
     {
       "artifact_sha256": "ffff63ccf63a711f3fb0519f7b89231bce0d4871c9f1370c926faeed91e46fd2",
@@ -1303,5 +1303,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/45080304429"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/45219549945"
 }
