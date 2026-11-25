@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **31** — critical 5, high 18, normal 8.
-Generated: `2026-11-24T16:42:25.239524Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/45439526470
+Generated: `2026-11-25T16:24:45.330931Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/45652888471
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -12,13 +12,13 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | Muon | 0.5.0.3 / `eb1df3888452` | unavailable | BLOCK | blocked by policy, baseline unavailable |
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **HIGH** | steam-achievements | v1.2.6 / `6777682fca5e` | v1.2.3 / `4a698f9f7bf0` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Decky Metadata | v0.6.6 / `6e85876f2501` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Metadata | v0.6.7 / `e3ac4adb6213` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky UI Restored | v0.2.6 / `a8eacfa7a177` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | SDH-Ludusavi | v0.5.3 / `94d7ba3d1e9a` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | ThemeDeck | v4.0.0 / `9a2bd31bf4a9` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | DeckyClash | v0.1.2 / `7ebadc4bfd0e` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Tender | tender-v0.33.1 / `8e18ef0c3c6b` | decky-romm-sync-v0.30.1 / `254a911f01e6` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | MoonDeck | nightly / `76f4d2f7a6c5` | unavailable | MANUAL\_REVIEW | baseline unavailable |
+| **HIGH** | MoonDeck | nightly / `220d362e527a` | unavailable | MANUAL\_REVIEW | baseline unavailable |
 | **HIGH** | Panel de Control | panel-de-control-v0.95.1 / `fba274e3441b` | panel-de-control-v0.37.1 / `e20cce88c57d` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Unifideck | Release-0.8.0 / `6fe7a4566e70` | Release-0.7.3 / `dd9943ce6b0c` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Steamcord | v1.48.1 / `ac1cca6dc11f` | v1.21.1 / `4c0ca32204c2` | MANUAL\_REVIEW | new artifact, security delta |
@@ -143,10 +143,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Metadata
 
 - Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `v0.6.6` — `6e85876f2501acd6a13a75832e107e5d170b08b1fb61f257f1ecc9b9fbfab999`
+- Candidate: `v0.6.7` — `e3ac4adb6213a0b04087dafd9fbe911a88cc9875cb56a90b8970045795c0f10b`
 - Classification: **MANUAL\_REVIEW** (risk 130)
 - Comparison: `compared`; reviewer-attention changes: 4
-- First seen: `2026-11-23T16:46:27.300464Z`
+- First seen: `2026-11-25T16:24:45.330931Z`
 - Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
@@ -217,10 +217,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## MoonDeck
 
 - Repository: `https://github.com/FrogTheFrog/moondeck`
-- Candidate: `nightly` — `76f4d2f7a6c504febe91643b74b91f42a9c15aaf581626ab044d4e481e8fbb74`
-- Classification: **MANUAL\_REVIEW** (risk 7271)
+- Candidate: `nightly` — `220d362e527aa117050e8ae83a5370729b83332f5d01cfb3b5f2a66a6de55e06`
+- Classification: **MANUAL\_REVIEW** (risk 7396)
 - Comparison: `baseline_not_found`; reviewer-attention changes: 0
-- First seen: `2026-11-12T23:00:01.017592Z`
+- First seen: `2026-11-25T16:24:45.330931Z`
 - Accepted baseline: unavailable
 - Capability changes: none observed in the comparison model.
 
