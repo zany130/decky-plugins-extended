@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T01:17:43.171530Z",
+  "generated_at": "2026-11-26T15:58:31.861376Z",
   "item_count": 31,
   "items": [
     {
@@ -416,7 +416,7 @@
       "source_commit": "2d21d198de1ad4b3a5cf5c4110a282f668aae3d7"
     },
     {
-      "artifact_sha256": "e3ac4adb6213a0b04087dafd9fbe911a88cc9875cb56a90b8970045795c0f10b",
+      "artifact_sha256": "92e607120d75d96bb0e158542fa32369de1adea18884a36d36c3790aaee750ed",
       "baseline_artifact_sha256": "0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5",
       "baseline_release": "v0.3.6",
       "changed_capabilities": [
@@ -452,20 +452,20 @@
       "comparison_status": "compared",
       "error_count": 0,
       "final_classification": "MANUAL_REVIEW",
-      "first_seen_at": "2026-11-25T16:24:45.330931Z",
+      "first_seen_at": "2026-11-26T15:58:31.861376Z",
       "plugin_name": "Decky Metadata",
       "priority": "high",
       "reasons": [
         "new_artifact",
         "security_delta"
       ],
-      "release": "v0.6.7",
+      "release": "v0.6.8",
       "repository": "https://github.com/beallio/Decky-Metadata",
       "reviewer_attention_count": 4,
       "risk_score": 130,
       "same_artifact": false,
       "scanner_failures": [],
-      "source_commit": "47a9776b7b513993a226ddfabe7448aad2f2da3f"
+      "source_commit": "8215202c22bf5c8b9c2281d3b7c2f739a7107a5b"
     },
     {
       "artifact_sha256": "a8eacfa7a177187ed3be5ba45e1ef6db5dec32221e45a7fe931916feede09617",
@@ -1310,5 +1310,5 @@
     }
   ],
   "schema_version": "1",
-  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/45734434494"
+  "source_run_url": "https://github.com/zany130/decky-plugins-extended/actions/runs/45853900914"
 }

@@ -1,8 +1,8 @@
 # Security Review Queue
 
 Pending artifacts: **31** — critical 5, high 18, normal 8.
-Generated: `2026-11-26T01:17:43.171530Z`
-Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/45734434494
+Generated: `2026-11-26T15:58:31.861376Z`
+Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs/45853900914
 
 | Priority | Plugin | Candidate | Baseline | Classification | Why |
 | --- | --- | --- | --- | --- | --- |
@@ -12,7 +12,7 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 | **CRITICAL** | Muon | 0.5.0.3 / `eb1df3888452` | unavailable | BLOCK | blocked by policy, baseline unavailable |
 | **CRITICAL** | https://github.com/xXJSONDeruloXx/Decky-bionic-fg |  / `unavailable` | v0.1.6 / `d3758997fc9b` | AUDIT\_ERROR | audit error, artifact identity unavailable, security delta |
 | **HIGH** | steam-achievements | v1.2.6 / `6777682fca5e` | v1.2.3 / `4a698f9f7bf0` | MANUAL\_REVIEW | new artifact, security delta |
-| **HIGH** | Decky Metadata | v0.6.7 / `e3ac4adb6213` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
+| **HIGH** | Decky Metadata | v0.6.8 / `92e607120d75` | v0.3.6 / `0d856632d8a4` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | Decky UI Restored | v0.2.6 / `a8eacfa7a177` | v0.2.0 / `0c5e9cda3953` | PASS\_WITH\_WARNINGS | new artifact, security delta |
 | **HIGH** | SDH-Ludusavi | v0.5.3 / `94d7ba3d1e9a` | v0.4.3 / `28171f4a1039` | MANUAL\_REVIEW | new artifact, security delta |
 | **HIGH** | ThemeDeck | v4.0.0 / `9a2bd31bf4a9` | v3.0.1 / `92610937d8fd` | MANUAL\_REVIEW | new artifact, security delta |
@@ -143,10 +143,10 @@ Source audit run: https://github.com/zany130/decky-plugins-extended/actions/runs
 ## Decky Metadata
 
 - Repository: `https://github.com/beallio/Decky-Metadata`
-- Candidate: `v0.6.7` — `e3ac4adb6213a0b04087dafd9fbe911a88cc9875cb56a90b8970045795c0f10b`
+- Candidate: `v0.6.8` — `92e607120d75d96bb0e158542fa32369de1adea18884a36d36c3790aaee750ed`
 - Classification: **MANUAL\_REVIEW** (risk 130)
 - Comparison: `compared`; reviewer-attention changes: 4
-- First seen: `2026-11-25T16:24:45.330931Z`
+- First seen: `2026-11-26T15:58:31.861376Z`
 - Accepted baseline: `v0.3.6` — `0d856632d8a48a93f9886bb4f4bc7270bf64f21d1dce23c208a978e45d94fda5`
 - Capability changes:
   - **Command and process execution:** not\_observed -\> observed; rule profile +2/-0 — **review**
